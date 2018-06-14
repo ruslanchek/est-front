@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape Copy 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="0%" cy="-46.9719704%" fx="0%" fy="-46.9719704%" r="176.832783%" gradientTransform="translate(0.000000,-0.469720),scale(0.917500,1.000000),rotate(-137.409809),scale(1.000000,0.945712),translate(-0.000000,0.469720)" id="radialGradient-1">
+            <stop stop-color="#FFA480" offset="0%"></stop>
+            <stop stop-color="#D91657" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Search" transform="translate(-321.000000, -377.000000)" fill="url(#radialGradient-1)" fill-rule="nonzero">
+            <g id="crypto" transform="translate(9.000000, 138.000000)">
+                <path d="M318.666667,251.233333 L317.7,250.353333 C314.266667,247.24 312,245.186667 312,242.666667 C312,240.613333 313.613333,239 315.666667,239 C316.826667,239 317.94,239.54 318.666667,240.393333 C319.393333,239.54 320.506667,239 321.666667,239 C323.72,239 325.333333,240.613333 325.333333,242.666667 C325.333333,245.186667 323.066667,247.24 319.633333,250.36 L318.666667,251.233333 Z" id="Shape-Copy-8"></path>
+            </g>
+        </g>
+    </g>
+</svg>
