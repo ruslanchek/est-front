@@ -17,6 +17,7 @@ export namespace ObjectsStore {
 	}
 
 	export interface IObjectAgent {
+		id: number;
 		fullName: string;
 		contact: string;
 	}
