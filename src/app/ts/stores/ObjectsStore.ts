@@ -12,8 +12,8 @@ export namespace ObjectsStore {
 		params: IObjectParams;
 		agent: IObjectAgent;
 		isFavorite: boolean;
-		pictures: IObjectPiture[];
-		coverPicture: IObjectPiture;
+		pictures: IObjectPicture[];
+		coverPicture: IObjectPicture;
 	}
 
 	export interface IObjectAgent {
@@ -26,7 +26,8 @@ export namespace ObjectsStore {
 		bathrooms: number;
 	}
 
-	export interface IObjectPiture {
+	export interface IObjectPicture {
+		id: number;
 		title: string;
 		description: string;
 		src: string;
