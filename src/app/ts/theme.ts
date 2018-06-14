@@ -1,6 +1,21 @@
-import { EOColors } from 'eo-colors';
+import Color = require('color');
 
-export const COLORS = EOColors.EO_WALLET;
+export const COLORS = {
+	GREEN: Color('#00B383'),
+	GREEN_LIGHT: Color('#00D66B'),
+	GREEN_ULTRA_LIGHT: Color('#B8FFC7'),
+	GREEN_DARK: Color('#008273'),
+	GREEN_ULTRA_DARK: Color('#184314'),
+	CYAN_DARK: Color('#00758C'),
+	GRAY: Color('#F8F7FF'),
+	GRAY_LIGHT: Color('#FAFCFF'),
+	GRAY_DARK: Color('#D5DCE6'),
+	VIOLET_DARK: Color('#332966'),
+	VIOLET_LIGHT: Color('#766F9F'),
+	PINK_DARK: Color('#D91657'),
+	WHITE: Color('#FFFFFF'),
+	BLACK: Color('#000000'),
+};
 
 export const THEME = {
 	FONT: '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',

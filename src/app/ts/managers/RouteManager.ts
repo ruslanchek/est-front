@@ -3,7 +3,6 @@ import { History } from 'history';
 import { CONFIG } from '../config';
 import { StateStore } from '../stores/StateStore';
 import { Manager } from './Manager';
-import { CoinStore } from '../stores/CoinStore';
 
 export enum RouteAuthRule {
 	UnauthorizedOnly,
@@ -27,14 +26,6 @@ export class RouteManager extends Manager {
 		return new Promise((resolve, reject) => {
 			resolve();
 		});
-	}
-
-	public goToFavs(): void {
-		const favorites: string[] = CoinStore.store.state.favorites;
-
-		if (favorites.length > 0 && this.history.location.pathname === CONFIG.PATHS.HOME) {
-			this.go(CONFIG.PATHS.FAVORITES);
-		}
 	}
 
 	public initPage(history: History, params: any, authRule: RouteAuthRule): void {
@@ -97,33 +88,9 @@ export class RouteManager extends Manager {
 
 	private getMeta(path: string): IMeta {
 		switch (path) {
-			case CONFIG.PATHS.SETTINGS : {
-				return {
-					title: 'Settings'
-				};
-			}
-
-			case CONFIG.PATHS.FAVORITES : {
-				return {
-					title: 'Favorites'
-				};
-			}
-
-			case CONFIG.PATHS.SEARCH : {
-				return {
-					title: 'Search'
-				};
-			}
-
-			case CONFIG.PATHS.COIN : {
-				return {
-					title: 'Settings'
-				};
-			}
-
 			case CONFIG.PATHS.HOME : {
 				return {
-					title: `EO.Finance`
+					title: `EST`
 				};
 			}
 

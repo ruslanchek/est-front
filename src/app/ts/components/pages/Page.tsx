@@ -7,7 +7,6 @@ import { RouteAuthRule } from '../../managers/RouteManager';
 import { StateStore } from '../../stores/StateStore';
 import { COLORS, THEME } from '../../theme';
 import { Header } from '../common/Header';
-import { Nav } from '../common/Nav';
 
 export enum PageLayout {
 	FullScreen,

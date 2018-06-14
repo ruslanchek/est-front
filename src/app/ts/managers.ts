@@ -2,7 +2,6 @@ import { RouteManager } from './managers/RouteManager';
 import { StorageManager } from './managers/StorageManager';
 import { StateStore } from './stores/StateStore';
 import { ApiManager } from './managers/ApiManager';
-import { CONFIG } from './config';
 import { ToastManager } from './managers/ToastManager';
 
 export class Managers {
@@ -33,8 +32,6 @@ export class Managers {
 					...StateStore.store.state,
 					appReady: true,
 				});
-			}).then(() => {
-				this.route.goToFavs();
 			});
 	}
 

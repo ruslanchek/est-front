@@ -1547,6 +1547,12 @@ chrome-trace-event@^0.1.1:
   version "0.1.3"
   resolved "https://npmjs.eoadm.com/chrome-trace-event/-/chrome-trace-event-0.1.3.tgz#d395af2d31c87b90a716c831fe326f69768ec084"
 
+chrono-node@^1.3.5:
+  version "1.3.5"
+  resolved "https://npmjs.eoadm.com/chrono-node/-/chrono-node-1.3.5.tgz#a2495298a32da82bcc01ad9be7d77efa5e244122"
+  dependencies:
+    moment "^2.10.3"
+
 chunk-rename-webpack-plugin@^1.1.1:
   version "1.1.1"
   resolved "https://npmjs.eoadm.com/chunk-rename-webpack-plugin/-/chunk-rename-webpack-plugin-1.1.1.tgz#4205c2539e90598639e0ff993b26e49b7c9165b2"
@@ -2276,17 +2282,6 @@ enhanced-resolve@^4.0.0:
 envinfo@^4.4.2:
   version "4.4.2"
   resolved "https://npmjs.eoadm.com/envinfo/-/envinfo-4.4.2.tgz#472c49f3a8b9bca73962641ce7cb692bf623cd1c"
-
-eo-actions@10.0.0:
-  version "10.0.0"
-  resolved "https://npmjs.eoadm.com/eo-actions/-/eo-actions-10.0.0.tgz#efe2bf70ec49f99284c44e5735fdaa0b1d1bc939"
-
-eo-colors@^1.0.0:
-  version "1.3.2"
-  resolved "https://npmjs.eoadm.com/eo-colors/-/eo-colors-1.3.2.tgz#245e4b3d6f188674894ccd9258706de0b551e348"
-  dependencies:
-    "@types/color" "^3.0.0"
-    color "^3.0.0"
 
 eo-locale@^0.0.3:
   version "0.0.3"
@@ -4822,7 +4817,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@*, moment@^2.22.2:
+moment@*, moment@^2.10.3, moment@^2.22.2:
   version "2.22.2"
   resolved "https://npmjs.eoadm.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 

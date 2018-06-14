@@ -2,11 +2,7 @@ export const CONFIG = {
 	API: {},
 	TOP_COUNT: 50,
 	PATHS: {
-		HOME: '/top',
-		FAVORITES: '/favorites',
-		SEARCH: '/search',
-		COIN: '/coin/:id',
-		SETTINGS: '/settings'
+		HOME: '/top'
 	},
 	STORAGE: {
 		PREFIX: 'EO_FINANCE',

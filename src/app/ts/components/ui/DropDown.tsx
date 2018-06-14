@@ -2,7 +2,6 @@ import { css, StyleSheet } from 'aphrodite/no-important';
 import { isDefined } from 'eo-utils';
 import * as React from 'react';
 
-import { COLORS } from '../../theme';
 import { IDropDownItemProps, TDropDownItemValue } from './DropDownItem';
 import { Modal } from './Modal';
 
@@ -38,23 +37,25 @@ export class DropDown extends React.PureComponent<IProps, IState> {
 				>
 					{this.props.renderSelected(this.state.selectedValue)}
 				</span>
-				{this.state.isListVisible && (
-					<Modal onClickOnOverlay={() => this.toggleListVisibility(false)}>
-						<ul className={css(styles.list)}>
-							{React.Children.map(this.props.children, child => {
-								if (React.isValidElement<IDropDownItemProps>(child)) {
-									const childProps = child.props;
 
-									return React.cloneElement(child, {
-										onClick: this.handleSelect
-									});
-								}
+				<Modal
+					isVisible={this.state.isListVisible}
+					onClose={() => this.toggleListVisibility(false)}
+				>
+					<ul className={css(styles.list)}>
+						{React.Children.map(this.props.children, child => {
+							if (React.isValidElement<IDropDownItemProps>(child)) {
+								const childProps = child.props;
 
-								return child;
-							})}
-						</ul>
-					</Modal>
-				)}
+								return React.cloneElement(child, {
+									onClick: this.handleSelect
+								});
+							}
+
+							return child;
+						})}
+					</ul>
+				</Modal>
 			</>
 		);
 	}

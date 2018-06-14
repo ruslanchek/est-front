@@ -3,7 +3,6 @@ import { css, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
-import { Nav } from './Nav';
 import { Link } from 'react-router-dom';
 import { CONFIG } from '../../config';
 
@@ -42,7 +41,7 @@ export class Header extends React.Component<{}, {}> {
 				</div>
 
 				<div className={css(styles.nav)}>
-					<Nav/>
+
 				</div>
 			</header>
 		);
