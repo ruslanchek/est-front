@@ -3,46 +3,13 @@ import { css, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
-import { Link } from 'react-router-dom';
-import { CONFIG } from '../../config';
-
-const ICON_SIZE: number = 20;
-const BUTTON_SIZE: number = 32;
 
 @followStore(StateStore.store)
 export class Header extends React.Component<{}, {}> {
 	public render() {
 		return (
 			<header className={css(styles.header)}>
-				<div className={css(styles.container)}>
-					<Link to={CONFIG.PATHS.HOME} className={css(styles.logo)}/>
-
-					<h1 className={css(styles.title)}>
-						{StateStore.store.state.title}
-					</h1>
-
-					<a
-						href="https://eo.trade?refid=googlechrome"
-						className={css(styles.button, styles.buy)}
-						target="_blank"
-					>
-						Buy EO
-						<i className={css(styles.initial)}>Initial Coin Sale</i>
-					</a>
-
-					{/*<nav className={css(styles.buttons)}>*/}
-					{/*<a className={css(styles.button)} onClick={(e) => {*/}
-					{/*e.preventDefault();*/}
-					{/*managers.route.go(CONFIG.PATHS.SETTINGS);*/}
-					{/*}}>*/}
-					{/*<Icon name={IconName.Menu} size={ICON_SIZE}/>*/}
-					{/*</a>*/}
-					{/*</nav>*/}
-				</div>
-
-				<div className={css(styles.nav)}>
-
-				</div>
+				xxx
 			</header>
 		);
 	}

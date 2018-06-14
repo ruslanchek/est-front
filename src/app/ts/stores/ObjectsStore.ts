@@ -2,7 +2,31 @@ import { Store } from 'react-stores';
 
 export namespace ObjectsStore {
 	export interface IObject {
+		id: number;
+		type: EObjectType;
+		constructionDate: Date;
+		price: number;
+		address: string;
+		lat: number;
+		lng: number;
+		params: IObjectParams;
+		agent: IObjectAgent;
+		isFavorite: boolean;
+	}
 
+	export interface IObjectAgent {
+		fullName: string;
+		contact: string;
+	}
+
+	export interface IObjectParams {
+		bedrooms: number;
+		bathrooms: number;
+	}
+
+	export enum EObjectType {
+		House = 'house',
+		Flat = 'flat'
 	}
 
 	export interface IState {

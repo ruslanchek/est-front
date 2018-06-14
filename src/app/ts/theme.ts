@@ -7,9 +7,9 @@ export const COLORS = {
 	GREEN_DARK: Color('#008273'),
 	GREEN_ULTRA_DARK: Color('#184314'),
 	CYAN_DARK: Color('#00758C'),
-	GRAY: Color('#F8F7FF'),
-	GRAY_LIGHT: Color('#FAFCFF'),
-	GRAY_DARK: Color('#D5DCE6'),
+	GRAY: Color('#F3F5F7'),
+	GRAY_LIGHT: Color('#F3F5F7'),
+	GRAY_DARK: Color('#F3F5F7'),
 	VIOLET_DARK: Color('#332966'),
 	VIOLET_LIGHT: Color('#766F9F'),
 	PINK_DARK: Color('#D91657'),
@@ -19,7 +19,7 @@ export const COLORS = {
 
 export const THEME = {
 	FONT: '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-	HEADER_HEIGHT: 110,
+	HEADER_HEIGHT: 60,
 	NAV_HEIGHT: 0,
 	CURRENCY_ICON_SIZE: 36,
 	SECTION_PADDING: 15,
