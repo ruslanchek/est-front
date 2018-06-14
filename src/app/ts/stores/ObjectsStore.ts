@@ -12,6 +12,8 @@ export namespace ObjectsStore {
 		params: IObjectParams;
 		agent: IObjectAgent;
 		isFavorite: boolean;
+		pictures: IObjectPiture[];
+		coverPicture: IObjectPiture;
 	}
 
 	export interface IObjectAgent {
@@ -22,6 +24,12 @@ export namespace ObjectsStore {
 	export interface IObjectParams {
 		bedrooms: number;
 		bathrooms: number;
+	}
+
+	export interface IObjectPiture {
+		title: string;
+		description: string;
+		src: string;
 	}
 
 	export enum EObjectType {
