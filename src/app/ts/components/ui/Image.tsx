@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
+import { css, StyleSheet, StyleDeclaration } from 'aphrodite/no-important';
 import { COLORS } from '../../theme';
 import { EIcon, Icon } from '../common/Icon';
 
 interface IProps {
 	src: string;
+	imageStyle?: StyleDeclaration;
 }
 
 interface IState {
@@ -55,7 +56,7 @@ export class Image extends React.PureComponent<IProps, IState> {
 								});
 							}, 10);
 						}}
-						className={css(styles.img, additionalClass)}
+						className={css(styles.img, additionalClass, this.props.imageStyle)}
 						src={this.props.src}
 					/>
 				)}

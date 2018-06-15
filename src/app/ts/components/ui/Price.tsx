@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { EOLocaleNumber } from 'eo-locale/dist/components/number';
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { CONFIG } from '../../config';
 
 interface IProps {
@@ -17,22 +16,6 @@ export class Price extends React.PureComponent<IProps, IState> {
 		symbolAfter: false,
 		symbol: '€'
 	};
-
-	public shouldComponentUpdate(nextProps: IProps, nextState: IState): boolean {
-		if(nextProps.value !== this.props.value) {
-			return true;
-		}
-
-		if(nextState.symbolAfter !== this.state.symbolAfter) {
-			return true;
-		}
-
-		if(nextState.symbol !== this.state.symbol) {
-			return true;
-		}
-
-		return false;
-	}
 
 	public render() {
 		return (
