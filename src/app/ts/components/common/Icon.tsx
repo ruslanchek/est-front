@@ -2,7 +2,8 @@ import * as React from 'react';
 import Color = require('color');
 
 export enum EIcon {
-	Favorite
+	Favorite,
+	Camera
 }
 
 export enum EIconType {
@@ -15,7 +16,7 @@ export enum EIconType {
 interface IProps {
 	icon: EIcon;
 	size: number;
-	color?: Color;
+	color: Color;
 	type?: EIconType;
 }
 
@@ -24,13 +25,7 @@ const TWO_TONE_ALPHA: number = 0.5;
 export class Icon extends React.PureComponent<IProps, {}> {
 	public render() {
 		const { size, color, type } = this.props;
-		let icon = null;
-
-		switch (this.props.icon) {
-			case EIcon.Favorite : {
-				icon = favorite(color.toString(), type);
-			}
-		}
+		const icon = this.getIcon(type, color);
 
 		if (icon) {
 			return (
@@ -48,7 +43,26 @@ export class Icon extends React.PureComponent<IProps, {}> {
 			return null;
 		}
 	}
+
+	private getIcon(type: EIconType, color: Color) {
+		switch (this.props.icon) {
+			case EIcon.Favorite : return favorite(color.toString(), type);
+			case EIcon.Camera : return camera(color.toString(), type);
+
+			default : return null;
+		}
+	}
 }
+
+const camera = (color: string, type: EIconType) => {
+	return (
+		<g transform='translate(-2, 0)'>
+			<path fill={color} opacity={TWO_TONE_ALPHA} d='M20,6h-4.05l-1.83-2H9.88L8.05,6H4v12h16V6z M12,17c-2.76,0-5-2.24-5-5s2.24-5,5-5s5,2.24,5,5 S14.76,17,12,17z'/>
+			<path fill={color} d='M4,20h16c1.1,0,2-0.9,2-2V6c0-1.1-0.9-2-2-2h-3.17L15,2H9L7.17,4H4C2.9,4,2,4.9,2,6v12C2,19.1,2.9,20,4,20z M4,6h4.05 l1.83-2h4.24l1.83,2H20v12H4V6z'/>
+			<path fill={color} d='M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7z M12,15c-1.65,0-3-1.35-3-3c0-1.65,1.35-3,3-3s3,1.35,3,3 C15,13.65,13.65,15,12,15z'/>
+		</g>
+	);
+};
 
 const favorite = (color: string, type: EIconType) => {
 	switch (type) {

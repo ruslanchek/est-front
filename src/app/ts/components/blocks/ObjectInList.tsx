@@ -3,11 +3,11 @@ import * as React from 'react';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { Favorite } from '../ui/Favorite';
-import { CSSUtils } from '../../lib/CSSUtils';
 import { COLORS, THEME } from '../../theme';
 import { Price } from '../ui/Price';
 import { ObjectSubtitle } from '../ui/ObjectSubtitle';
 import { Address } from '../ui/Address';
+import { GallerySmall } from '../ui/GallerySmall';
 
 interface IProps {
 	objectData: IObject;
@@ -18,11 +18,8 @@ export class ObjectInList extends React.Component<IProps, {}> {
 	public render() {
 		const {
 			id,
-			title,
 			isFavorite,
-			coverPicture,
 			price,
-			streetAddress
 		} = this.props.objectData;
 
 		return (
@@ -36,23 +33,20 @@ export class ObjectInList extends React.Component<IProps, {}> {
 						/>
 					</div>
 
-					<div
-						className={css(styles.gallery)}
-						style={{backgroundImage: CSSUtils.image(coverPicture.src)}}
-					/>
-
-					<div className={css(styles.body)}>
-						<ObjectSubtitle objectData={this.props.objectData}/>
-
-						<div className={css(styles.price)}>
-							<Price value={price}/>
-						</div>
-
-						<div className={css(styles.address)}>
-							<Address objectData={this.props.objectData}/>
-						</div>
-					</div>
+					<GallerySmall objectData={this.props.objectData}/>
 				</header>
+
+				<div className={css(styles.body)}>
+					<ObjectSubtitle objectData={this.props.objectData}/>
+
+					<div className={css(styles.price)}>
+						<Price value={price}/>
+					</div>
+
+					<div className={css(styles.address)}>
+						<Address objectData={this.props.objectData}/>
+					</div>
+				</div>
 			</section>
 		);
 	}
@@ -69,16 +63,6 @@ const styles = StyleSheet.create({
 
 	header: {
 		position: 'relative',
-	},
-
-	gallery: {
-		paddingTop: '75%',
-		position: 'relative',
-		overflow: 'hidden',
-		backgroundPosition: '50%',
-		backgroundSize: 'cover',
-		backgroundRepeat: 'no-repeat',
-		backgroundColor: COLORS.GRAY_DARK.toString()
 	},
 
 	favorite: {

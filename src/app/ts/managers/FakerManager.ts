@@ -8,7 +8,7 @@ import IObjectPicture = ObjectsStore.IObjectPicture;
 import IObjectAgent = ObjectsStore.IObjectAgent;
 import EObjectAgentType = ObjectsStore.EObjectAgentType;
 
-const GENERATE_COUNT: number = 100;
+const GENERATE_COUNT: number = 41;
 
 export class FakerManager extends Manager {
 	public reset(): void {
@@ -20,12 +20,12 @@ export class FakerManager extends Manager {
 
 			for(let i: number = 1; i < GENERATE_COUNT; i++) {
 				const params: IObjectParams = {
-					bedrooms: faker.random.number({min: 1, max: 5, precision: 0}),
-					bathrooms: faker.random.number({min: 1, max: 4, precision: 0})
+					bedrooms: faker.random.number({min: 1, max: 5}),
+					bathrooms: faker.random.number({min: 1, max: 4})
 				};
 
 				const agent: IObjectAgent = {
-					id: faker.random.number({min: 1, max: 100000, precision: 0}),
+					id: faker.random.number({min: 1, max: 100000}),
 					type: faker.random.arrayElement([
 						EObjectAgentType.Private,
 						EObjectAgentType.Realtor,
@@ -36,13 +36,14 @@ export class FakerManager extends Manager {
 				};
 
 				const pictures: IObjectPicture[] = [];
+				const photosCount: number = faker.random.number({min: 1, max: 7});
 
-				for(let i2: number = 1; i2 < 7; i2++) {
+				for(let i2: number = 0; i2 < photosCount; i2++) {
 					pictures.push({
 						id: i2,
 						title: faker.lorem.sentence(2),
 						description: faker.lorem.sentence(10),
-						src: `https://picsum.photos/600/400?i=${i}`
+						src: `https://picsum.photos/600/400?i=${i}&a=${i2}`
 					});
 				}
 
