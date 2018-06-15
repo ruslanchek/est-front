@@ -32,7 +32,7 @@ export const CONFIG = {
 		'referer',
 		'ctime'
 	],
-	DEFAULT_LANGUAGE: 'en',
+	DEFAULT_LOCALE: 'en',
 	LOCALE_SYNONYMS: {
 		fil: ['tl']
 	},

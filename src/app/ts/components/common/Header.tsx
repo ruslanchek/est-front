@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'flex-start',
 		height: 60,
-		padding: `0 ${THEME.SECTION_PADDING}px`,
+		padding: `0 ${THEME.SECTION_PADDING_H}px`,
 	},
 
 	nav: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 	},
 
 	back: {
-		marginRight: THEME.SECTION_PADDING,
+		marginRight: THEME.SECTION_PADDING_H,
 		flexGrow: 0
 	},
 

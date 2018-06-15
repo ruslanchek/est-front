@@ -7,7 +7,8 @@ export namespace ObjectsStore {
 		type: EObjectType;
 		constructionDate: Date;
 		price: number;
-		address: string;
+		streetAddress: string;
+		city: string;
 		lat: number;
 		lng: number;
 		params: IObjectParams;
@@ -37,7 +38,7 @@ export namespace ObjectsStore {
 	}
 
 	export enum EObjectType {
-		House,
+		DetachedHouse,
 		Flat
 	}
 

@@ -35,7 +35,9 @@ export class HomePage extends React.Component<IProps, IState> {
 				<div className={css(styles.container)}>
 					<div className={css(styles.list)}>
 						{ObjectsStore.store.state.objects.map((object, i) => {
-							return <ObjectInList objectData={object} key={i}/>;
+							return (
+								<ObjectInList key={i} objectData={object} styles={styles.item}/>
+							);
 						})}
 					</div>
 				</div>
@@ -52,6 +54,14 @@ const styles = StyleSheet.create({
 	},
 
 	list: {
-		width: '100%'
+		width: '100%',
+		display: 'flex',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between'
+	},
+
+	item: {
+		width: '22%',
+		marginBottom: 40
 	}
 });

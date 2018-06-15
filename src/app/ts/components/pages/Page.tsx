@@ -72,8 +72,6 @@ export class Page extends React.Component<IProps, IState> {
 
 const styles: any = StyleSheet.create({
 	app: {
-		display: 'flex',
-		flexDirection: 'column',
 		minWidth: '100%',
 		fontFamily: THEME.FONT,
 		fontSize: THEME.FONT_SIZE_REGULAR,
@@ -81,15 +79,10 @@ const styles: any = StyleSheet.create({
 	},
 
 	layoutFullScreen: {
-		flexGrow: 1,
-		overflow: 'auto',
-		maxHeight: '100%',
-		'-webkit-overflow-scrolling': 'touch'
+
 	},
 
 	layoutNavigation: {
-		flexGrow: 1,
-		maxHeight: `calc(100% - ${THEME.HEADER_HEIGHT + THEME.NAV_HEIGHT}px)`,
-		minHeight: `calc(100% - ${THEME.HEADER_HEIGHT + THEME.NAV_HEIGHT}px)`
+
 	}
 });

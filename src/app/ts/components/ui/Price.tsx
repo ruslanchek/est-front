@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { EOLocaleNumber } from 'eo-locale/dist/components/number';
+import { CONFIG } from '../../config';
 
 interface IProps {
 	value: number;
@@ -38,11 +39,10 @@ export class Price extends React.PureComponent<IProps, IState> {
 			<div className={css(styles.price)}>
 				{!this.state.symbolAfter ? this.state.symbol : null}
 
-				<EOLocaleNumber
-					value={this.props.value}
-					minimumFractionDigits={0}
-					maximumFractionDigits={2}
-				/>
+				{this.props.value.toLocaleString(CONFIG.DEFAULT_LOCALE, {
+					minimumFractionDigits: 0,
+					maximumFractionDigits: 2
+				})}
 
 				{this.state.symbolAfter === true ? ` ${this.state.symbol}` : null}
 			</div>

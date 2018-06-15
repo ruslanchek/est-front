@@ -8,6 +8,8 @@ import IObjectPicture = ObjectsStore.IObjectPicture;
 import IObjectAgent = ObjectsStore.IObjectAgent;
 import EObjectAgentType = ObjectsStore.EObjectAgentType;
 
+const GENERATE_COUNT: number = 100;
+
 export class FakerManager extends Manager {
 	public reset(): void {
 	}
@@ -16,7 +18,7 @@ export class FakerManager extends Manager {
 		return new Promise<any>((resolve, reject) => {
 			const objects: IObject[] = [];
 
-			for(let i: number = 1; i < 11; i++) {
+			for(let i: number = 1; i < GENERATE_COUNT; i++) {
 				const params: IObjectParams = {
 					bedrooms: faker.random.number({min: 1, max: 5, precision: 0}),
 					bathrooms: faker.random.number({min: 1, max: 4, precision: 0})
@@ -40,7 +42,7 @@ export class FakerManager extends Manager {
 						id: i2,
 						title: faker.lorem.sentence(2),
 						description: faker.lorem.sentence(10),
-						src: faker.image.imageUrl(600, 400)
+						src: `https://picsum.photos/600/400?i=${i}`
 					});
 				}
 
@@ -51,11 +53,12 @@ export class FakerManager extends Manager {
 					title: faker.name.title(),
 					type: faker.random.arrayElement([
 						EObjectType.Flat,
-						EObjectType.House
+						EObjectType.DetachedHouse
 					]),
 					constructionDate: faker.date.past(20),
 					price: faker.random.number({min: 50000, max: 1500000, precision: 2}),
-					address: faker.address.streetAddress(true),
+					streetAddress: faker.address.streetAddress(true),
+					city: faker.address.city(),
 					lat: parseFloat(faker.address.latitude()),
 					lng: parseFloat(faker.address.longitude()),
 					params,
@@ -65,8 +68,6 @@ export class FakerManager extends Manager {
 					coverPicture
 				});
 			}
-			
-			console.log(objects);
 
 			ObjectsStore.store.setState({
 				objects

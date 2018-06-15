@@ -64,7 +64,7 @@ const translateKeyframesOut = {
 const styles = StyleSheet.create({
 	container: {
 		position: 'fixed',
-		bottom: THEME.NAV_HEIGHT + THEME.SECTION_PADDING,
+		bottom: THEME.NAV_HEIGHT + THEME.SECTION_PADDING_V,
 		left: 0,
 		zIndex: 1000,
 		width: '100%',
