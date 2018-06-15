@@ -3,18 +3,21 @@ import { StorageManager } from './managers/StorageManager';
 import { StateStore } from './stores/StateStore';
 import { ApiManager } from './managers/ApiManager';
 import { ToastManager } from './managers/ToastManager';
+import { FakerManager } from './managers/FakerManager';
 
 export class Managers {
 	public route: RouteManager;
 	public storage: StorageManager;
 	public api: ApiManager;
 	public toast: ToastManager;
+	public faker: FakerManager;
 
 	public constructor() {
 		this.route = new RouteManager();
 		this.storage = new StorageManager();
 		this.api = new ApiManager();
 		this.toast = new ToastManager();
+		this.faker = new FakerManager();
 
 		this.init();
 	}
@@ -40,6 +43,7 @@ export class Managers {
 		this.storage.reset();
 		this.api.reset();
 		this.toast.reset();
+		this.faker.reset();
 	}
 
 	private async initManagers(): Promise<any> {
@@ -47,6 +51,7 @@ export class Managers {
 		await this.storage.init();
 		await this.api.init();
 		await this.toast.init();
+		await this.faker.init();
 	}
 }
 

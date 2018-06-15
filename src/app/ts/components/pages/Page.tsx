@@ -77,9 +77,7 @@ const styles: any = StyleSheet.create({
 		minWidth: '100%',
 		fontFamily: THEME.FONT,
 		fontSize: THEME.FONT_SIZE_REGULAR,
-		color: COLORS.VIOLET_DARK.toString(),
 		backgroundColor: COLORS.GRAY_LIGHT.toString(),
-		backgroundImage: `linear-gradient(to bottom, ${COLORS.GRAY_LIGHT.toString()}, ${COLORS.GRAY.toString()})`
 	},
 
 	layoutFullScreen: {

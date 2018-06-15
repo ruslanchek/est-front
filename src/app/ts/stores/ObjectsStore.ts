@@ -3,6 +3,7 @@ import { Store } from 'react-stores';
 export namespace ObjectsStore {
 	export interface IObject {
 		id: number;
+		title: string;
 		type: EObjectType;
 		constructionDate: Date;
 		price: number;
@@ -18,6 +19,7 @@ export namespace ObjectsStore {
 
 	export interface IObjectAgent {
 		id: number;
+		type: EObjectAgentType;
 		fullName: string;
 		contact: string;
 	}
@@ -35,8 +37,14 @@ export namespace ObjectsStore {
 	}
 
 	export enum EObjectType {
-		House = 'house',
-		Flat = 'flat'
+		House,
+		Flat
+	}
+
+	export enum EObjectAgentType {
+		Private,
+		Realtor,
+		Agency
 	}
 
 	export interface IState {

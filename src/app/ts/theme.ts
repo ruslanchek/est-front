@@ -1,18 +1,7 @@
 import Color = require('color');
 
 export const COLORS = {
-	GREEN: Color('#00B383'),
-	GREEN_LIGHT: Color('#00D66B'),
-	GREEN_ULTRA_LIGHT: Color('#B8FFC7'),
-	GREEN_DARK: Color('#008273'),
-	GREEN_ULTRA_DARK: Color('#184314'),
-	CYAN_DARK: Color('#00758C'),
-	GRAY: Color('#F3F5F7'),
 	GRAY_LIGHT: Color('#F3F5F7'),
-	GRAY_DARK: Color('#F3F5F7'),
-	VIOLET_DARK: Color('#332966'),
-	VIOLET_LIGHT: Color('#766F9F'),
-	PINK_DARK: Color('#D91657'),
 	WHITE: Color('#FFFFFF'),
 	BLACK: Color('#000000'),
 };

@@ -51,7 +51,7 @@ const translateKeyframes = {
 
 const styles = StyleSheet.create({
 	spinner: {
-		color: COLORS.GREEN_DARK.toString(),
+		color: COLORS.BLACK.toString(),
 		display: 'block',
 		position: 'relative',
 		width: 64,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 			width: 5,
 			height: 14,
 			borderRadius: '20%',
-			background: COLORS.GREEN_DARK.toString()
+			background: COLORS.BLACK.toString()
 		},
 
 		':nth-child(1)': {

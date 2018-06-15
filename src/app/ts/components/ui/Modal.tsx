@@ -118,7 +118,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: COLORS.GREEN_DARK.alpha(0.5).toString(),
+		backgroundColor: COLORS.BLACK.alpha(0.5).toString(),
 		bottom: 0,
 		display: 'flex',
 		justifyContent: 'center',
