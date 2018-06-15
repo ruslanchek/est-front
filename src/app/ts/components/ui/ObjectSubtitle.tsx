@@ -43,13 +43,10 @@ export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 		const { type } = this.props.objectData;
 
 		switch (type) {
-			case EObjectType.Flat : {
-				return 'Flat';
-			}
-
-			case EObjectType.DetachedHouse : {
-				return 'Detached house';
-			}
+			case EObjectType.DetachedHouse : return 'Detached house';
+			case EObjectType.TownHouse : return 'Townhouse';
+			case EObjectType.Flat : return 'Flat';
+			case EObjectType.Studio : return 'Studio';
 		}
 	}
 }

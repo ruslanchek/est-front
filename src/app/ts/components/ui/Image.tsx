@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css, StyleSheet, StyleDeclaration } from 'aphrodite/no-important';
 import { COLORS } from '../../theme';
 import { EIcon, Icon } from '../common/Icon';
+import { Preload } from './Preload';
 
 interface IProps {
 	src: string;
@@ -35,6 +36,8 @@ export class Image extends React.PureComponent<IProps, IState> {
 
 		return (
 			<div className={css(styles.container)}>
+				<Preload isVisible={!this.state.loaded} outerStyles={styles.preloader} size={20} color={COLORS.WHITE}/>
+				
 				{this.state.loadError ? (
 					<div className={css(styles.error, additionalClass)}>
 						<Icon icon={EIcon.Camera} size={40} color={COLORS.BLACK_LIGHT.alpha(.2)}/>
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
 		paddingTop: '75%',
 		position: 'relative',
 		overflow: 'hidden',
-		backgroundColor: COLORS.GRAY_DARK.toString()
+		backgroundColor: COLORS.GRAY_EXTRA_DARK.toString()
 	},
 
 	loaded: {
@@ -107,5 +110,9 @@ const styles = StyleSheet.create({
 		left: '50%',
 		opacity: 0,
 		transition: `opacity ${ANIMATION_TIME}ms`
+	},
+
+	preloader: {
+
 	}
 });

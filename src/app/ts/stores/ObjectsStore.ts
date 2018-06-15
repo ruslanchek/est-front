@@ -43,7 +43,9 @@ export namespace ObjectsStore {
 
 	export enum EObjectType {
 		DetachedHouse,
-		Flat
+		TownHouse,
+		Flat,
+		Studio,
 	}
 
 	export enum EObjectAgentType {

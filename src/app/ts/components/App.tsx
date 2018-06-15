@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { EOLocale } from 'eo-locale';
 import { Routes } from './Routes';
 import { BrowserRouter } from 'react-router-dom';
 import { followStore } from 'react-stores';
@@ -23,12 +22,12 @@ export class App extends React.Component<{}, {}> {
 	public render() {
 		if(StateStore.store.state.appReady) {
 			return (
-				<EOLocale.Provider locales={locales} defaultLanguage="en">
+				<React.Fragment>
 					<Toast/>
 					<BrowserRouter>
 						<Routes/>
 					</BrowserRouter>
-				</EOLocale.Provider>
+				</React.Fragment>
 			);
 		} else {
 			return (

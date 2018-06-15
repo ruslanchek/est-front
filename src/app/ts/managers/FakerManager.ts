@@ -73,7 +73,9 @@ export class FakerManager extends Manager {
 					title: faker.name.title(),
 					type: faker.random.arrayElement([
 						EObjectType.Flat,
-						EObjectType.DetachedHouse
+						EObjectType.DetachedHouse,
+						EObjectType.TownHouse,
+						EObjectType.Studio
 					]),
 					constructionDate: faker.date.past(20),
 					price: faker.random.number({min: 50000, max: 1500000, precision: 2}),

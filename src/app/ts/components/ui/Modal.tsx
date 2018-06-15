@@ -4,7 +4,6 @@ import { CSSTransition } from 'react-transition-group';
 
 import { COLORS } from '../../theme';
 import { Portal } from './Portal';
-import { mergeStyles } from 'eo-utils';
 
 interface IProps {
 	containerClassName?: string;
@@ -64,7 +63,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 			>
 				<Portal>
 					<div
-						{...mergeStyles(css(styles.container), this.props.containerClassName)}
+						className={css(styles.container)}
 						onClick={this.handleClickOnOverlay}
 					>
 						<CSSTransition
@@ -79,7 +78,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 							}}
 						>
 							<div
-								{...mergeStyles(css(styles.content), this.props.contentClassName)}
+								className={css(styles.content)}
 								onClick={this.handleClickOnContent}
 							>
 								{this.props.children}

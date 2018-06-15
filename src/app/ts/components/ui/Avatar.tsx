@@ -67,11 +67,12 @@ const styles = StyleSheet.create({
 		maxWidth: 40,
 		borderRadius: '100%',
 		flexGrow: 0,
-		marginRight: THEME.SECTION_PADDING_H
+		marginRight: THEME.SECTION_PADDING_H / 2
 	},
 
 	info: {
-		display: 'flex'
+		display: 'flex',
+		alignItems: 'center'
 	},
 
 	contact: {

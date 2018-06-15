@@ -21,7 +21,7 @@ export class Params extends React.PureComponent<IProps, {}> {
 							<Icon
 								icon={param.icon}
 								size={18}
-								color={COLORS.BLACK_LIGHT.lighten(.5)}
+								color={COLORS.BLACK_EXTRA_LIGHT}
 							/>
 
 							<div className={css(styles.title)}>
@@ -52,7 +52,9 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-		marginRight: '2ex'
+		marginRight: '2ex',
+		marginTop: THEME.SECTION_PADDING_V / 2,
+		marginBottom: THEME.SECTION_PADDING_V / 2
 	},
 
 	title: {
