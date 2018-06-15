@@ -36,7 +36,11 @@ export class HomePage extends React.Component<IProps, IState> {
 					<div className={css(styles.list)}>
 						{ObjectsStore.store.state.objects.map((object, i) => {
 							return (
-								<ObjectInList key={i} objectData={object} styles={styles.item}/>
+								<ObjectInList
+									key={i}
+									objectData={object}
+									containerStyles={styles.item}
+								/>
 							);
 						})}
 					</div>

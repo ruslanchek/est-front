@@ -8,22 +8,29 @@ import { Price } from '../ui/Price';
 import { ObjectSubtitle } from '../ui/ObjectSubtitle';
 import { Address } from '../ui/Address';
 import { GallerySmall } from '../ui/GallerySmall';
+import { Params } from '../ui/Params';
+import { Avatar } from '../ui/Avatar';
 
 interface IProps {
 	objectData: IObject;
-	styles: StyleDeclaration;
+	containerStyles: StyleDeclaration;
 }
 
 export class ObjectInList extends React.Component<IProps, {}> {
 	public render() {
 		const {
+			objectData,
+			containerStyles
+		} = this.props;
+
+		const {
 			id,
 			isFavorite,
 			price,
-		} = this.props.objectData;
+		} = objectData;
 
 		return (
-			<section className={css(styles.container, this.props.styles)}>
+			<section className={css(styles.container, containerStyles)}>
 				<header className={css(styles.header)}>
 					<div className={css(styles.favorite)}>
 						<Favorite
@@ -33,20 +40,28 @@ export class ObjectInList extends React.Component<IProps, {}> {
 						/>
 					</div>
 
-					<GallerySmall objectData={this.props.objectData}/>
+					<GallerySmall objectData={objectData}/>
 				</header>
 
 				<div className={css(styles.body)}>
-					<ObjectSubtitle objectData={this.props.objectData}/>
+					<ObjectSubtitle objectData={objectData}/>
 
 					<div className={css(styles.price)}>
 						<Price value={price}/>
 					</div>
 
 					<div className={css(styles.address)}>
-						<Address objectData={this.props.objectData}/>
+						<Address objectData={objectData}/>
 					</div>
 				</div>
+
+				<div className={css(styles.params)}>
+					<Params objectData={objectData}/>
+				</div>
+
+				<footer className={css(styles.footer)}>
+					<Avatar objectData={objectData}/>
+				</footer>
 			</section>
 		);
 	}
@@ -58,7 +73,9 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		overflow: 'hidden',
 		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_1
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
+		display: 'flex',
+		flexDirection: 'column',
 	},
 
 	header: {
@@ -69,21 +86,32 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: 20,
 		right: 20,
-		zIndex: 2
+		zIndex: 2,
 	},
 
 	body: {
-		padding: `${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`
+		padding: `${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
+		flexGrow: 1,
 	},
 
 	price: {
 		fontSize: THEME.FONT_SIZE_H1,
-		color: COLORS.BLACK.toString(),
-		margin: '0.25em 0'
+		margin: '0.25em 0',
 	},
 
 	address: {
 		color: COLORS.BLACK_LIGHT.toString(),
-		fontSize: THEME.FONT_SIZE_SMALL
-	}
+		fontSize: THEME.FONT_SIZE_SMALL,
+	},
+
+	params: {
+		padding: `${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.darken(.025).toString()}`,
+	},
+
+	footer: {
+		backgroundColor: COLORS.GRAY_DARK.toString(),
+		padding: `${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.darken(.025).toString()}`,
+	},
 });

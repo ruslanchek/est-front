@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { css } from 'aphrodite';
 import { mergeStyles } from 'eo-utils';
+import { COLORS } from '../../theme';
 
 type TDefaultDivProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement>;
@@ -24,6 +25,7 @@ export class Layout extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	page: {
-		minHeight: '100%'
+		minHeight: '100%',
+		color: COLORS.BLACK.toString()
 	}
 });

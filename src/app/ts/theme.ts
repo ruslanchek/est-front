@@ -4,8 +4,9 @@ export const COLORS = {
 	GRAY_LIGHT: Color('#F3F5F7'),
 	GRAY_DARK: Color('#F7F8F9'),
 	WHITE: Color('#FFFFFF'),
-	BLACK: Color('#0A0D21'),
+	BLACK: Color('#222E3F'),
 	BLACK_LIGHT: Color('#5A636F'),
+	BLACK_EXTRA_LIGHT: Color('#5A636F').lighten(.5),
 	RED: Color('#DA1D58')
 };
 
@@ -20,6 +21,7 @@ export const THEME = {
 	FONT_SIZE_REGULAR: 16,
 	FONT_SIZE_BIG: 22,
 	FONT_SIZE_SMALL: 12,
+	FONT_SIZE_TINY: 10,
 	BOX_SHADOW_ELEVATION_1: `0 5px 15px 0 ${COLORS.BLACK.alpha(0.065).toString()}`,
 	BOX_SHADOW_ELEVATION_2: `0 5px 15px 0 ${COLORS.BLACK.alpha(0.09).toString()}`,
 };

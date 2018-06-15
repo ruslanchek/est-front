@@ -16,7 +16,7 @@ interface IState {
 	showPages: boolean;
 }
 
-const PAGE_APPEAR_ANIMATION_TIME: number = 200;
+const PAGE_APPEAR_ANIMATION_TIME: number = 300;
 
 export class GallerySmall extends React.Component<IProps, IState> {
 	public state: IState = {
@@ -120,23 +120,26 @@ const styles = StyleSheet.create({
 	},
 
 	enterPages: {
-		transform: 'translateY(200%)'
+		transform: 'translateY(200%)',
+		opacity: 0
 	},
 
 	enterActivePages: {
 		transform: 'translateY(0%)',
-		transition: `transform ${PAGE_APPEAR_ANIMATION_TIME}ms`,
-		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)'
+		transition: `all ${PAGE_APPEAR_ANIMATION_TIME}ms`,
+		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)',
+		opacity: 1
 	},
 
 	exitPages: {
-		transform: 'translateY(0%)'
+		transform: 'translateY(0%)',
+		opacity: 1
 	},
 
 	exitActivePages: {
 		transform: 'translateY(200%)',
-		transition: `transform ${PAGE_APPEAR_ANIMATION_TIME}ms`,
-		transitionTimingFunction: 'cubic-bezier(0.045, 0.175, 0.435, 1.040)'
+		transition: `all ${PAGE_APPEAR_ANIMATION_TIME}ms`,
+		opacity: 0
 	},
 
 	page: {

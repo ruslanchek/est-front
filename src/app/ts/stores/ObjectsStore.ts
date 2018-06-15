@@ -1,4 +1,5 @@
 import { Store } from 'react-stores';
+import { EIcon } from '../components/common/Icon';
 
 export namespace ObjectsStore {
 	export interface IObject {
@@ -11,7 +12,7 @@ export namespace ObjectsStore {
 		city: string;
 		lat: number;
 		lng: number;
-		params: IObjectParams;
+		params: IObjectParam[];
 		agent: IObjectAgent;
 		isFavorite: boolean;
 		pictures: IObjectPicture[];
@@ -20,14 +21,17 @@ export namespace ObjectsStore {
 
 	export interface IObjectAgent {
 		id: number;
+		avatar: string;
 		type: EObjectAgentType;
 		fullName: string;
 		contact: string;
 	}
 
-	export interface IObjectParams {
-		bedrooms: number;
-		bathrooms: number;
+	export interface IObjectParam {
+		id: number;
+		icon: EIcon;
+		name: string;
+		value: string;
 	}
 
 	export interface IObjectPicture {
