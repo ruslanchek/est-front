@@ -3,6 +3,10 @@ import { css, StyleDeclaration, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
+import { Link } from 'react-router-dom';
+import { CONFIG, PATHS } from '../../config';
+import { CSSUtils } from '../../lib/CSSUtils';
+import { Layout } from './Layout';
 
 interface IState {
 	isFloating: boolean;
@@ -36,7 +40,11 @@ export class Header extends React.PureComponent<{}, IState> {
 		return (
 			<header className={css(styles.container)}>
 				<div className={css(headerRules)}>
-xxx
+					<Layout>
+						{this.props.children}
+
+						<Link to={PATHS.HOME} className={css(styles.logo)}/>
+					</Layout>
 				</div>
 			</header>
 		);
@@ -53,6 +61,16 @@ xxx
 }
 
 const styles = StyleSheet.create({
+	logo: {
+		backgroundImage: CSSUtils.image(require('../../../img/logos/realthub-color.svg')),
+		backgroundPosition: '50%',
+		backgroundSize: 'auto 35px',
+		backgroundRepeat: 'no-repeat',
+		width: 128,
+		height: THEME.HEADER_HEIGHT,
+		display: 'block'
+	},
+
 	container: {
 		height: THEME.HEADER_HEIGHT
 	},

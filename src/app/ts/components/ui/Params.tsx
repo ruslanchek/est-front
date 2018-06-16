@@ -15,9 +15,9 @@ export class Params extends React.PureComponent<IProps, {}> {
 
 		return (
 			<div className={css(styles.params)}>
-				{params.map((param) => {
+				{params.map((param, i) => {
 					return (
-						<div className={css(styles.param)}>
+						<div className={css(styles.param)} key={i}>
 							<Icon
 								icon={param.icon}
 								size={18}

@@ -1,6 +1,6 @@
 import { History } from 'history';
 
-import { CONFIG } from '../config';
+import { CONFIG, PATHS } from '../config';
 import { StateStore } from '../stores/StateStore';
 import { Manager } from './Manager';
 
@@ -88,7 +88,7 @@ export class RouteManager extends Manager {
 
 	private getMeta(path: string): IMeta {
 		switch (path) {
-			case CONFIG.PATHS.HOME : {
+			case PATHS.HOME : {
 				return {
 					title: `EST`
 				};

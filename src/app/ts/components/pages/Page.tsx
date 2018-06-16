@@ -7,10 +7,11 @@ import { RouteAuthRule } from '../../managers/RouteManager';
 import { StateStore } from '../../stores/StateStore';
 import { COLORS, THEME } from '../../theme';
 import { Header } from '../common/Header';
+import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { Layout } from '../common/Layout';
 
 export enum PageLayout {
-	FullScreen,
-	Navigation
+	Default
 }
 
 interface IProps extends RouteComponentProps<{}> {
@@ -47,22 +48,14 @@ export class Page extends React.Component<IProps, IState> {
 
 	public render() {
 		switch (this.props.layout) {
-			case PageLayout.Navigation : {
-				return (
-					<div className={css(styles.app)} id="appContainer">
-						<Header/>
-
-						<div className={css(styles.layoutNavigation)}>
-							{this.props.children}
-						</div>
-					</div>
-				);
-			}
-
 			default : {
 				return (
-					<div className={css(styles.app)} id="appContainer">
-						{this.props.children}
+					<div className={css(styles.page)}>
+						<Header/>
+
+						<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
+							{this.props.children}
+						</Layout>
 					</div>
 				);
 			}
@@ -71,18 +64,19 @@ export class Page extends React.Component<IProps, IState> {
 }
 
 const styles: any = StyleSheet.create({
-	app: {
+	layout: {
+		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP
+	},
+
+	layoutPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE
+	}),
+
+	page: {
 		minWidth: '100%',
 		fontFamily: THEME.FONT,
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		backgroundColor: COLORS.GRAY_LIGHT.toString(),
-	},
-
-	layoutFullScreen: {
-
-	},
-
-	layoutNavigation: {
-
+		color: COLORS.BLACK.toString()
 	}
 });

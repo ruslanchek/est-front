@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
-import { CONFIG } from '../config';
+import { CONFIG, PATHS } from '../config';
 import { RouteAuthRule } from '../managers/RouteManager';
 import { HomePage } from './pages/HomePage';
 import { Page, PageLayout } from './pages/Page';
@@ -16,12 +16,12 @@ export class Routes extends React.Component<{}, IState> {
 			<Switch>
 				<Route
 					exact={true}
-					path={CONFIG.PATHS.HOME}
+					path={PATHS.HOME}
 					render={props => {
 						return (
 							<Page
 								{...props}
-								layout={PageLayout.Navigation}
+								layout={PageLayout.Default}
 								authRule={RouteAuthRule.Shared}
 							>
 								<HomePage/>
@@ -33,7 +33,7 @@ export class Routes extends React.Component<{}, IState> {
 				<Route
 					exact
 					path="*"
-					render={() => <Redirect to={CONFIG.PATHS.HOME}/>}
+					render={() => <Redirect to={PATHS.HOME}></Redirect>}
 				/>
 			</Switch>
 		);

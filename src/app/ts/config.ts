@@ -1,9 +1,10 @@
+export const PATHS = {
+	HOME: '/'
+};
+
 export const CONFIG = {
 	API: {},
 	TOP_COUNT: 50,
-	PATHS: {
-		HOME: '/top'
-	},
 	STORAGE: {
 		PREFIX: 'EO_FINANCE',
 		COOKIES: {
