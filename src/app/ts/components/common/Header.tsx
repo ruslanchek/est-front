@@ -1,55 +1,73 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite';
+import { css, StyleDeclaration, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
 
+interface IState {
+	isFloating: boolean;
+}
+
 @followStore(StateStore.store)
-export class Header extends React.Component<{}, {}> {
+export class Header extends React.PureComponent<{}, IState> {
+	public state: IState = {
+		isFloating: false
+	};
+
+	public componentDidMount() {
+		window.addEventListener('scroll', this.onScroll);
+	}
+
+	public componentWillUnmount() {
+		window.removeEventListener('scroll', this.onScroll);
+	}
+
 	public render() {
+		const headerRules: StyleDeclaration[] = [
+			styles.header
+		];
+
+		if(this.state.isFloating) {
+			headerRules.push(
+				styles.headerFloating
+			);
+		}
+
 		return (
-			<header className={css(styles.header)}>
-				xxx
+			<header className={css(styles.container)}>
+				<div className={css(headerRules)}>
+xxx
+				</div>
 			</header>
 		);
 	}
+
+	private onScroll = () => {
+		const document = window.document.documentElement;
+		const scrollTop: number = (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
+
+		this.setState({
+			isFloating: scrollTop > 0
+		});
+	};
 }
 
 const styles = StyleSheet.create({
 	container: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-		height: 60,
-		padding: `0 ${THEME.SECTION_PADDING_H}px`,
-	},
-
-	nav: {
-		height: 60,
+		height: THEME.HEADER_HEIGHT
 	},
 
 	header: {
 		height: THEME.HEADER_HEIGHT,
 		backgroundColor: COLORS.WHITE.toString(),
 		boxShadow: `0 1px 2px 0 ${COLORS.BLACK.alpha(0.07).toString()}`,
-		zIndex: 10
+		zIndex: 10,
+		width: '100%',
+		left: 0,
+		top: 0
 	},
 
-	title: {
-		fontSize: THEME.FONT_SIZE_H1,
-		fontWeight: 400,
-		flexGrow: 1
-	},
-
-	back: {
-		marginRight: THEME.SECTION_PADDING_H,
-		flexGrow: 0
-	},
-
-	initial: {
-		fontSize: 8,
-		display: 'block',
-		fontStyle: 'normal',
-		marginTop: 3
+	headerFloating: {
+		position: 'fixed'
 	}
 });

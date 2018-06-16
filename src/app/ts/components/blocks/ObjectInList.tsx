@@ -13,7 +13,7 @@ import { Avatar } from '../ui/Avatar';
 
 interface IProps {
 	objectData: IObject;
-	containerStyles: StyleDeclaration;
+	containerStyles: StyleDeclaration[];
 }
 
 export class ObjectInList extends React.Component<IProps, {}> {
