@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 		backgroundPosition: '50%',
 		backgroundSize: 'auto 35px',
 		backgroundRepeat: 'no-repeat',
-		width: 128,
+		width: 130,
 		height: THEME.HEADER_HEIGHT,
 		display: 'block'
 	},

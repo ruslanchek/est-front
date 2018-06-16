@@ -32,7 +32,7 @@ export class FakerManager extends Manager {
 
 					{
 						id: 2,
-						icon: EIcon.Favorite,
+						icon: EIcon.Bath,
 						name: 'bathrooms',
 						value: faker.random.number({min: 1, max: 4}).toString(),
 					}
