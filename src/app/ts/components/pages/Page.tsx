@@ -50,7 +50,7 @@ export class Page extends React.Component<IProps, IState> {
 		switch (this.props.layout) {
 			default : {
 				return (
-					<div className={css(styles.page)}>
+					<div className={css(styles.page)} id="appContainer">
 						<Header/>
 
 						<Layout outerStyles={[styles.layout, styles.layoutPhone]}>

@@ -2,7 +2,7 @@ import { css, StyleSheet } from 'aphrodite/no-important';
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { COLORS } from '../../theme';
+import { COLORS, THEME } from '../../theme';
 import { Portal } from './Portal';
 
 interface IProps {
@@ -117,7 +117,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: COLORS.BLACK.alpha(0.5).toString(),
+		backgroundColor: COLORS.WHITE.alpha(0.5).toString(),
 		bottom: 0,
 		display: 'flex',
 		justifyContent: 'center',
@@ -131,11 +131,11 @@ const styles = StyleSheet.create({
 	},
 
 	content: {
-		backgroundColor: '#fafcff',
-		borderRadius: 8,
-		boxShadow: '0 8px 10px 0 rgba(21,30,48,0.10)',
+		backgroundColor: COLORS.WHITE.alpha(0.85).toString(),
+		borderRadius: 20,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		margin: 'auto',
-		width: '100%'
+		width: 400
 	},
 
 	enterContainer: {
@@ -157,21 +157,21 @@ const styles = StyleSheet.create({
 	},
 
 	enterContent: {
-		transform: 'translateY(150%)'
+		transform: 'scale(0.9)'
 	},
 
 	enterActiveContent: {
-		transform: 'translateY(0%)',
+		transform: 'scale(1)',
 		transition: `transform ${ANIMATION_TIME}ms`,
 		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)'
 	},
 
 	exitContent: {
-		transform: 'translateY(0%)'
+		transform: 'scale(1)'
 	},
 
 	exitActiveContent: {
-		transform: 'translateY(150%)',
+		transform: 'scale(0.9)',
 		transition: `transform ${ANIMATION_TIME}ms`,
 		transitionTimingFunction: 'cubic-bezier(0.045, 0.175, 0.435, 1.040)'
 	}

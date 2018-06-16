@@ -8,15 +8,18 @@ import { PATHS } from '../../config';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { Layout } from './Layout';
 import { EIcon, EIconType, Icon } from './Icon';
+import { Modal } from '../ui/Modal';
 
 interface IState {
 	isFloating: boolean;
+	modalIsVisible: boolean;
 }
 
 @followStore(StateStore.store)
 export class Header extends React.PureComponent<{}, IState> {
 	public state: IState = {
-		isFloating: false
+		isFloating: false,
+		modalIsVisible: false
 	};
 
 	public componentDidMount() {
@@ -68,7 +71,11 @@ export class Header extends React.PureComponent<{}, IState> {
 								Favorites
 							</NavLink>
 
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink)}>
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink)} onClick={() => {
+								this.setState({
+									modalIsVisible: true
+								});
+							}}>
 								Login
 							</NavLink>
 
@@ -79,6 +86,24 @@ export class Header extends React.PureComponent<{}, IState> {
 						</nav>
 					</Layout>
 				</div>
+
+				<Modal isVisible={this.state.modalIsVisible} onClose={() => {
+					this.setState({
+						modalIsVisible: false
+					});
+				}}>
+					<div>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+						<p>xxx</p>
+					</div>
+				</Modal>
 			</header>
 		);
 	}

@@ -6,6 +6,7 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import { List } from '../common/List';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { Gis } from '../ui/Gis';
+import { GisMarker } from '../ui/GisMarker';
 
 interface IProps {
 
@@ -34,11 +35,12 @@ export class HomePage extends React.Component<IProps, IState> {
 				>
 					{ObjectsStore.store.state.objects.map((object, i) => {
 						return (
-							<AnyReactComponent
+							<GisMarker
+								id={object.id}
 								key={i}
 								lat={object.lat}
 								lng={object.lng}
-								text={object.id}
+								title={object.title}
 							/>
 						);
 					})}
@@ -49,25 +51,6 @@ export class HomePage extends React.Component<IProps, IState> {
 	}
 }
 
-const AnyReactComponent = ({ text, lat, lng }) => <div className={css(styles.marker)}>{text}</div>;
-
 const styles = StyleSheet.create({
-	marker: {
-		width: 30,
-		height: 30,
-		background: 'white',
-		border: '2px solid red',
-		borderRadius: '100%',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		transform: 'translate(-50%, -50%)',
-		opacity: .75,
-		transition: 'opacity .2s',
-		cursor: 'pointer',
 
-		':hover': {
-			opacity: 1
-		}
-	}
 });
