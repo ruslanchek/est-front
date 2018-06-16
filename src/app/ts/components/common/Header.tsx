@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite';
-import { COLORS, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
-import { Link } from 'react-router-dom';
-import { CONFIG, PATHS } from '../../config';
-import { CSSUtils } from '../../lib/CSSUtils';
+import { Link, NavLink } from 'react-router-dom';
+import { PATHS } from '../../config';
+import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { Layout } from './Layout';
+import { EIcon, EIconType, Icon } from './Icon';
 
 interface IState {
 	isFloating: boolean;
@@ -40,10 +41,42 @@ export class Header extends React.PureComponent<{}, IState> {
 		return (
 			<header className={css(styles.container)}>
 				<div className={css(headerRules)}>
-					<Layout>
-						{this.props.children}
+					<Layout outerStyles={styles.layout}>
+						<Link to={PATHS.HOME} className={css(styles.logo, styles.logoPhone)}/>
 
-						<Link to={PATHS.HOME} className={css(styles.logo)}/>
+						<nav className={css(styles.nav)}>
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+								Purchase
+							</NavLink>
+
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+								Rent
+							</NavLink>
+
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+								Flats
+							</NavLink>
+
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+								Houses
+							</NavLink>
+						</nav>
+
+						<nav className={css(styles.user)}>
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink)}>
+								<Icon icon={EIcon.Favorite} type={EIconType.TwoTone} size={18} color={COLORS.RED} outerStyles={styles.icon}/>
+								Favorites
+							</NavLink>
+
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink)}>
+								Login
+							</NavLink>
+
+							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink, styles.placeAdvert)}>
+								<Icon icon={EIcon.Plus} type={EIconType.Default} size={18} color={COLORS.WHITE} outerStyles={styles.icon}/>
+								Place advert
+							</NavLink>
+						</nav>
 					</Layout>
 				</div>
 			</header>
@@ -63,13 +96,22 @@ export class Header extends React.PureComponent<{}, IState> {
 const styles = StyleSheet.create({
 	logo: {
 		backgroundImage: CSSUtils.image(require('../../../img/logos/realthub-color.svg')),
-		backgroundPosition: '50%',
+		backgroundPosition: '0 50%',
 		backgroundSize: 'auto 35px',
 		backgroundRepeat: 'no-repeat',
 		width: 130,
+		minWidth: 130,
 		height: THEME.HEADER_HEIGHT,
-		display: 'block'
+		display: 'block',
+		flexGrow: 0,
+		marginRight: THEME.SECTION_PADDING_H * 1.5
 	},
+
+	logoPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		width: 34,
+		minWidth: 34,
+		marginRight: THEME.SECTION_PADDING_H
+	}),
 
 	container: {
 		height: THEME.HEADER_HEIGHT
@@ -82,7 +124,75 @@ const styles = StyleSheet.create({
 		zIndex: 10,
 		width: '100%',
 		left: 0,
-		top: 0
+		top: 0,
+		maxWidth: '100%'
+	},
+
+	layout: {
+		height: THEME.HEADER_HEIGHT,
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-between'
+	},
+
+	nav: {
+		flexGrow: 1,
+		fontSize: THEME.FONT_SIZE_SMALL,
+		fontWeight: 600,
+		textTransform: 'uppercase',
+	},
+
+	navLink: {
+		marginRight: THEME.SECTION_PADDING_H
+	},
+
+	user: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		fontSize: THEME.FONT_SIZE_SMALL,
+		fontWeight: 600,
+		textTransform: 'uppercase',
+	},
+
+	icon: {
+		marginRight: THEME.SECTION_PADDING_H / 2
+	},
+
+	userLink: {
+		marginLeft: THEME.SECTION_PADDING_H,
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		whiteSpace: 'nowrap'
+	},
+
+	placeAdvert: {
+		color: COLORS.WHITE.toString(),
+		backgroundColor: COLORS.GREEN.toString(),
+		padding: `4px ${THEME.SECTION_PADDING_H / 2}px 4px 4px`,
+		borderRadius: 16,
+		fontSize: THEME.FONT_SIZE_SMALL,
+		fontWeight: 600,
+		textTransform: 'uppercase',
+		transition: 'background-color .2s',
+
+		':link': {
+			color: COLORS.WHITE.toString(),
+		},
+
+		':visited': {
+			color: COLORS.WHITE.toString(),
+		},
+
+		':hover': {
+			color: COLORS.WHITE.toString(),
+			backgroundColor: COLORS.GREEN.alpha(0.9).toString()
+		},
+
+		':active': {
+			color: COLORS.WHITE.toString(),
+		}
 	},
 
 	headerFloating: {

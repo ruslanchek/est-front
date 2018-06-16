@@ -1,4 +1,5 @@
 import Color = require('color');
+import { StyleSheet } from 'aphrodite/no-important';
 
 export const COLORS = {
 	GRAY_LIGHT: Color('#F3F5F7'),
@@ -8,7 +9,8 @@ export const COLORS = {
 	BLACK: Color('#222E3F'),
 	BLACK_LIGHT: Color('#5A636F'),
 	BLACK_EXTRA_LIGHT: Color('#5A636F').lighten(.5),
-	RED: Color('#DA1D58')
+	RED: Color('#DA1D58'),
+	GREEN: Color('#00914D')
 };
 
 export const THEME = {
@@ -18,7 +20,7 @@ export const THEME = {
 	CURRENCY_ICON_SIZE: 36,
 	SECTION_PADDING_H: 20,
 	SECTION_PADDING_V: 15,
-	FONT_SIZE_H1: 26,
+	FONT_SIZE_H1: 28,
 	FONT_SIZE_REGULAR: 16,
 	FONT_SIZE_BIG: 22,
 	FONT_SIZE_SMALL: 12,
@@ -29,3 +31,26 @@ export const THEME = {
 	PAGE_SIDE_PADDING_PHONE: 20,
 	PAGE_MAX_WIDTH: 1200
 };
+
+export const COMMON_STYLES = StyleSheet.create({
+	LINK: {
+		color: COLORS.BLACK.toString(),
+		textDecoration: 'none',
+
+		':link': {
+			color: COLORS.BLACK.toString(),
+		},
+
+		':visited': {
+			color: COLORS.BLACK.toString(),
+		},
+
+		':hover': {
+			color: COLORS.BLACK.lighten(1.25).toString(),
+		},
+
+		':active': {
+			color: COLORS.BLACK.lighten(1).toString(),
+		}
+	}
+});

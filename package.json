@@ -50,6 +50,7 @@
 		"color": "^3.0.0",
 		"dayjs": "^1.6.9",
 		"faker": "^4.1.0",
+		"google-map-react": "^1.0.4",
 		"history": "^4.7.2",
 		"js-cookie": "^2.2.0",
 		"pixi.js": "^4.7.3",

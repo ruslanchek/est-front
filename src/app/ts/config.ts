@@ -3,13 +3,12 @@ export const PATHS = {
 };
 
 export const CONFIG = {
-	API: {},
-	TOP_COUNT: 50,
+	GOOGLE_MAPS_KEY: 'AIzaSyBr9pzfBKKLSrG6BZk18fyYhPPmkEceSZU',
 	STORAGE: {
-		PREFIX: 'EO_FINANCE',
+		PREFIX: 'REALTHUB',
 		COOKIES: {
 			OPTIONS: {
-				domain: '.investingbar.com',
+				domain: '.realthub.com',
 				path: '/',
 				expires: new Date(new Date().setFullYear(new Date().getFullYear() + 10))
 			}
