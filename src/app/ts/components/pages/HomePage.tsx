@@ -34,26 +34,18 @@ export class HomePage extends React.Component<IProps, IState> {
 					lat={34.679291}
 					lng={33.034049}
 				>
-					<GisMarker
-						color={COLORS.GREEN}
-						type={EGisMarkerType.Small}
-						id={1}
-						lat={34.679291}
-						lng={33.034049}
-						title={'YS'}
-					/>
-
-					<GisMarker
-						color={COLORS.RED}
-						type={EGisMarkerType.Big}
-						id={1}
-						lat={34.879291}
-						lng={33.034049}
-						title={'YS'}
-					/>
-
 					{ObjectsStore.store.state.objects.map((object, i) => {
-						return null
+						return (
+							<GisMarker
+								key={i}
+								color={COLORS.RED}
+								type={EGisMarkerType.Small}
+								id={object.id}
+								lat={object.lat}
+								lng={object.lng}
+								title={object.title}
+							/>
+						);
 					})}
 				</Gis>
 				<List objects={ObjectsStore.store.state.objects}/>
