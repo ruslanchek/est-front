@@ -62,11 +62,12 @@ const styles = StyleSheet.create({
 		top: '50%',
 		left: '50%',
 		opacity: .85,
-		transition: 'opacity .2s',
+		transition: 'opacity .2s, transform .2s',
 		cursor: 'pointer',
 
 		':hover': {
-			opacity: 1
+			opacity: 1,
+			transform: 'translate(-50%, -50%) scale(1.1)'
 		}
 	},
 
