@@ -4,11 +4,6 @@
 	"description": "Realty",
 	"main": "electron/index.js",
 	"scripts": {
-		"build:electron": "cp -r ./dist ./electron",
-		"prepare:electron": "yarn build:prod && yarn build:electron",
-		"release:electron": "yarn prepare:electron && electron-builder",
-		"release:ext": "yarn build:prod && cp -r ./ext/* ./dist",
-		"start:electron": "electron ./electron",
 		"build:prod": "webpack --config webpack.prod.js",
 		"dev": "webpack-dev-server --config webpack.dev.js --inline --mode=development",
 		"lint": "node_modules/tslint/bin/tslint \"src/app/**/*.ts\" \"src/app/**/*.tsx\" --project ./tsconfig.json",

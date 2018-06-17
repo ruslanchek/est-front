@@ -1,22 +1,47 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
+import { COLORS, THEME } from '../../theme';
+import Color = require('color');
 
 interface IProps {
 	id: number;
 	lat: number;
 	lng: number;
 	title: string;
+	type: EGisMarkerType;
+	color: Color;
+}
+
+export enum EGisMarkerType {
+	Small,
+	Big
 }
 
 export class GisMarker extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { id, title } = this.props;
+		const { id, title, type, color } = this.props;
+		const markerRules = [
+			styles.marker
+		];
+
+		switch (type) {
+			case EGisMarkerType.Small : {
+				markerRules.push(styles.small);
+				break;
+			}
+		}
 
 		return (
-			<div className={css(styles.marker)} onClick={() => {
-				alert(title);
-			}}>
-				{id}
+			<div
+				title={title}
+				className={css(markerRules)}
+			 	onClick={() => {
+					alert(title);
+				}}
+				style={{
+					background: `${color.toString()} linear-gradient(to bottom, ${color.lighten(0.4).toString()}, ${color.alpha(0).toString()})`,
+				}}
+			>
 			</div>
 		);
 	}
@@ -24,10 +49,10 @@ export class GisMarker extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	marker: {
-		width: 30,
-		height: 30,
-		background: 'white',
-		border: '2px solid red',
+		width: 20,
+		height: 20,
+		boxShadow: `0 1px 3px rgba(0, 0, 0, .4)`,
+		border: '2px solid #fff',
 		borderRadius: '100%',
 		display: 'flex',
 		justifyContent: 'center',
@@ -36,12 +61,17 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: '50%',
 		left: '50%',
-		opacity: .75,
+		opacity: .85,
 		transition: 'opacity .2s',
 		cursor: 'pointer',
 
 		':hover': {
 			opacity: 1
 		}
+	},
+
+	small: {
+		width: 10,
+		height: 10
 	}
 });

@@ -6,7 +6,8 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import { List } from '../common/List';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { Gis } from '../ui/Gis';
-import { GisMarker } from '../ui/GisMarker';
+import { EGisMarkerType, GisMarker } from '../ui/GisMarker';
+import { COLORS } from '../../theme';
 
 interface IProps {
 
@@ -29,20 +30,30 @@ export class HomePage extends React.Component<IProps, IState> {
 				<Gis
 					width="100%"
 					height="400px"
-					zoom={1}
-					lat={40.730610}
-					lng={-73.935242}
+					zoom={10}
+					lat={34.679291}
+					lng={33.034049}
 				>
+					<GisMarker
+						color={COLORS.GREEN}
+						type={EGisMarkerType.Small}
+						id={1}
+						lat={34.679291}
+						lng={33.034049}
+						title={'YS'}
+					/>
+
+					<GisMarker
+						color={COLORS.RED}
+						type={EGisMarkerType.Big}
+						id={1}
+						lat={34.879291}
+						lng={33.034049}
+						title={'YS'}
+					/>
+
 					{ObjectsStore.store.state.objects.map((object, i) => {
-						return (
-							<GisMarker
-								id={object.id}
-								key={i}
-								lat={object.lat}
-								lng={object.lng}
-								title={object.title}
-							/>
-						);
+						return null
 					})}
 				</Gis>
 				<List objects={ObjectsStore.store.state.objects}/>
