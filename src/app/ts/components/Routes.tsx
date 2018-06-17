@@ -5,6 +5,7 @@ import { CONFIG, PATHS } from '../config';
 import { RouteAuthRule } from '../managers/RouteManager';
 import { HomePage } from './pages/HomePage';
 import { Page, PageLayout } from './pages/Page';
+import { ObjectPage } from './pages/ObjectPage';
 
 interface IState {
 	key: number;
@@ -25,6 +26,22 @@ export class Routes extends React.Component<{}, IState> {
 								authRule={RouteAuthRule.Shared}
 							>
 								<HomePage/>
+							</Page>
+						);
+					}}
+				/>
+
+				<Route
+					exact={true}
+					path={PATHS.OBJECT}
+					render={props => {
+						return (
+							<Page
+								{...props}
+								layout={PageLayout.Default}
+								authRule={RouteAuthRule.Shared}
+							>
+								<ObjectPage/>
 							</Page>
 						);
 					}}

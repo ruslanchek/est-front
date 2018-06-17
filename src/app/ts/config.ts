@@ -1,5 +1,6 @@
 export const PATHS = {
-	HOME: '/'
+	HOME: '/',
+	OBJECT: '/object/:id'
 };
 
 export const CONFIG = {

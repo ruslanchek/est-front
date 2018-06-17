@@ -10,6 +10,8 @@ import { Address } from '../ui/Address';
 import { GallerySmall } from '../ui/GallerySmall';
 import { Params } from '../ui/Params';
 import { Avatar } from '../ui/Avatar';
+import { Link } from 'react-router-dom';
+import { PATHS } from '../../config';
 
 interface IProps {
 	objectData: IObject;
@@ -20,7 +22,7 @@ export class ObjectInList extends React.Component<IProps, {}> {
 	public render() {
 		const {
 			objectData,
-			containerStyles
+			containerStyles,
 		} = this.props;
 
 		const {
@@ -40,7 +42,9 @@ export class ObjectInList extends React.Component<IProps, {}> {
 						/>
 					</div>
 
-					<GallerySmall objectData={objectData}/>
+					<Link to={PATHS.OBJECT.replace(':id', id.toString())}>
+						<GallerySmall objectData={objectData}/>
+					</Link>
 				</header>
 
 				<div className={css(styles.body)}>
