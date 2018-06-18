@@ -2,14 +2,17 @@ import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
 import Color = require('color');
+import { ObjectsStore } from '../../stores/ObjectsStore';
+import IObject = ObjectsStore.IObject;
 
 interface IProps {
-	id: number;
+	opened: boolean;
+	object: IObject;
 	lat: number;
 	lng: number;
-	title: string;
 	type: EGisMarkerType;
 	color: Color;
+	onCLick: (object: IObject) => void;
 }
 
 export enum EGisMarkerType {
@@ -19,9 +22,9 @@ export enum EGisMarkerType {
 
 export class GisMarker extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { id, title, type, color } = this.props;
+		const { object, type, color, onCLick } = this.props;
 		const markerRules = [
-			styles.marker
+			styles.marker,
 		];
 
 		switch (type) {
@@ -33,15 +36,16 @@ export class GisMarker extends React.PureComponent<IProps, {}> {
 
 		return (
 			<div
-				title={title}
+				title={object.title}
 				className={css(markerRules)}
-			 	onClick={() => {
-					alert(title);
+				onClick={() => {
+					onCLick(object);
 				}}
 				style={{
 					background: `${color.toString()} linear-gradient(to bottom, ${color.lighten(0.4).toString()}, ${color.alpha(0).toString()})`,
 				}}
 			>
+				{this.props.opened ? <div className={css(styles.popup)}>xxx</div> : null}
 			</div>
 		);
 	}
@@ -67,12 +71,22 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			opacity: 1,
-			transform: 'translate(-50%, -50%) scale(1.1)'
-		}
+			transform: 'translate(-50%, -50%) scale(1.1)',
+		},
 	},
 
 	small: {
 		width: 10,
-		height: 10
+		height: 10,
+	},
+
+	popup: {
+		background: COLORS.WHITE.alpha(.9).toString(),
+		position: 'absolute',
+		borderRadius: 10,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
+		padding: 20,
+		top: 0,
+		left: 40
 	}
 });

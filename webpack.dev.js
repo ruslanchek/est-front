@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HandlebarsPlugin = require("handlebars-webpack-plugin");
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const port = 3333;
+const port = 5671;
 const host = '0.0.0.0';
 const production = process.env.NODE_ENV === 'production';
 
