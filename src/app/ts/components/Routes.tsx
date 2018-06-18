@@ -6,6 +6,7 @@ import { RouteAuthRule } from '../managers/RouteManager';
 import { HomePage } from './pages/HomePage';
 import { Page, PageLayout } from './pages/Page';
 import { ObjectPage } from './pages/ObjectPage';
+import { AgentPage } from './pages/AgentPage';
 
 interface IState {
 	key: number;
@@ -48,9 +49,25 @@ export class Routes extends React.Component<{}, IState> {
 				/>
 
 				<Route
+					exact={true}
+					path={PATHS.AGENT}
+					render={props => {
+						return (
+							<Page
+								{...props}
+								layout={PageLayout.Default}
+								authRule={RouteAuthRule.Shared}
+							>
+								<AgentPage/>
+							</Page>
+						);
+					}}
+				/>
+
+				<Route
 					exact
 					path="*"
-					render={() => <Redirect to={PATHS.HOME}></Redirect>}
+					render={() => <Redirect to={PATHS.HOME}/>}
 				/>
 			</Switch>
 		);

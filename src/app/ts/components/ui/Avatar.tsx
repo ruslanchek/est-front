@@ -2,7 +2,8 @@ import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
-import { COLORS, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { PATHS } from '../../config';
 
 interface IProps {
 	objectData: IObject;
@@ -19,15 +20,25 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 				</div>
 
 				<div className={css(styles.info)}>
-					<img
-						src={agent.avatar}
-						className={css(styles.image)}
-					/>
+					<a
+						className={css(styles.imageLink)}
+						target="_blank"
+						href={PATHS.AGENT.replace(':id', agent.id.toString())}
+					>
+						<img
+							src={agent.avatar}
+							className={css(styles.image)}
+						/>
+					</a>
 
 					<div className={css(styles.contact)}>
-						<div className={css(styles.contactRow, styles.contactRowAccent)}>
+						<a
+							target="_blank"
+							href={PATHS.AGENT.replace(':id', agent.id.toString())}
+							className={css(styles.contactRow, styles.contactRowAccent, COMMON_STYLES.LINK)}
+						>
 							{agent.fullName}
-						</div>
+						</a>
 
 						<div className={css(styles.contactRow, styles.contactRowDecent)}>
 							{agent.contact}
@@ -66,8 +77,17 @@ const styles = StyleSheet.create({
 		minWidth: 40,
 		maxWidth: 40,
 		borderRadius: '100%',
+		display: 'block',
 		flexGrow: 0,
 		marginRight: THEME.SECTION_PADDING_H / 2
+	},
+
+	imageLink: {
+		transition: 'opacity .2s',
+
+		':hover': {
+			opacity: 0.75
+		}
 	},
 
 	info: {

@@ -1,6 +1,7 @@
 export const PATHS = {
 	HOME: '/',
-	OBJECT: '/object/:id'
+	OBJECT: '/object/:id',
+	AGENT: '/agents/:id'
 };
 
 export const CONFIG = {
