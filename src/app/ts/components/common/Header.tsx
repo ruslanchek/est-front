@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			color: COLORS.WHITE.toString(),
-			backgroundColor: COLORS.GREEN.alpha(0.9).toString()
+			backgroundColor: COLORS.BLUE.alpha(0.9).toString()
 		},
 
 		':active': {

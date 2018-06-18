@@ -36,7 +36,7 @@ export class FakerManager extends Manager {
 		};
 	}
 
-	public generateObject(agentId: number): IObject {
+	public generateObject(objectId: number): IObject {
 		const params: IObjectParam[] = [];
 
 		params.push(
@@ -63,14 +63,14 @@ export class FakerManager extends Manager {
 				id: i,
 				title: faker.lorem.sentence(2),
 				description: faker.lorem.sentence(10),
-				src: `https://picsum.photos/600/400?i=${agentId}&a=${i}`
+				src: `https://picsum.photos/600/400?i=${objectId}&a=${i}`
 			});
 		}
 
 		const coverPicture: IObjectPicture = pictures[0];
 
 		return {
-			id: agentId,
+			id: objectId,
 			title: faker.name.title(),
 			type: faker.random.arrayElement([
 				EObjectType.Flat,
@@ -85,7 +85,7 @@ export class FakerManager extends Manager {
 			lat: parseFloat(faker.address.latitude()),
 			lng: parseFloat(faker.address.longitude()),
 			params,
-			agent: this.generateAgent(agentId),
+			agent: this.generateAgent(objectId),
 			isFavorite: faker.random.boolean(),
 			pictures,
 			coverPicture

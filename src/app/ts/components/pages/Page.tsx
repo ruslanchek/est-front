@@ -53,9 +53,7 @@ export class Page extends React.Component<IProps, IState> {
 					<div className={css(styles.page)} id="appContainer">
 						<Header/>
 
-						<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
-							{this.props.children}
-						</Layout>
+						{this.props.children}
 					</div>
 				);
 			}
@@ -64,14 +62,6 @@ export class Page extends React.Component<IProps, IState> {
 }
 
 const styles: any = StyleSheet.create({
-	layout: {
-		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP
-	},
-
-	layoutPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
-		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE
-	}),
-
 	page: {
 		minWidth: '100%',
 		fontFamily: THEME.FONT,
