@@ -1,13 +1,11 @@
 import * as React from 'react';
 
-import { StyleSheet, css } from 'aphrodite/no-important';
-import { followStore, StoreEvent } from 'react-stores';
+import { StyleSheet } from 'aphrodite/no-important';
+import { followStore } from 'react-stores';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import { List } from '../common/List';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { Gis } from '../ui/Gis';
-import { EGisMarkerType, GisMarker } from '../ui/GisMarker';
-import { COLORS } from '../../theme';
 
 interface IProps {
 
