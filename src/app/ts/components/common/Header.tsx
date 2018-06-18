@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
 
 	placeAdvert: {
 		color: COLORS.WHITE.toString(),
-		backgroundColor: '#017AD5',
+		backgroundColor: COLORS.BLUE.toString(),
 		padding: `4px ${THEME.SECTION_PADDING_H / 2}px 4px 4px`,
 		borderRadius: 16,
 		fontSize: THEME.FONT_SIZE_SMALL,

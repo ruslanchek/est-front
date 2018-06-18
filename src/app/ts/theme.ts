@@ -10,6 +10,7 @@ export const COLORS = {
 	BLACK_LIGHT: Color('#5A636F'),
 	BLACK_EXTRA_LIGHT: Color('#5A636F').lighten(.5),
 	RED: Color('#DA1D58'),
+	BLUE: Color('#017AD5'),
 	GREEN: Color('#00914D')
 };
 

@@ -15,7 +15,28 @@ export class FakerManager extends Manager {
 	public reset(): void {
 	}
 
-	public generateObject(id: number): IObject {
+	public generateAgent(objectId: number): IObjectAgent {
+		const agentType: EObjectAgentType = faker.random.arrayElement([
+			EObjectAgentType.Private,
+			EObjectAgentType.Realtor,
+			EObjectAgentType.Agency
+		]);
+
+		const agentName: string = agentType === EObjectAgentType.Agency ? faker.company.companyName() : `${faker.name.firstName()} ${faker.name.lastName()}`;
+
+		return {
+			id: faker.random.number({
+				min: 1,
+				max: 100000
+			}),
+			avatar: `https://picsum.photos/600/400?i=${objectId}&t=agent`,
+			type: agentType,
+			fullName: agentName,
+			contact: faker.phone.phoneNumberFormat()
+		};
+	}
+
+	public generateObject(agentId: number): IObject {
 		const params: IObjectParam[] = [];
 
 		params.push(
@@ -34,41 +55,22 @@ export class FakerManager extends Manager {
 			}
 		);
 
-		const agentType: EObjectAgentType = faker.random.arrayElement([
-			EObjectAgentType.Private,
-			EObjectAgentType.Realtor,
-			EObjectAgentType.Agency
-		]);
-
-		const agentName: string = agentType === EObjectAgentType.Agency ? faker.company.companyName() : `${faker.name.firstName()} ${faker.name.lastName()}`;
-
-		const agent: IObjectAgent = {
-			id: faker.random.number({
-				min: 1,
-				max: 100000
-			}),
-			avatar: `https://picsum.photos/600/400?i=${id}&t=ava`,
-			type: agentType,
-			fullName: agentName,
-			contact: faker.phone.phoneNumberFormat()
-		};
-
 		const pictures: IObjectPicture[] = [];
 		const photosCount: number = faker.random.number({min: 1, max: 7});
 
-		for(let i2: number = 0; i2 < photosCount; i2++) {
+		for(let i: number = 0; i < photosCount; i++) {
 			pictures.push({
-				id: i2,
+				id: i,
 				title: faker.lorem.sentence(2),
 				description: faker.lorem.sentence(10),
-				src: `https://picsum.photos/600/400?i=${id}&a=${i2}`
+				src: `https://picsum.photos/600/400?i=${agentId}&a=${i}`
 			});
 		}
 
 		const coverPicture: IObjectPicture = pictures[0];
 
 		return {
-			id,
+			id: agentId,
 			title: faker.name.title(),
 			type: faker.random.arrayElement([
 				EObjectType.Flat,
@@ -83,7 +85,7 @@ export class FakerManager extends Manager {
 			lat: parseFloat(faker.address.latitude()),
 			lng: parseFloat(faker.address.longitude()),
 			params,
-			agent,
+			agent: this.generateAgent(agentId),
 			isFavorite: faker.random.boolean(),
 			pictures,
 			coverPicture
