@@ -4,6 +4,8 @@ import { StateStore } from './stores/StateStore';
 import { ApiManager } from './managers/ApiManager';
 import { ToastManager } from './managers/ToastManager';
 import { FakerManager } from './managers/FakerManager';
+import FilterManager = PIXI.FilterManager;
+import { FiltersManager } from './managers/FiltersManager';
 
 export class Managers {
 	public route: RouteManager;
@@ -11,6 +13,7 @@ export class Managers {
 	public api: ApiManager;
 	public toast: ToastManager;
 	public faker: FakerManager;
+	public filters: FiltersManager;
 
 	public constructor() {
 		this.route = new RouteManager();
@@ -18,6 +21,7 @@ export class Managers {
 		this.api = new ApiManager();
 		this.toast = new ToastManager();
 		this.faker = new FakerManager();
+		this.filters = new FiltersManager();
 
 		this.init();
 	}
@@ -44,6 +48,7 @@ export class Managers {
 		this.api.reset();
 		this.toast.reset();
 		this.faker.reset();
+		this.filters.reset();
 	}
 
 	private async initManagers(): Promise<any> {
@@ -52,6 +57,7 @@ export class Managers {
 		await this.api.init();
 		await this.toast.init();
 		await this.faker.init();
+		await this.filters.init();
 	}
 }
 

@@ -9,6 +9,7 @@ import { Gis } from '../ui/Gis';
 import { Layout } from '../common/Layout';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
+import { Filters } from '../common/Filters';
 
 interface IProps {
 
@@ -26,6 +27,7 @@ export class HomePage extends React.Component<IProps, IState> {
 		return (
 			<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
 				<BreadCrumbs/>
+				<Filters/>
 				<Gis
 					width="100%"
 					height="400px"
