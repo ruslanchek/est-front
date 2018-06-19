@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
 		fontSize: THEME.FONT_SIZE_SMALL,
 		color: COLORS.BLACK_LIGHT.toString(),
 		textTransform: 'uppercase',
-		marginBottom: THEME.SECTION_PADDING_V / 2,
-		fontWeight: 600
+		fontWeight: 600,
+		marginBottom: THEME.SECTION_PADDING_V / 2
 	},
 
 	container: {
