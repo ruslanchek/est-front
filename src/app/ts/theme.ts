@@ -32,7 +32,7 @@ export const THEME = {
 	BOX_SHADOW_ELEVATION_2: `0 5px 15px 0 ${COLORS.BLACK.alpha(0.09).toString()}`,
 	PAGE_SIDE_PADDING_DESKTOP: 40,
 	PAGE_SIDE_PADDING_PHONE: 20,
-	PAGE_MAX_WIDTH: 1200
+	PAGE_MAX_WIDTH: 1600
 };
 
 export const COMMON_STYLES = StyleSheet.create({
@@ -58,6 +58,11 @@ export const COMMON_STYLES = StyleSheet.create({
 	},
 
 	LAYOUT_DESKTOP: {
+		position: 'relative',
+		maxWidth: THEME.PAGE_MAX_WIDTH,
+		width: '100%',
+		margin: '0 auto',
+		boxSizing: 'border-box',
 		padding: `0 ${THEME.PAGE_SIDE_PADDING_DESKTOP}px`
 	},
 

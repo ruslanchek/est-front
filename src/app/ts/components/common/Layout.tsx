@@ -10,7 +10,7 @@ interface IProps {
 export class Layout extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.layout, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE, this.props.outerStyles)}>
+			<div className={css(COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE, this.props.outerStyles)}>
 				{this.props.children}
 			</div>
 		);
@@ -18,9 +18,5 @@ export class Layout extends React.PureComponent<IProps, {}> {
 }
 
 const styles = StyleSheet.create({
-	layout: {
-		position: 'relative',
-		margin: '0 auto',
-		padding: `0 ${THEME.PAGE_SIDE_PADDING_DESKTOP}px 0`
-	}
+
 });
