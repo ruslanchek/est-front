@@ -1,5 +1,6 @@
 import Color = require('color');
 import { StyleSheet } from 'aphrodite/no-important';
+import { CSSUtils, ECSSMediaKind } from './lib/CSSUtils';
 
 export const COLORS = {
 	GRAY_LIGHT: Color('#F3F5F7'),
@@ -16,7 +17,8 @@ export const COLORS = {
 
 export const THEME = {
 	FONT: '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-	HEADER_HEIGHT: 60,
+	HEADER_HEIGHT: 54,
+	HEADER_HEIGHT_FLOATING: 42,
 	NAV_HEIGHT: 0,
 	CURRENCY_ICON_SIZE: 36,
 	SECTION_PADDING_H: 20,
@@ -26,7 +28,7 @@ export const THEME = {
 	FONT_SIZE_BIG: 22,
 	FONT_SIZE_SMALL: 12,
 	FONT_SIZE_TINY: 10,
-	BOX_SHADOW_ELEVATION_1: `0 5px 15px 0 ${COLORS.BLACK.alpha(0.065).toString()}`,
+	BOX_SHADOW_ELEVATION_1: `0 4px 12px 0 ${COLORS.BLACK.alpha(0.065).toString()}`,
 	BOX_SHADOW_ELEVATION_2: `0 5px 15px 0 ${COLORS.BLACK.alpha(0.09).toString()}`,
 	PAGE_SIDE_PADDING_DESKTOP: 40,
 	PAGE_SIDE_PADDING_PHONE: 20,
@@ -53,5 +55,13 @@ export const COMMON_STYLES = StyleSheet.create({
 		':active': {
 			color: COLORS.BLACK.lighten(1).toString(),
 		}
-	}
+	},
+
+	LAYOUT_DESKTOP: {
+		padding: `0 ${THEME.PAGE_SIDE_PADDING_DESKTOP}px`
+	},
+
+	LAYOUT_PHONE: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		padding: `0 ${THEME.PAGE_SIDE_PADDING_PHONE}px`
+	}),
 });

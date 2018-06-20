@@ -1,5 +1,12 @@
 import { StyleDeclaration } from 'aphrodite';
 
+export type TStyle = string | object | null | undefined | boolean;
+
+export interface IReactComponentStyles {
+	className?: string;
+	styles?: object;
+}
+
 export enum ECSSMediaKind {
 	Phone,
 	Tablet,
@@ -28,5 +35,32 @@ export class CSSUtils {
 			case ECSSMediaKind.Desktop : return this.media(1024, 1440, styles);
 			case ECSSMediaKind.Wide : return this.media(1440, 6000, styles);
 		}
+	}
+
+	public static mergeStyles(...styles: TStyle[]): IReactComponentStyles {
+		const result: IReactComponentStyles = {};
+
+		styles.forEach(item => {
+			if (typeof item === 'string') {
+				if (typeof result.className === 'string') {
+					result.className += ` ${item}`;
+				} else {
+					result.className = item;
+				}
+			}
+
+			if (typeof item === 'object' && item !== null) {
+				if (typeof result.styles === 'object') {
+					result.styles = {
+						...result.styles,
+						...item
+					};
+				} else {
+					result.styles = item;
+				}
+			}
+		});
+
+		return result;
 	}
 }

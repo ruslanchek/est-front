@@ -27,15 +27,6 @@ export class HomePage extends React.Component<IProps, IState> {
 		return (
 			<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
 				<BreadCrumbs/>
-				<Filters/>
-				<Gis
-					width="100%"
-					height="400px"
-					zoom={10}
-					lat={34.679291}
-					lng={33.034049}
-					objects={ObjectsStore.store.state.objects}
-				/>
 				<List objects={ObjectsStore.store.state.objects}/>
 			</Layout>
 		);

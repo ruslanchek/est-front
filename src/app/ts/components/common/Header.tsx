@@ -9,17 +9,20 @@ import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { Layout } from './Layout';
 import { EIcon, EIconType, Icon } from './Icon';
 import { Modal } from '../ui/Modal';
+import { Filters } from './Filters';
 
 interface IState {
 	isFloating: boolean;
 	modalIsVisible: boolean;
 }
 
+const FLOATING_THRESHOLD: number = 30;
+
 @followStore(StateStore.store)
 export class Header extends React.PureComponent<{}, IState> {
 	public state: IState = {
 		isFloating: false,
-		modalIsVisible: false
+		modalIsVisible: false,
 	};
 
 	public componentDidMount() {
@@ -31,65 +34,116 @@ export class Header extends React.PureComponent<{}, IState> {
 	}
 
 	public render() {
-		const headerRules: StyleDeclaration[] = [
-			styles.header
-		];
-
-		if(this.state.isFloating) {
-			headerRules.push(
-				styles.headerFloating
-			);
-		}
+		const { isFloating } = this.state;
 
 		return (
 			<header className={css(styles.container)}>
-				<div className={css(headerRules)}>
-					<Layout outerStyles={styles.layout}>
-						<Link to={PATHS.HOME} className={css(styles.logo, styles.logoPhone)}/>
+				<div {...CSSUtils.mergeStyles(
+					css(styles.header),
+					isFloating && css(styles.headerFloating),
+				)}>
+					<div {...CSSUtils.mergeStyles(
+						css(styles.block),
+						css(COMMON_STYLES.LAYOUT_DESKTOP),
+						css(COMMON_STYLES.LAYOUT_PHONE),
+						isFloating && css(styles.blockFloating),
+					)}>
+						<Link
+							to={PATHS.HOME}
+							className={css(styles.logo, styles.logoPhone)}
+							{...CSSUtils.mergeStyles(
+								css(styles.logo),
+								css(styles.logoPhone),
+								isFloating && css(styles.logoFloating),
+							)}
+						/>
 
 						<nav className={css(styles.nav)}>
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.navLink)}
+							>
 								Purchase
 							</NavLink>
 
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.navLink)}
+							>
 								Rent
 							</NavLink>
 
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.navLink)}
+							>
 								Flats
 							</NavLink>
 
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.navLink)}>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.navLink)}
+							>
 								Houses
 							</NavLink>
 						</nav>
 
 						<nav className={css(styles.user)}>
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink)}>
-								<Icon icon={EIcon.Favorite} type={EIconType.TwoTone} size={18} color={COLORS.RED} outerStyles={styles.icon}/>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.userLink)}
+							>
+								<Icon
+									icon={EIcon.Favorite}
+									type={EIconType.TwoTone}
+									size={18}
+									color={COLORS.RED}
+									outerStyles={styles.icon}
+								/>
 								Favorites
 							</NavLink>
 
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink)} onClick={() => {
-								this.setState({
-									modalIsVisible: true
-								});
-							}}>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.userLink)}
+								onClick={() => {
+									this.setState({
+										modalIsVisible: true,
+									});
+								}}
+							>
 								Login
 							</NavLink>
 
-							<NavLink to={PATHS.HOME} className={css(COMMON_STYLES.LINK, styles.userLink, styles.placeAdvert)}>
-								<Icon icon={EIcon.Plus} type={EIconType.Default} size={18} color={COLORS.WHITE} outerStyles={styles.icon}/>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.userLink, styles.placeAdvert)}
+							>
+								<Icon
+									icon={EIcon.Plus}
+									type={EIconType.Default}
+									size={18}
+									color={COLORS.WHITE}
+									outerStyles={styles.icon}
+								/>
 								Place advert
 							</NavLink>
 						</nav>
-					</Layout>
+					</div>
+
+					<div {...CSSUtils.mergeStyles(
+						css(styles.block),
+						css(COMMON_STYLES.LAYOUT_DESKTOP),
+						css(COMMON_STYLES.LAYOUT_PHONE),
+						isFloating && css(styles.blockFloating),
+					)}>
+						<Filters/>
+					</div>
 				</div>
 
 				<Modal isVisible={this.state.modalIsVisible} onClose={() => {
 					this.setState({
-						modalIsVisible: false
+						modalIsVisible: false,
 					});
 				}}>
 					<div>
@@ -113,7 +167,7 @@ export class Header extends React.PureComponent<{}, IState> {
 		const scrollTop: number = (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
 
 		this.setState({
-			isFloating: scrollTop > 0
+			isFloating: scrollTop > FLOATING_THRESHOLD,
 		});
 	};
 }
@@ -124,40 +178,65 @@ const styles = StyleSheet.create({
 		backgroundPosition: '0 50%',
 		backgroundSize: 'auto 35px',
 		backgroundRepeat: 'no-repeat',
-		width: 130,
-		minWidth: 130,
+		width: 132,
+		minWidth: 132,
 		height: THEME.HEADER_HEIGHT,
 		display: 'block',
 		flexGrow: 0,
-		marginRight: THEME.SECTION_PADDING_H * 1.5
+		transition: 'transform .3s',
+		transformOrigin: '0 50%',
+		marginRight: THEME.SECTION_PADDING_H * 1.5,
 	},
 
 	logoPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
 		width: 34,
 		minWidth: 34,
+		transform: 'scale(.9)',
 		marginRight: THEME.SECTION_PADDING_H
 	}),
 
+	logoFloating: {
+		transform: 'scale(.9)'
+	},
+
 	container: {
-		height: THEME.HEADER_HEIGHT
+		height: THEME.HEADER_HEIGHT * 2,
 	},
 
 	header: {
-		height: THEME.HEADER_HEIGHT,
+		height: THEME.HEADER_HEIGHT * 2,
 		backgroundColor: COLORS.WHITE.toString(),
 		boxShadow: `0 1px 2px 0 ${COLORS.BLACK.alpha(0.07).toString()}`,
 		zIndex: 10,
 		width: '100%',
 		left: 0,
 		top: 0,
-		maxWidth: '100%'
+		maxWidth: '100%',
+		position: 'fixed',
+		display: 'flex',
+		flexDirection: 'column',
+		transition: 'height .3s'
 	},
 
-	layout: {
+	headerFloating: {
+		height: THEME.HEADER_HEIGHT_FLOATING * 2
+	},
+
+	block: {
 		height: THEME.HEADER_HEIGHT,
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
+		transition: 'height .3s',
+
+		':last-of-type': {
+			boxSizing: 'border-box',
+			borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`
+		}
+	},
+
+	blockFloating: {
+		height: THEME.HEADER_HEIGHT_FLOATING,
 	},
 
 	nav: {
@@ -168,7 +247,7 @@ const styles = StyleSheet.create({
 	},
 
 	navLink: {
-		marginRight: THEME.SECTION_PADDING_H
+		marginRight: THEME.SECTION_PADDING_H,
 	},
 
 	user: {
@@ -181,7 +260,7 @@ const styles = StyleSheet.create({
 	},
 
 	icon: {
-		marginRight: THEME.SECTION_PADDING_H / 2
+		marginRight: THEME.SECTION_PADDING_H / 2,
 	},
 
 	userLink: {
@@ -189,7 +268,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'flex-start',
-		whiteSpace: 'nowrap'
+		whiteSpace: 'nowrap',
 	},
 
 	placeAdvert: {
@@ -212,15 +291,11 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			color: COLORS.WHITE.toString(),
-			backgroundColor: COLORS.BLUE.alpha(0.9).toString()
+			backgroundColor: COLORS.BLUE.alpha(0.9).toString(),
 		},
 
 		':active': {
 			color: COLORS.WHITE.toString(),
-		}
+		},
 	},
-
-	headerFloating: {
-		position: 'fixed'
-	}
 });
