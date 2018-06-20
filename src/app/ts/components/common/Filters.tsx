@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
+		whiteSpace: 'nowrap',
 	},
 
 	title: {
-		marginRight: THEME.SECTION_PADDING_H
+		marginRight: THEME.SECTION_PADDING_H,
 	},
 
 	brick: {
