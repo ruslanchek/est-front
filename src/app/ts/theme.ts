@@ -69,4 +69,24 @@ export const COMMON_STYLES = StyleSheet.create({
 	LAYOUT_PHONE: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
 		padding: `0 ${THEME.PAGE_SIDE_PADDING_PHONE}px`
 	}),
+
+	FILTER_BRICK: {
+		height: 24,
+		lineHeight: '24px',
+		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
+		backgroundColor: COLORS.GRAY_DARK.toString(),
+		borderRadius: 16,
+		marginRight: THEME.SECTION_PADDING_H / 2,
+		cursor: 'pointer',
+		transition: 'background-color .2s',
+
+		':hover': {
+			backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
+		}
+	},
+
+	FILTER_ACCENT: {
+		color: COLORS.BLACK.toString(),
+		fontWeight: 600
+	}
 });

@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { FilterFromTo } from '../ui/FilterFromTo';
+import { FilterAnd } from '../ui/FilterAnd';
+import { FilterRangeEntities } from '../ui/FilterRangeEntities';
 
 interface IProps {
 
@@ -11,30 +14,32 @@ export class Filters extends React.PureComponent<IProps, {}> {
 		return (
 			<div className={css(styles.filters)}>
 				<div className={css(styles.title)}>
-					Showing <strong className={css(styles.accent)}>2,436</strong> objects
+					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
 				</div>
 
-				<div className={css(styles.brick)}>
-					from <strong className={css(styles.accent)}>€100,000</strong>
-					{' '}
-					to <strong className={css(styles.accent)}>€2,000,000</strong>
-				</div>
+				<FilterFromTo from="€100,000" to="€2,000,000"/>
+				<FilterAnd entities={[
+					'Flats',
+					'Houses',
+					'Studios'
+				]}/>
+				<FilterRangeEntities
+					from={2}
+					to={4}
+					what="bedrooms"
+				/>
+				<FilterRangeEntities
+					from={1}
+					to={2}
+					what="bathrooms"
+				/>
+				<FilterRangeEntities
+					from={1}
+					to={1}
+					what="garage"
+				/>
 
-				<div className={css(styles.brick)}>
-					<strong className={css(styles.accent)}>Flats</strong>{', '}
-					<strong className={css(styles.accent)}>Houses</strong>{' and '}
-					<strong className={css(styles.accent)}>Studios</strong>
-				</div>
-
-				<div className={css(styles.brick)}>
-					<strong className={css(styles.accent)}>2</strong>&ndash;<strong className={css(styles.accent)}>4</strong> bedrooms
-				</div>
-
-				<div className={css(styles.brick)}>
-					<strong className={css(styles.accent)}>1</strong>&ndash;<strong className={css(styles.accent)}>2</strong> bathrooms
-				</div>
-
-				<div className={css(styles.brick, styles.add)}>
+				<div className={css(COMMON_STYLES.FILTER_BRICK, styles.add)}>
 					+ Add new filter
 				</div>
 			</div>
@@ -56,28 +61,13 @@ const styles = StyleSheet.create({
 		marginRight: THEME.SECTION_PADDING_H,
 	},
 
-	brick: {
-		height: 24,
-		lineHeight: '24px',
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		borderRadius: 16,
-		marginRight: THEME.SECTION_PADDING_H / 2,
-		cursor: 'pointer',
-		transition: 'background-color .2s',
+	add: {
+		backgroundColor: COLORS.BLUE.alpha(0.1).toString(),
+		color: COLORS.BLUE.toString(),
+		fontWeight: 600,
 
 		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
+			backgroundColor: COLORS.BLUE.alpha(0.2).toString(),
 		}
-	},
-
-	add: {
-		color: COLORS.BLUE.toString(),
-		fontWeight: 600
-	},
-
-	accent: {
-		color: COLORS.BLACK.toString(),
-		fontWeight: 600
 	}
 });

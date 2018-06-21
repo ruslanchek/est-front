@@ -183,6 +183,7 @@ const styles = StyleSheet.create({
 		height: THEME.HEADER_HEIGHT,
 		display: 'block',
 		flexGrow: 0,
+		willChange: 'transform',
 		transition: 'transform .3s',
 		transformOrigin: '0 50%',
 		marginRight: THEME.SECTION_PADDING_H * 1.5,
@@ -215,6 +216,7 @@ const styles = StyleSheet.create({
 		position: 'fixed',
 		display: 'flex',
 		flexDirection: 'column',
+		willChange: 'height',
 		transition: 'height .3s'
 	},
 
@@ -228,6 +230,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		transition: 'height .3s',
+		willChange: 'height',
 
 		':last-of-type': {
 			boxSizing: 'border-box',

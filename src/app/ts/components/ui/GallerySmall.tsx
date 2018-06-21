@@ -61,7 +61,10 @@ export class GallerySmall extends React.Component<IProps, IState> {
 				onMouseEnter={() => this.setState({showPages: true})}
 				onMouseLeave={() => this.setState({showPages: false})}
 			>
-				<Image src={this.state.currentPicSrc} imageStyle={styles.image}/>
+				<Image
+					src={this.state.currentPicSrc}
+					imageStyle={styles.image}
+				/>
 
 				<CSSTransition
 					in={this.state.showPages}
