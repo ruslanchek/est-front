@@ -4,7 +4,6 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { Favorite } from '../ui/Favorite';
 import { COLORS, THEME } from '../../theme';
-import { Price } from '../ui/Price';
 import { ObjectSubtitle } from '../ui/ObjectSubtitle';
 import { Address } from '../ui/Address';
 import { GallerySmall } from '../ui/GallerySmall';
@@ -12,6 +11,7 @@ import { Params } from '../ui/Params';
 import { Avatar } from '../ui/Avatar';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../../config';
+import { Money } from '../ui/Money';
 
 interface IProps {
 	objectData: IObject;
@@ -51,7 +51,7 @@ export class ObjectInList extends React.Component<IProps, {}> {
 					<ObjectSubtitle objectData={objectData}/>
 
 					<div className={css(styles.price)}>
-						<Price value={price}/>
+						<Money value={price}/>
 					</div>
 
 					<div className={css(styles.address)}>

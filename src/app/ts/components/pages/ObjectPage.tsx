@@ -3,16 +3,13 @@ import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
 import { followStore, StoreEvent } from 'react-stores';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import { List } from '../common/List';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
-import { Gis } from '../ui/Gis';
-import { EGisMarkerType, GisMarker } from '../ui/GisMarker';
 import { COLORS, THEME } from '../../theme';
-import { Price } from '../ui/Price';
 import IObject = ObjectsStore.IObject;
 import { managers } from '../../managers';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { Layout } from '../common/Layout';
+import { Money } from '../ui/Money';
 
 interface IProps {
 
@@ -34,7 +31,7 @@ export class ObjectPage extends React.Component<IProps, IState> {
 				<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
 					<BreadCrumbs/>
 
-					<Price value={this.state.object.price}/>
+					<Money value={this.state.object.price}/>
 				</Layout>
 
 				<div className={css(styles.gallery)}>
