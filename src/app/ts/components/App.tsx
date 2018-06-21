@@ -24,7 +24,7 @@ export class App extends React.Component<{}, {}> {
 			return (
 				<React.Fragment>
 					<Toast/>
-					<BrowserRouter>
+					<BrowserRouter basename={'/en'}>
 						<Routes/>
 					</BrowserRouter>
 				</React.Fragment>

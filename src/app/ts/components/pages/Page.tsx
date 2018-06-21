@@ -9,6 +9,7 @@ import { COLORS, THEME } from '../../theme';
 import { Header } from '../common/Header';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { Layout } from '../common/Layout';
+import { Footer } from '../common/Footer';
 
 export enum PageLayout {
 	Default
@@ -54,6 +55,8 @@ export class Page extends React.Component<IProps, IState> {
 						<Header/>
 
 						{this.props.children}
+
+						<Footer/>
 					</div>
 				);
 			}
