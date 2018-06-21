@@ -4,6 +4,7 @@ import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { FilterFromTo } from '../ui/FilterFromTo';
 import { FilterAnd } from '../ui/FilterAnd';
 import { FilterRangeEntities } from '../ui/FilterRangeEntities';
+import { Money } from '../ui/Money';
 
 interface IProps {
 
@@ -17,22 +18,29 @@ export class Filters extends React.PureComponent<IProps, {}> {
 					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
 				</div>
 
-				<FilterFromTo from="€100,000" to="€2,000,000"/>
+				<FilterFromTo
+					from={<Money value={200000}/>}
+					to={<Money value={4000000}/>}
+				/>
+
 				<FilterAnd entities={[
 					'Flats',
 					'Houses',
 					'Studios'
 				]}/>
+
 				<FilterRangeEntities
 					from={2}
 					to={4}
 					what="bedrooms"
 				/>
+
 				<FilterRangeEntities
 					from={1}
 					to={2}
 					what="bathrooms"
 				/>
+
 				<FilterRangeEntities
 					from={1}
 					to={1}

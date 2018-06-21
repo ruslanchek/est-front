@@ -3,8 +3,8 @@ import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 
 interface IProps {
-	from: string;
-	to: string;
+	from: string | JSX.Element;
+	to: string | JSX.Element;
 }
 
 export class FilterFromTo extends React.PureComponent<IProps, {}> {
