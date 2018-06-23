@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COMMON_STYLES } from '../../theme';
 import { Modal } from './Modal';
-import { PATHS } from '../../config';
-import { ModalSubmit } from './ModalSubmit';
 import { EModalSelectItemType, ModalSelect } from './ModalSelect';
 import { ModalResetSubmit } from './ModalResetSubmit';
 

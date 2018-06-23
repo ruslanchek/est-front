@@ -29,17 +29,33 @@ export class Managers {
 	public init(): void {
 		this.initManagers()
 			.then(() => {
-				StateStore.store.setState({
-					...StateStore.store.state,
-					appReady: true,
+				this.removeLoading().then(() => {
+					StateStore.store.setState({
+						...StateStore.store.state,
+						appReady: true,
+					});
 				});
 			})
 			.catch(() => {
-				StateStore.store.setState({
-					...StateStore.store.state,
-					appReady: true,
+				this.removeLoading().then(() => {
+					StateStore.store.setState({
+						...StateStore.store.state,
+						appReady: true,
+					});
 				});
 			});
+	}
+
+	private removeLoading(): Promise<any> {
+		return new Promise((resolve, reject) => {
+			const splashLoading = document.querySelector('#splashLoading');
+			splashLoading.classList.add('hide');
+
+			setTimeout(() => {
+				splashLoading.remove();
+				resolve();
+			}, 500);
+		});
 	}
 
 	private resetManagers(): void {

@@ -143,7 +143,9 @@ export class FakerManager extends Manager {
 				objects,
 			});
 
-			resolve();
+			setTimeout(() => {
+				resolve();
+			}, 2000);
 		});
 	}
 }

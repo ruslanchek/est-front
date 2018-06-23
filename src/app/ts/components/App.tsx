@@ -30,9 +30,7 @@ export class App extends React.Component<{}, {}> {
 				</React.Fragment>
 			);
 		} else {
-			return (
-				<AppLoading/>
-			);
+			return null;
 		}
 	}
 }
