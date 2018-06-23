@@ -23,11 +23,14 @@ export class Filters extends React.PureComponent<IProps, {}> {
 					to={<Money value={4000000}/>}
 				/>
 
-				<FilterAnd entities={[
-					'Flats',
-					'Houses',
-					'Studios'
-				]}/>
+				<FilterAnd
+					filterName="Property type"
+					entities={[
+						'Flats',
+						'Houses',
+						'Studios',
+					]}
+				/>
 
 				<FilterRangeEntities
 					from={2}
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
-		whiteSpace: 'nowrap'
+		whiteSpace: 'nowrap',
 	},
 
 	title: {
@@ -76,6 +79,6 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			backgroundColor: COLORS.BLUE.alpha(0.2).toString(),
-		}
-	}
+		},
+	},
 });
