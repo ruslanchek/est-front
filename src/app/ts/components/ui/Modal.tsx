@@ -4,11 +4,13 @@ import { CSSTransition } from 'react-transition-group';
 
 import { COLORS, THEME } from '../../theme';
 import { Portal } from './Portal';
+import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 
 interface IProps {
 	containerClassName?: string;
 	contentClassName?: string;
 	isVisible: boolean;
+	title: string;
 
 	onClose?(): void;
 }
@@ -27,12 +29,10 @@ export class Modal extends React.PureComponent<IProps, IState> {
 	private animationDelay = null;
 
 	public componentDidMount() {
-		document.body.classList.add('hidden');
 		document.addEventListener('keydown', this.handleKeyDown);
 	}
 
 	public componentWillUnmount() {
-		document.body.classList.remove('hidden');
 		document.removeEventListener('keydown', this.handleKeyDown);
 
 		clearTimeout(this.animationDelay);
@@ -45,6 +45,12 @@ export class Modal extends React.PureComponent<IProps, IState> {
 					isContentVisible: nextProps.isVisible
 				});
 			}, 10);
+		}
+
+		if(nextProps.isVisible) {
+			document.body.classList.add('hidden');
+		} else {
+			document.body.classList.remove('hidden');
 		}
 	}
 
@@ -63,7 +69,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 			>
 				<Portal>
 					<div
-						className={css(styles.container)}
+						className={css(styles.container, styles.containerPhone)}
 						onClick={this.handleClickOnOverlay}
 					>
 						<CSSTransition
@@ -78,9 +84,15 @@ export class Modal extends React.PureComponent<IProps, IState> {
 							}}
 						>
 							<div
-								className={css(styles.content)}
+								className={css(styles.content, styles.contentPhone)}
 								onClick={this.handleClickOnContent}
 							>
+								<div className={css(styles.header)}>
+									<h2 className={css(styles.title)}>
+										{this.props.title}
+									</h2>
+								</div>
+
 								{this.props.children}
 							</div>
 						</CSSTransition>
@@ -117,7 +129,8 @@ export class Modal extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: COLORS.WHITE.alpha(0.5).toString(),
+		backgroundColor: COLORS.BLACK_LIGHT.alpha(0.8).toString(),
+		backdropFilter: 'blur(3px)',
 		bottom: 0,
 		display: 'flex',
 		justifyContent: 'center',
@@ -127,15 +140,37 @@ const styles = StyleSheet.create({
 		right: 0,
 		overflow: 'auto',
 		top: 0,
-		zIndex: 9999
+		zIndex: 9999,
+		boxSizing: 'border-box'
 	},
 
+	containerPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		width: '100vw',
+		height: '100vh'
+	}),
+
 	content: {
-		backgroundColor: COLORS.WHITE.alpha(0.85).toString(),
-		borderRadius: 20,
+		backgroundColor: COLORS.WHITE.toString(),
+		borderRadius: 15,
+		overflow: 'hidden',
+		position: 'relative',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		margin: 'auto',
 		width: 400
+	},
+
+	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		width: '100%',
+		overflow: 'auto',
+		'-webkit-overflow-scrolling': 'touch'
+	}),
+
+	header: {
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
+	},
+
+	title: {
+		margin: 0
 	},
 
 	enterContainer: {

@@ -98,36 +98,40 @@ export class Header extends React.PureComponent<{}, IState> {
 									<Icon icon={EIcon.More} size={24} color={COLORS.BLACK_LIGHT}/>
 								</a>
 
-								<Modal isVisible={this.state.phoneNavIsVisible} onClose={() => {
-									this.setState({
-										phoneNavIsVisible: false,
-									});
-								}}>
-									<div>
+								<Modal
+									title="Navigation"
+									isVisible={this.state.phoneNavIsVisible}
+										onClose={() => {
+										this.setState({
+											phoneNavIsVisible: false,
+										});
+									}}
+								>
+									<div className={css(styles.mobileNav)}>
 										<NavLink
 											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.navLink)}
+											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
 										>
 											Purchase
 										</NavLink>
 
 										<NavLink
 											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.navLink)}
+											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
 										>
 											Rent
 										</NavLink>
 
 										<NavLink
 											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.navLink)}
+											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
 										>
 											Flats
 										</NavLink>
 
 										<NavLink
 											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.navLink)}
+											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
 										>
 											Houses
 										</NavLink>
@@ -319,6 +323,23 @@ const styles = StyleSheet.create({
 
 	navLink: {
 		marginRight: THEME.SECTION_PADDING_H,
+	},
+
+	mobileNavLink: {
+		display: 'block',
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		transition: 'background-color .2s',
+
+		':hover': {
+			backgroundColor: COLORS.GRAY_DARK.toString()
+		}
+	},
+
+	mobileNav: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'flex-start'
 	},
 
 	user: {

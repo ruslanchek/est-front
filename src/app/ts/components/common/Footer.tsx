@@ -133,6 +133,7 @@ export class Footer extends React.PureComponent<{}, IState> {
 const styles = StyleSheet.create({
 	footer: {
 		backgroundColor: COLORS.WHITE.toString(),
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL_INVERTED
 	},
 
 	block: {
