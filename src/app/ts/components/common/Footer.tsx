@@ -228,10 +228,10 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 
-	socialPhone: {
+	socialPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone,{
 		justifyContent: 'flex-start',
 		marginTop: THEME.SECTION_PADDING_V * 2
-	},
+	}),
 
 	socialIcon: {
 		width: 28,
@@ -248,10 +248,10 @@ const styles = StyleSheet.create({
 		}
 	},
 
-	socialIconPhone: {
+	socialIconPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone,{
 		marginLeft: 0,
 		marginRight: THEME.SECTION_PADDING_H
-	},
+	}),
 
 	socialIconFacebook: {
 		backgroundImage: CSSUtils.image(require('../../../img/social/icon-social-facebook.svg'))
