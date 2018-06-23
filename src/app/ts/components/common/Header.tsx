@@ -43,17 +43,13 @@ export class Header extends React.PureComponent<{}, IState> {
 					isFloating && css(styles.headerFloating),
 				)}>
 					<div {...CSSUtils.mergeStyles(
-						css(styles.block),
-						css(COMMON_STYLES.LAYOUT_DESKTOP),
-						css(COMMON_STYLES.LAYOUT_PHONE),
+						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE),
 						isFloating && css(styles.blockFloating),
 					)}>
 						<Link
 							to={PATHS.HOME}
-							className={css(styles.logo, styles.logoPhone)}
 							{...CSSUtils.mergeStyles(
-								css(styles.logo),
-								css(styles.logoPhone),
+								css(styles.logo, styles.logoPhone),
 								isFloating && css(styles.logoFloating),
 							)}
 						/>
@@ -132,9 +128,7 @@ export class Header extends React.PureComponent<{}, IState> {
 					</div>
 
 					<div {...CSSUtils.mergeStyles(
-						css(styles.block),
-						css(COMMON_STYLES.LAYOUT_DESKTOP),
-						css(COMMON_STYLES.LAYOUT_PHONE),
+						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE),
 						isFloating && css(styles.blockFloating),
 					)}>
 						<Filters/>

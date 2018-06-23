@@ -14,8 +14,8 @@ export class FilterAnd extends React.PureComponent<IProps, {}> {
 			<div className={css(COMMON_STYLES.FILTER_BRICK)}>
 				{entities.map((entity, i) => {
 					return (
-						<React.Fragment>
-							<strong key={i} className={css(COMMON_STYLES.FILTER_ACCENT)}>
+						<React.Fragment key={i}>
+							<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 								{entity}
 							</strong>
 

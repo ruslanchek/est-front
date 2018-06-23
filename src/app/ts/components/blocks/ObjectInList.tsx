@@ -110,12 +110,11 @@ const styles = StyleSheet.create({
 
 	params: {
 		padding: `${THEME.SECTION_PADDING_V / 2}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.darken(.025).toString()}`,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 	},
 
 	footer: {
 		backgroundColor: COLORS.GRAY_DARK.toString(),
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.darken(.025).toString()}`,
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
 	},
 });

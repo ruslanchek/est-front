@@ -4,7 +4,7 @@ import { CSSUtils, ECSSMediaKind } from './lib/CSSUtils';
 
 export const COLORS = {
 	GRAY_LIGHT: Color('#F3F5F7'),
-	GRAY_DARK: Color('#F7F8F9'),
+	GRAY_DARK: Color('#F7F8F9').darken(.025),
 	GRAY_EXTRA_DARK: Color('#F7F8F9').darken(.1),
 	WHITE: Color('#FFFFFF'),
 	BLACK: Color('#222E3F'),
@@ -63,11 +63,13 @@ export const COMMON_STYLES = StyleSheet.create({
 		width: '100%',
 		margin: '0 auto',
 		boxSizing: 'border-box',
-		padding: `0 ${THEME.PAGE_SIDE_PADDING_DESKTOP}px`
+		paddingLeft: THEME.PAGE_SIDE_PADDING_DESKTOP,
+		paddingRight: THEME.PAGE_SIDE_PADDING_DESKTOP
 	},
 
 	LAYOUT_PHONE: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
-		padding: `0 ${THEME.PAGE_SIDE_PADDING_PHONE}px`
+		paddingLeft: THEME.PAGE_SIDE_PADDING_PHONE,
+		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE
 	}),
 
 	FILTER_BRICK: {
