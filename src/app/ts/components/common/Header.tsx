@@ -228,12 +228,11 @@ const styles = StyleSheet.create({
 	logoPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
 		width: 34,
 		minWidth: 34,
-		transform: 'scale(.9)',
 		marginRight: THEME.SECTION_PADDING_H,
 	}),
 
 	logoFloating: {
-		transform: 'scale(.9)',
+
 	},
 
 	favoritesTextPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
@@ -269,7 +268,7 @@ const styles = StyleSheet.create({
 	},
 
 	headerFloating: {
-		height: THEME.HEADER_HEIGHT_FLOATING * 2,
+
 	},
 
 	block: {
@@ -287,7 +286,7 @@ const styles = StyleSheet.create({
 	},
 
 	blockFloating: {
-		height: THEME.HEADER_HEIGHT_FLOATING,
+
 	},
 
 	blockOverflowPhoneOrTablet: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
@@ -297,11 +296,10 @@ const styles = StyleSheet.create({
 
 	navContainer: {
 		flexGrow: 1,
-		transition: 'transform .3s',
 	},
 
 	navContainerFloating: {
-		transform: 'translateX(-15px)'
+
 	},
 
 	phoneNavButton: {
