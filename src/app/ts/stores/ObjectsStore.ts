@@ -8,15 +8,40 @@ export namespace ObjectsStore {
 		type: EObjectType;
 		constructionDate: Date;
 		price: number;
-		streetAddress: string;
-		city: string;
-		lat: number;
-		lng: number;
+		address: IAddress;
 		params: IObjectParam[];
 		agent: IObjectAgent;
 		isFavorite: boolean;
 		pictures: IObjectPicture[];
 		coverPicture: IObjectPicture;
+	}
+
+	export interface IAddress {
+		streetAddress: string;
+		country: ICountry;
+		city: ICity;
+		geoPoint: IGeoPoint;
+	}
+
+	export interface IGeoPoint {
+		lat: string;
+		lng: string;
+	}
+
+	export interface ICountry {
+		id: number;
+		title: string;
+		nativeTitle: string;
+		isoCode: string;
+		geoPoint: IGeoPoint;
+	}
+
+	export interface ICity {
+		id: number;
+		title: string;
+		nativeTitle: string;
+		countryId: number;
+		geoPoint: IGeoPoint;
 	}
 
 	export interface IObjectAgent {

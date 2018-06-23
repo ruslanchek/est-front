@@ -8,8 +8,8 @@ import IObject = ObjectsStore.IObject;
 interface IProps {
 	opened: boolean;
 	object: IObject;
-	lat: number;
-	lng: number;
+	lat: string;
+	lng: string;
 	type: EGisMarkerType;
 	color: Color;
 	onCLick: (object: IObject) => void;

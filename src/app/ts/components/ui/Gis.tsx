@@ -11,21 +11,21 @@ interface IProps {
 	width: string;
 	height: string;
 	zoom: number;
-	lat: number;
-	lng: number;
+	lat: string;
+	lng: string;
 	objects: IObject[];
 }
 
 interface IState {
-	lat: number;
-	lng: number;
+	lat: string;
+	lng: string;
 	markerOpenedId: number;
 }
 
 export class Gis extends React.PureComponent<IProps, IState> {
 	public state: IState = {
-		lat: 0,
-		lng: 0,
+		lat: '0',
+		lng: '0',
 		markerOpenedId: null
 	};
 
@@ -64,13 +64,13 @@ export class Gis extends React.PureComponent<IProps, IState> {
 								key={i}
 								color={COLORS.RED}
 								type={EGisMarkerType.Small}
-								lat={object.lat}
-								lng={object.lng}
+								lat={object.address.geoPoint.lat}
+								lng={object.address.geoPoint.lng}
 								object={object}
 								onCLick={(obj: IObject) => {
 									this.setState({
-										lat: obj.lat,
-										lng: obj.lng,
+										lat: obj.address.geoPoint.lat,
+										lng: obj.address.geoPoint.lng,
 										markerOpenedId: obj.id
 									});
 								}}

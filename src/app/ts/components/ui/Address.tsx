@@ -9,11 +9,11 @@ interface IProps {
 
 export class Address extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { streetAddress, city } = this.props.objectData;
+		const { address } = this.props.objectData;
 
 		return (
 			<span>
-				{streetAddress}, {city}
+				{address.streetAddress}, {address.city.title}
 			</span>
 		);
 	}

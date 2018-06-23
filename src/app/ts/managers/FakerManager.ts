@@ -8,6 +8,10 @@ import IObjectAgent = ObjectsStore.IObjectAgent;
 import EObjectAgentType = ObjectsStore.EObjectAgentType;
 import IObjectParam = ObjectsStore.IObjectParam;
 import { EIcon } from '../components/common/Icon';
+import ICity = ObjectsStore.ICity;
+import ICountry = ObjectsStore.ICountry;
+import IGeoPoint = ObjectsStore.IGeoPoint;
+import IAddress = ObjectsStore.IAddress;
 
 const GENERATE_COUNT: number = 41;
 
@@ -19,7 +23,7 @@ export class FakerManager extends Manager {
 		const agentType: EObjectAgentType = faker.random.arrayElement([
 			EObjectAgentType.Private,
 			EObjectAgentType.Realtor,
-			EObjectAgentType.Agency
+			EObjectAgentType.Agency,
 		]);
 
 		const agentName: string = agentType === EObjectAgentType.Agency ? faker.company.companyName() : `${faker.name.firstName()} ${faker.name.lastName()}`;
@@ -27,12 +31,50 @@ export class FakerManager extends Manager {
 		return {
 			id: faker.random.number({
 				min: 1,
-				max: 100000
+				max: 100000,
 			}),
 			avatar: `https://picsum.photos/600/400?i=${objectId}&t=agent`,
 			type: agentType,
 			fullName: agentName,
-			contact: faker.phone.phoneNumberFormat()
+			contact: faker.phone.phoneNumberFormat(),
+		};
+	}
+
+	public generateAddress(): IAddress {
+		const country = this.generateCountry();
+
+		return {
+			streetAddress: faker.address.streetAddress(),
+			country,
+			city: this.generateCity(country.id),
+			geoPoint: this.generateGeoPoint()
+		};
+	}
+
+	public generateGeoPoint(): IGeoPoint {
+		return {
+			lat: faker.address.latitude(),
+			lng: faker.address.longitude(),
+		};
+	}
+
+	public generateCountry(): ICountry {
+		return {
+			id: faker.random.number(100000),
+			title: faker.address.country(),
+			nativeTitle: faker.address.country(),
+			isoCode: faker.address.countryCode(),
+			geoPoint: this.generateGeoPoint(),
+		};
+	}
+
+	public generateCity(countryId: number): ICity {
+		return {
+			id: faker.random.number(100000),
+			countryId,
+			title: faker.address.city(),
+			nativeTitle: faker.address.city(),
+			geoPoint: this.generateGeoPoint(),
 		};
 	}
 
@@ -44,26 +86,26 @@ export class FakerManager extends Manager {
 				id: 1,
 				icon: EIcon.Bed,
 				name: 'bedrooms',
-				value: faker.random.number({min: 1, max: 5}).toString(),
+				value: faker.random.number({ min: 1, max: 5 }).toString(),
 			},
 
 			{
 				id: 2,
 				icon: EIcon.Bath,
 				name: 'bathrooms',
-				value: faker.random.number({min: 1, max: 4}).toString(),
-			}
+				value: faker.random.number({ min: 1, max: 4 }).toString(),
+			},
 		);
 
 		const pictures: IObjectPicture[] = [];
-		const photosCount: number = faker.random.number({min: 1, max: 7});
+		const photosCount: number = faker.random.number({ min: 1, max: 7 });
 
-		for(let i: number = 0; i < photosCount; i++) {
+		for (let i: number = 0; i < photosCount; i++) {
 			pictures.push({
 				id: i,
 				title: faker.lorem.sentence(2),
 				description: faker.lorem.sentence(10),
-				src: `https://picsum.photos/600/400?i=${objectId}&a=${i}`
+				src: `https://picsum.photos/600/400?i=${objectId}&a=${i}`,
 			});
 		}
 
@@ -76,19 +118,16 @@ export class FakerManager extends Manager {
 				EObjectType.Flat,
 				EObjectType.DetachedHouse,
 				EObjectType.TownHouse,
-				EObjectType.Studio
+				EObjectType.Studio,
 			]),
 			constructionDate: faker.date.past(20),
-			price: faker.random.number({min: 50000, max: 1500000, precision: 2}),
-			streetAddress: faker.address.streetAddress(true),
-			city: faker.address.city(),
-			lat: parseFloat(faker.address.latitude()),
-			lng: parseFloat(faker.address.longitude()),
+			price: faker.random.number({ min: 50000, max: 1500000, precision: 2 }),
+			address: this.generateAddress(),
 			params,
 			agent: this.generateAgent(objectId),
 			isFavorite: faker.random.boolean(),
 			pictures,
-			coverPicture
+			coverPicture,
 		};
 	}
 
@@ -96,12 +135,12 @@ export class FakerManager extends Manager {
 		return new Promise<any>((resolve, reject) => {
 			const objects: IObject[] = [];
 
-			for(let i: number = 1; i < GENERATE_COUNT; i++) {
+			for (let i: number = 1; i < GENERATE_COUNT; i++) {
 				objects.push(this.generateObject(i));
 			}
 
 			ObjectsStore.store.setState({
-				objects
+				objects,
 			});
 
 			resolve();
