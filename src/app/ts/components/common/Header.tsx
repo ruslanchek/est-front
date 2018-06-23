@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
 	header: {
 		height: THEME.HEADER_HEIGHT * 2,
 		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: `0 1px 2px 0 ${COLORS.BLACK.alpha(0.07).toString()}`,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
 		zIndex: 10,
 		width: '100%',
 		left: 0,
