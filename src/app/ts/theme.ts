@@ -17,8 +17,7 @@ export const COLORS = {
 
 export const THEME = {
 	FONT: '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
-	HEADER_HEIGHT: 54,
-	HEADER_HEIGHT_FLOATING: 42,
+	HEADER_HEIGHT: 50,
 	NAV_HEIGHT: 0,
 	CURRENCY_ICON_SIZE: 36,
 	SECTION_PADDING_H: 20,
