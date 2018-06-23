@@ -21,7 +21,7 @@ export class Footer extends React.PureComponent<{}, IState> {
 	public render() {
 		return (
 			<footer className={css(styles.footer)}>
-				<div className={css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE)}>
+				<div className={css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET)}>
 					<div className={css(styles.top, styles.topPhone)}>
 						<div className={css(styles.left)}>
 							<Link

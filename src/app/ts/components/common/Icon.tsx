@@ -9,7 +9,8 @@ export enum EIcon {
 	Bath,
 	Plus,
 	User,
-	Home
+	Home,
+	More
 }
 
 export enum EIconType {
@@ -61,6 +62,7 @@ export class Icon extends React.PureComponent<IProps, {}> {
 			case EIcon.Plus : return plus(color.toString(), type);
 			case EIcon.User : return user(color.toString(), type);
 			case EIcon.Home : return home(color.toString(), type);
+			case EIcon.More : return more(color.toString(), type);
 
 			default : return null;
 		}
@@ -148,6 +150,15 @@ const home = (color: string, type: EIconType) => {
 	return (
 		<g transform='translate(-2, 0)'>
 			<path fill={color} d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+		</g>
+	);
+};
+
+const more = (color: string, type: EIconType) => {
+	return (
+		<g transform='translate(-2, 0)'>
+			<path fill={color} d="M6,10c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S7.1,10,6,10z M18,10c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S19.1,10,18,10z
+		 M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S13.1,10,12,10z"/>
 		</g>
 	);
 };

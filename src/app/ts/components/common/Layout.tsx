@@ -10,7 +10,7 @@ interface IProps {
 export class Layout extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE, this.props.outerStyles)}>
+			<div className={css(COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET, this.props.outerStyles)}>
 				{this.props.children}
 			</div>
 		);

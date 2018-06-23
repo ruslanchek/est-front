@@ -6,14 +6,15 @@ import { StateStore } from '../../stores/StateStore';
 import { Link, NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
-import { Layout } from './Layout';
 import { EIcon, EIconType, Icon } from './Icon';
 import { Modal } from '../ui/Modal';
 import { Filters } from './Filters';
+import { IsDesktop } from './IsDesktop';
+import { IsPhoneOrTablet } from './IsPhoneOrTablet';
 
 interface IState {
 	isFloating: boolean;
-	modalIsVisible: boolean;
+	phoneNavIsVisible: boolean;
 }
 
 const FLOATING_THRESHOLD: number = 30;
@@ -22,7 +23,7 @@ const FLOATING_THRESHOLD: number = 30;
 export class Header extends React.PureComponent<{}, IState> {
 	public state: IState = {
 		isFloating: false,
-		modalIsVisible: false,
+		phoneNavIsVisible: false,
 	};
 
 	public componentDidMount() {
@@ -43,7 +44,7 @@ export class Header extends React.PureComponent<{}, IState> {
 					isFloating && css(styles.headerFloating),
 				)}>
 					<div {...CSSUtils.mergeStyles(
-						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE),
+						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
 						isFloating && css(styles.blockFloating),
 					)}>
 						<Link
@@ -54,58 +55,109 @@ export class Header extends React.PureComponent<{}, IState> {
 							)}
 						/>
 
-						<nav className={css(styles.nav)}>
-							<NavLink
-								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.navLink)}
-							>
-								Purchase
-							</NavLink>
+						<div
+							{...CSSUtils.mergeStyles(
+								css(styles.navContainer),
+								isFloating && css(styles.navContainerFloating),
+							)}
+						>
+							<IsDesktop>
+								<nav className={css(styles.nav)}>
+									<NavLink
+										to={PATHS.HOME}
+										className={css(COMMON_STYLES.LINK, styles.navLink)}
+									>
+										Purchase
+									</NavLink>
 
-							<NavLink
-								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.navLink)}
-							>
-								Rent
-							</NavLink>
+									<NavLink
+										to={PATHS.HOME}
+										className={css(COMMON_STYLES.LINK, styles.navLink)}
+									>
+										Rent
+									</NavLink>
 
-							<NavLink
-								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.navLink)}
-							>
-								Flats
-							</NavLink>
+									<NavLink
+										to={PATHS.HOME}
+										className={css(COMMON_STYLES.LINK, styles.navLink)}
+									>
+										Flats
+									</NavLink>
 
-							<NavLink
-								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.navLink)}
-							>
-								Houses
-							</NavLink>
-						</nav>
+									<NavLink
+										to={PATHS.HOME}
+										className={css(COMMON_STYLES.LINK, styles.navLink)}
+									>
+										Houses
+									</NavLink>
+								</nav>
+							</IsDesktop>
 
-						<nav className={css(styles.user)}>
+							<IsPhoneOrTablet>
+								<a href="#" className={css(styles.phoneNavButton)} onClick={this.openPhoneNav.bind(this)}>
+									<Icon icon={EIcon.More} size={24} color={COLORS.BLACK_LIGHT}/>
+								</a>
+
+								<Modal isVisible={this.state.phoneNavIsVisible} onClose={() => {
+									this.setState({
+										phoneNavIsVisible: false,
+									});
+								}}>
+									<div>
+										<NavLink
+											to={PATHS.HOME}
+											className={css(COMMON_STYLES.LINK, styles.navLink)}
+										>
+											Purchase
+										</NavLink>
+
+										<NavLink
+											to={PATHS.HOME}
+											className={css(COMMON_STYLES.LINK, styles.navLink)}
+										>
+											Rent
+										</NavLink>
+
+										<NavLink
+											to={PATHS.HOME}
+											className={css(COMMON_STYLES.LINK, styles.navLink)}
+										>
+											Flats
+										</NavLink>
+
+										<NavLink
+											to={PATHS.HOME}
+											className={css(COMMON_STYLES.LINK, styles.navLink)}
+										>
+											Houses
+										</NavLink>
+									</div>
+								</Modal>
+							</IsPhoneOrTablet>
+						</div>
+
+						<nav className={css(styles.user, styles.userPhoneOrTablet)}>
 							<NavLink
 								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.userLink)}
+								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
 							>
 								<Icon
 									icon={EIcon.Favorite}
 									type={EIconType.TwoTone}
 									size={18}
 									color={COLORS.RED}
-									outerStyles={styles.icon}
+									outerStyles={[styles.icon, styles.userIconPhone]}
 								/>
-								Favorites
+								<span className={css(styles.favoritesTextPhone)}>
+									Favorites
+								</span>
 							</NavLink>
 
 							<NavLink
 								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.userLink)}
+								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
 								onClick={() => {
-									this.setState({
-										modalIsVisible: true,
-									});
+
 								}}
 							>
 								Login
@@ -113,7 +165,7 @@ export class Header extends React.PureComponent<{}, IState> {
 
 							<NavLink
 								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.userLink, styles.placeAdvert)}
+								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
 							>
 								<Icon
 									icon={EIcon.Plus}
@@ -128,30 +180,12 @@ export class Header extends React.PureComponent<{}, IState> {
 					</div>
 
 					<div {...CSSUtils.mergeStyles(
-						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE),
+						css(styles.block, styles.blockOverflowPhoneOrTablet, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
 						isFloating && css(styles.blockFloating),
 					)}>
 						<Filters/>
 					</div>
 				</div>
-
-				<Modal isVisible={this.state.modalIsVisible} onClose={() => {
-					this.setState({
-						modalIsVisible: false,
-					});
-				}}>
-					<div>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-						<p>xxx</p>
-					</div>
-				</Modal>
 			</header>
 		);
 	}
@@ -162,6 +196,14 @@ export class Header extends React.PureComponent<{}, IState> {
 
 		this.setState({
 			isFloating: scrollTop > FLOATING_THRESHOLD,
+		});
+	};
+
+	private openPhoneNav = (e) => {
+		e.preventDefault();
+
+		this.setState({
+			phoneNavIsVisible: true,
 		});
 	};
 }
@@ -180,19 +222,31 @@ const styles = StyleSheet.create({
 		willChange: 'transform',
 		transition: 'transform .3s',
 		transformOrigin: '0 50%',
-		marginRight: THEME.SECTION_PADDING_H * 1.5,
+		marginRight: THEME.SECTION_PADDING_H,
 	},
 
 	logoPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
 		width: 34,
 		minWidth: 34,
 		transform: 'scale(.9)',
-		marginRight: THEME.SECTION_PADDING_H
+		marginRight: THEME.SECTION_PADDING_H / 1.5,
 	}),
 
 	logoFloating: {
-		transform: 'scale(.9)'
+		transform: 'scale(.9)',
 	},
+
+	favoritesTextPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		display: 'none',
+	}),
+
+	icon: {
+		marginRight: THEME.SECTION_PADDING_H / 2,
+	},
+
+	userIconPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		marginRight: 0,
+	}),
 
 	container: {
 		height: THEME.HEADER_HEIGHT * 2,
@@ -211,11 +265,11 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'column',
 		willChange: 'height',
-		transition: 'height .3s'
+		transition: 'height .3s',
 	},
 
 	headerFloating: {
-		height: THEME.HEADER_HEIGHT_FLOATING * 2
+		height: THEME.HEADER_HEIGHT_FLOATING * 2,
 	},
 
 	block: {
@@ -228,16 +282,37 @@ const styles = StyleSheet.create({
 
 		':last-of-type': {
 			boxSizing: 'border-box',
-			borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`
-		}
+			borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		},
 	},
 
 	blockFloating: {
 		height: THEME.HEADER_HEIGHT_FLOATING,
 	},
 
-	nav: {
+	blockOverflowPhoneOrTablet: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
+		overflow: 'auto'
+	}),
+
+	navContainer: {
 		flexGrow: 1,
+		transition: 'transform .3s',
+	},
+
+	navContainerFloating: {
+		transform: 'translateX(-20px)'
+	},
+
+	phoneNavButton: {
+		transition: 'opacity .2s',
+		height: 30,
+
+		':hover': {
+			opacity: .7
+		}
+	},
+
+	nav: {
 		fontSize: THEME.FONT_SIZE_SMALL,
 		fontWeight: 600,
 		textTransform: 'uppercase',
@@ -250,15 +325,15 @@ const styles = StyleSheet.create({
 	user: {
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'space-between',
+		justifyContent: 'flex-end',
 		fontSize: THEME.FONT_SIZE_SMALL,
 		fontWeight: 600,
 		textTransform: 'uppercase',
 	},
 
-	icon: {
-		marginRight: THEME.SECTION_PADDING_H / 2,
-	},
+	userPhoneOrTablet: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
+		flexGrow: 1,
+	}),
 
 	userLink: {
 		marginLeft: THEME.SECTION_PADDING_H,
@@ -267,6 +342,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		whiteSpace: 'nowrap',
 	},
+
+	userLinkPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		marginLeft: THEME.SECTION_PADDING_H / 1.5,
+	}),
 
 	placeAdvert: {
 		color: COLORS.WHITE.toString(),

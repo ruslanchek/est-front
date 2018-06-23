@@ -67,7 +67,7 @@ export const COMMON_STYLES = StyleSheet.create({
 		paddingRight: THEME.PAGE_SIDE_PADDING_DESKTOP
 	},
 
-	LAYOUT_PHONE: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
 		paddingLeft: THEME.PAGE_SIDE_PADDING_PHONE,
 		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE
 	}),

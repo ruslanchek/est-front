@@ -9,6 +9,7 @@ export interface IReactComponentStyles {
 
 export enum ECSSMediaKind {
 	Phone,
+	PhoneOrTablet,
 	Tablet,
 	Desktop,
 	Wide
@@ -31,6 +32,7 @@ export class CSSUtils {
 	public static mediaSize(size: ECSSMediaKind, styles: StyleDeclaration): StyleDeclaration {
 		switch (size) {
 			case ECSSMediaKind.Phone : return this.media(0, 720, styles);
+			case ECSSMediaKind.PhoneOrTablet : return this.media(0, 1024, styles);
 			case ECSSMediaKind.Tablet : return this.media(720, 1024, styles);
 			case ECSSMediaKind.Desktop : return this.media(1024, 1440, styles);
 			case ECSSMediaKind.Wide : return this.media(1440, 6000, styles);

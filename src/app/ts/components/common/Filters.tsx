@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
-		whiteSpace: 'nowrap',
+		whiteSpace: 'nowrap'
 	},
 
 	title: {
