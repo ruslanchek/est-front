@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
 		width: 34,
 		minWidth: 34,
 		transform: 'scale(.9)',
-		marginRight: THEME.SECTION_PADDING_H / 1.5,
+		marginRight: THEME.SECTION_PADDING_H,
 	}),
 
 	logoFloating: {
@@ -291,7 +291,8 @@ const styles = StyleSheet.create({
 	},
 
 	blockOverflowPhoneOrTablet: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
-		overflow: 'auto'
+		overflow: 'auto',
+		'-webkit-overflow-scrolling': 'touch'
 	}),
 
 	navContainer: {
@@ -300,7 +301,7 @@ const styles = StyleSheet.create({
 	},
 
 	navContainerFloating: {
-		transform: 'translateX(-20px)'
+		transform: 'translateX(-15px)'
 	},
 
 	phoneNavButton: {
