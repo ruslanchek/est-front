@@ -8,7 +8,7 @@ interface IProps {
 	onClick?: () => void;
 }
 
-export class ModalSubmit extends React.PureComponent<IProps, {}> {
+export class ModalReset extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<button
@@ -19,7 +19,7 @@ export class ModalSubmit extends React.PureComponent<IProps, {}> {
 				}}
 				disabled={!this.props.isEnabled}
 				className={css(styles.submit)}
-				type="submit"
+				type="button"
 			>
 				{this.props.text}
 			</button>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 		outline: 'none',
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		textAlign: 'center',
-		color: COLORS.BLUE.toString(),
+		color: COLORS.RED.toString(),
 		transition: 'background-color .2s',
 		cursor: 'pointer',
 
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 		},
 
 		':hover': {
-			backgroundColor: COLORS.BLUE.alpha(.1).toString()
+			backgroundColor: COLORS.RED.alpha(.1).toString()
 		}
 	},
 });

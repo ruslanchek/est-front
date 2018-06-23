@@ -4,6 +4,8 @@ import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { Modal } from './Modal';
 import { PATHS } from '../../config';
 import { ModalSubmit } from './ModalSubmit';
+import { EModalSelectItemType, ModalSelect } from './ModalSelect';
+import { ModalResetSubmit } from './ModalResetSubmit';
 
 interface IProps {
 	entities: string[];
@@ -54,32 +56,50 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					<a
-						href="#"
-						className={css(COMMON_STYLES.LINK, styles.selectable)}
-					>
-						Flats
-					</a>
+					<ModalSelect
+						items={[
+							{
+								id: 1,
+								title: 'Flats',
+								type: EModalSelectItemType.Plain,
+								selected: false
+							},
 
-					<a
-						href="#"
-						className={css(COMMON_STYLES.LINK, styles.selectable)}
-					>
-						Houses
-					</a>
+							{
+								id: 2,
+								title: 'Houses',
+								type: EModalSelectItemType.Plain,
+								selected: false
+							},
 
-					<a
-						href="#"
-						className={css(COMMON_STYLES.LINK, styles.selectable)}
-					>
-						Studios
-					</a>
+							{
+								id: 3,
+								title: 'Studios',
+								type: EModalSelectItemType.Plain,
+								selected: false
+							}
+						]}
+						onChange={() => {
 
-					<ModalSubmit isEnabled={true} onClick={() => {
-						this.setState({
-							isOpen: false
-						});
-					}}/>
+						}}
+					/>
+
+					<ModalResetSubmit
+						isResetEnabled={true}
+						isSubmitEnabled={true}
+						resetText="Reset"
+						submitText="Confirm"
+						onResetClick={() => {
+							this.setState({
+								isOpen: false
+							});
+						}}
+						onSubmitClick={() => {
+							this.setState({
+								isOpen: false
+							});
+						}}
+					/>
 				</Modal>
 			</React.Fragment>
 		);
@@ -101,14 +121,5 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 }
 
 const styles = StyleSheet.create({
-	selectable: {
-		display: 'block',
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		transition: 'background-color .2s',
 
-		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.toString(),
-		},
-	},
 });
