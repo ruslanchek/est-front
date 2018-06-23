@@ -116,7 +116,12 @@ export class Footer extends React.PureComponent<{}, IState> {
 						</div>
 
 						<div className={css(styles.right)}>
-
+							<div className={css(styles.social, styles.socialPhone)}>
+								<a href="#" title="Facebook" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconFacebook)}/>
+								<a href="#" title="Instagram" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconInstagram)}/>
+								<a href="#" title="Twitter" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconTwitter)}/>
+								<a href="#" title="YouTube" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconYoutube)}/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -139,8 +144,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		paddingTop: THEME.SECTION_PADDING_V,
-		paddingBottom: THEME.SECTION_PADDING_V,
+		paddingTop: THEME.SECTION_PADDING_V * 1.5,
 	},
 
 	topPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
@@ -217,4 +221,51 @@ const styles = StyleSheet.create({
 		transformOrigin: '0 50%',
 		marginRight: THEME.SECTION_PADDING_H * 1.5,
 	},
+
+	social: {
+		display: 'flex',
+		justifyContent: 'flex-end',
+		alignItems: 'center'
+	},
+
+	socialPhone: {
+		justifyContent: 'flex-start',
+		marginTop: THEME.SECTION_PADDING_V * 2
+	},
+
+	socialIcon: {
+		width: 28,
+		height: 28,
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: '50%',
+		backgroundSize: '100%',
+		marginLeft: THEME.SECTION_PADDING_H,
+		opacity: .85,
+		transition: 'opacity .2s',
+
+		':hover': {
+			opacity: 1
+		}
+	},
+
+	socialIconPhone: {
+		marginLeft: 0,
+		marginRight: THEME.SECTION_PADDING_H
+	},
+
+	socialIconFacebook: {
+		backgroundImage: CSSUtils.image(require('../../../img/social/icon-social-facebook.svg'))
+	},
+
+	socialIconInstagram: {
+		backgroundImage: CSSUtils.image(require('../../../img/social/icon-social-instagram.svg'))
+	},
+
+	socialIconTwitter: {
+		backgroundImage: CSSUtils.image(require('../../../img/social/icon-social-twitter.svg'))
+	},
+
+	socialIconYoutube: {
+		backgroundImage: CSSUtils.image(require('../../../img/social/icon-social-youtube.svg'))
+	}
 });
