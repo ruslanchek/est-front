@@ -74,7 +74,7 @@ export class Footer extends React.PureComponent<{}, IState> {
 						<div className={css(styles.left)}>
 							<nav className={css(styles.copy, styles.copyPhone)}>
 								<span className={css(styles.copyItem, styles.copyItemPhone)}>
-									&copy; 2018 Realthub
+									&copy; 2018 Realthub Ltd.
 								</span>
 
 								<NavLink
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		paddingTop: THEME.SECTION_PADDING_V / 2,
-		paddingBottom: THEME.SECTION_PADDING_V * 2,
+		paddingBottom: THEME.SECTION_PADDING_V * 1.5,
 	},
 
 	bottomPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
@@ -168,8 +168,10 @@ const styles = StyleSheet.create({
 		fontSize: THEME.FONT_SIZE_SMALL,
 		color: COLORS.BLACK_LIGHT.toString(),
 		display: 'flex',
+		lineHeight: '1.7em',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
+		flexWrap: 'wrap'
 	},
 
 	copyPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
@@ -177,7 +179,8 @@ const styles = StyleSheet.create({
 	}),
 
 	copyItem: {
-		marginRight: THEME.SECTION_PADDING_H
+		marginRight: THEME.SECTION_PADDING_H,
+		whiteSpace: 'nowrap'
 	},
 
 	copyItemPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
