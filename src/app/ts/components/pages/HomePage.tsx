@@ -26,7 +26,12 @@ export class HomePage extends React.Component<IProps, IState> {
 		return (
 			<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
 				<BreadCrumbs/>
-				<Rheostat/>
+				<Rheostat
+					currentMin={10}
+					currentMax={70}
+					min={0}
+					max={100}
+				/>
 				<List objects={ObjectsStore.store.state.objects}/>
 			</Layout>
 		);

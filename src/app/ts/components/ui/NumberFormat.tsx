@@ -7,7 +7,7 @@ interface IProps {
 	maxPrecision?: number;
 }
 
-export class Number extends React.PureComponent<IProps, {}> {
+export class NumberFormat extends React.PureComponent<IProps, {}> {
 	public static defaultProps: Partial<IProps> = {
 		value: 0,
 		minPrecision: 0,

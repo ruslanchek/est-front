@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { Number } from './Number';
+import { NumberFormat } from './NumberFormat';
 
 interface IProps {
 	from: number;
@@ -17,7 +17,7 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 			return (
 				<div className={css(COMMON_STYLES.FILTER_BRICK)}>
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
-						<Number value={from}/>
+						<NumberFormat value={from}/>
 					</strong>&nbsp;{what}
 				</div>
 			);
@@ -25,10 +25,10 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 			return (
 				<div className={css(COMMON_STYLES.FILTER_BRICK)}>
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
-						<Number value={from}/>
+						<NumberFormat value={from}/>
 					</strong>&ndash;
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
-						<Number value={to}/>
+						<NumberFormat value={to}/>
 					</strong>&nbsp;{what}
 				</div>
 			);
