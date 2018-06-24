@@ -13,6 +13,7 @@
         body {
         	margin: 0;
             min-height: 100%;
+            font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
         }
 
         body.disable-hover * {
@@ -31,6 +32,17 @@
             display: flex;
         }
 
+        .loading-entity {
+            position: fixed;
+            width: 100%;
+            height: 20px;
+            bottom: 20px;
+            left: 0;
+            text-align: center;
+            color: rgb(140, 149, 162);
+            font-size: 12px;
+        }
+
         .loading {
             position: absolute;
             top: 50%;
@@ -39,23 +51,23 @@
             width: 144px;
             height: 144px;
             z-index: 10000;
-            transition: all .5s;
+            transition: all .5s cubic-bezier(0.600, -0.280, 0.735, 0.045);
             pointer-events: none;
         }
 
-        .loading.hide {
+        .splash-loading.hide {
             opacity: 0;
             transform: translate(-50%, -50%) scale(1.5);
         }
 
         .poly {
-            animation-name: loading;
+            animation-name: splash-loading;
             animation-duration: 1.5s;
             animation-iteration-count: infinite;
             opacity: 0;
         }
 
-        .loading.hide .poly {
+        .splash-loading.hide .poly {
             opacity: 1 !important;
             animation-name: none;
         }
@@ -132,7 +144,7 @@
             animation-delay: 0.9s;
         }
 
-        @keyframes loading {
+        @keyframes splash-loading {
             0% {
                 opacity: 0;
             }
@@ -179,6 +191,9 @@
             <polygon fill="#FBB300" transform="translate(18.002151, 108.000000) rotate(-180.000000) translate(-18.002151, -108.000000) " points="35.004303 108 1 126 1 90" class="poly poly-2"></polygon>
         </g>
     </svg>
+</div>
+<div class="loading-entity" id="loadingEntity">
+    Loading assets...
 </div>
 <main id="app"></main>
 <script async src="{{{publicPath}}}app.js"></script>

@@ -48,11 +48,13 @@ export class Managers {
 
 	private removeLoading(): Promise<any> {
 		return new Promise((resolve, reject) => {
-			const splashLoading = document.querySelector('#splashLoading');
+			const splashLoading = document.getElementById('splashLoading');
+			const loadingEntity= document.getElementById('loadingEntity');
 			splashLoading.classList.add('hide');
 
 			setTimeout(() => {
 				splashLoading.remove();
+				loadingEntity.remove();
 				resolve();
 			}, 500);
 		});

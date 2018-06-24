@@ -133,6 +133,8 @@ export class FakerManager extends Manager {
 
 	public init(): Promise<any> {
 		return new Promise<any>((resolve, reject) => {
+			this.setLoadingEntity('Loading objects...');
+
 			const objects: IObject[] = [];
 
 			for (let i: number = 1; i < GENERATE_COUNT; i++) {
