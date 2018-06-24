@@ -130,7 +130,6 @@ const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
 		backgroundColor: COLORS.BLACK_LIGHT.alpha(0.8).toString(),
-		backdropFilter: 'blur(3px)',
 		bottom: 0,
 		display: 'flex',
 		justifyContent: 'center',
