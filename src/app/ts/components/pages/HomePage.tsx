@@ -5,11 +5,10 @@ import { followStore } from 'react-stores';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import { List } from '../common/List';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
-import { Gis } from '../ui/Gis';
 import { Layout } from '../common/Layout';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
-import { Filters } from '../common/Filters';
+import { Rheostat } from '../ui/Rheostat';
 
 interface IProps {
 
@@ -27,6 +26,7 @@ export class HomePage extends React.Component<IProps, IState> {
 		return (
 			<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
 				<BreadCrumbs/>
+				<Rheostat/>
 				<List objects={ObjectsStore.store.state.objects}/>
 			</Layout>
 		);
