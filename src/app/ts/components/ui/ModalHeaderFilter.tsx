@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
-		margin: 0
+		margin: 0,
+		fontSize: THEME.FONT_SIZE_BIG
 	},
 
 	add: {
