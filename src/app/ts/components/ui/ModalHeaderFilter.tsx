@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		color: COLORS.BLUE.toString(),
 		fontWeight: 600,
 		height: 26,
-		marginTop: 2,
+		marginTop: 1,
 		lineHeight: '26px',
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		borderRadius: 20,
