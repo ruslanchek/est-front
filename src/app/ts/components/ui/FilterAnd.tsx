@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COMMON_STYLES } from '../../theme';
+import { COMMON_STYLES, THEME } from '../../theme';
 import { Modal } from './Modal';
 import { EModalSelectItemType, ModalSelect } from './ModalSelect';
 import { ModalResetSubmit } from './ModalResetSubmit';
+import { ModalHeader } from './ModalHeader';
 
 interface IProps {
 	entities: string[];
@@ -47,7 +48,9 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 
 				<Modal
 					isVisible={this.state.isOpen}
-					title={this.props.filterName}
+					header={
+						<ModalHeader title={this.props.filterName}/>
+					}
 					onClose={() => {
 						this.setState({
 							isOpen: false,
@@ -78,7 +81,9 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 							}
 						]}
 						onChange={() => {
-
+							this.setState({
+								isOpen: true
+							});
 						}}
 					/>
 

@@ -7,11 +7,11 @@ import { Portal } from './Portal';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 
 interface IProps {
+	isVisible: boolean;
+
 	containerClassName?: string;
 	contentClassName?: string;
-	isVisible: boolean;
-	title: string;
-
+	header?: JSX.Element;
 	onClose?(): void;
 }
 
@@ -87,12 +87,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 								className={css(styles.content, styles.contentPhone)}
 								onClick={this.handleClickOnContent}
 							>
-								<div className={css(styles.header)}>
-									<h2 className={css(styles.title)}>
-										{this.props.title}
-									</h2>
-								</div>
-
+								{this.props.header ? this.props.header : null}
 								{this.props.children}
 							</div>
 						</CSSTransition>
@@ -163,14 +158,6 @@ const styles = StyleSheet.create({
 		overflow: 'auto',
 		'-webkit-overflow-scrolling': 'touch'
 	}),
-
-	header: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
-	},
-
-	title: {
-		margin: 0
-	},
 
 	enterContainer: {
 		opacity: 0.01

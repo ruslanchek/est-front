@@ -84,8 +84,12 @@ export const COMMON_STYLES = StyleSheet.create({
 		transition: 'background-color .2s',
 
 		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
+			backgroundColor: COLORS.GRAY_DARK.darken(0.075).toString(),
 		}
+	},
+
+	FILTER_SELECTED: {
+		backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
 	},
 
 	FILTER_ACCENT: {

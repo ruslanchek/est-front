@@ -11,6 +11,7 @@ import { Modal } from '../ui/Modal';
 import { Filters } from './Filters';
 import { IsDesktop } from './IsDesktop';
 import { IsPhoneOrTablet } from './IsPhoneOrTablet';
+import { ModalHeader } from '../ui/ModalHeader';
 
 interface IState {
 	isFloating: boolean;
@@ -99,7 +100,9 @@ export class Header extends React.PureComponent<{}, IState> {
 								</a>
 
 								<Modal
-									title="Navigation"
+									header={
+										<ModalHeader title="Navigation"/>
+									}
 									isVisible={this.state.phoneNavIsVisible}
 										onClose={() => {
 										this.setState({
@@ -184,7 +187,7 @@ export class Header extends React.PureComponent<{}, IState> {
 					</div>
 
 					<div {...CSSUtils.mergeStyles(
-						css(styles.block, styles.blockOverflowPhoneOrTablet, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
+						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
 						isFloating && css(styles.blockFloating),
 					)}>
 						<Filters/>
@@ -292,11 +295,6 @@ const styles = StyleSheet.create({
 	blockFloating: {
 
 	},
-
-	blockOverflowPhoneOrTablet: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
-		overflow: 'auto',
-		'-webkit-overflow-scrolling': 'touch'
-	}),
 
 	navContainer: {
 		flexGrow: 1,
