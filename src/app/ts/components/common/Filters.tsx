@@ -14,7 +14,7 @@ export class Filters extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<div className={css(styles.filters)}>
-				<div className={css(styles.title)}>
+				<div className={css(COMMON_STYLES.FILTER_BRICK, styles.title)}>
 					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
 				</div>
 
@@ -66,11 +66,15 @@ const styles = StyleSheet.create({
 		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
 		whiteSpace: 'nowrap',
-		flexWrap: 'wrap'
+		flexWrap: 'wrap',
+		paddingBottom: 14,
+		paddingTop: 4
 	},
 
 	title: {
 		marginRight: THEME.SECTION_PADDING_H,
+		padding: 0,
+		backgroundColor: 'transparent'
 	},
 
 	add: {

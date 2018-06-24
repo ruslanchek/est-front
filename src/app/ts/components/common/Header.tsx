@@ -18,7 +18,7 @@ interface IState {
 	phoneNavIsVisible: boolean;
 }
 
-const FLOATING_THRESHOLD: number = 30;
+const FLOATING_THRESHOLD: number = 0;
 
 @followStore(StateStore.store)
 export class Header extends React.PureComponent<{}, IState> {
@@ -185,13 +185,15 @@ export class Header extends React.PureComponent<{}, IState> {
 							</NavLink>
 						</nav>
 					</div>
+				</div>
 
-					<div {...CSSUtils.mergeStyles(
-						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
-						isFloating && css(styles.blockFloating),
-					)}>
-						<Filters/>
-					</div>
+				<div {...CSSUtils.mergeStyles(
+					css(styles.filters, styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
+					isFloating && css(styles.filtersFloating)
+				)} style={{
+
+				}}>
+					<Filters/>
 				</div>
 			</header>
 		);
@@ -255,13 +257,11 @@ const styles = StyleSheet.create({
 	}),
 
 	container: {
-		height: THEME.HEADER_HEIGHT * 2,
+		paddingTop: THEME.HEADER_HEIGHT
 	},
 
 	header: {
-		height: THEME.HEADER_HEIGHT * 2,
 		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
 		zIndex: 10,
 		width: '100%',
 		left: 0,
@@ -270,11 +270,21 @@ const styles = StyleSheet.create({
 		position: 'fixed',
 		display: 'flex',
 		flexDirection: 'column',
-		willChange: 'height',
-		transition: 'height .3s',
+		transition: 'box-shadow .3s'
 	},
 
 	headerFloating: {
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
+	},
+
+	filters: {
+		backgroundColor: COLORS.WHITE.toString(),
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
+		transition: 'box-shadow .3s'
+	},
+
+	filtersFloating: {
 
 	},
 
@@ -282,14 +292,7 @@ const styles = StyleSheet.create({
 		minHeight: THEME.HEADER_HEIGHT,
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'space-between',
-		transition: 'height .3s',
-		willChange: 'height',
-
-		':last-of-type': {
-			boxSizing: 'border-box',
-			borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		},
+		justifyContent: 'space-between'
 	},
 
 	blockFloating: {

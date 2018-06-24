@@ -141,11 +141,11 @@ const styles = StyleSheet.create({
 	},
 
 	top: {
-		marginBottom: THEME.SECTION_PADDING_V,
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		paddingTop: THEME.SECTION_PADDING_V * 1.5,
+		paddingTop: THEME.SECTION_PADDING_V,
+		paddingBottom: THEME.SECTION_PADDING_V / 2,
 	},
 
 	topPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
