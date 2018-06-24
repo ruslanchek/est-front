@@ -5,6 +5,7 @@ import { Modal } from './Modal';
 import { EModalSelectItemType, ModalSelect } from './ModalSelect';
 import { ModalResetSubmit } from './ModalResetSubmit';
 import { ModalHeader } from './ModalHeader';
+import { ModalHeaderFilter } from './ModalHeaderFilter';
 
 interface IProps {
 	entities: string[];
@@ -49,7 +50,9 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 				<Modal
 					isVisible={this.state.isOpen}
 					header={
-						<ModalHeader title={this.props.filterName}/>
+						<ModalHeaderFilter
+							title={this.props.filterName}
+						/>
 					}
 					onClose={() => {
 						this.setState({

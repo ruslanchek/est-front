@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		margin: 'auto',
-		width: 400
+		width: 500
 	},
 
 	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {

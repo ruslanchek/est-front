@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
 	},
 
 	block: {
-		height: THEME.HEADER_HEIGHT,
+		minHeight: THEME.HEADER_HEIGHT,
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',

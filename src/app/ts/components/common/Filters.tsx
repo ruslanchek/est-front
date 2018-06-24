@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
 		whiteSpace: 'nowrap',
+		flexWrap: 'wrap'
 	},
 
 	title: {
