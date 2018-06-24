@@ -11,9 +11,9 @@
         }
 
         body {
-        	margin: 0;
+            margin: 0;
             min-height: 100%;
-            font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         body.disable-hover * {
@@ -43,7 +43,7 @@
             font-size: 12px;
         }
 
-        .loading {
+        .splash-loading {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -68,8 +68,7 @@
         }
 
         .splash-loading.hide .poly {
-            opacity: 1 !important;
-            animation-name: none;
+
         }
 
         .poly-1 {
@@ -146,7 +145,7 @@
 
         @keyframes splash-loading {
             0% {
-                opacity: 0;
+                opacity: .2;
             }
 
             30% {
@@ -158,42 +157,61 @@
             }
 
             70% {
-                opacity: 0;
+                opacity: .2;
             }
 
             100% {
-                opacity: 0;
+                opacity: .2;
             }
         }
     </style>
 </head>
 <body>
-<div class="loading" id="splashLoading">
-    <svg width="144px" height="144px" viewBox="0 0 144 144" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<div class="splash-loading" id="splashLoading">
+    <svg width="144px" height="144px" viewBox="0 0 144 144" version="1.1" xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
         <g transform="translate(-1.000000, 0.000000)">
             <polygon fill="#F7F701" points="35.0678711 126 1 144 1 108" class="poly poly-1"></polygon>
             <polygon fill="#F37300" points="35.0678711 90 1 108 1 72" class="poly poly-3"></polygon>
-            <polygon fill="#ED3700" transform="translate(17.997849, 72.000000) rotate(-180.000000) translate(-17.997849, -72.000000) " points="35 72 0.995697021 90 0.995697021 54" class="poly poly-4"></polygon>
+            <polygon fill="#ED3700"
+                     transform="translate(17.997849, 72.000000) rotate(-180.000000) translate(-17.997849, -72.000000) "
+                     points="35 72 0.995697021 90 0.995697021 54" class="poly poly-4"></polygon>
             <polygon fill="#EF171D" points="35.0678711 54 1 72 1 36" class="poly poly-5"></polygon>
-            <polygon fill="#017AD5" transform="translate(18.002151, 36.000000) rotate(-180.000000) translate(-18.002151, -36.000000) " points="35.004303 36 1 54 1 18" class="poly poly-6"></polygon>
-            <polygon fill="#009287" transform="translate(52.002151, 18.000000) rotate(-180.000000) translate(-52.002151, -18.000000) " points="69.004303 18 35 36 35 0" class="poly poly-8"></polygon>
-            <polygon fill="#01AA3D" transform="translate(86.002151, 36.000000) rotate(-180.000000) translate(-86.002151, -36.000000) " points="103.004303 36 69 54 69 18" class="poly poly-10"></polygon>
-            <polygon fill="#EE171F" transform="translate(120.002151, 54.000000) rotate(-180.000000) translate(-120.002151, -54.000000) " points="137.004303 54 103 72 103 36" class="poly poly-12"></polygon>
-            <polygon fill="#D80E69" transform="translate(86.002151, 72.000000) rotate(-180.000000) translate(-86.002151, -72.000000) " points="103.004303 72 69 90 69 54" class="poly poly-14"></polygon>
-            <polygon fill="#510572" transform="translate(86.002151, 108.000000) rotate(-180.000000) translate(-86.002151, -108.000000) " points="103.004303 108 69 126 69 90" class="poly poly-16"></polygon>
-            <polygon fill="#0053AB" transform="translate(120.002151, 126.000000) rotate(-180.000000) translate(-120.002151, -126.000000) " points="137.004303 126 103 144 103 108" class="poly poly-18"></polygon>
+            <polygon fill="#017AD5"
+                     transform="translate(18.002151, 36.000000) rotate(-180.000000) translate(-18.002151, -36.000000) "
+                     points="35.004303 36 1 54 1 18" class="poly poly-6"></polygon>
+            <polygon fill="#009287"
+                     transform="translate(52.002151, 18.000000) rotate(-180.000000) translate(-52.002151, -18.000000) "
+                     points="69.004303 18 35 36 35 0" class="poly poly-8"></polygon>
+            <polygon fill="#01AA3D"
+                     transform="translate(86.002151, 36.000000) rotate(-180.000000) translate(-86.002151, -36.000000) "
+                     points="103.004303 36 69 54 69 18" class="poly poly-10"></polygon>
+            <polygon fill="#EE171F"
+                     transform="translate(120.002151, 54.000000) rotate(-180.000000) translate(-120.002151, -54.000000) "
+                     points="137.004303 54 103 72 103 36" class="poly poly-12"></polygon>
+            <polygon fill="#D80E69"
+                     transform="translate(86.002151, 72.000000) rotate(-180.000000) translate(-86.002151, -72.000000) "
+                     points="103.004303 72 69 90 69 54" class="poly poly-14"></polygon>
+            <polygon fill="#510572"
+                     transform="translate(86.002151, 108.000000) rotate(-180.000000) translate(-86.002151, -108.000000) "
+                     points="103.004303 108 69 126 69 90" class="poly poly-16"></polygon>
+            <polygon fill="#0053AB"
+                     transform="translate(120.002151, 126.000000) rotate(-180.000000) translate(-120.002151, -126.000000) "
+                     points="137.004303 126 103 144 103 108" class="poly poly-18"></polygon>
             <polygon fill="#008EBE" points="69.004303 36 35 54 35 18" class="poly poly-7"></polygon>
             <polygon fill="#00914E" points="103.004303 18 69 36 69 0" class="poly poly-9"></polygon>
             <polygon fill="#6FCE0E" points="137.004303 36 103 54 103 18" class="poly poly-11"></polygon>
             <polygon fill="#F11452" points="137.004303 72 103 90 103 54" class="poly poly-13"></polygon>
             <polygon fill="#930A72" points="103.004303 90 69 108 69 72" class="poly poly-15"></polygon>
             <polygon fill="#091F86" points="137.004303 108 103 126 103 90" class="poly poly-17"></polygon>
-            <polygon fill="#FBB300" transform="translate(18.002151, 108.000000) rotate(-180.000000) translate(-18.002151, -108.000000) " points="35.004303 108 1 126 1 90" class="poly poly-2"></polygon>
+            <polygon fill="#FBB300"
+                     transform="translate(18.002151, 108.000000) rotate(-180.000000) translate(-18.002151, -108.000000) "
+                     points="35.004303 108 1 126 1 90" class="poly poly-2"></polygon>
         </g>
     </svg>
 </div>
 <div class="loading-entity" id="loadingEntity">
-    Loading assets...
+    Loading resources...
 </div>
 <main id="app"></main>
 <script async src="{{{publicPath}}}app.js"></script>

@@ -7,6 +7,9 @@ import { FakerManager } from './managers/FakerManager';
 import FilterManager = PIXI.FilterManager;
 import { FiltersManager } from './managers/FiltersManager';
 
+const PRELOADING_ANIMATION_TIME: number = 0;
+const LOADING_ANIMATION_TIME: number = 500;
+
 export class Managers {
 	public route: RouteManager;
 	public storage: StorageManager;
@@ -14,6 +17,8 @@ export class Managers {
 	public toast: ToastManager;
 	public faker: FakerManager;
 	public filters: FiltersManager;
+
+	private initStartTime: number = 0;
 
 	public constructor() {
 		this.route = new RouteManager();
@@ -26,37 +31,57 @@ export class Managers {
 		this.init();
 	}
 
+	public logTime(text: string): void {
+		console.log('Init time', text, Date.now() - this.initStartTime);
+	}
+
 	public init(): void {
+		this.initStartTime = Date.now();
+
 		this.initManagers()
 			.then(() => {
-				this.removeLoading().then(() => {
-					StateStore.store.setState({
-						...StateStore.store.state,
-						appReady: true,
-					});
+				this.onLoadingFinished().then(() => {
+
 				});
 			})
 			.catch(() => {
-				this.removeLoading().then(() => {
-					StateStore.store.setState({
-						...StateStore.store.state,
-						appReady: true,
-					});
+				this.onLoadingFinished().then(() => {
+
 				});
 			});
 	}
 
-	private removeLoading(): Promise<any> {
+	private onLoadingFinished(): Promise<any> {
 		return new Promise((resolve, reject) => {
 			const splashLoading = document.getElementById('splashLoading');
 			const loadingEntity= document.getElementById('loadingEntity');
-			splashLoading.classList.add('hide');
+
+			this.logTime('Loading finished');
+
+			const initTime: number = Date.now() - this.initStartTime;
+			let preloadingTimeout: number = PRELOADING_ANIMATION_TIME;
+
+			if(initTime < PRELOADING_ANIMATION_TIME) {
+				preloadingTimeout = PRELOADING_ANIMATION_TIME - initTime;
+			}
 
 			setTimeout(() => {
-				splashLoading.remove();
-				loadingEntity.remove();
-				resolve();
-			}, 500);
+				splashLoading.classList.add('hide');
+
+				setTimeout(() => {
+					splashLoading.remove();
+					loadingEntity.remove();
+
+					StateStore.store.setState({
+						...StateStore.store.state,
+						appReady: true,
+					});
+
+					this.logTime('UI ready');
+
+					resolve();
+				}, LOADING_ANIMATION_TIME);
+			}, preloadingTimeout);
 		});
 	}
 
@@ -71,11 +96,22 @@ export class Managers {
 
 	private async initManagers(): Promise<any> {
 		await this.route.init();
+		this.logTime('RouteManager ready');
+
 		await this.storage.init();
+		this.logTime('StorageManager ready');
+
 		await this.api.init();
+		this.logTime('APIManager ready');
+
 		await this.toast.init();
+		this.logTime('ToastManager ready');
+
 		await this.faker.init();
+		this.logTime('FakerManager ready');
+
 		await this.filters.init();
+		this.logTime('FiltersManager ready');
 	}
 }
 
