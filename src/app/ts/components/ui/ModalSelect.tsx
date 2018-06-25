@@ -29,9 +29,10 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 
 		return (
 			<div>
-				{items.map((item) => {
+				{items.map((item, i) => {
 					return (
 						<a
+							key={i}
 							href="#"
 							onClick={this.onClick.bind(this, item)}
 							className={css(COMMON_STYLES.LINK, styles.selectable)}

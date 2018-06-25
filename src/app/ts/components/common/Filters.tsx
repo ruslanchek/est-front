@@ -19,8 +19,14 @@ export class Filters extends React.PureComponent<IProps, {}> {
 				</div>
 
 				<FilterFromTo
-					from={<Money value={200000}/>}
-					to={<Money value={4000000}/>}
+					from={200000}
+					to={4000000}
+					filterName="Price range"
+					renderValue={(value: number) => {
+						return (
+							<Money value={value}/>
+						);
+					}}
 				/>
 
 				<FilterAnd

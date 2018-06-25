@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
-import { NumberFormat } from './NumberFormat';
 import { CSSUtils } from '../../lib/CSSUtils';
 
 interface IProps {
@@ -9,12 +8,16 @@ interface IProps {
 	max: number;
 	currentMin: number;
 	currentMax: number;
+	renderValue: (value: number) => JSX.Element;
+	onChange: (min: number, max: number) => void;
 	step?: number;
 }
 
 interface IState {
 	currentMin: number;
 	currentMax: number;
+	minPosition: number;
+	maxPosition: number;
 	boundId: number;
 }
 
@@ -25,7 +28,9 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 
 	public state: IState = {
 		currentMin: 0,
-		currentMax: 100,
+		currentMax: 0,
+		minPosition: 0,
+		maxPosition: 0,
 		boundId: null
 	};
 
@@ -35,6 +40,8 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 		this.setState({
 			currentMin: this.props.currentMin,
 			currentMax: this.props.currentMax
+		}, () => {
+			this.calculateMinMaxPositions();
 		});
 	}
 
@@ -45,6 +52,11 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 			<div
 				className={css(styles.container)}
 				onTouchMove={(e) => {
+					if(e.touches && e.touches[0]) {
+						this.calculatePositions(e.touches[0].clientX);
+					}
+				}}
+				onTouchStart={(e) => {
 					if(e.touches && e.touches[0]) {
 						this.calculatePositions(e.touches[0].clientX);
 					}
@@ -86,7 +98,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 				>
 					<i
 						className={css(styles.line)}
-						style={{left: this.getValuePosition(currentMin) + '%', right: 100 - this.getValuePosition(currentMax) + '%'}}
+						style={{left: this.state.minPosition + '%', right: 100 - this.state.maxPosition + '%'}}
 					/>
 
 					<i
@@ -119,7 +131,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 							css(styles.handle),
 							this.state.boundId === 1 && css(styles.handleActive)
 						)}
-						style={{left: this.getValuePosition(currentMin) + '%'}}
+						style={{left: this.state.minPosition + '%'}}
 					/>
 
 					<i
@@ -152,25 +164,35 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 							css(styles.handle),
 							this.state.boundId === 2 && css(styles.handleActive)
 						)}
-						style={{left: this.getValuePosition(currentMax) + '%'}}
+						style={{left: this.state.maxPosition + '%'}}
 					/>
 
 					<span className={css(styles.value, styles.minValue)}>
-						<NumberFormat value={currentMin}/>
+						{this.props.renderValue(currentMin)}
 					</span>
 
 					<span className={css(styles.value, styles.maxValue)}>
-						<NumberFormat value={currentMax}/>
+						{this.props.renderValue(currentMax)}
 					</span>
 				</div>
 			</div>
 		);
 	}
 
+	private calculateMinMaxPositions(): void {
+		this.setState({
+			minPosition: this.getValuePosition(this.state.currentMin),
+			maxPosition: this.getValuePosition(this.state.currentMax),
+		});
+	}
+
 	private calculatePositions(clientX: number): void {
 		const box: ClientRect = this.bar.getBoundingClientRect();
 		const position: number = clientX - box.left;
 		let value: number = this.getPositionValue(position);
+
+		let min: number = this.state.currentMin;
+		let max: number = this.state.currentMax;
 
 		value = Math.round(value / this.props.step) * this.props.step;
 
@@ -179,46 +201,56 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 		}
 
 		if(this.state.boundId === 1) {
-			if(value > this.state.currentMax) {
-				return;
+			if(value <= this.state.currentMax) {
+				min = value;
 			}
-
-			this.setState({
-				currentMin: value
-			});
 		}
 
 		if(this.state.boundId === 2) {
-			if(value < this.state.currentMin) {
-				return;
+			if(value >= this.state.currentMin) {
+				max = value;
 			}
-
-			this.setState({
-				currentMax: value
-			});
 		}
+
+		this.setState({
+			currentMin: min,
+			currentMax: max
+		}, () => {
+			this.calculateMinMaxPositions();
+			this.props.onChange(this.state.currentMin, this.state.currentMax);
+		});
 	}
 
 	private getValuePosition(value: number): number {
-		const minMax: number = this.props.max - this.props.min;
-		return (minMax / 100) * value;
+		if(this.bar) {
+			return (value - this.props.min) / ((this.props.max - this.props.min) / 100);
+		} else {
+			return 0;
+		}
 	}
 
-	private getPositionValue(position: number): number {
-		const barBox: ClientRect = this.bar.getBoundingClientRect();
-		return position / (barBox.width / 100);
+	private getPositionValue(x: number): number {
+		if(this.bar) {
+			const barBox: ClientRect = this.bar.getBoundingClientRect();
+			return (x / (barBox.width / 100) * (this.props.max - this.props.min) / 100) + this.props.min;
+		} else {
+			return 0;
+		}
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		paddingBottom: 40,
+		paddingBottom: 30,
 		userSelect: 'none'
 	},
 
 	value: {
 		position: 'absolute',
-		top: 10
+		top: 20,
+		color: COLORS.BLACK_LIGHT.toString(),
+		fontSize: THEME.FONT_SIZE_SMALL,
+		fontWeight: 600
 	},
 
 	minValue: {

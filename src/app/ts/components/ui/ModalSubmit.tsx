@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
 		color: COLORS.BLUE.toString(),
 		transition: 'background-color .2s',
 		cursor: 'pointer',
+		backgroundColor: 'transparent',
 
 		':disabled': {
 			opacity: 0.5,

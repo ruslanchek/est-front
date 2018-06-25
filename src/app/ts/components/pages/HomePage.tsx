@@ -9,6 +9,7 @@ import { Layout } from '../common/Layout';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
 import { Rheostat } from '../ui/Rheostat';
+import { Money } from '../ui/Money';
 
 interface IProps {
 
@@ -26,12 +27,6 @@ export class HomePage extends React.Component<IProps, IState> {
 		return (
 			<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
 				<BreadCrumbs/>
-				<Rheostat
-					currentMin={10}
-					currentMax={70}
-					min={0}
-					max={100}
-				/>
 				<List objects={ObjectsStore.store.state.objects}/>
 			</Layout>
 		);

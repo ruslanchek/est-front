@@ -97,7 +97,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 						submitText="Confirm"
 						onResetClick={() => {
 							this.setState({
-								isOpen: false
+
 							});
 						}}
 						onSubmitClick={() => {
