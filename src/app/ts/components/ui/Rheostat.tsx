@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
 
 	title: {
 		textAlign: 'center',
-		marginBottom: THEME.SECTION_PADDING_V,
+		marginBottom: THEME.SECTION_PADDING_V * 1.5,
 		fontWeight: 600
 	},
 
