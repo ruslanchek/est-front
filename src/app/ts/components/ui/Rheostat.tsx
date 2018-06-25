@@ -6,9 +6,10 @@ import { CSSUtils } from '../../lib/CSSUtils';
 
 interface IProps {
 	min: number;
-	currentMin: number;
 	max: number;
+	currentMin: number;
 	currentMax: number;
+	step?: number;
 }
 
 interface IState {
@@ -18,6 +19,10 @@ interface IState {
 }
 
 export class Rheostat extends React.PureComponent<IProps, IState> {
+	public static defaultProps: Partial<IProps> = {
+		step: 1
+	};
+
 	public state: IState = {
 		currentMin: 0,
 		currentMax: 100,
@@ -165,21 +170,31 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	private calculatePositions(clientX: number): void {
 		const box: ClientRect = this.bar.getBoundingClientRect();
 		const position: number = clientX - box.left;
-		const value: number = this.getPositionValue(position);
+		let value: number = this.getPositionValue(position);
+
+		value = Math.round(value / this.props.step) * this.props.step;
 
 		if(value < this.props.min || value > this.props.max) {
 			return;
 		}
 
-		if(this.state.boundId === 2) {
+		if(this.state.boundId === 1) {
+			if(value > this.state.currentMax) {
+				return;
+			}
+
 			this.setState({
-				currentMax: value
+				currentMin: value
 			});
 		}
 
-		if(this.state.boundId === 1) {
+		if(this.state.boundId === 2) {
+			if(value < this.state.currentMin) {
+				return;
+			}
+
 			this.setState({
-				currentMin: value
+				currentMax: value
 			});
 		}
 	}
