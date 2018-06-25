@@ -21,6 +21,8 @@ interface IState {
 	boundId: number;
 }
 
+const HANDLE_SIZE: number = 20;
+
 export class Rheostat extends React.PureComponent<IProps, IState> {
 	public static defaultProps: Partial<IProps> = {
 		step: 1
@@ -254,11 +256,11 @@ const styles = StyleSheet.create({
 	},
 
 	minValue: {
-		left: 0
+		left: -HANDLE_SIZE / 2
 	},
 
 	maxValue: {
-		right: 0
+		right: -HANDLE_SIZE / 2
 	},
 
 	title: {
@@ -270,9 +272,21 @@ const styles = StyleSheet.create({
 	bar: {
 		height: 5,
 		position: 'relative',
-		borderRadius: 5,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		boxShadow: `inset 0 1px 1px ${COLORS.BLACK.alpha(.1).toString()}`
+		margin: `0 ${HANDLE_SIZE / 2}px`,
+
+		':before': {
+			display: 'block',
+			content: '""',
+			position: 'relative',
+			top: 0,
+			left: -HANDLE_SIZE / 2,
+			width: '100%',
+			padding: `0 ${HANDLE_SIZE /2}px`,
+			height: 5,
+			borderRadius: 5,
+			backgroundColor: COLORS.GRAY_DARK.toString(),
+			boxShadow: `inset 0 1px 1px ${COLORS.BLACK.alpha(.1).toString()}`
+		}
 	},
 
 	line: {
@@ -280,13 +294,14 @@ const styles = StyleSheet.create({
 		backgroundColor: COLORS.BLUE.toString(),
 		borderRadius: 5,
 		display: 'block',
+		top: 0,
 		position: 'absolute'
 	},
 
 	handle: {
-		height: 20,
-		width: 20,
-		borderRadius: 20,
+		height: HANDLE_SIZE,
+		width: HANDLE_SIZE,
+		borderRadius: HANDLE_SIZE,
 		position: 'absolute',
 		top: '50%',
 		transform: 'translate(-50%, -50%)',
