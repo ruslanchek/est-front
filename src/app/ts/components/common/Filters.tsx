@@ -19,8 +19,8 @@ export class Filters extends React.PureComponent<IProps, {}> {
 				</div>
 
 				<FilterFromTo
-					from={200000}
-					to={4000000}
+					from={0}
+					to={1000000}
 					filterName="Price range"
 					renderValue={(value: number) => {
 						return (
