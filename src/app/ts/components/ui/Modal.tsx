@@ -11,7 +11,6 @@ interface IProps {
 
 	containerClassName?: string;
 	contentClassName?: string;
-	header?: JSX.Element;
 	onClose?(): void;
 }
 
@@ -87,7 +86,6 @@ export class Modal extends React.PureComponent<IProps, IState> {
 								className={css(styles.content, styles.contentPhone)}
 								onClick={this.handleClickOnContent}
 							>
-								{this.props.header ? this.props.header : null}
 								{this.props.children}
 							</div>
 						</CSSTransition>
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		margin: 'auto',
-		width: 450
+		width: 400
 	},
 
 	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {

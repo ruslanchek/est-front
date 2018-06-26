@@ -74,8 +74,6 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'flex-start',
-		color: COLORS.BLACK_LIGHT.toString(),
-		fontSize: THEME.FONT_SIZE_SMALL,
 		whiteSpace: 'nowrap',
 		flexWrap: 'wrap',
 		paddingBottom: 14,
@@ -90,6 +88,8 @@ const styles = StyleSheet.create({
 		height: 26,
 		lineHeight: '26px',
 		marginTop: 10,
+		color: COLORS.BLACK_LIGHT.toString(),
+		fontSize: THEME.FONT_SIZE_SMALL,
 	},
 
 	add: {

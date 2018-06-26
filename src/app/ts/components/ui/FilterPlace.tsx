@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { NumberFormat } from './NumberFormat';
 
 interface IProps {
 
@@ -66,6 +65,8 @@ const styles = StyleSheet.create({
 	},
 
 	section: {
+		color: COLORS.BLACK_LIGHT.toString(),
+		fontSize: THEME.FONT_SIZE_SMALL,
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		height: 27,
 		display: 'flex',

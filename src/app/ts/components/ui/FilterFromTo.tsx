@@ -5,6 +5,7 @@ import { Modal } from './Modal';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { Rheostat } from './Rheostat';
 import { ModalResetSubmit } from './ModalResetSubmit';
+import { ModalContext } from './ModalContext';
 
 interface IProps {
 	from: number;
@@ -35,7 +36,7 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<React.Fragment>
+			<div className={css(COMMON_STYLES.FILTER_BRICK_CONTAINER)}>
 				<div
 					className={css(COMMON_STYLES.FILTER_BRICK)}
 					onClick={() => {
@@ -51,21 +52,20 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 					</span>
 				</div>
 
-				<Modal
+				<ModalContext
 					isVisible={this.state.isOpen}
-					header={
-						<ModalHeaderFilter
-							color={COLORS.GREEN}
-							icon="md-git-commit"
-							title={this.props.filterName}
-						/>
-					}
 					onClose={() => {
 						this.setState({
 							isOpen: false,
 						});
 					}}
 				>
+					<ModalHeaderFilter
+						color={COLORS.GREEN}
+						icon="md-git-commit"
+						title={this.props.filterName}
+					/>
+
 					<div className={css(styles.rheostat)}>
 						<Rheostat
 							min={this.props.from}
@@ -100,8 +100,8 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 							});
 						}}
 					/>
-				</Modal>
-			</React.Fragment>
+				</ModalContext>
+			</div>
 		);
 	}
 }

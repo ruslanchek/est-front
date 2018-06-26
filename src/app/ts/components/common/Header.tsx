@@ -115,9 +115,6 @@ export class Header extends React.PureComponent<{}, IState> {
 								</a>
 
 								<Modal
-									header={
-										<ModalHeader title="Navigation"/>
-									}
 									isVisible={this.state.phoneNavIsVisible}
 										onClose={() => {
 										this.setState({
@@ -125,6 +122,8 @@ export class Header extends React.PureComponent<{}, IState> {
 										});
 									}}
 								>
+									<ModalHeader title="Navigation"/>
+
 									<div className={css(styles.mobileNav)}>
 										<NavLink
 											to={PATHS.HOME}

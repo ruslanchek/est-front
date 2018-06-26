@@ -5,6 +5,7 @@ import { Modal } from './Modal';
 import { EModalSelectItemType, ModalSelect } from './ModalSelect';
 import { ModalResetSubmit } from './ModalResetSubmit';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
+import { ModalContext } from './ModalContext';
 
 interface IProps {
 	entities: string[];
@@ -24,7 +25,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 		const { entities } = this.props;
 
 		return (
-			<React.Fragment>
+			<div className={css(COMMON_STYLES.FILTER_BRICK_CONTAINER)}>
 				<div
 					className={css(COMMON_STYLES.FILTER_BRICK)}
 					onClick={() => {
@@ -48,21 +49,20 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 					</span>
 				</div>
 
-				<Modal
+				<ModalContext
 					isVisible={this.state.isOpen}
-					header={
-						<ModalHeaderFilter
-							color={COLORS.BLUE}
-							icon="ios-home"
-							title={this.props.filterName}
-						/>
-					}
 					onClose={() => {
 						this.setState({
-							isOpen: false,
+							isOpen: false
 						});
 					}}
 				>
+					<ModalHeaderFilter
+						color={COLORS.BLUE}
+						icon="ios-home"
+						title={this.props.filterName}
+					/>
+
 					<ModalSelect
 						items={[
 							{
@@ -109,8 +109,8 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 							});
 						}}
 					/>
-				</Modal>
-			</React.Fragment>
+				</ModalContext>
+			</div>
 		);
 	}
 
