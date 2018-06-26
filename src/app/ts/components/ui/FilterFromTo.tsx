@@ -104,6 +104,7 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 
 const styles = StyleSheet.create({
 	rheostat: {
-		padding: 20
+		padding: 20,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 	}
 });

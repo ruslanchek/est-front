@@ -91,7 +91,13 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 				}}
 			>
 				<div className={css(styles.title)}>
-					Price range
+					<span className={css(styles.fromTo)}>from</span>
+					{' '}
+					{this.props.renderValue(currentMin)}
+					{' '}
+					<span className={css(styles.fromTo)}>to</span>
+					{' '}
+					{this.props.renderValue(currentMax)}
 				</div>
 
 				<div
@@ -170,11 +176,11 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 					/>
 
 					<span className={css(styles.value, styles.minValue)}>
-						{this.props.renderValue(currentMin)}
+						{this.props.renderValue(this.props.min)}
 					</span>
 
 					<span className={css(styles.value, styles.maxValue)}>
-						{this.props.renderValue(currentMax)}
+						{this.props.renderValue(this.props.max)}
 					</span>
 				</div>
 			</div>
@@ -247,6 +253,11 @@ const styles = StyleSheet.create({
 		userSelect: 'none'
 	},
 
+	fromTo: {
+		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
+		fontWeight: 400
+	},
+
 	value: {
 		position: 'absolute',
 		top: 20,
@@ -265,7 +276,7 @@ const styles = StyleSheet.create({
 
 	title: {
 		textAlign: 'center',
-		marginBottom: THEME.SECTION_PADDING_V,
+		marginBottom: THEME.SECTION_PADDING_V * 1.5,
 		fontWeight: 600
 	},
 
@@ -305,24 +316,24 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: '50%',
 		transform: 'translate(-50%, -50%)',
-		backgroundColor: COLORS.GRAY_LIGHT.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
+		backgroundColor: COLORS.BLUE.toString(),
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		cursor: 'pointer',
 		transition: 'transform .2s, background-color .2s',
 		border: `2px solid ${COLORS.WHITE.toString()}`,
 
 		':hover': {
-			backgroundColor: COLORS.BLUE.lighten(1.2).toString(),
+			backgroundColor: COLORS.BLUE.lighten(0.2).toString(),
 			transform: 'translate(-50%, -50%) scale(1.1)',
 		}
 	},
 
 	handleActive: {
-		backgroundColor: COLORS.BLUE.lighten(1).toString(),
+		backgroundColor: COLORS.BLUE.lighten(0.4).toString(),
 		transform: 'translate(-50%, -50%) scale(1.05)',
 
 		':hover': {
-			backgroundColor: COLORS.BLUE.lighten(1).toString(),
+			backgroundColor: COLORS.BLUE.lighten(0.4).toString(),
 			transform: 'translate(-50%, -50%) scale(1.05)',
 		}
 	}
