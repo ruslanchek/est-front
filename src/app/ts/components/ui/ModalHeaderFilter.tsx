@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import * as Ionicon from 'react-ionicons';
+import Color = require('color');
 
 interface IProps {
 	title: string;
+	color: Color;
+	icon: string;
 }
 
 export class ModalHeaderFilter extends React.PureComponent<IProps, {}> {
@@ -13,12 +15,17 @@ export class ModalHeaderFilter extends React.PureComponent<IProps, {}> {
 		return (
 			<div className={css(styles.header)}>
 				<h2 className={css(styles.title)}>
-					Adding filter
-				</h2>
-
-				<div className={css(styles.add)}>
+					<i className={css(styles.icon)} style={{
+						backgroundColor: this.props.color.toString()
+					}}>
+						<Ionicon
+							icon={this.props.icon}
+							fontSize="22px"
+							color={COLORS.WHITE.toString()}
+						/>
+					</i>
 					{this.props.title}
-				</div>
+				</h2>
 			</div>
 		);
 	}
@@ -34,7 +41,10 @@ const styles = StyleSheet.create({
 
 	title: {
 		margin: 0,
-		fontSize: THEME.FONT_SIZE_BIG
+		fontSize: THEME.FONT_SIZE_BIG,
+		display: 'flex',
+		justifyContent: 'flex-start',
+		alignItems: 'center'
 	},
 
 	add: {
@@ -48,4 +58,14 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		fontSize: THEME.FONT_SIZE_SMALL
 	},
+
+	icon: {
+		width: 28,
+		height: 28,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 4,
+		marginRight: THEME.SECTION_PADDING_H / 2
+	}
 });

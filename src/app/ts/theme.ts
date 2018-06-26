@@ -74,8 +74,9 @@ export const COMMON_STYLES = StyleSheet.create({
 	}),
 
 	FILTER_BRICK: {
-		height: 26,
-		lineHeight: '26px',
+		height: 27,
+		display: 'flex',
+		alignItems: 'center',
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		backgroundColor: COLORS.GRAY_DARK.toString(),
 		borderRadius: 16,

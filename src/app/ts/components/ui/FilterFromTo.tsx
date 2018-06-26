@@ -44,15 +44,19 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					from <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.state.from)}</strong>
-					{' '}
-					to <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.state.to)}</strong>
+					<span>
+						from <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.state.from)}</strong>
+						{' '}
+						to <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.state.to)}</strong>
+					</span>
 				</div>
 
 				<Modal
 					isVisible={this.state.isOpen}
 					header={
 						<ModalHeaderFilter
+							color={COLORS.GREEN}
+							icon="md-git-commit"
 							title={this.props.filterName}
 						/>
 					}

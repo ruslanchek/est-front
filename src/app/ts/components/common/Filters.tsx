@@ -5,7 +5,7 @@ import { FilterFromTo } from '../ui/FilterFromTo';
 import { FilterAnd } from '../ui/FilterAnd';
 import { FilterRangeEntities } from '../ui/FilterRangeEntities';
 import { Money } from '../ui/Money';
-import { Search } from '../ui/Search';
+import { FilterPlace } from '../ui/FilterPlace';
 
 interface IProps {
 
@@ -15,11 +15,13 @@ export class Filters extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<div className={css(styles.filters)}>
-				<Search/>
-
 				<div className={css(styles.title)}>
 					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
 				</div>
+
+				<FilterPlace
+
+				/>
 
 				<FilterFromTo
 					from={0}
@@ -77,7 +79,8 @@ const styles = StyleSheet.create({
 		whiteSpace: 'nowrap',
 		flexWrap: 'wrap',
 		paddingBottom: 14,
-		paddingTop: 4
+		paddingTop: 4,
+		width: '100%'
 	},
 
 	title: {

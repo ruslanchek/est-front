@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COMMON_STYLES, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { Modal } from './Modal';
 import { EModalSelectItemType, ModalSelect } from './ModalSelect';
 import { ModalResetSubmit } from './ModalResetSubmit';
@@ -33,23 +33,27 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					{entities.map((entity, i) => {
-						return (
-							<React.Fragment key={i}>
-								<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
-									{entity}
-								</strong>
+					<span>
+						{entities.map((entity, i) => {
+							return (
+								<React.Fragment key={i}>
+									<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+										{entity}
+									</strong>
 
-								{this.getSeparator(i)}
-							</React.Fragment>
-						);
-					})}
+									{this.getSeparator(i)}
+								</React.Fragment>
+							);
+						})}
+					</span>
 				</div>
 
 				<Modal
 					isVisible={this.state.isOpen}
 					header={
 						<ModalHeaderFilter
+							color={COLORS.BLUE}
+							icon="ios-home"
 							title={this.props.filterName}
 						/>
 					}
