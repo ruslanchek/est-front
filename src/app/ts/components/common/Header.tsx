@@ -12,6 +12,7 @@ import { Filters } from './Filters';
 import { IsDesktop } from './IsDesktop';
 import { IsPhoneOrTablet } from './IsPhoneOrTablet';
 import { ModalHeader } from '../ui/ModalHeader';
+import * as Ionicon from 'react-ionicons';
 
 interface IState {
 	isFloating: boolean;
@@ -40,6 +41,20 @@ export class Header extends React.PureComponent<{}, IState> {
 
 		return (
 			<header className={css(styles.container)}>
+				<div className={css(styles.floatingTrigger)}>
+					<div className={css(styles.floatingTriggerInner)}>
+						<Ionicon
+							icon="md-options"
+							fontSize="18px"
+							color={COLORS.WHITE.toString()}
+						/>
+
+						<div className={css(styles.floatingTriggerText)}>
+							Filters
+						</div>
+					</div>
+				</div>
+
 				<div {...CSSUtils.mergeStyles(
 					css(styles.header),
 					isFloating && css(styles.headerFloating),
@@ -258,6 +273,35 @@ const styles = StyleSheet.create({
 
 	container: {
 		paddingTop: THEME.HEADER_HEIGHT
+	},
+
+	floatingTrigger: {
+		position: 'fixed',
+		display: 'none',
+		zIndex: 1000,
+		bottom: THEME.SECTION_PADDING_V,
+		right: 40,
+		borderRadius: 20,
+		height: 32
+	},
+
+	floatingTriggerText: {
+		marginLeft: 10
+	},
+
+	floatingTriggerInner: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		height: 28,
+		padding: `0 10px`,
+		backgroundColor: COLORS.BLUE.toString(),
+		borderRadius: 20,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
+		color: COLORS.WHITE.toString(),
+		fontSize: THEME.FONT_SIZE_SMALL,
+		textTransform: 'uppercase',
+		fontWeight: 600
 	},
 
 	header: {
