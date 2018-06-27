@@ -12,6 +12,7 @@ import ICity = ObjectsStore.ICity;
 import ICountry = ObjectsStore.ICountry;
 import IGeoPoint = ObjectsStore.IGeoPoint;
 import IAddress = ObjectsStore.IAddress;
+import EObjectContractType = ObjectsStore.EObjectContractType;
 
 const GENERATE_COUNT: number = 41;
 
@@ -120,6 +121,10 @@ export class FakerManager extends Manager {
 				EObjectType.DetachedHouse,
 				EObjectType.TownHouse,
 				EObjectType.Studio,
+			]),
+			contractType: faker.random.arrayElement([
+				EObjectContractType.Rent,
+				EObjectContractType.Purchase
 			]),
 			constructionDate: faker.date.past(20),
 			price: faker.random.number({ min: 50000, max: 1500000, precision: 2 }),

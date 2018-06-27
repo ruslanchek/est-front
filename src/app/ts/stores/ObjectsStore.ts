@@ -6,6 +6,7 @@ export namespace ObjectsStore {
 		id: number;
 		title: string;
 		type: EObjectType;
+		contractType: EObjectContractType;
 		constructionDate: Date;
 		price: number;
 		address: IAddress;
@@ -72,6 +73,11 @@ export namespace ObjectsStore {
 		TownHouse,
 		Flat,
 		Studio,
+	}
+
+	export enum EObjectContractType {
+		Purchase,
+		Rent
 	}
 
 	export enum EObjectAgentType {
