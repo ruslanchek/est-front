@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { Modal } from './Modal';
-import { EModalSelectItemType, ModalSelect } from './ModalSelect';
-import { ModalResetSubmit } from './ModalResetSubmit';
-import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { ModalContext } from './ModalContext';
-import { CSSUtils } from '../../lib/CSSUtils';
+import { ModalHeaderFilter } from './ModalHeaderFilter';
+import { ModalResetSubmit } from './ModalResetSubmit';
+import { ObjectsStore } from '../../stores/ObjectsStore';
+import ICity = ObjectsStore.ICity;
+import { managers } from '../../managers';
 
 interface IProps {
 	isoCode: string;
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 interface IState {
-
+	isOpen: boolean;
 }
 
 export class FilterCity extends React.PureComponent<IProps, IState> {
@@ -24,6 +24,17 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 	};
 
 	public render() {
+		let cities: ICity[] = [];
+		let prevSymbol: string = '';
+
+		for(let i = 0; i < 200; i++) {
+			cities.push(managers.faker.generateCity(1));
+		}
+
+		cities = cities.sort((a, b) => {
+			return a.title.localeCompare(b.title);
+		});
+
 		return (
 			<div className={css(styles.container)}>
 				<div
@@ -38,6 +49,67 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 						{this.props.title}
 					</strong>
 				</div>
+
+				<ModalContext
+					isVisible={this.state.isOpen}
+					width={700}
+					onClose={() => {
+						this.setState({
+							isOpen: false
+						});
+					}}
+				>
+					<ModalHeaderFilter
+						color={COLORS.RED}
+						icon="ios-home"
+						title="Select city"
+					/>
+
+					<div className={css(styles.cities)}>
+						{cities.map((city, i) => {
+							const firstSymbol: string = city.title.substr(0, 1);
+
+							if(firstSymbol !== prevSymbol) {
+								prevSymbol = firstSymbol;
+
+								return (
+									<React.Fragment>
+										<div key={i} className={css(styles.symbol)}>
+											{firstSymbol}
+										</div>
+
+										<div key={i} className={css(styles.city)}>
+											{city.title}
+										</div>
+									</React.Fragment>
+								);
+							} else {
+								return (
+									<div key={i} className={css(styles.city)}>
+										{city.title}
+									</div>
+								);
+							}
+						})}
+					</div>
+
+					<ModalResetSubmit
+						isResetEnabled={true}
+						isSubmitEnabled={true}
+						resetText="Reset"
+						submitText="Confirm"
+						onResetClick={() => {
+							this.setState({
+
+							});
+						}}
+						onSubmitClick={() => {
+							this.setState({
+								isOpen: false
+							});
+						}}
+					/>
+				</ModalContext>
 			</div>
 		);
 	}
@@ -46,5 +118,21 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	container: {
 		position: 'relative'
+	},
+
+	symbol: {
+		fontWeight: 600,
+		width: '100%'
+	},
+
+	cities: {
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		display: 'flex',
+		justifyContent: 'space-between',
+		flexWrap: 'wrap'
+	},
+
+	city: {
+		width: `calc(33% - ${THEME.SECTION_PADDING_H}px)`
 	}
 });

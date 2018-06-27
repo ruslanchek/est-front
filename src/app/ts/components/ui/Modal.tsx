@@ -8,7 +8,7 @@ import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 
 interface IProps {
 	isVisible: boolean;
-
+	width?: number;
 	containerClassName?: string;
 	contentClassName?: string;
 	onClose?(): void;
@@ -19,6 +19,7 @@ interface IState {
 }
 
 const ANIMATION_TIME: number = 350;
+const DEFAULT_WIDTH: number = 400;
 
 export class Modal extends React.PureComponent<IProps, IState> {
 	public state: IState = {
@@ -83,6 +84,9 @@ export class Modal extends React.PureComponent<IProps, IState> {
 							}}
 						>
 							<div
+								style={{
+									width: this.props.width || DEFAULT_WIDTH
+								}}
 								className={css(styles.content, styles.contentPhone)}
 								onClick={this.handleClickOnContent}
 							>
@@ -147,8 +151,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		position: 'relative',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
-		margin: 'auto',
-		width: 400
+		margin: 'auto'
 	},
 
 	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {

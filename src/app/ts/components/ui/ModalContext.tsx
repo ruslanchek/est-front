@@ -9,9 +9,11 @@ import { IsPhoneOrTablet } from '../common/IsPhoneOrTablet';
 interface IProps {
 	isVisible: boolean;
 	onClose: () => void;
+	width?: number;
 }
 
 const ANIMATION_TIME: number = 350;
+const DEFAULT_WIDTH: number = 400;
 
 export class ModalContext extends React.PureComponent<IProps, {}> {
 	private wrapperRef = null;
@@ -28,7 +30,11 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 		return (
 			<React.Fragment>
 				<IsPhoneOrTablet>
-					<Modal isVisible={this.props.isVisible} onClose={this.props.onClose.bind(this)}>
+					<Modal
+						isVisible={this.props.isVisible}
+						onClose={this.props.onClose.bind(this)}
+						width={this.props.width}
+					>
 						{this.props.children}
 					</Modal>
 				</IsPhoneOrTablet>
@@ -49,7 +55,11 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 							className={css(styles.context)}
 							ref={(ref) => this.wrapperRef = ref}
 						>
-							<div className={css(styles.content)}>
+							<div
+								style={{
+									width: this.props.width || DEFAULT_WIDTH
+								}}
+								className={css(styles.content)}>
 								{this.props.children}
 							</div>
 						</div>
