@@ -10,6 +10,7 @@ import { ModalContext } from './ModalContext';
 interface IProps {
 	entities: string[];
 	filterName: string;
+	styles?: StyleDeclaration;
 }
 
 interface IState {
@@ -27,7 +28,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 		return (
 			<div className={css(styles.container)}>
 				<div
-					className={css(COMMON_STYLES.FILTER_BRICK)}
+					className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}
 					onClick={() => {
 						this.setState({
 							isOpen: true,

@@ -11,6 +11,7 @@ interface IProps {
 	to: number;
 	filterName: string;
 	renderValue: (value: number) => JSX.Element;
+	styles?: StyleDeclaration;
 }
 
 interface IState {
@@ -37,7 +38,7 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 		return (
 			<div className={css(styles.container)}>
 				<div
-					className={css(COMMON_STYLES.FILTER_BRICK)}
+					className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}
 					onClick={() => {
 						this.setState({
 							isOpen: true,

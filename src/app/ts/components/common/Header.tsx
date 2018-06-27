@@ -111,7 +111,11 @@ export class Header extends React.PureComponent<{}, IState> {
 
 							<IsPhoneOrTablet>
 								<a href="#" className={css(styles.phoneNavButton)} onClick={this.openPhoneNav.bind(this)}>
-									<Icon icon={EIcon.More} size={24} color={COLORS.BLACK_LIGHT}/>
+									<Ionicon
+										icon="md-more"
+										fontSize="26px"
+										color={COLORS.BLACK_LIGHT.toString()}
+									/>
 								</a>
 
 								<Modal
@@ -188,13 +192,12 @@ export class Header extends React.PureComponent<{}, IState> {
 								to={PATHS.HOME}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
 							>
-								<Icon
-									icon={EIcon.Plus}
-									type={EIconType.Default}
-									size={18}
-									color={COLORS.WHITE}
-									outerStyles={styles.icon}
+								<Ionicon
+									icon="md-flag"
+									fontSize="16px"
+									color={COLORS.WHITE.toString()}
 								/>
+
 								Place advert
 							</NavLink>
 						</nav>
@@ -352,7 +355,9 @@ const styles = StyleSheet.create({
 
 	phoneNavButton: {
 		transition: 'opacity .2s',
-		height: 30,
+		height: 26,
+		top: 1,
+		position: 'relative',
 
 		':hover': {
 			opacity: .7
@@ -414,8 +419,8 @@ const styles = StyleSheet.create({
 	placeAdvert: {
 		color: COLORS.WHITE.toString(),
 		backgroundColor: COLORS.BLUE.toString(),
-		padding: `4px ${THEME.SECTION_PADDING_H / 2}px 4px 4px`,
-		borderRadius: 16,
+		padding: `5px 8px`,
+		borderRadius: 10,
 		fontSize: THEME.FONT_SIZE_SMALL,
 		fontWeight: 600,
 		textTransform: 'uppercase',

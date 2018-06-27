@@ -52,11 +52,12 @@ export class Filters extends React.PureComponent<IProps, {}> {
 									<Money value={value}/>
 								);
 							}}
-						/>
+						/>,
 					]}
 				/>
 
 				<FilterFromTo
+					styles={styles.brick}
 					from={0}
 					to={1000000}
 					filterName="Price range"
@@ -68,6 +69,7 @@ export class Filters extends React.PureComponent<IProps, {}> {
 				/>
 
 				<FilterAnd
+					styles={styles.brick}
 					filterName="Property type"
 					entities={[
 						'Flats',
@@ -77,18 +79,21 @@ export class Filters extends React.PureComponent<IProps, {}> {
 				/>
 
 				<FilterRangeEntities
+					styles={styles.brick}
 					from={2}
 					to={4}
 					what="bedrooms"
 				/>
 
 				<FilterRangeEntities
+					styles={styles.brick}
 					from={1}
 					to={2}
 					what="bathrooms"
 				/>
 
 				<FilterRangeEntities
+					styles={styles.brick}
 					from={1}
 					to={1}
 					what="garage"
@@ -111,7 +116,7 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		paddingBottom: 14,
 		paddingTop: 4,
-		width: '100%'
+		width: '100%',
 	},
 
 	title: {
@@ -129,9 +134,15 @@ const styles = StyleSheet.create({
 		backgroundColor: COLORS.BLUE.alpha(0.1).toString(),
 		color: COLORS.BLUE.toString(),
 		fontWeight: 600,
+		borderRadius: 10,
 
 		':hover': {
 			backgroundColor: COLORS.BLUE.alpha(0.2).toString(),
 		},
+	},
+
+	brick: {
+		marginRight: THEME.SECTION_PADDING_H / 2,
+		borderRadius: 10,
 	},
 });

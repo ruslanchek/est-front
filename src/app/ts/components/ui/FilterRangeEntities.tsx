@@ -7,6 +7,7 @@ interface IProps {
 	from: number;
 	to: number;
 	what: string;
+	styles?: StyleDeclaration;
 }
 
 export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
@@ -15,7 +16,7 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 
 		if(from === to) {
 			return (
-				<div className={css(COMMON_STYLES.FILTER_BRICK)}>
+				<div className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}>
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 						<NumberFormat value={from}/>
 					</strong>&nbsp;{what}
@@ -23,7 +24,7 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 			);
 		} else {
 			return (
-				<div className={css(COMMON_STYLES.FILTER_BRICK)}>
+				<div className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}>
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 						<NumberFormat value={from}/>
 					</strong>&ndash;
