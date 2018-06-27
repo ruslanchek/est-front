@@ -20,8 +20,10 @@ export class Filters extends React.PureComponent<IProps, {}> {
 				</div>
 
 				<FilterGroup
+					styles={styles.group}
 					filters={[
 						<FilterFromTo
+							styles={styles.brickRoundedLeft}
 							from={0}
 							to={1000000}
 							filterName="Price range"
@@ -44,6 +46,7 @@ export class Filters extends React.PureComponent<IProps, {}> {
 						/>,
 
 						<FilterFromTo
+							styles={styles.brickRoundedRight}
 							from={0}
 							to={1000000}
 							filterName="Price range"
@@ -141,8 +144,22 @@ const styles = StyleSheet.create({
 		},
 	},
 
+	group: {
+		marginRight: THEME.SECTION_PADDING_H / 2,
+	},
+
 	brick: {
 		marginRight: THEME.SECTION_PADDING_H / 2,
 		borderRadius: 10,
+	},
+
+	brickRoundedLeft: {
+		borderBottomLeftRadius: 10,
+		borderTopLeftRadius: 10,
+	},
+
+	brickRoundedRight: {
+		borderBottomRightRadius: 10,
+		borderTopRightRadius: 10,
 	},
 });

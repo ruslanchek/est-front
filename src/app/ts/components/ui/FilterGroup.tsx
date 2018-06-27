@@ -5,12 +5,13 @@ import { FilterAnd } from './FilterAnd';
 
 interface IProps {
 	filters: JSX.Element[];
+	styles?: StyleDeclaration;
 }
 
 export class FilterGroup extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.block)}>
+			<div className={css(styles.block, this.props.styles)}>
 				{this.props.filters.map((element, i) => {
 					return (
 						<div className={css(styles.section)} key={i}>
