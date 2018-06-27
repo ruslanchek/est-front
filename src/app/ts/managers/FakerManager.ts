@@ -71,6 +71,7 @@ export class FakerManager extends Manager {
 	public generateCity(countryId: number): ICity {
 		return {
 			id: faker.random.number(100000),
+			isoCode: faker.address.cityPrefix(),
 			countryId,
 			title: faker.address.city(),
 			nativeTitle: faker.address.city(),

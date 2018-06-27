@@ -6,6 +6,12 @@ import { FilterAnd } from '../ui/FilterAnd';
 import { FilterRangeEntities } from '../ui/FilterRangeEntities';
 import { Money } from '../ui/Money';
 import { FilterGroup } from '../ui/FilterGroup';
+import { FilterCountry } from '../ui/FilterCountry';
+import { ObjectsStore } from '../../stores/ObjectsStore';
+import ICountry = ObjectsStore.ICountry;
+import { managers } from '../../managers';
+import ICity = ObjectsStore.ICity;
+import { FilterCity } from '../ui/FilterCity';
 
 interface IProps {
 
@@ -13,6 +19,9 @@ interface IProps {
 
 export class Filters extends React.PureComponent<IProps, {}> {
 	public render() {
+		const country: ICountry = managers.faker.generateCountry();
+		const city: ICity = managers.faker.generateCity(country.id);
+
 		return (
 			<div className={css(styles.filters)}>
 				<div className={css(styles.title)}>
@@ -22,39 +31,26 @@ export class Filters extends React.PureComponent<IProps, {}> {
 				<FilterGroup
 					styles={styles.group}
 					filters={[
-						<FilterFromTo
+						<FilterCountry
 							styles={styles.brickRoundedLeft}
-							from={0}
-							to={1000000}
-							filterName="Price range"
-							renderValue={(value: number) => {
-								return (
-									<Money value={value}/>
-								);
-							}}
+							title={country.title}
+							isoCode={country.isoCode}
 						/>,
 
-						<FilterFromTo
-							from={0}
-							to={1000000}
-							filterName="Price range"
-							renderValue={(value: number) => {
-								return (
-									<Money value={value}/>
-								);
-							}}
+						<FilterCity
+							styles={styles.brickMiddle}
+							title={city.title}
+							isoCode={city.isoCode}
 						/>,
 
-						<FilterFromTo
+						<FilterAnd
 							styles={styles.brickRoundedRight}
-							from={0}
-							to={1000000}
-							filterName="Price range"
-							renderValue={(value: number) => {
-								return (
-									<Money value={value}/>
-								);
-							}}
+							filterName="Property type"
+							entities={[
+								'Flats',
+								'Houses',
+								'Studios',
+							]}
 						/>,
 					]}
 				/>
@@ -69,16 +65,6 @@ export class Filters extends React.PureComponent<IProps, {}> {
 							<Money value={value}/>
 						);
 					}}
-				/>
-
-				<FilterAnd
-					styles={styles.brick}
-					filterName="Property type"
-					entities={[
-						'Flats',
-						'Houses',
-						'Studios',
-					]}
 				/>
 
 				<FilterRangeEntities
@@ -151,11 +137,17 @@ const styles = StyleSheet.create({
 	brick: {
 		marginRight: THEME.SECTION_PADDING_H / 2,
 		borderRadius: 10,
+		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
+	},
+
+	brickMiddle: {
+		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
 	},
 
 	brickRoundedLeft: {
 		borderBottomLeftRadius: 10,
 		borderTopLeftRadius: 10,
+		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
 	},
 
 	brickRoundedRight: {

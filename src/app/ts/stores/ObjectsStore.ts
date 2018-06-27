@@ -38,6 +38,7 @@ export namespace ObjectsStore {
 
 	export interface ICity {
 		id: number;
+		isoCode: string;
 		title: string;
 		nativeTitle: string;
 		countryId: number;
