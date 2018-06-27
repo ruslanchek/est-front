@@ -34,7 +34,9 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					{this.props.title}
+					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+						{this.props.title}
+					</strong>
 				</div>
 			</div>
 		);

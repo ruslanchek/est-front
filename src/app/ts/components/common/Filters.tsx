@@ -28,32 +28,29 @@ export class Filters extends React.PureComponent<IProps, {}> {
 					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
 				</div>
 
-				<FilterGroup
-					styles={styles.group}
-					filters={[
-						<FilterCountry
-							styles={styles.brickRoundedLeft}
-							title={country.title}
-							isoCode={country.isoCode}
-						/>,
+				<FilterGroup styles={styles.group}>
+					<FilterCountry
+						styles={styles.brickRoundedLeft}
+						title={country.title}
+						isoCode={country.isoCode}
+					/>
 
-						<FilterCity
-							styles={styles.brickMiddle}
-							title={city.title}
-							isoCode={city.isoCode}
-						/>,
+					<FilterCity
+						styles={styles.brickMiddle}
+						title={city.title}
+						isoCode={city.isoCode}
+					/>
 
-						<FilterAnd
-							styles={styles.brickRoundedRight}
-							filterName="Property type"
-							entities={[
-								'Flats',
-								'Houses',
-								'Studios',
-							]}
-						/>,
-					]}
-				/>
+					<FilterAnd
+						styles={styles.brickRoundedRight}
+						filterName="Property type"
+						entities={[
+							'Flats',
+							'Houses',
+							'Studios',
+						]}
+					/>
+				</FilterGroup>
 
 				<FilterFromTo
 					styles={styles.brick}
@@ -136,8 +133,7 @@ const styles = StyleSheet.create({
 
 	brick: {
 		marginRight: THEME.SECTION_PADDING_H / 2,
-		borderRadius: 10,
-		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
+		borderRadius: 10
 	},
 
 	brickMiddle: {

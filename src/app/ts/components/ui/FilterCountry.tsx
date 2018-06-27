@@ -38,7 +38,9 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 						backgroundImage: CSSUtils.image(`https://static.expertoption.com/flags/2.0/svg/${this.props.isoCode.toLowerCase()}.svg`)
 					}}/>
 
-					{this.props.title}
+					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+						{this.props.title}
+					</strong>
 				</div>
 			</div>
 		);

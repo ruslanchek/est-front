@@ -4,7 +4,6 @@ import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { FilterAnd } from './FilterAnd';
 
 interface IProps {
-	filters: JSX.Element[];
 	styles?: StyleDeclaration;
 }
 
@@ -12,32 +11,16 @@ export class FilterGroup extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<div className={css(styles.block, this.props.styles)}>
-				{this.props.filters.map((element, i) => {
-					return (
-						<div className={css(styles.section)} key={i}>
-							{element}
-						</div>
-					);
-				})}
+				{this.props.children}
 			</div>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	icon: {
-		marginRight: THEME.SECTION_PADDING_H / 3,
-		display: 'block',
-		borderRadius: 2,
-	},
-
 	block: {
 		display: 'flex',
 		alignItems: 'center',
 		cursor: 'pointer',
-	},
-
-	section: {
-
 	},
 });
