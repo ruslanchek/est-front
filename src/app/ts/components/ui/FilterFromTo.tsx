@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { Modal } from './Modal';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { Rheostat } from './Rheostat';
 import { ModalResetSubmit } from './ModalResetSubmit';
@@ -36,7 +35,7 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<div className={css(COMMON_STYLES.FILTER_BRICK_CONTAINER)}>
+			<div className={css(styles.container)}>
 				<div
 					className={css(COMMON_STYLES.FILTER_BRICK)}
 					onClick={() => {
@@ -107,6 +106,10 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 }
 
 const styles = StyleSheet.create({
+	container: {
+		position: 'relative'
+	},
+
 	rheostat: {
 		padding: 20,
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,

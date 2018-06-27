@@ -5,7 +5,7 @@ import { FilterFromTo } from '../ui/FilterFromTo';
 import { FilterAnd } from '../ui/FilterAnd';
 import { FilterRangeEntities } from '../ui/FilterRangeEntities';
 import { Money } from '../ui/Money';
-import { FilterPlace } from '../ui/FilterPlace';
+import { FilterGroup } from '../ui/FilterGroup';
 
 interface IProps {
 
@@ -19,8 +19,41 @@ export class Filters extends React.PureComponent<IProps, {}> {
 					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
 				</div>
 
-				<FilterPlace
+				<FilterGroup
+					filters={[
+						<FilterFromTo
+							from={0}
+							to={1000000}
+							filterName="Price range"
+							renderValue={(value: number) => {
+								return (
+									<Money value={value}/>
+								);
+							}}
+						/>,
 
+						<FilterFromTo
+							from={0}
+							to={1000000}
+							filterName="Price range"
+							renderValue={(value: number) => {
+								return (
+									<Money value={value}/>
+								);
+							}}
+						/>,
+
+						<FilterFromTo
+							from={0}
+							to={1000000}
+							filterName="Price range"
+							renderValue={(value: number) => {
+								return (
+									<Money value={value}/>
+								);
+							}}
+						/>
+					]}
 				/>
 
 				<FilterFromTo

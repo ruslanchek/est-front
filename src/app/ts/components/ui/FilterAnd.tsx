@@ -25,7 +25,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 		const { entities } = this.props;
 
 		return (
-			<div className={css(COMMON_STYLES.FILTER_BRICK_CONTAINER)}>
+			<div className={css(styles.container)}>
 				<div
 					className={css(COMMON_STYLES.FILTER_BRICK)}
 					onClick={() => {
@@ -130,5 +130,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 }
 
 const styles = StyleSheet.create({
-
+	container: {
+		position: 'relative'
+	}
 });

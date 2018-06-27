@@ -73,22 +73,15 @@ export const COMMON_STYLES = StyleSheet.create({
 		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE
 	}),
 
-	FILTER_BRICK_CONTAINER: {
-		position: 'relative'
-	},
-
 	FILTER_BRICK: {
 		height: 27,
 		display: 'flex',
 		alignItems: 'center',
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		backgroundColor: COLORS.GRAY_DARK.toString(),
-		borderRadius: 16,
-		marginRight: THEME.SECTION_PADDING_H / 2,
 		cursor: 'pointer',
 		transition: 'background-color .2s',
 		marginTop: 10,
-		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
 
 		':hover': {

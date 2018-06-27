@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { IFilter } from '../../managers/FiltersManager';
-import { COLORS, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 
 interface IProps {
 	groupName: string;
@@ -22,13 +22,15 @@ export class FilterRangePredefined extends React.PureComponent<IProps, IState> {
 
 		return (
 			<div className={css(styles.container)}>
-				<div className={css(styles.label)}>
-					{filter.title}
-				</div>
+				<div className={css(COMMON_STYLES.FILTER_BRICK)}>
+					<div className={css(styles.label)}>
+						{filter.title}
+					</div>
 
-				<div className={css(styles.current)} onClick={this.toggle.bind(this)}>
-					<div>
-						{filter.value}
+					<div className={css(styles.current)} onClick={this.toggle.bind(this)}>
+						<div>
+							{filter.value}
+						</div>
 					</div>
 				</div>
 			</div>
