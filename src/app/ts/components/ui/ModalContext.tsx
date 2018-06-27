@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { IsPhone } from '../common/IsPhone';
 import { IsDesktop } from '../common/IsDesktop';
 import { Modal } from './Modal';
 import { COLORS, THEME } from '../../theme';

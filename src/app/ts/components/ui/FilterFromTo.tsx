@@ -46,9 +46,9 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 					}}
 				>
 					<span>
-						from <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.state.from)}</strong>
+						from <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.props.from)}</strong>
 						{' '}
-						to <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.state.to)}</strong>
+						to <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.props.to)}</strong>
 					</span>
 				</div>
 
