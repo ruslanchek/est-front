@@ -7,9 +7,11 @@ import { ModalResetSubmit } from './ModalResetSubmit';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { ModalContext } from './ModalContext';
 import { CSSUtils } from '../../lib/CSSUtils';
+import { ObjectsStore } from '../../stores/ObjectsStore';
+import EObjectContractType = ObjectsStore.EObjectContractType;
 
 interface IProps {
-	type: E;
+	type: EObjectContractType;
 	styles?: StyleDeclaration;
 }
 
@@ -17,7 +19,7 @@ interface IState {
 
 }
 
-export class FilterCountry extends React.PureComponent<IProps, IState> {
+export class FilterContractType extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		isOpen: false,
 	};
@@ -33,7 +35,9 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-
+					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+						Rent
+					</strong>
 				</div>
 			</div>
 		);

@@ -12,6 +12,7 @@ import ICountry = ObjectsStore.ICountry;
 import { managers } from '../../managers';
 import ICity = ObjectsStore.ICity;
 import { FilterCity } from '../ui/FilterCity';
+import { FilterContractType } from '../ui/FilterContractType';
 
 interface IProps {
 
@@ -42,13 +43,18 @@ export class Filters extends React.PureComponent<IProps, {}> {
 					/>
 
 					<FilterAnd
-						styles={styles.brickRoundedRight}
+						styles={styles.brickMiddle}
 						filterName="Property type"
 						entities={[
 							'Flats',
 							'Houses',
 							'Studios',
 						]}
+					/>
+
+					<FilterContractType
+						styles={styles.brickRoundedRight}
+						type={ObjectsStore.EObjectContractType.Rent}
 					/>
 				</FilterGroup>
 
