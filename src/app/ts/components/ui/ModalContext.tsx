@@ -5,6 +5,7 @@ import { IsDesktop } from '../common/IsDesktop';
 import { Modal } from './Modal';
 import { COLORS, THEME } from '../../theme';
 import { CSSTransition } from 'react-transition-group';
+import { IsPhoneOrTablet } from '../common/IsPhoneOrTablet';
 
 interface IProps {
 	isVisible: boolean;
@@ -27,11 +28,11 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<React.Fragment>
-				<IsPhone>
+				<IsPhoneOrTablet>
 					<Modal isVisible={this.props.isVisible} onClose={this.props.onClose.bind(this)}>
 						{this.props.children}
 					</Modal>
-				</IsPhone>
+				</IsPhoneOrTablet>
 
 				<IsDesktop>
 					<CSSTransition
@@ -49,7 +50,9 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 							className={css(styles.context)}
 							ref={(ref) => this.wrapperRef = ref}
 						>
-							{this.props.children}
+							<div className={css(styles.content)}>
+								{this.props.children}
+							</div>
 						</div>
 					</CSSTransition>
 				</IsDesktop>
@@ -67,21 +70,41 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 const styles = StyleSheet.create({
 	context: {
 		position: 'absolute',
-		backgroundColor: COLORS.WHITE.toString(),
 		top: '100%',
 		left: '50%',
 		transform: 'translate(-50%, 20px)',
 		transition: `transform ${ANIMATION_TIME}ms, opacity ${ANIMATION_TIME}ms`,
 		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)',
-		width: 400,
 		zIndex: 1000,
-		borderRadius: 15,
+
+		':before': {
+			content: '""',
+			display: 'block',
+			position: 'absolute',
+			top: 0,
+			left: '50%',
+			backgroundColor: COLORS.WHITE.toString(),
+			width: 24,
+			zIndex: 1,
+			height: 24,
+			margin: '-10px 0 0 -16px',
+			transform: 'rotateZ(45deg)',
+			boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL_INVERTED
+		}
+	},
+
+	content: {
+		width: 400,
+		borderRadius: 10,
 		overflow: 'hidden',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
+		backgroundColor: COLORS.WHITE.toString(),
+		zIndex: 2,
+		position: 'relative'
 	},
 
 	enterContent: {
-		transform: 'translate(-50%, 20px) scale(0.9) !important',
+		transform: 'translate(-50%, 20px) scale(0.95) !important',
 		opacity: 0
 	},
 
@@ -97,6 +120,6 @@ const styles = StyleSheet.create({
 
 	exitActiveContent: {
 		opacity: 0,
-		transform: 'translate(-50%, 20px) scale(0.9) !important',
+		transform: 'translate(-50%, 20px) scale(0.95) !important',
 	}
 });
