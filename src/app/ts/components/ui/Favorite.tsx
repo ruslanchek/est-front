@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
 		height: SIZE,
 		cursor: 'pointer',
 		transition: 'opacity .2s',
+		userSelect: 'none',
 
 		':hover': {
 			opacity: 0.75

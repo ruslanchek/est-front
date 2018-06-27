@@ -109,7 +109,8 @@ export class GallerySmall extends React.Component<IProps, IState> {
 
 const styles = StyleSheet.create({
 	gallery: {
-		position: 'relative'
+		position: 'relative',
+		userSelect: 'none'
 	},
 
 	pages: {
