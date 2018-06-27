@@ -192,11 +192,13 @@ export class Header extends React.PureComponent<{}, IState> {
 								to={PATHS.HOME}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
 							>
-								<Ionicon
-									icon="md-flag"
-									fontSize="16px"
-									color={COLORS.WHITE.toString()}
-								/>
+								<div className={css(styles.placeAdvertIcon)}>
+									<Ionicon
+										icon="md-flag"
+										fontSize="16px"
+										color={COLORS.WHITE.toString()}
+									/>
+								</div>
 
 								Place advert
 							</NavLink>
@@ -443,4 +445,10 @@ const styles = StyleSheet.create({
 			color: COLORS.WHITE.toString(),
 		},
 	},
+
+	placeAdvertIcon: {
+		marginRight: 5,
+		display: 'flex',
+		alignItems: 'center'
+	}
 });
