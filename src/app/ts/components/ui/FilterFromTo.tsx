@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 	},
 
 	rheostat: {
-		padding: 20,
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 	}
 });

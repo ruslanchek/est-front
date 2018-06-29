@@ -34,7 +34,7 @@ export const THEME = {
 	PAGE_SIDE_PADDING_DESKTOP: 40,
 	PAGE_SIDE_PADDING_PHONE: 20,
 	PAGE_MAX_WIDTH: 1600,
-	INPUT_HEIGHT: 40
+	INPUT_HEIGHT: 38
 };
 
 export const COMMON_STYLES = StyleSheet.create({
@@ -104,7 +104,7 @@ export const COMMON_STYLES = StyleSheet.create({
 		backgroundColor: COLORS.GRAY_DARK.toString(),
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		outline: 'none',
-		borderRadius: 5,
+		borderRadius: 4,
 		height: THEME.INPUT_HEIGHT,
 		lineHeight: `${THEME.INPUT_HEIGHT}px`,
 		fontSize: THEME.FONT_SIZE_REGULAR,

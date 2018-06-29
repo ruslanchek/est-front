@@ -8,7 +8,6 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICity = ObjectsStore.ICity;
 import { managers } from '../../managers';
 import { Search } from './Search';
-import { Input } from './Input';
 
 interface IProps {
 	isoCode: string;
@@ -127,19 +126,31 @@ const styles = StyleSheet.create({
 	},
 
 	search: {
-		padding: `0 ${THEME.SECTION_PADDING_H}px`
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
 	},
 
 	symbol: {
 		fontWeight: 600,
-		width: '100%'
+		display: 'block',
+		width: '100%',
+		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
 	},
 
 	cities: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 	},
 
 	city: {
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		fontWeight: 600,
+		display: 'block',
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		transition: 'background-color .2s',
 
+		':hover': {
+			backgroundColor: COLORS.GRAY_DARK.toString(),
+		}
 	}
 });

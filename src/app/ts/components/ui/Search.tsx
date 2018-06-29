@@ -30,7 +30,7 @@ export class Search extends React.PureComponent<IProps, IState> {
 					<div className={css(styles.icon)}>
 						<Ionicon
 							icon="md-search"
-							fontSize="24px"
+							fontSize="22px"
 							color={COLORS.BLACK.toString()}
 						/>
 					</div>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 	},
 
 	iconText: {
-		marginLeft: THEME.SECTION_PADDING_H / 2,
+		marginLeft: THEME.SECTION_PADDING_H / 2.5,
 		transition: 'transform .2s, opacity .2s',
 	},
 
