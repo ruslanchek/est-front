@@ -21,7 +21,7 @@ interface IState {
 	boundId: number;
 }
 
-const HANDLE_SIZE: number = 16;
+const HANDLE_SIZE: number = 20;
 const BAR_SIZE: number = 3;
 
 export class Rheostat extends React.PureComponent<IProps, IState> {
@@ -315,8 +315,9 @@ const styles = StyleSheet.create({
 		width: HANDLE_SIZE,
 		borderRadius: HANDLE_SIZE,
 		position: 'absolute',
+		boxSizing: 'border-box',
 		top: '50%',
-		transform: 'translate(-50%, -50%)',
+		margin: `-${HANDLE_SIZE / 2}px 0 0 -${HANDLE_SIZE / 2}px`,
 		backgroundColor: COLORS.BLUE.toString(),
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		cursor: 'pointer',
@@ -325,17 +326,17 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			backgroundColor: COLORS.BLUE.lighten(0.2).toString(),
-			transform: 'translate(-50%, -50%) scale(1.1)',
+			transform: 'scale(1.1)',
 		}
 	},
 
 	handleActive: {
 		backgroundColor: COLORS.BLUE.lighten(0.4).toString(),
-		transform: 'translate(-50%, -50%) scale(1.05)',
+		transform: 'scale(1.05)',
 
 		':hover': {
 			backgroundColor: COLORS.BLUE.lighten(0.4).toString(),
-			transform: 'translate(-50%, -50%) scale(1.05)',
+			transform: 'scale(1.05)',
 		}
 	}
 });

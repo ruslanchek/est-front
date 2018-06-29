@@ -12,6 +12,7 @@ export const COLORS = {
 	BLACK_EXTRA_LIGHT: Color('#5A636F').lighten(.5),
 	RED: Color('#DA1D58'),
 	BLUE: Color('#017AD5'),
+	BLUE_SELECTED: Color('#017AD5').alpha(.05),
 	GREEN: Color('#00914D')
 };
 
@@ -84,6 +85,7 @@ export const COMMON_STYLES = StyleSheet.create({
 		transition: 'background-color .2s',
 		marginTop: 10,
 		fontSize: THEME.FONT_SIZE_SMALL,
+		userSelect: 'none',
 
 		':hover': {
 			backgroundColor: COLORS.GRAY_DARK.darken(0.075).toString(),

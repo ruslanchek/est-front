@@ -54,6 +54,7 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	selectable: {
+		cursor: 'pointer',
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',

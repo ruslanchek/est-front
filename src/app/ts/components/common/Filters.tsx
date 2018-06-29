@@ -11,7 +11,7 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICountry = ObjectsStore.ICountry;
 import { managers } from '../../managers';
 import ICity = ObjectsStore.ICity;
-import { FilterCity } from '../ui/FilterCity';
+import { FilterSearch } from '../ui/FilterSearch';
 import { FilterContractType } from '../ui/FilterContractType';
 
 interface IProps {
@@ -36,7 +36,7 @@ export class Filters extends React.PureComponent<IProps, {}> {
 						isoCode={country.isoCode}
 					/>
 
-					<FilterCity
+					<FilterSearch
 						styles={styles.brickMiddle}
 						title={city.title}
 						isoCode={city.isoCode}

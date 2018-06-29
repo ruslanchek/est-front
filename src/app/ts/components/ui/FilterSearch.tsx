@@ -8,6 +8,7 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICity = ObjectsStore.ICity;
 import { managers } from '../../managers';
 import { Search } from './Search';
+import { Checker } from './Checker';
 
 interface IProps {
 	isoCode: string;
@@ -19,20 +20,20 @@ interface IState {
 	isOpen: boolean;
 }
 
-export class FilterCity extends React.PureComponent<IProps, IState> {
+export class FilterSearch extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		isOpen: false,
 	};
 
 	public render() {
-		let cities: ICity[] = [];
+		let entities: ICity[] = [];
 		let prevSymbol: string = '';
 
 		for(let i = 0; i < 200; i++) {
-			cities.push(managers.faker.generateCity(1));
+			entities.push(managers.faker.generateCity(1));
 		}
 
-		cities = cities.sort((a, b) => {
+		entities = entities.sort((a, b) => {
 			return a.title.localeCompare(b.title);
 		});
 
@@ -63,39 +64,39 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 					<ModalHeaderFilter
 						color={COLORS.RED}
 						icon="md-home"
-						title="Select city"
+						title="Select entity"
 					/>
 
 					<div className={css(styles.search)}>
 						<Search autoFocus={true}/>
 					</div>
 
-					<div className={css(styles.cities)}>
-						{cities.map((city, i) => {
-							const firstSymbol: string = city.title.substr(0, 1);
+					<div className={css(styles.entities)}>
+						{entities.map((entity, i) => {
+							const firstSymbol: string = entity.title.substr(0, 1);
 
 							if(firstSymbol !== prevSymbol) {
 								prevSymbol = firstSymbol;
 
 								return (
 									<React.Fragment key={i}>
-										<div className={css(styles.symbol)}>
-											{firstSymbol}
+										<div className={css(styles.symbolHolder)}>
+											<span className={css(styles.symbol)}>{firstSymbol}</span>
 										</div>
 
-										<div key={i} className={css(styles.city)} onClick={() => {
-											alert(`${city.title} ${city.isoCode}`)
+										<div key={i} className={css(styles.entity)} onClick={() => {
+											alert(`${entity.title} ${entity.isoCode}`)
 										}}>
-											{city.title}
+											{entity.title}
 										</div>
 									</React.Fragment>
 								);
 							} else {
 								return (
-									<div key={i} className={css(styles.city)} onClick={() => {
-										alert(`${city.title} ${city.isoCode}`)
+									<div key={i} className={css(styles.entity, true && styles.entitySelected)} onClick={() => {
+										alert(`${entity.title} ${entity.isoCode}`)
 									}}>
-										{city.title}
+										{entity.title}
 									</div>
 								);
 							}
@@ -134,12 +135,11 @@ const styles = StyleSheet.create({
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
 	},
 
-	symbol: {
+	symbolHolder: {
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		fontWeight: 600,
 		display: 'block',
 		width: '100%',
-		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
 		boxSizing: 'border-box',
 
@@ -148,25 +148,41 @@ const styles = StyleSheet.create({
 		}
 	},
 
-	cities: {
+	symbol: {
+		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
+	},
+
+	entities: {
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		maxHeight: 270,
 		minHeight: 270,
 		overflow: 'auto'
 	},
 
-	city: {
+	entity: {
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		fontWeight: 600,
-		display: 'block',
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
 		transition: 'background-color .2s',
 		boxSizing: 'border-box',
 		whiteSpace: 'nowrap',
 		overflow: 'hidden',
+		cursor: 'pointer',
 
 		':hover': {
 			backgroundColor: COLORS.GRAY_DARK.toString(),
+		}
+	},
+
+	entitySelected: {
+		backgroundColor: COLORS.BLUE_SELECTED.toString(),
+		color: COLORS.BLUE.toString(),
+
+		':hover': {
+			backgroundColor: COLORS.BLUE_SELECTED.toString(),
 		}
 	}
 });

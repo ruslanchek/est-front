@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
 		transform: 'translate(-50%, 20px)',
 		transition: `transform ${ANIMATION_TIME}ms, opacity ${ANIMATION_TIME}ms`,
 		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)',
-		zIndex: 900,
+		zIndex: 5,
+		cursor: 'default',
 
 		':before': {
 			content: '""',
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
 	},
 
 	enterContent: {
-		transform: 'translate(-50%, 20px) scale(0.95) !important',
+		transform: 'translate(-50%, 20px) scale(0.98) !important',
 		opacity: 0
 	},
 
@@ -130,6 +131,6 @@ const styles = StyleSheet.create({
 
 	exitActiveContent: {
 		opacity: 0,
-		transform: 'translate(-50%, 20px) scale(0.95) !important',
+		transform: 'translate(-50%, 20px) scale(0.98) !important',
 	}
 });

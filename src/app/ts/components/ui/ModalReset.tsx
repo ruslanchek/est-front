@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		fontWeight: 600,
-		height: 46,
+		height: 48,
 		border: 'none',
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		outline: 'none',
