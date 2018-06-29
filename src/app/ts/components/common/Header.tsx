@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
 	floatingTrigger: {
 		position: 'fixed',
 		display: 'none',
-		zIndex: 1000,
+		zIndex: 950,
 		bottom: THEME.SECTION_PADDING_V,
 		right: 40,
 		borderRadius: 20,

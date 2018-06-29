@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
 		right: 0,
 		overflow: 'auto',
 		top: 0,
-		zIndex: 9999,
+		zIndex: 1000,
 		boxSizing: 'border-box'
 	},
 

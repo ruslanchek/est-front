@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 		transform: 'translate(-50%, 20px)',
 		transition: `transform ${ANIMATION_TIME}ms, opacity ${ANIMATION_TIME}ms`,
 		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)',
-		zIndex: 1000,
+		zIndex: 900,
 
 		':before': {
 			content: '""',
