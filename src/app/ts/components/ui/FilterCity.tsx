@@ -83,14 +83,18 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 											{firstSymbol}
 										</div>
 
-										<div key={i} className={css(styles.city)}>
+										<div key={i} className={css(styles.city)} onClick={() => {
+											alert(`${city.title} ${city.isoCode}`)
+										}}>
 											{city.title}
 										</div>
 									</React.Fragment>
 								);
 							} else {
 								return (
-									<div key={i} className={css(styles.city)}>
+									<div key={i} className={css(styles.city)} onClick={() => {
+										alert(`${city.title} ${city.isoCode}`)
+									}}>
 										{city.title}
 									</div>
 								);
