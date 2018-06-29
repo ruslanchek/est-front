@@ -3,6 +3,7 @@ import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { Checker } from './Checker';
 
 interface IProps {
 	items: IModalSelectItem[];
@@ -31,28 +32,31 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 			<div>
 				{items.map((item, i) => {
 					return (
-						<a
+						<span
 							key={i}
-							href="#"
 							onClick={this.onClick.bind(this, item)}
 							className={css(COMMON_STYLES.LINK, styles.selectable)}
 						>
 							{item.title}
-						</a>
+
+							<Checker checked={true}/>
+						</span>
 					);
 				})}
 			</div>
 		);
 	}
 
-	private onClick = (item: IModalSelectItem, e) => {
-		e.preventDefault();
+	private onClick = (item: IModalSelectItem) => {
+
 	};
 }
 
 const styles = StyleSheet.create({
 	selectable: {
-		display: 'block',
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 		fontWeight: 600,
 		padding: `${THEME.SECTION_PADDING_V / 1.25}px ${THEME.SECTION_PADDING_H}px`,
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
@@ -60,6 +64,6 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			backgroundColor: COLORS.GRAY_DARK.toString(),
-		},
+		}
 	},
 });

@@ -11,21 +11,21 @@ interface IProps {
 	width: string;
 	height: string;
 	zoom: number;
-	lat: string;
-	lng: string;
+	lat: number;
+	lng: number;
 	objects: IObject[];
 }
 
 interface IState {
-	lat: string;
-	lng: string;
+	lat: number;
+	lng: number;
 	markerOpenedId: number;
 }
 
 export class Gis extends React.PureComponent<IProps, IState> {
 	public state: IState = {
-		lat: '0',
-		lng: '0',
+		lat: 0,
+		lng: 0,
 		markerOpenedId: null
 	};
 

@@ -25,8 +25,8 @@ export namespace ObjectsStore {
 	}
 
 	export interface IGeoPoint {
-		lat: string;
-		lng: string;
+		lat: number;
+		lng: number;
 	}
 
 	export interface ICountry {

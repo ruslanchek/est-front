@@ -10,6 +10,7 @@ import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
 import { Rheostat } from '../ui/Rheostat';
 import { Money } from '../ui/Money';
+import { Gis } from '../ui/Gis';
 
 interface IProps {
 

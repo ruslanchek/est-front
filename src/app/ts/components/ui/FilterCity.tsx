@@ -73,8 +73,8 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 								prevSymbol = firstSymbol;
 
 								return (
-									<React.Fragment>
-										<div key={i} className={css(styles.symbol)}>
+									<React.Fragment key={i}>
+										<div className={css(styles.symbol)}>
 											{firstSymbol}
 										</div>
 

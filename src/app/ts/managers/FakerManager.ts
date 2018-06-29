@@ -54,8 +54,8 @@ export class FakerManager extends Manager {
 
 	public generateGeoPoint(): IGeoPoint {
 		return {
-			lat: faker.address.latitude(),
-			lng: faker.address.longitude(),
+			lat: parseFloat(faker.address.latitude()),
+			lng: parseFloat(faker.address.longitude()),
 		};
 	}
 

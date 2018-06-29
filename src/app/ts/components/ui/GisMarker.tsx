@@ -8,8 +8,8 @@ import IObject = ObjectsStore.IObject;
 interface IProps {
 	opened: boolean;
 	object: IObject;
-	lat: string;
-	lng: string;
+	lat: number;
+	lng: number;
 	type: EGisMarkerType;
 	color: Color;
 	onCLick: (object: IObject) => void;
@@ -42,7 +42,7 @@ export class GisMarker extends React.PureComponent<IProps, {}> {
 					onCLick(object);
 				}}
 				style={{
-					background: `${color.toString()} linear-gradient(to bottom, ${color.lighten(0.4).toString()}, ${color.alpha(0).toString()})`,
+					background: `${color.toString()}`,
 				}}
 			>
 				{this.props.opened ? <div className={css(styles.popup)}>xxx</div> : null}
@@ -69,6 +69,16 @@ const styles = StyleSheet.create({
 		transition: 'opacity .2s, transform .2s',
 		cursor: 'pointer',
 
+		':before': {
+			content: '""',
+			position: 'relative',
+			display: 'block',
+			width: 8,
+			height: 8,
+			borderRadius: '100%',
+			backgroundColor: COLORS.WHITE.toString()
+		},
+
 		':hover': {
 			opacity: 1,
 			transform: 'translate(-50%, -50%) scale(1.1)',
@@ -78,6 +88,10 @@ const styles = StyleSheet.create({
 	small: {
 		width: 10,
 		height: 10,
+
+		':before': {
+			display: 'none'
+		}
 	},
 
 	popup: {
