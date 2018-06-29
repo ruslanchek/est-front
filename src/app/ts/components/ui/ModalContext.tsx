@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const ANIMATION_TIME: number = 350;
-const DEFAULT_WIDTH: number = 400;
+const DEFAULT_WIDTH: number = 300;
 
 export class ModalContext extends React.PureComponent<IProps, {}> {
 	private wrapperRef = null;
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
 	},
 
 	content: {
+		fontSize: THEME.FONT_SIZE_SMALL,
 		width: 400,
 		borderRadius: 10,
 		overflow: 'hidden',

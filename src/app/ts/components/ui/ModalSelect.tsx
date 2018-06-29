@@ -53,7 +53,8 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 const styles = StyleSheet.create({
 	selectable: {
 		display: 'block',
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		fontWeight: 600,
+		padding: `${THEME.SECTION_PADDING_V / 1.25}px ${THEME.SECTION_PADDING_H}px`,
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		transition: 'background-color .2s',
 

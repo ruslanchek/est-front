@@ -21,7 +21,8 @@ interface IState {
 	boundId: number;
 }
 
-const HANDLE_SIZE: number = 20;
+const HANDLE_SIZE: number = 16;
+const BAR_SIZE: number = 3;
 
 export class Rheostat extends React.PureComponent<IProps, IState> {
 	public static defaultProps: Partial<IProps> = {
@@ -281,7 +282,7 @@ const styles = StyleSheet.create({
 	},
 
 	bar: {
-		height: 5,
+		height: BAR_SIZE,
 		position: 'relative',
 		margin: `0 ${HANDLE_SIZE / 2}px`,
 
@@ -293,17 +294,17 @@ const styles = StyleSheet.create({
 			left: -HANDLE_SIZE / 2,
 			width: '100%',
 			padding: `0 ${HANDLE_SIZE /2}px`,
-			height: 5,
-			borderRadius: 5,
+			height: BAR_SIZE,
+			borderRadius: BAR_SIZE,
 			backgroundColor: COLORS.GRAY_DARK.toString(),
 			boxShadow: `inset 0 1px 1px ${COLORS.BLACK.alpha(.1).toString()}`
 		}
 	},
 
 	line: {
-		height: 5,
+		height: BAR_SIZE,
 		backgroundColor: COLORS.BLUE.toString(),
-		borderRadius: 5,
+		borderRadius: BAR_SIZE,
 		display: 'block',
 		top: 0,
 		position: 'absolute'

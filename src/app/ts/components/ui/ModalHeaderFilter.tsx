@@ -20,7 +20,7 @@ export class ModalHeaderFilter extends React.PureComponent<IProps, {}> {
 					}}>
 						<Ionicon
 							icon={this.props.icon}
-							fontSize="22px"
+							fontSize="16px"
 							color={COLORS.WHITE.toString()}
 						/>
 					</i>
@@ -36,12 +36,14 @@ const styles = StyleSheet.create({
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
 		display: 'flex',
 		justifyContent: 'space-between',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 
 	title: {
 		margin: 0,
-		fontSize: THEME.FONT_SIZE_BIG,
+		fontSize: THEME.FONT_SIZE_SMALL,
+		textTransform: 'uppercase',
+		color: COLORS.BLACK.toString(),
 		display: 'flex',
 		justifyContent: 'flex-start',
 		alignItems: 'center'
@@ -60,8 +62,8 @@ const styles = StyleSheet.create({
 	},
 
 	icon: {
-		width: 28,
-		height: 28,
+		width: 22,
+		height: 22,
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',

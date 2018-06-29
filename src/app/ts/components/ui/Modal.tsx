@@ -19,7 +19,7 @@ interface IState {
 }
 
 const ANIMATION_TIME: number = 350;
-const DEFAULT_WIDTH: number = 400;
+const DEFAULT_WIDTH: number = 300;
 
 export class Modal extends React.PureComponent<IProps, IState> {
 	public state: IState = {
