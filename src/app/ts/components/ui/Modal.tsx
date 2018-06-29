@@ -19,7 +19,7 @@ interface IState {
 }
 
 const ANIMATION_TIME: number = 350;
-const DEFAULT_WIDTH: number = 300;
+const DEFAULT_WIDTH: number = 400;
 
 export class Modal extends React.PureComponent<IProps, IState> {
 	public state: IState = {
@@ -151,7 +151,8 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		position: 'relative',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
-		margin: 'auto'
+		margin: 'auto',
+		fontSize: THEME.FONT_SIZE_SMALL,
 	},
 
 	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {

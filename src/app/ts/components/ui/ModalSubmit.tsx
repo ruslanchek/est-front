@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
 	submit: {
 		display: 'block',
 		width: '100%',
-		height: 42,
-		fontSize: THEME.FONT_SIZE_SMALL,
+		height: 46,
+		fontSize: THEME.FONT_SIZE_REGULAR,
 		fontWeight: 600,
 		border: 'none',
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,

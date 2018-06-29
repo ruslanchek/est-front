@@ -135,15 +135,24 @@ const styles = StyleSheet.create({
 	},
 
 	symbol: {
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		fontWeight: 600,
 		display: 'block',
 		width: '100%',
 		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		boxSizing: 'border-box',
+
+		':first-of-type': {
+			borderTop: 'none'
+		}
 	},
 
 	cities: {
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		maxHeight: 270,
+		minHeight: 270,
+		overflow: 'auto'
 	},
 
 	city: {
@@ -152,6 +161,9 @@ const styles = StyleSheet.create({
 		display: 'block',
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
 		transition: 'background-color .2s',
+		boxSizing: 'border-box',
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
 
 		':hover': {
 			backgroundColor: COLORS.GRAY_DARK.toString(),
