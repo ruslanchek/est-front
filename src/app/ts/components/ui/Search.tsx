@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import * as Ionicon from 'react-ionicons';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 
 interface IProps {
-
+	autoFocus: boolean;
 }
 
 interface IState {
 	isFocused: boolean;
 	value: string;
 }
-
-const HEIGHT: number = 40;
 
 export class Search extends React.PureComponent<IProps, IState> {
 	public state: IState = {
@@ -39,7 +37,7 @@ export class Search extends React.PureComponent<IProps, IState> {
 
 					<span
 						{...CSSUtils.mergeStyles(
-							css(styles.iconText, styles.iconTextPhone),
+							css(styles.iconText),
 							(isFocused || value) && css(styles.iconTextFocused),
 						)}
 					>
@@ -69,10 +67,11 @@ export class Search extends React.PureComponent<IProps, IState> {
 								value: this.input.value
 							});
 						}}
+						autoFocus={this.props.autoFocus}
 						id="search"
 						type="text"
 						ref={(ref) => this.input = ref}
-						className={css(styles.input)}
+						className={css(COMMON_STYLES.INPUT, styles.input)}
 					/>
 				</div>
 			</div>
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
 	container: {
 		width: '100%',
 		position: 'relative',
-		height: HEIGHT,
+		height: THEME.INPUT_HEIGHT,
 	},
 
 	icon: {
@@ -97,10 +96,6 @@ const styles = StyleSheet.create({
 		marginLeft: THEME.SECTION_PADDING_H / 2,
 		transition: 'transform .2s, opacity .2s',
 	},
-
-	iconTextPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
-		display: 'none',
-	}),
 
 	iconTextFocused: {
 		opacity: 0,
@@ -117,7 +112,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		position: 'absolute',
-		height: HEIGHT,
+		height: THEME.INPUT_HEIGHT,
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		top: 0,
 		left: 0,
@@ -125,26 +120,6 @@ const styles = StyleSheet.create({
 	},
 
 	input: {
-		width: '100%',
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px 0 40px`,
-		outline: 'none',
-		borderRadius: 5,
-		height: HEIGHT,
-		lineHeight: 'HEIGHTpx',
-		fontSize: THEME.FONT_SIZE_REGULAR,
-		border: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		fontWeight: 600,
-		color: COLORS.BLACK.toString(),
-		transition: 'border-color .2s',
-		boxSizing: 'border-box',
-
-		':hover': {
-			borderColor: COLORS.GRAY_DARK.darken(.05).toString(),
-		},
-
-		':focus': {
-			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
-		},
+		paddingLeft: THEME.INPUT_HEIGHT
 	},
 });

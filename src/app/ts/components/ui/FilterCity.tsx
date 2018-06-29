@@ -7,6 +7,8 @@ import { ModalResetSubmit } from './ModalResetSubmit';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICity = ObjectsStore.ICity;
 import { managers } from '../../managers';
+import { Search } from './Search';
+import { Input } from './Input';
 
 interface IProps {
 	isoCode: string;
@@ -52,7 +54,7 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 
 				<ModalContext
 					isVisible={this.state.isOpen}
-					width={700}
+					width={300}
 					onClose={() => {
 						this.setState({
 							isOpen: false
@@ -61,9 +63,13 @@ export class FilterCity extends React.PureComponent<IProps, IState> {
 				>
 					<ModalHeaderFilter
 						color={COLORS.RED}
-						icon="ios-home"
+						icon="md-home"
 						title="Select city"
 					/>
+
+					<div className={css(styles.search)}>
+						<Search autoFocus={true}/>
+					</div>
 
 					<div className={css(styles.cities)}>
 						{cities.map((city, i) => {
@@ -120,6 +126,10 @@ const styles = StyleSheet.create({
 		position: 'relative'
 	},
 
+	search: {
+		padding: `0 ${THEME.SECTION_PADDING_H}px`
+	},
+
 	symbol: {
 		fontWeight: 600,
 		width: '100%'
@@ -127,12 +137,9 @@ const styles = StyleSheet.create({
 
 	cities: {
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		display: 'flex',
-		justifyContent: 'space-between',
-		flexWrap: 'wrap'
 	},
 
 	city: {
-		width: `calc(33% - ${THEME.SECTION_PADDING_H}px)`
+
 	}
 });

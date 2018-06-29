@@ -60,7 +60,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 				>
 					<ModalHeaderFilter
 						color={COLORS.BLUE}
-						icon="ios-home"
+						icon="md-home"
 						title={this.props.filterName}
 					/>
 

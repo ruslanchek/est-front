@@ -33,7 +33,8 @@ export const THEME = {
 	BOX_SHADOW_ELEVATION_2: `0 5px 15px 0 ${COLORS.BLACK.alpha(0.09).toString()}`,
 	PAGE_SIDE_PADDING_DESKTOP: 40,
 	PAGE_SIDE_PADDING_PHONE: 20,
-	PAGE_MAX_WIDTH: 1600
+	PAGE_MAX_WIDTH: 1600,
+	INPUT_HEIGHT: 40
 };
 
 export const COMMON_STYLES = StyleSheet.create({
@@ -96,5 +97,29 @@ export const COMMON_STYLES = StyleSheet.create({
 	FILTER_ACCENT: {
 		color: COLORS.BLACK.toString(),
 		fontWeight: 600
+	},
+
+	INPUT: {
+		width: '100%',
+		backgroundColor: COLORS.GRAY_DARK.toString(),
+		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
+		outline: 'none',
+		borderRadius: 5,
+		height: THEME.INPUT_HEIGHT,
+		lineHeight: `${THEME.INPUT_HEIGHT}px`,
+		fontSize: THEME.FONT_SIZE_REGULAR,
+		border: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		fontWeight: 600,
+		color: COLORS.BLACK.toString(),
+		transition: 'border-color .2s',
+		boxSizing: 'border-box',
+
+		':hover': {
+			borderColor: COLORS.GRAY_DARK.darken(.05).toString(),
+		},
+
+		':focus': {
+			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
+		},
 	}
 });

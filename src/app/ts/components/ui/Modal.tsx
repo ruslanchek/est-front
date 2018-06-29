@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 	},
 
 	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
-		width: '100%',
+		width: '100% !important',
 		overflow: 'auto',
 		'-webkit-overflow-scrolling': 'touch'
 	}),

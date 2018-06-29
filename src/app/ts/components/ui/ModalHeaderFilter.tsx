@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 4,
+		borderRadius: 3,
 		marginRight: THEME.SECTION_PADDING_H / 2
 	}
 });
