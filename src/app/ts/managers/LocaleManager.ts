@@ -18,6 +18,9 @@ export class LocaleManager extends Manager {
 				}
 			});
 
+			this.strings.setLanguage('en');
+			console.log(this.strings.test);
+
 			resolve();
 		});
 	}

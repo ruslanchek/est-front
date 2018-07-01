@@ -98,6 +98,9 @@ export class Managers {
 	}
 
 	private async initManagers(): Promise<any> {
+		await this.locale.init();
+		this.logTime('LocaleManager ready');
+
 		await this.route.init();
 		this.logTime('RouteManager ready');
 
