@@ -52,6 +52,7 @@
 		"react": "^16.3.2",
 		"react-dom": "^16.3.2",
 		"react-ionicons": "^2.1.6",
+		"react-localization": "^1.0.10",
 		"react-responsive": "^4.1.0",
 		"react-router": "^4.2.0",
 		"react-router-dom": "^4.2.2",

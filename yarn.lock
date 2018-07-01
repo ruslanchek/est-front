@@ -3515,6 +3515,10 @@ loader-utils@~0.2.2:
     json5 "^0.5.0"
     object-assign "^4.0.1"
 
+localized-strings@^0.0.11:
+  version "0.0.11"
+  resolved "https://npmjs.eoadm.com/localized-strings/-/localized-strings-0.0.11.tgz#96ccab4bd1855a850f3099dc78e1b61423f6cecd"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -4601,6 +4605,13 @@ react-ionicons@^2.1.6:
     react-dom "15.4.2"
     styled-components "2.2.3"
 
+react-localization@^1.0.10:
+  version "1.0.10"
+  resolved "https://npmjs.eoadm.com/react-localization/-/react-localization-1.0.10.tgz#fdb5cfb88bf4bd70ec2109bb425d5408789fe704"
+  dependencies:
+    localized-strings "^0.0.11"
+    react "^16.0.0"
+
 react-responsive@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/react-responsive/-/react-responsive-4.1.0.tgz#01d129a35729c8f0373e79871cc8d5ecf6e22765"
@@ -4669,7 +4680,7 @@ react@15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react@^16.2.0, react@^16.3.2:
+react@^16.0.0, react@^16.2.0, react@^16.3.2:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:

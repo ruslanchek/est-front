@@ -23,13 +23,21 @@ interface IProps {
 interface IState {
 	isOpen: boolean;
 	search: string;
+	entities: ISearchFilterEntity[];
 }
 
 export class FilterSearch extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		isOpen: false,
-		search: ''
+		search: '',
+		entities: []
 	};
+
+	public componentDidMount() {
+		this.setState({
+			entities: this.props.entities
+		});
+	}
 
 	public render() {
 		let prevSymbol: string = '';
@@ -70,15 +78,15 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 							onChange={(value) => {
 								this.setState({
 									search: value
+								}, () => {
+									this.filter();
 								});
-
-								this.filter();
 							}}
 						/>
 					</div>
 
 					<div className={css(styles.entities)}>
-						{this.props.entities.map((entity, i) => {
+						{this.state.entities.map((entity, i) => {
 							const firstSymbol: string = entity.title.substr(0, 1);
 
 							if(firstSymbol !== prevSymbol) {
@@ -134,8 +142,44 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 		);
 	}
 
-	private filter(): void {
+	private isMatch(where: string, what: string): boolean {
+		const clearPattern: RegExp = /[\.,\/#!$%\^&\*;:"'(){}=_`~()]/g;
 
+		if (what) {
+			what = what.toLowerCase().trim();
+			what = what.replace(clearPattern, '');
+			what = what.replace(/\s{2,}/g, ' ');
+		}
+
+		if (where) {
+			where = where.toString();
+
+			if (!what) {
+				return true;
+			}
+
+			where = where.replace(clearPattern, '');
+			where.replace(/\s{1,}/g, ' ');
+			where = where.toLowerCase().trim();
+
+			return where.indexOf(what) > -1;
+		}
+
+		return true;
+	}
+
+	private filter(): void {
+		let entities: ISearchFilterEntity[] = this.props.entities;
+
+		if(this.state.search) {
+			entities = entities.filter((entity) => {
+				return this.isMatch(entity.title, this.state.search);
+			});
+		}
+
+		this.setState({
+			entities
+		});
 	}
 }
 
@@ -169,7 +213,6 @@ const styles = StyleSheet.create({
 	entities: {
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		maxHeight: 270,
-		minHeight: 270,
 		overflow: 'auto'
 	},
 

@@ -4,13 +4,14 @@ import { StateStore } from './stores/StateStore';
 import { ApiManager } from './managers/ApiManager';
 import { ToastManager } from './managers/ToastManager';
 import { FakerManager } from './managers/FakerManager';
-import FilterManager = PIXI.FilterManager;
 import { FiltersManager } from './managers/FiltersManager';
+import { LocaleManager } from './managers/LocaleManager';
 
 const PRELOADING_ANIMATION_TIME: number = 0;
 const LOADING_ANIMATION_TIME: number = 500;
 
 export class Managers {
+	public locale: LocaleManager;
 	public route: RouteManager;
 	public storage: StorageManager;
 	public api: ApiManager;
@@ -21,6 +22,7 @@ export class Managers {
 	private initStartTime: number = 0;
 
 	public constructor() {
+		this.locale = new LocaleManager();
 		this.route = new RouteManager();
 		this.storage = new StorageManager();
 		this.api = new ApiManager();
@@ -86,6 +88,7 @@ export class Managers {
 	}
 
 	private resetManagers(): void {
+		this.locale.reset();
 		this.route.reset();
 		this.storage.reset();
 		this.api.reset();

@@ -33,7 +33,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 		let entities: ISearchFilterEntity[] = [];
 		let currentCity: ICity = null;
 
-		for(let i = 0; i < 5; i++) {
+		for(let i = 0; i < 200; i++) {
 			const city: ICity = managers.faker.generateCity(1);
 
 			currentCity = city;
