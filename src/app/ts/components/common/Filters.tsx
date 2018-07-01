@@ -78,6 +78,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 
 					{firstEntity && (
 						<FilterSearch
+							filterTitle={"Select city"}
 							entities={this.state.cityEntities}
 							currentId={this.state.currentCityId}
 							styles={styles.brickMiddle}

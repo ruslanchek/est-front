@@ -5,7 +5,7 @@ import { ModalContext } from './ModalContext';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { ModalResetSubmit } from './ModalResetSubmit';
 import { Search } from './Search';
-import LogEntry = jest.LogEntry;
+import * as Ionicon from 'react-ionicons';
 
 export interface ISearchFilterEntity {
 	title: string;
@@ -14,6 +14,7 @@ export interface ISearchFilterEntity {
 
 interface IProps {
 	title: string;
+	filterTitle: string;
 	entities: ISearchFilterEntity[];
 	currentId: string | number;
 	onSelect: (id: string | number) => void;
@@ -40,6 +41,7 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 	}
 
 	public render() {
+		const {entities, isOpen} = this.state;
 		let prevSymbol: string = '';
 
 		return (
@@ -58,7 +60,7 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 				</div>
 
 				<ModalContext
-					isVisible={this.state.isOpen}
+					isVisible={isOpen}
 					width={300}
 					onClose={() => {
 						this.setState({
@@ -69,7 +71,7 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 					<ModalHeaderFilter
 						color={COLORS.RED}
 						icon="md-home"
-						title="Select entity"
+						title={this.props.filterTitle}
 					/>
 
 					<div className={css(styles.search)}>
@@ -86,39 +88,55 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 					</div>
 
 					<div className={css(styles.entities)}>
-						{this.state.entities.map((entity, i) => {
-							const firstSymbol: string = entity.title.substr(0, 1);
+						{entities.length > 0 && (
+							<React.Fragment>
+								{entities.map((entity, i) => {
+									const firstSymbol: string = entity.title.substr(0, 1);
 
-							if(firstSymbol !== prevSymbol) {
-								prevSymbol = firstSymbol;
+									if(firstSymbol !== prevSymbol) {
+										prevSymbol = firstSymbol;
 
-								return (
-									<React.Fragment key={i}>
-										<div className={css(styles.symbolHolder)}>
-											<span className={css(styles.symbol)}>{firstSymbol}</span>
-										</div>
+										return (
+											<React.Fragment key={i}>
+												<div className={css(styles.symbolHolder)}>
+													<span className={css(styles.symbol)}>{firstSymbol}</span>
+												</div>
 
-										<div key={i} className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)} onClick={() => {
-											this.props.onSelect(entity.id);
-										}}>
-											{entity.title}
-										</div>
-									</React.Fragment>
-								);
-							} else {
-								return (
-									<div
-										key={i}
-										className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)}
-										onClick={() => {
-											this.props.onSelect(entity.id);
-										}}
-									>
-										{entity.title}
-									</div>
-								);
-							}
-						})}
+												<div
+													key={i}
+													className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)}
+													onClick={() => {
+														this.props.onSelect(entity.id);
+													}}
+												>
+													{entity.title}
+												</div>
+											</React.Fragment>
+										);
+									} else {
+										return (
+											<div
+												key={i}
+												className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)}
+												onClick={() => {
+													this.props.onSelect(entity.id);
+												}}
+											>
+												{entity.title}
+											</div>
+										);
+									}
+								})}
+							</React.Fragment>
+						)}
+
+						{entities.length === 0 && (
+							<div
+								className={css(styles.nothingFound)}
+							>
+								Nothing found
+							</div>
+						)}
 					</div>
 
 					<ModalResetSubmit
@@ -186,6 +204,17 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	container: {
 		position: 'relative'
+	},
+
+	nothingFound: {
+		fontWeight: 400,
+		textAlign: 'center',
+		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		boxSizing: 'border-box',
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		cursor: 'pointer',
 	},
 
 	search: {
