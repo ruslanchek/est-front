@@ -6,6 +6,7 @@ import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 
 interface IProps {
 	autoFocus: boolean;
+	onChange: (value: string) => void;
 }
 
 interface IState {
@@ -57,15 +58,19 @@ export class Search extends React.PureComponent<IProps, IState> {
 								isFocused: false,
 							});
 						}}
-						onChange={(e) => {
+						onChange={(e: any) => {
 							this.setState({
 								value: e.target.value,
 							});
+
+							this.props.onChange(e.target.value);
 						}}
-						onKeyDown={(e) => {
+						onKeyDown={(e: any) => {
 							this.setState({
-								value: this.input.value
+								value: e.target.value
 							});
+
+							this.props.onChange(e.target.value);
 						}}
 						autoFocus={this.props.autoFocus}
 						id="search"

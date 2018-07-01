@@ -4,38 +4,35 @@ import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { ModalContext } from './ModalContext';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { ModalResetSubmit } from './ModalResetSubmit';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import ICity = ObjectsStore.ICity;
-import { managers } from '../../managers';
 import { Search } from './Search';
-import { Checker } from './Checker';
+import LogEntry = jest.LogEntry;
+
+export interface ISearchFilterEntity {
+	title: string;
+	id: string | number;
+}
 
 interface IProps {
-	isoCode: string;
 	title: string;
+	entities: ISearchFilterEntity[];
+	currentId: string | number;
+	onSelect: (id: string | number) => void;
 	styles?: StyleDeclaration;
 }
 
 interface IState {
 	isOpen: boolean;
+	search: string;
 }
 
 export class FilterSearch extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		isOpen: false,
+		search: ''
 	};
 
 	public render() {
-		let entities: ICity[] = [];
 		let prevSymbol: string = '';
-
-		for(let i = 0; i < 200; i++) {
-			entities.push(managers.faker.generateCity(1));
-		}
-
-		entities = entities.sort((a, b) => {
-			return a.title.localeCompare(b.title);
-		});
 
 		return (
 			<div className={css(styles.container)}>
@@ -68,11 +65,20 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 					/>
 
 					<div className={css(styles.search)}>
-						<Search autoFocus={true}/>
+						<Search
+							autoFocus={true}
+							onChange={(value) => {
+								this.setState({
+									search: value
+								});
+
+								this.filter();
+							}}
+						/>
 					</div>
 
 					<div className={css(styles.entities)}>
-						{entities.map((entity, i) => {
+						{this.props.entities.map((entity, i) => {
 							const firstSymbol: string = entity.title.substr(0, 1);
 
 							if(firstSymbol !== prevSymbol) {
@@ -84,8 +90,8 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 											<span className={css(styles.symbol)}>{firstSymbol}</span>
 										</div>
 
-										<div key={i} className={css(styles.entity)} onClick={() => {
-											alert(`${entity.title} ${entity.isoCode}`)
+										<div key={i} className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)} onClick={() => {
+											this.props.onSelect(entity.id);
 										}}>
 											{entity.title}
 										</div>
@@ -93,9 +99,13 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 								);
 							} else {
 								return (
-									<div key={i} className={css(styles.entity, true && styles.entitySelected)} onClick={() => {
-										alert(`${entity.title} ${entity.isoCode}`)
-									}}>
+									<div
+										key={i}
+										className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)}
+										onClick={() => {
+											this.props.onSelect(entity.id);
+										}}
+									>
 										{entity.title}
 									</div>
 								);
@@ -122,6 +132,10 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 				</ModalContext>
 			</div>
 		);
+	}
+
+	private filter(): void {
+
 	}
 }
 

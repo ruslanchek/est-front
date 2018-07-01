@@ -11,17 +11,57 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICountry = ObjectsStore.ICountry;
 import { managers } from '../../managers';
 import ICity = ObjectsStore.ICity;
-import { FilterSearch } from '../ui/FilterSearch';
+import { FilterSearch, ISearchFilterEntity } from '../ui/FilterSearch';
 import { FilterContractType } from '../ui/FilterContractType';
 
 interface IProps {
 
 }
 
-export class Filters extends React.PureComponent<IProps, {}> {
+interface IState {
+	currentCityId: string | number;
+	cityEntities: ISearchFilterEntity[];
+}
+
+export class Filters extends React.PureComponent<IProps, IState> {
+	public state: IState = {
+		currentCityId: null,
+		cityEntities: []
+	};
+
+	public componentDidMount() {
+		let entities: ISearchFilterEntity[] = [];
+		let currentCity: ICity = null;
+
+		for(let i = 0; i < 5; i++) {
+			const city: ICity = managers.faker.generateCity(1);
+
+			currentCity = city;
+
+			entities.push({
+				title: city.title,
+				id: city.id
+			});
+		}
+
+		entities = entities.sort((a, b) => {
+			return a.title.localeCompare(b.title);
+		});
+
+		this.setState({
+			cityEntities: entities,
+			currentCityId: entities[0].id
+		});
+	}
+
 	public render() {
 		const country: ICountry = managers.faker.generateCountry();
-		const city: ICity = managers.faker.generateCity(country.id);
+		const {cityEntities} = this.state;
+		let firstEntity: ISearchFilterEntity = null;
+
+		if(cityEntities) {
+			firstEntity = cityEntities[0];
+		}
 
 		return (
 			<div className={css(styles.filters)}>
@@ -36,11 +76,19 @@ export class Filters extends React.PureComponent<IProps, {}> {
 						isoCode={country.isoCode}
 					/>
 
-					<FilterSearch
-						styles={styles.brickMiddle}
-						title={city.title}
-						isoCode={city.isoCode}
-					/>
+					{firstEntity && (
+						<FilterSearch
+							entities={this.state.cityEntities}
+							currentId={this.state.currentCityId}
+							styles={styles.brickMiddle}
+							title={firstEntity.title}
+							onSelect={(id) => {
+								this.setState({
+									currentCityId: id
+								});
+							}}
+						/>
+					)}
 
 					<FilterAnd
 						styles={styles.brickMiddle}
