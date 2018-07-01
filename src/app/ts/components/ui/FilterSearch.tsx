@@ -5,7 +5,6 @@ import { ModalContext } from './ModalContext';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { ModalResetSubmit } from './ModalResetSubmit';
 import { Search } from './Search';
-import * as Ionicon from 'react-ionicons';
 
 export interface ISearchFilterEntity {
 	title: string;
