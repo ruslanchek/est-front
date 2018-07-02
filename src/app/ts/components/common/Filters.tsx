@@ -70,18 +70,12 @@ export class Filters extends React.PureComponent<IProps, IState> {
 				</div>
 
 				<FilterGroup styles={styles.group}>
-					<FilterCountry
-						styles={styles.brickRoundedLeft}
-						title={country.title}
-						isoCode={country.isoCode}
-					/>
-
 					{firstEntity && (
 						<FilterSearch
 							filterTitle={"Select city"}
 							entities={this.state.cityEntities}
 							currentId={this.state.currentCityId}
-							styles={styles.brickMiddle}
+							styles={styles.brickRoundedLeft}
 							title={firstEntity.title}
 							onSelect={(id) => {
 								this.setState({

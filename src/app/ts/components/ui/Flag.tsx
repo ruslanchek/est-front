@@ -12,7 +12,7 @@ const SIZE_RATIO: number = 1.55;
 
 export class Flag extends React.PureComponent<IProps, {}> {
 	public static defaultProps: Partial<IProps> = {
-		size: 20
+		size: 14
 	};
 
 	public render() {
@@ -33,10 +33,12 @@ export class Flag extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	flag: {
+		display: 'inline-block',
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: '50%',
 		backgroundSize: 'cover',
 		marginRight: THEME.SECTION_PADDING_H / 3,
-		borderRadius: 2
+		borderRadius: 2,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL
 	}
 });

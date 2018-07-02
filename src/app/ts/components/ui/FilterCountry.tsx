@@ -35,7 +35,7 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					<Flag isoCode={this.props.isoCode} size={14}/>
+					<Flag isoCode={this.props.isoCode}/>
 
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 						{this.props.title}

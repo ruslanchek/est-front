@@ -14,6 +14,8 @@ import { IsPhoneOrTablet } from './IsPhoneOrTablet';
 import { ModalHeader } from '../ui/ModalHeader';
 import * as Ionicon from 'react-ionicons';
 import { FilterCountry } from '../ui/FilterCountry';
+import { Flag } from '../ui/Flag';
+import { managers } from '../../managers';
 
 interface IState {
 	isFloating: boolean;
@@ -80,7 +82,22 @@ export class Header extends React.PureComponent<{}, IState> {
 						>
 							<IsDesktop>
 								<nav className={css(styles.nav)}>
-									<FilterCountry isoCode={'gb'} title="GB"/>
+									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
+										<Flag isoCode={managers.faker.generateCountry().isoCode}/>
+										{managers.faker.generateCountry().title}
+									</a>
+
+									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
+										English
+									</a>
+
+									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
+										&euro; EUR
+									</a>
+
+									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
+										Help
+									</a>
 								</nav>
 							</IsDesktop>
 
@@ -201,6 +218,7 @@ const styles = StyleSheet.create({
 		height: THEME.HEADER_HEIGHT,
 		display: 'block',
 		flexGrow: 0,
+		top: -1,
 		willChange: 'transform',
 		transition: 'transform .3s',
 		transformOrigin: '0 50%',
@@ -324,10 +342,15 @@ const styles = StyleSheet.create({
 		fontSize: THEME.FONT_SIZE_SMALL,
 		fontWeight: 600,
 		textTransform: 'uppercase',
+		display: 'flex',
+		justifyContent: 'flex-start',
+		alignItems: 'center'
 	},
 
 	navLink: {
 		marginRight: THEME.SECTION_PADDING_H,
+		display: 'flex',
+		justifyContent: 'flex-start'
 	},
 
 	mobileNavLink: {
