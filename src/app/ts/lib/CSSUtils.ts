@@ -1,4 +1,5 @@
 import { StyleDeclaration } from 'aphrodite';
+import Color = require('color');
 
 export type TStyle = string | object | null | undefined | boolean;
 
@@ -64,5 +65,9 @@ export class CSSUtils {
 		});
 
 		return result;
+	}
+
+	public static linearGradient(fromColor: Color, toColor: Color, from: number, to: number): string {
+		return `linear-gradient(to bottom, ${fromColor.toString()} ${from}%, ${toColor.toString()} ${to}%)`
 	}
 }

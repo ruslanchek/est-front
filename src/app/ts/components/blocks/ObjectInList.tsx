@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		overflow: 'hidden',
 		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
 		display: 'flex',
 		flexDirection: 'column',
 	},
