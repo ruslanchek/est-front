@@ -24,7 +24,7 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 			<div className={css(containerStyles)}>
 				<Link to={PATHS.HOME} className={css(styles.container)} style={{
 					backgroundColor: color1.toString(),
-					backgroundImage: CSSUtils.linearGradient(color1, color2, 10, 100),
+					backgroundImage: CSSUtils.linearGradient(10, color1, color2, 10, 100),
 				}}>
 					<span className={css(styles.inner)}>
 						<span className={css(styles.title)}>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		boxSizing: 'border-box',
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		textShadow: '0 1px 1px rgba(0, 0, 0, .1)'
 	},
 
 	title: {
