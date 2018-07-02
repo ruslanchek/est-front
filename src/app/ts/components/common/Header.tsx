@@ -13,6 +13,7 @@ import { IsDesktop } from './IsDesktop';
 import { IsPhoneOrTablet } from './IsPhoneOrTablet';
 import { ModalHeader } from '../ui/ModalHeader';
 import * as Ionicon from 'react-ionicons';
+import { FilterCountry } from '../ui/FilterCountry';
 
 interface IState {
 	isFloating: boolean;
@@ -79,33 +80,7 @@ export class Header extends React.PureComponent<{}, IState> {
 						>
 							<IsDesktop>
 								<nav className={css(styles.nav)}>
-									<NavLink
-										to={PATHS.HOME}
-										className={css(COMMON_STYLES.LINK, styles.navLink)}
-									>
-										Purchase
-									</NavLink>
-
-									<NavLink
-										to={PATHS.HOME}
-										className={css(COMMON_STYLES.LINK, styles.navLink)}
-									>
-										Rent
-									</NavLink>
-
-									<NavLink
-										to={PATHS.HOME}
-										className={css(COMMON_STYLES.LINK, styles.navLink)}
-									>
-										Flats
-									</NavLink>
-
-									<NavLink
-										to={PATHS.HOME}
-										className={css(COMMON_STYLES.LINK, styles.navLink)}
-									>
-										Houses
-									</NavLink>
+									<FilterCountry isoCode={'gb'} title="GB"/>
 								</nav>
 							</IsDesktop>
 
@@ -134,27 +109,6 @@ export class Header extends React.PureComponent<{}, IState> {
 											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
 										>
 											Purchase
-										</NavLink>
-
-										<NavLink
-											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
-										>
-											Rent
-										</NavLink>
-
-										<NavLink
-											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
-										>
-											Flats
-										</NavLink>
-
-										<NavLink
-											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
-										>
-											Houses
 										</NavLink>
 									</div>
 								</Modal>

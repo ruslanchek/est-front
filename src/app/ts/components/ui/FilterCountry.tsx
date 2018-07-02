@@ -7,6 +7,7 @@ import { ModalResetSubmit } from './ModalResetSubmit';
 import { ModalHeaderFilter } from './ModalHeaderFilter';
 import { ModalContext } from './ModalContext';
 import { CSSUtils } from '../../lib/CSSUtils';
+import { Flag } from './Flag';
 
 interface IProps {
 	isoCode: string;
@@ -34,9 +35,7 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					<span className={css(styles.flag)} style={{
-						backgroundImage: CSSUtils.image(`https://static.expertoption.com/flags/2.0/svg/${this.props.isoCode.toLowerCase()}.svg`)
-					}}/>
+					<Flag isoCode={this.props.isoCode} size={14}/>
 
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 						{this.props.title}
@@ -50,15 +49,5 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	container: {
 		position: 'relative'
-	},
-
-	flag: {
-		width: 20,
-		height: 15,
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: '50%',
-		backgroundSize: 'cover',
-		marginRight: THEME.SECTION_PADDING_H / 3,
-		borderRadius: 2
 	}
 });
