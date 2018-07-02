@@ -19,11 +19,14 @@ export class Flag extends React.PureComponent<IProps, {}> {
 		const { isoCode, size } = this.props;
 
 		return (
-			<span className={css(styles.flag)} style={{
-				width: size * SIZE_RATIO,
-				height: size,
-				backgroundImage: CSSUtils.image(`https://static.expertoption.com/flags/2.0/png/${isoCode.toLowerCase()}.png`)
-			}}/>
+			<span
+				className={css(styles.flag)}
+				style={{
+					width: size * SIZE_RATIO,
+					height: size,
+					backgroundImage: CSSUtils.image(`https://static.expertoption.com/flags/2.0/png/${isoCode.toLowerCase()}.png`)
+				}}
+			/>
 		);
 	}
 }
