@@ -70,21 +70,21 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 								id: 1,
 								title: 'Flats',
 								type: EModalSelectItemType.Plain,
-								selected: false
+								selected: true
 							},
 
 							{
 								id: 2,
 								title: 'Houses',
 								type: EModalSelectItemType.Plain,
-								selected: false
+								selected: true
 							},
 
 							{
 								id: 3,
 								title: 'Studios',
 								type: EModalSelectItemType.Plain,
-								selected: false
+								selected: true
 							}
 						]}
 						onChange={() => {

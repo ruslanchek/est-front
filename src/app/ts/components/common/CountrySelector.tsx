@@ -10,9 +10,10 @@ import { IsPhone } from './IsPhone';
 import { IsDesktop } from './IsDesktop';
 import { IsDesktopOrTablet } from './IsDesktopOrTablet';
 import { IsTablet } from './IsTablet';
+import { ModalHeader } from '../ui/ModalHeader';
 
 interface IProps {
-	styles: StyleDeclaration;
+
 }
 
 interface IState {
@@ -27,7 +28,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<div className={css(COMMON_STYLES.LINK, this.props.styles)}>
+				<div className={css(styles.container)}>
 					<ModalContext
 						isVisible={this.state.isOpen}
 						onClose={() => {
@@ -36,6 +37,8 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 							});
 						}}
 					>
+						<ModalHeader title="Select country"/>
+
 						<ModalSelect
 							onChange={() => {
 
@@ -43,7 +46,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 							items={[
 								{
 									id: 1,
-									title: 'English',
+									title: 'United Kingdom',
 									type: EModalSelectItemType.Plain,
 									selected: true,
 									onClick: () => {
@@ -53,7 +56,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Germany',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -63,7 +66,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Italy',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -73,7 +76,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'France',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -83,7 +86,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Spain',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -122,6 +125,11 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 const styles = StyleSheet.create({
 	link: {
 		display: 'flex'
+	},
+
+	container: {
+		position: 'relative',
+		marginRight: THEME.SECTION_PADDING_H
 	},
 
 	text: {

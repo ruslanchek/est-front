@@ -39,7 +39,7 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 						>
 							{item.title}
 
-							<Checker checked={true}/>
+							<Checker checked={item.selected}/>
 						</span>
 					);
 				})}

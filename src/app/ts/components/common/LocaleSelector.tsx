@@ -2,16 +2,17 @@ import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
-import { COLORS, COMMON_STYLES } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
 import { ModalContext } from '../ui/ModalContext';
 import { Flag } from '../ui/Flag';
 import { IsPhone } from './IsPhone';
 import { IsDesktop } from './IsDesktop';
 import { IsDesktopOrTablet } from './IsDesktopOrTablet';
+import { ModalHeader } from '../ui/ModalHeader';
 
 interface IProps {
-	styles: StyleDeclaration;
+
 }
 
 interface IState {
@@ -26,7 +27,7 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<div className={css(COMMON_STYLES.LINK, this.props.styles)}>
+				<div className={css(styles.container)}>
 					<ModalContext
 						isVisible={this.state.isOpen}
 						onClose={() => {
@@ -35,6 +36,8 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 							});
 						}}
 					>
+						<ModalHeader title="Select language"/>
+
 						<ModalSelect
 							onChange={() => {
 
@@ -52,7 +55,7 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Español',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -62,7 +65,7 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Français',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -72,7 +75,7 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Italiano',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -82,7 +85,7 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 1,
-									title: 'English',
+									title: 'Deutsch',
 									type: EModalSelectItemType.Plain,
 									selected: false,
 									onClick: () => {
@@ -93,15 +96,13 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 						/>
 					</ModalContext>
 
-					<a href="#" className={css(COMMON_STYLES.LINK)} onClick={() => {
+					<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)} onClick={() => {
 						this.setState({
 							isOpen: true,
 						});
 					}}>
 						<IsPhone>
-							<span className={css(styles.phoneIcon)}>
-								EN
-							</span>
+							EN
 						</IsPhone>
 
 						<IsDesktopOrTablet>
@@ -115,7 +116,15 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 }
 
 const styles = StyleSheet.create({
-	phoneIcon: {
+	container: {
+		marginRight: THEME.SECTION_PADDING_H,
+		position: 'relative'
+	},
 
+	navLink: {
+		display: 'flex',
+		justifyContent: 'flex-start',
+		position: 'relative',
+		whiteSpace: 'nowrap'
 	}
 });

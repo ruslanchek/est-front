@@ -90,13 +90,9 @@ export class Header extends React.PureComponent<{}, IState> {
 							)}
 						>
 							<nav className={css(styles.nav)}>
-								<CountrySelector
-									styles={[COMMON_STYLES.LINK, styles.navLink]}
-								/>
+								<CountrySelector/>
 
-								<LocaleSelector
-									styles={[COMMON_STYLES.LINK, styles.navLink]}
-								/>
+								<LocaleSelector/>
 
 								<CurrencySelector
 									styles={[COMMON_STYLES.LINK, styles.navLink]}
@@ -145,6 +141,7 @@ export class Header extends React.PureComponent<{}, IState> {
 									color={COLORS.RED}
 									outerStyles={[styles.icon, styles.userIconPhone]}
 								/>
+
 								<IsDesktop>
 									Favorites
 								</IsDesktop>
