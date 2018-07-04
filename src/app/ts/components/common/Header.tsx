@@ -16,10 +16,13 @@ import * as Ionicon from 'react-ionicons';
 import { FilterCountry } from '../ui/FilterCountry';
 import { Flag } from '../ui/Flag';
 import { managers } from '../../managers';
+import { ModalContext } from '../ui/ModalContext';
+import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
 
 interface IState {
 	isFloating: boolean;
 	phoneNavIsVisible: boolean;
+	isLocaleOpen: boolean;
 }
 
 const FLOATING_THRESHOLD: number = 0;
@@ -29,6 +32,7 @@ export class Header extends React.PureComponent<{}, IState> {
 	public state: IState = {
 		isFloating: false,
 		phoneNavIsVisible: false,
+		isLocaleOpen: false,
 	};
 
 	public componentDidMount() {
@@ -87,9 +91,81 @@ export class Header extends React.PureComponent<{}, IState> {
 										United kingdom
 									</a>
 
-									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
-										English
-									</a>
+									<div className={css(COMMON_STYLES.LINK, styles.navLink)}>
+										<ModalContext
+											isVisible={this.state.isLocaleOpen}
+											onClose={() => {
+												this.setState({
+													isLocaleOpen: false,
+												});
+											}}
+										>
+											<ModalSelect
+												onChange={() => {
+
+												}}
+												items={[
+													{
+														id: 1,
+														title: 'English',
+														type: EModalSelectItemType.Plain,
+														selected: true,
+														onClick: () => {
+
+														},
+													},
+
+													{
+														id: 1,
+														title: 'English',
+														type: EModalSelectItemType.Plain,
+														selected: false,
+														onClick: () => {
+
+														},
+													},
+
+													{
+														id: 1,
+														title: 'English',
+														type: EModalSelectItemType.Plain,
+														selected: false,
+														onClick: () => {
+
+														},
+													},
+
+													{
+														id: 1,
+														title: 'English',
+														type: EModalSelectItemType.Plain,
+														selected: false,
+														onClick: () => {
+
+														},
+													},
+
+													{
+														id: 1,
+														title: 'English',
+														type: EModalSelectItemType.Plain,
+														selected: false,
+														onClick: () => {
+
+														},
+													},
+												]}
+											/>
+										</ModalContext>
+
+										<a href="#" className={css(COMMON_STYLES.LINK)} onClick={() => {
+											this.setState({
+												isLocaleOpen: true,
+											});
+										}}>
+											English
+										</a>
+									</div>
 
 									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
 										&euro; EUR
@@ -112,7 +188,7 @@ export class Header extends React.PureComponent<{}, IState> {
 
 								<Modal
 									isVisible={this.state.phoneNavIsVisible}
-										onClose={() => {
+									onClose={() => {
 										this.setState({
 											phoneNavIsVisible: false,
 										});
@@ -179,10 +255,8 @@ export class Header extends React.PureComponent<{}, IState> {
 
 				<div {...CSSUtils.mergeStyles(
 					css(styles.filters, styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
-					isFloating && css(styles.filtersFloating)
-				)} style={{
-
-				}}>
+					isFloating && css(styles.filtersFloating),
+				)} style={{}}>
 					<Filters/>
 				</div>
 			</header>
@@ -231,9 +305,7 @@ const styles = StyleSheet.create({
 		marginRight: THEME.SECTION_PADDING_H,
 	}),
 
-	logoFloating: {
-
-	},
+	logoFloating: {},
 
 	favoritesTextPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
 		display: 'none',
@@ -248,7 +320,7 @@ const styles = StyleSheet.create({
 	}),
 
 	container: {
-		paddingTop: THEME.HEADER_HEIGHT
+		paddingTop: THEME.HEADER_HEIGHT,
 	},
 
 	floatingTrigger: {
@@ -258,11 +330,11 @@ const styles = StyleSheet.create({
 		bottom: THEME.SECTION_PADDING_V,
 		right: 40,
 		borderRadius: 20,
-		height: 32
+		height: 32,
 	},
 
 	floatingTriggerText: {
-		marginLeft: 10
+		marginLeft: 10,
 	},
 
 	floatingTriggerInner: {
@@ -277,7 +349,7 @@ const styles = StyleSheet.create({
 		color: COLORS.WHITE.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
 		textTransform: 'uppercase',
-		fontWeight: 600
+		fontWeight: 600,
 	},
 
 	header: {
@@ -290,7 +362,7 @@ const styles = StyleSheet.create({
 		position: 'fixed',
 		display: 'flex',
 		flexDirection: 'column',
-		transition: 'box-shadow .3s'
+		transition: 'box-shadow .3s',
 	},
 
 	headerFloating: {
@@ -301,31 +373,25 @@ const styles = StyleSheet.create({
 		backgroundColor: COLORS.WHITE.toString(),
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
-		transition: 'box-shadow .3s'
+		transition: 'box-shadow .3s',
 	},
 
-	filtersFloating: {
-
-	},
+	filtersFloating: {},
 
 	block: {
 		minHeight: THEME.HEADER_HEIGHT,
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'space-between'
+		justifyContent: 'space-between',
 	},
 
-	blockFloating: {
-
-	},
+	blockFloating: {},
 
 	navContainer: {
 		flexGrow: 1,
 	},
 
-	navContainerFloating: {
-
-	},
+	navContainerFloating: {},
 
 	phoneNavButton: {
 		transition: 'opacity .2s',
@@ -334,8 +400,8 @@ const styles = StyleSheet.create({
 		position: 'relative',
 
 		':hover': {
-			opacity: .7
-		}
+			opacity: .7,
+		},
 	},
 
 	nav: {
@@ -344,13 +410,14 @@ const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 		display: 'flex',
 		justifyContent: 'flex-start',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 
 	navLink: {
 		marginRight: THEME.SECTION_PADDING_H,
 		display: 'flex',
-		justifyContent: 'flex-start'
+		justifyContent: 'flex-start',
+		position: 'relative',
 	},
 
 	mobileNavLink: {
@@ -360,14 +427,14 @@ const styles = StyleSheet.create({
 		transition: 'background-color .2s',
 
 		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.toString()
-		}
+			backgroundColor: COLORS.GRAY_DARK.toString(),
+		},
 	},
 
 	mobileNav: {
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'flex-start'
+		justifyContent: 'flex-start',
 	},
 
 	user: {
@@ -426,6 +493,6 @@ const styles = StyleSheet.create({
 	placeAdvertIcon: {
 		marginRight: 5,
 		display: 'flex',
-		alignItems: 'center'
-	}
+		alignItems: 'center',
+	},
 });
