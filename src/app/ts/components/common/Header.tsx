@@ -154,18 +154,18 @@ export class Header extends React.PureComponent<{}, IState> {
 								to={PATHS.HOME}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
 							>
-								<span className={css(styles.placeAdvertIcon)}>
-									<Ionicon
-										icon="md-add"
-										fontSize="18px"
-										color={COLORS.WHITE.toString()}
-									/>
-								</span>
+								<IsPhone>
+									<span className={css(styles.placeAdvertIcon)}>
+										<Ionicon
+											icon="md-add"
+											fontSize="18px"
+											color={COLORS.WHITE.toString()}
+										/>
+									</span>
+								</IsPhone>
 
 								<IsDesktopOrTablet>
-									<span className={css(styles.placeAdvertText)}>
-										Place advert
-									</span>
+									Place advert
 								</IsDesktopOrTablet>
 							</NavLink>
 						</nav>
@@ -419,9 +419,5 @@ const styles = StyleSheet.create({
 	placeAdvertIcon: {
 		display: 'flex',
 		alignItems: 'center',
-	},
-
-	placeAdvertText: {
-		marginLeft: 10
 	}
 });
