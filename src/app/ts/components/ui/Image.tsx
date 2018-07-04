@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 	},
 
 	container: {
-		paddingTop: '75%',
+		paddingTop: '66.666666%',
 		position: 'relative',
 		overflow: 'hidden',
 		backgroundColor: COLORS.GRAY_EXTRA_DARK.toString()

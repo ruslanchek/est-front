@@ -83,8 +83,8 @@ export class Header extends React.PureComponent<{}, IState> {
 							<IsDesktop>
 								<nav className={css(styles.nav)}>
 									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
-										<Flag isoCode={managers.faker.generateCountry().isoCode}/>
-										{managers.faker.generateCountry().title}
+										<Flag isoCode="gb"/>
+										United kingdom
 									</a>
 
 									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>

@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
 		top: '50%',
 		margin: `-${HANDLE_SIZE / 2}px 0 0 -${HANDLE_SIZE / 2}px`,
 		backgroundColor: COLORS.BLUE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
 		cursor: 'pointer',
 		transition: 'transform .2s, background-color .2s',
 		border: `2px solid ${COLORS.WHITE.toString()}`,
