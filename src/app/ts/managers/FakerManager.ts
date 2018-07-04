@@ -13,8 +13,11 @@ import ICountry = ObjectsStore.ICountry;
 import IGeoPoint = ObjectsStore.IGeoPoint;
 import IAddress = ObjectsStore.IAddress;
 import EObjectContractType = ObjectsStore.EObjectContractType;
+import IPreset = ObjectsStore.IPreset;
+import Color = require('color');
 
-const GENERATE_COUNT: number = 41;
+const GENERATE_OBJECTS_COUNT: number = 41;
+const GENERATE_PRESETS_COUNT: number = 5;
 
 export class FakerManager extends Manager {
 	public reset(): void {
@@ -80,6 +83,18 @@ export class FakerManager extends Manager {
 		};
 	}
 
+	public generatePreset(): IPreset {
+		const color: Color = Color(faker.internet.color());
+
+		return {
+			id: faker.random.number({min: 1, max: 1000}),
+			title: faker.random.words(2),
+			price: faker.random.number({min: 1000, max: 5000}),
+			color1: color.lighten(.3),
+			color2: color.lighten(.8)
+		};
+	}
+
 	public generateObject(objectId: number): IObject {
 		const params: IObjectParam[] = [];
 
@@ -142,13 +157,19 @@ export class FakerManager extends Manager {
 			this.setLoadingEntity('Loading objects...');
 
 			const objects: IObject[] = [];
+			const presets: IPreset[] = [];
 
-			for (let i: number = 1; i < GENERATE_COUNT; i++) {
+			for (let i: number = 1; i < GENERATE_OBJECTS_COUNT; i++) {
 				objects.push(this.generateObject(i));
+			}
+
+			for (let i: number = 1; i < GENERATE_PRESETS_COUNT; i++) {
+				presets.push(this.generatePreset());
 			}
 
 			ObjectsStore.store.setState({
 				objects,
+				presets
 			});
 
 			resolve();

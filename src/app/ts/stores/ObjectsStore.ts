@@ -1,7 +1,16 @@
 import { Store } from 'react-stores';
 import { EIcon } from '../components/common/Icon';
+import Color = require('color');
 
 export namespace ObjectsStore {
+	export interface IPreset {
+		id: number;
+		title: string;
+		price: number;
+		color1: Color;
+		color2: Color;
+	}
+
 	export interface IObject {
 		id: number;
 		title: string;
@@ -88,10 +97,12 @@ export namespace ObjectsStore {
 
 	export interface IState {
 		objects: IObject[];
+		presets: IPreset[];
 	}
 
 	export const initialState: IState = {
-		objects: []
+		objects: [],
+		presets: []
 	};
 
 	export let store: Store<IState> = new Store<IState>(initialState);
