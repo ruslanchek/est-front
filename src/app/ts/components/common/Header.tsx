@@ -18,6 +18,11 @@ import { Flag } from '../ui/Flag';
 import { managers } from '../../managers';
 import { ModalContext } from '../ui/ModalContext';
 import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
+import { LocaleSelector } from './LocaleSelector';
+import { CountrySelector } from './CountrySelector';
+import { CurrencySelector } from './CurrencySelector';
+import { IsPhone } from './IsPhone';
+import { IsDesktopOrTablet } from './IsDesktopOrTablet';
 
 interface IState {
 	isFloating: boolean;
@@ -84,131 +89,51 @@ export class Header extends React.PureComponent<{}, IState> {
 								isFloating && css(styles.navContainerFloating),
 							)}
 						>
-							<IsDesktop>
-								<nav className={css(styles.nav)}>
-									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
-										<Flag isoCode="gb"/>
-										United kingdom
-									</a>
+							<nav className={css(styles.nav)}>
+								<CountrySelector
+									styles={[COMMON_STYLES.LINK, styles.navLink]}
+								/>
 
-									<div className={css(COMMON_STYLES.LINK, styles.navLink)}>
-										<ModalContext
-											isVisible={this.state.isLocaleOpen}
-											onClose={() => {
-												this.setState({
-													isLocaleOpen: false,
-												});
-											}}
-										>
-											<ModalSelect
-												onChange={() => {
+								<LocaleSelector
+									styles={[COMMON_STYLES.LINK, styles.navLink]}
+								/>
 
-												}}
-												items={[
-													{
-														id: 1,
-														title: 'English',
-														type: EModalSelectItemType.Plain,
-														selected: true,
-														onClick: () => {
+								<CurrencySelector
+									styles={[COMMON_STYLES.LINK, styles.navLink]}
+								/>
 
-														},
-													},
-
-													{
-														id: 1,
-														title: 'English',
-														type: EModalSelectItemType.Plain,
-														selected: false,
-														onClick: () => {
-
-														},
-													},
-
-													{
-														id: 1,
-														title: 'English',
-														type: EModalSelectItemType.Plain,
-														selected: false,
-														onClick: () => {
-
-														},
-													},
-
-													{
-														id: 1,
-														title: 'English',
-														type: EModalSelectItemType.Plain,
-														selected: false,
-														onClick: () => {
-
-														},
-													},
-
-													{
-														id: 1,
-														title: 'English',
-														type: EModalSelectItemType.Plain,
-														selected: false,
-														onClick: () => {
-
-														},
-													},
-												]}
-											/>
-										</ModalContext>
-
-										<a href="#" className={css(COMMON_STYLES.LINK)} onClick={() => {
-											this.setState({
-												isLocaleOpen: true,
-											});
-										}}>
-											English
-										</a>
-									</div>
-
-									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
-										&euro; EUR
-									</a>
-
-									<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)}>
-										Help
-									</a>
-								</nav>
-							</IsDesktop>
-
-							<IsPhoneOrTablet>
-								<a href="#" className={css(styles.phoneNavButton)} onClick={this.openPhoneNav.bind(this)}>
-									<Ionicon
-										icon="md-more"
-										fontSize="26px"
-										color={COLORS.BLACK_LIGHT.toString()}
-									/>
-								</a>
-
-								<Modal
-									isVisible={this.state.phoneNavIsVisible}
-									onClose={() => {
-										this.setState({
-											phoneNavIsVisible: false,
-										});
-									}}
+								<a
+									href="#"
+									className={css(COMMON_STYLES.LINK, styles.navLink)}
 								>
-									<ModalHeader title="Navigation"/>
-
-									<div className={css(styles.mobileNav)}>
-										<NavLink
-											to={PATHS.HOME}
-											className={css(COMMON_STYLES.LINK, styles.mobileNavLink)}
-										>
-											Purchase
-										</NavLink>
-									</div>
-								</Modal>
-							</IsPhoneOrTablet>
+									<IsDesktopOrTablet>
+										Help
+									</IsDesktopOrTablet>
+								</a>
+							</nav>
 						</div>
 
 						<nav className={css(styles.user, styles.userPhoneOrTablet)}>
+							<NavLink
+								to={PATHS.HOME}
+								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
+								onClick={() => {
+
+								}}
+							>
+								<IsPhone>
+									<Ionicon
+										icon="md-person"
+										fontSize="14px"
+										color={COLORS.BLACK.toString()}
+									/>
+								</IsPhone>
+
+								<IsDesktopOrTablet>
+									Login
+								</IsDesktopOrTablet>
+							</NavLink>
+
 							<NavLink
 								to={PATHS.HOME}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
@@ -220,44 +145,40 @@ export class Header extends React.PureComponent<{}, IState> {
 									color={COLORS.RED}
 									outerStyles={[styles.icon, styles.userIconPhone]}
 								/>
-								<span className={css(styles.favoritesTextPhone)}>
+								<IsDesktop>
 									Favorites
-								</span>
-							</NavLink>
-
-							<NavLink
-								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
-								onClick={() => {
-
-								}}
-							>
-								Login
+								</IsDesktop>
 							</NavLink>
 
 							<NavLink
 								to={PATHS.HOME}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
 							>
-								<div className={css(styles.placeAdvertIcon)}>
+								<span className={css(styles.placeAdvertIcon)}>
 									<Ionicon
-										icon="md-flag"
-										fontSize="16px"
+										icon="md-add"
+										fontSize="18px"
 										color={COLORS.WHITE.toString()}
 									/>
-								</div>
+								</span>
 
-								Place advert
+								<IsDesktopOrTablet>
+									<span className={css(styles.placeAdvertText)}>
+										Place advert
+									</span>
+								</IsDesktopOrTablet>
 							</NavLink>
 						</nav>
 					</div>
 				</div>
 
 				<div {...CSSUtils.mergeStyles(
-					css(styles.filters, styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
+					css(styles.filters, styles.block),
 					isFloating && css(styles.filtersFloating),
 				)} style={{}}>
-					<Filters/>
+					<div className={css(COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET)}>
+						<Filters/>
+					</div>
 				</div>
 			</header>
 		);
@@ -307,20 +228,24 @@ const styles = StyleSheet.create({
 
 	logoFloating: {},
 
-	favoritesTextPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
-		display: 'none',
-	}),
-
 	icon: {
 		marginRight: THEME.SECTION_PADDING_H / 2,
 	},
 
-	userIconPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	userIconPhone: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
 		marginRight: 0,
 	}),
 
 	container: {
 		paddingTop: THEME.HEADER_HEIGHT,
+	},
+
+	linkText: {
+
+	},
+
+	linkTextPhone: {
+
 	},
 
 	floatingTrigger: {
@@ -418,6 +343,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'flex-start',
 		position: 'relative',
+		whiteSpace: 'nowrap'
 	},
 
 	mobileNavLink: {
@@ -491,8 +417,11 @@ const styles = StyleSheet.create({
 	},
 
 	placeAdvertIcon: {
-		marginRight: 5,
 		display: 'flex',
 		alignItems: 'center',
 	},
+
+	placeAdvertText: {
+		marginLeft: 10
+	}
 });

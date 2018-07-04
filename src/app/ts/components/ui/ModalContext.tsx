@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 			width: 24,
 			zIndex: 1,
 			height: 24,
-			margin: '-10px 0 0 -16px',
+			margin: '-10px 0 0 -13px',
 			transform: 'rotateZ(45deg)',
 			boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL_INVERTED
 		}

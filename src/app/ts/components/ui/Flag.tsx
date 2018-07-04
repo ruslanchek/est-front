@@ -2,10 +2,12 @@ import * as React from 'react';
 import { css, StyleSheet } from 'aphrodite/no-important';
 import { CSSUtils } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
+import { StyleDeclaration } from 'aphrodite';
 
 interface IProps {
 	isoCode: string;
 	size?: number;
+	style?: StyleDeclaration;
 }
 
 const SIZE_RATIO: number = 1.55;
@@ -20,7 +22,7 @@ export class Flag extends React.PureComponent<IProps, {}> {
 
 		return (
 			<span
-				className={css(styles.flag)}
+				className={css(styles.flag, this.props.style)}
 				style={{
 					width: size * SIZE_RATIO,
 					height: size,
@@ -37,7 +39,6 @@ const styles = StyleSheet.create({
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: '50%',
 		backgroundSize: 'cover',
-		marginRight: THEME.SECTION_PADDING_H / 3,
 		borderRadius: 2,
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL
 	}

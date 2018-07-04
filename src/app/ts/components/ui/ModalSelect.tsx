@@ -65,6 +65,10 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			backgroundColor: COLORS.GRAY_DARK.toString(),
+		},
+
+		':first-of-type': {
+			borderTop: 'none'
 		}
 	},
 });
