@@ -1,15 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
-const HandlebarsPlugin = require("handlebars-webpack-plugin");
-const {TsConfigPathsPlugin} = require('awesome-typescript-loader');
+const HandlebarsPlugin = require('handlebars-webpack-plugin');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const port = 5665;
+const port = 5656;
 const host = '0.0.0.0';
 const production = process.env.NODE_ENV === 'production';
 
 let plugins = [
 	new CleanWebpackPlugin(['dist'], {
-		verbose: true
+		verbose: true,
 	}),
 	new webpack.NamedModulesPlugin(),
 	new webpack.HotModuleReplacementPlugin(),
@@ -17,9 +17,9 @@ let plugins = [
 		entry: path.join(process.cwd(), 'src/app/hbs', '*.hbs'),
 		output: path.join(process.cwd(), 'dist', '[name].html'),
 		data: {
-			publicPath: '/'
-		}
-	})
+			publicPath: '/',
+		},
+	}),
 ];
 
 module.exports = {
@@ -29,14 +29,14 @@ module.exports = {
 		app: [
 			'webpack-dev-server/client?http://' + host + ':' + port,
 			'webpack/hot/only-dev-server',
-			'./src/app/ts/app.ts'
-		]
+			'./src/app/ts/app.ts',
+		],
 	},
 
 	output: {
 		filename: '[name].js',
 		publicPath: '/',
-		path: __dirname + '/dist'
+		path: __dirname + '/dist',
 	},
 
 	watch: true,
@@ -49,17 +49,17 @@ module.exports = {
 		hot: true,
 		stats: true,
 		historyApiFallback: {
-			index: '/main.html'
+			index: '/main.html',
 		},
 		overlay: {
 			warnings: true,
-			errors: true
+			errors: true,
 		},
 		host: host,
 		port: port,
-        watchOptions: {
-            poll: true
-        }
+		watchOptions: {
+			poll: true,
+		},
 	},
 
 	devtool: 'source-map',
@@ -70,16 +70,16 @@ module.exports = {
 			'.webpack.js',
 			'.ts',
 			'.tsx',
-			'.js'
+			'.js',
 		],
 		modules: [
 			'node_modules',
 			__dirname + '/src/chart/ts',
-			__dirname + '/src/app/ts'
+			__dirname + '/src/app/ts',
 		],
 		plugins: [
-			new TsConfigPathsPlugin()
-		]
+			new TsConfigPathsPlugin(),
+		],
 	},
 
 	module: {
@@ -87,33 +87,35 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				loaders: [
-					'awesome-typescript-loader'
+					'awesome-typescript-loader',
 				],
+				exclude: ['node_modules'],
 				include: [
 					path.resolve(__dirname, 'src/chart/ts'),
-					path.resolve(__dirname, 'src/app/ts')
-				]
+					path.resolve(__dirname, 'src/app/ts'),
+				],
 			},
 
 			{
 				test: /\.glsl$/,
-				loader: 'webpack-glsl-loader'
+				loader: 'webpack-glsl-loader',
 			},
 
 			{
 				enforce: 'pre',
 				test: /\.js$/,
-				loader: 'source-map-loader'
+				loader: 'source-map-loader',
+				exclude: [/node_modules/, /build/, /__test__/],
 			},
 
 			{
 				test: /\.(gif|png|jpe?g|svg)$/i,
 				loaders: [
-					'file-loader'
-				]
-			}
-		]
+					'file-loader',
+				],
+			},
+		],
 	},
 
-	plugins: plugins
+	plugins: plugins,
 };
