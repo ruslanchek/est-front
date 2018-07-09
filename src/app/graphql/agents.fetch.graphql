@@ -1,9 +1,0 @@
-query {
-  agents {
-    id,
-    fullName,
-    avatar {
-      url
-    }
-  }
-}
