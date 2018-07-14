@@ -59,11 +59,7 @@ export class ApiManager extends Manager {
 			resolve();
 		});
 	}
-
-	public authError(): void {
-		console.log('xxx');
-	}
-
+	
 	public request<Input, Result>(type: EApiRequestType, path: string, data: Input): Promise<Result> {
 		const url: string = `${ENDPOINT}${path}`;
 
@@ -76,10 +72,6 @@ export class ApiManager extends Manager {
 						.query(data)
 						.end((err, res) => {
 							if(err) {
-								if(err.status === 401) {
-									this.authError();
-								}
-
 								reject(err.body);
 							} else {
 								resolve(res.body);
@@ -95,10 +87,6 @@ export class ApiManager extends Manager {
 						.set('Authorization', `Bearer ${this.token}`)
 						.end((err, res) => {			
 							if(err) {
-								if(err.status === 401) {
-									this.authError();
-								}
-
 								reject(err.body);
 							} else {
 								resolve(res.body);
