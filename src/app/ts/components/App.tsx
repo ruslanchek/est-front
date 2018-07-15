@@ -3,7 +3,7 @@ import { Routes } from './Routes';
 import { BrowserRouter } from 'react-router-dom';
 import { followStore } from 'react-stores';
 import { StateStore } from '../stores/StateStore';
-import { AppLoading } from './common/AppLoading';
+import { injectGlobal } from 'styled-components';
 import { Toast } from './ui/Toast';
 
 const locales = [

@@ -12,6 +12,7 @@ import { Avatar } from '../ui/Avatar';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Money } from '../ui/Money';
+import styled from 'styled-components';
 
 interface IProps {
 	objectData: IObject;
@@ -32,7 +33,7 @@ export class ObjectInList extends React.Component<IProps, {}> {
 		} = objectData;
 
 		return (
-			<section className={css(styles.container, containerStyles)}>
+			<Container>
 				<header className={css(styles.header)}>
 					<div className={css(styles.favorite)}>
 						<Favorite
@@ -66,10 +67,20 @@ export class ObjectInList extends React.Component<IProps, {}> {
 				<footer className={css(styles.footer)}>
 					<Avatar objectData={objectData}/>
 				</footer>
-			</section>
+			</Container>
 		);
 	}
 }
+
+const Container = styled.div`
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	background-color: ${COLORS.WHITE.toString()};
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1.toString()};
+	display: flex;
+	flex-direction: column;
+`;
 
 const styles = StyleSheet.create({
 	container: {
