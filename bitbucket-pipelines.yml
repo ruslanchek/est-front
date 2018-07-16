@@ -13,9 +13,8 @@
              - ssh-add /opt/atlassian/pipelines/agent/data/id_rsa
              - yarn global add typescript
              - yarn install
-             - yarn prestart:prod
+             - yarn build:prod
              - ls
              - apt-get update && apt-get install -y rsync
-             - ssh -p ${PORT} -l ${USERNAME} ${HOSTNAME} "mkdir ~/apps/api -p"
-             - rsync -av ./ ${USERNAME}@${HOSTNAME}:~/apps/api
-             - ssh -p ${PORT} -l ${USERNAME} ${HOSTNAME} "cd ~/apps/api && pm2 reload pm2.json"
+             - ssh -p ${PORT} -l ${USERNAME} ${HOSTNAME} "mkdir ~/apps/web -p"
+             - rsync -av ./dist ${USERNAME}@${HOSTNAME}:~/apps/web
