@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 
 interface IProps {
 
@@ -8,13 +7,9 @@ interface IProps {
 export class AuthForm extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<Container>
+			<div>
 				{this.props.children}
-			</Container>
+			</div>
 		);
 	}
 }
-
-const Container = styled.div`
-	
-`;

@@ -69,15 +69,16 @@ export class Managers {
 
 			setTimeout(() => {
 				splashLoading.classList.add('hide');
+				this.logTime('Loading 1111');
 
 				setTimeout(() => {
 					splashLoading.remove();
 					loadingEntity.remove();
+					this.logTime('Loading 2222');
 
 					StateStore.store.setState({
-						...StateStore.store.state,
 						appReady: true,
-					});
+					} as StateStore.IState);
 
 					this.logTime('UI ready');
 

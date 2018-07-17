@@ -40,8 +40,5 @@ export const CONFIG = {
 	LOCALE_SYNONYMS: {
 		fil: ['tl']
 	},
-	SERVER_LIST: [
-		'wss://test.eo.trade/ws/'
-	],
 	DEFAULT_API_VERSION: 12
 };

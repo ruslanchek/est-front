@@ -1,14 +1,9 @@
 import * as React from 'react';
 
-import { StyleSheet, css } from 'aphrodite/no-important';
-import { followStore, StoreEvent } from 'react-stores';
+import { StyleSheet } from 'aphrodite/no-important';
+import { followStore } from 'react-stores';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import { List } from '../common/List';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
-import { Gis } from '../ui/Gis';
-import { EGisMarkerType, GisMarker } from '../ui/GisMarker';
-import { COLORS } from '../../theme';
-import { AuthSignUpPage } from './AuthSignUpPage';
 import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
 
@@ -29,7 +24,7 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<Layout>
+				<Layout verticalPadding={true}>
 					<BreadCrumbs/>
 
 					<AuthForm>

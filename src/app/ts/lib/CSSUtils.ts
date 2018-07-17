@@ -1,6 +1,5 @@
 import { StyleDeclaration } from 'aphrodite';
 import Color = require('color');
-import { css, Interpolation } from 'styled-components';
 
 export type TStyle = string | object | null | undefined | boolean;
 
@@ -16,13 +15,6 @@ export enum ECSSMediaKind {
 	Desktop,
 	Wide,
 }
-
-const sizes = {
-	giant: 1170,
-	desktop: 992,
-	tablet: 768,
-	phone: 376,
-};
 
 export class CSSUtils {
 	public static image(require: string): string {

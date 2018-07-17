@@ -16,7 +16,7 @@ import EObjectContractType = ObjectsStore.EObjectContractType;
 import IPreset = ObjectsStore.IPreset;
 import Color = require('color');
 
-const GENERATE_OBJECTS_COUNT: number = 41;
+const GENERATE_OBJECTS_COUNT: number = 11;
 const GENERATE_PRESETS_COUNT: number = 5;
 
 export class FakerManager extends Manager {

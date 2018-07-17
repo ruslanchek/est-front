@@ -2,8 +2,6 @@ import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { COMMON_STYLES, THEME } from '../../theme';
-import styled from 'styled-components';
-import media from "styled-media-query";
 
 interface IProps {
 	outerStyles?: StyleDeclaration;
@@ -19,7 +17,7 @@ export class Layout extends React.PureComponent<IProps, {}> {
 		}
 
 		return (
-			<Container
+			<div
 				className={
 					css(COMMON_STYLES.LAYOUT_DESKTOP,
 					COMMON_STYLES.LAYOUT_PHONE_OR_TABLET,
@@ -28,25 +26,10 @@ export class Layout extends React.PureComponent<IProps, {}> {
 				)}
 			>
 				{this.props.children}
-			</Container>
+			</div>
 		);
 	}
 }
-
-const Container = styled.div`
-	position: relative;
-	max-width: ${THEME.PAGE_MAX_WIDTH}px;
-	width: 100%;
-	margin: 0 auto;
-	box-sizing: border-box;
-	padding-left: ${THEME.PAGE_SIDE_PADDING_DESKTOP}px;
-	padding-right: ${THEME.PAGE_SIDE_PADDING_DESKTOP}px;
-	padding-top: 0;
-	
-	 ${media.lessThan('medium')`
-    padding-top: 100px;
-  `}
-`;
 
 const styles = StyleSheet.create({
 	layout: {
