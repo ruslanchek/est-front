@@ -44,12 +44,12 @@ module.exports = {
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
 		compress: false,
-		index: 'main.html',
+		index: 'index.html',
 		disableHostCheck: true,
 		hot: true,
 		stats: true,
 		historyApiFallback: {
-			index: '/main.html',
+			index: '/index.html',
 		},
 		overlay: {
 			warnings: true,

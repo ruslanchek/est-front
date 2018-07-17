@@ -103,14 +103,14 @@ export const COMMON_STYLES = StyleSheet.create({
 
 	INPUT: {
 		width: '100%',
-		backgroundColor: COLORS.GRAY_DARK.toString(),
+		backgroundColor: COLORS.WHITE.toString(),
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		outline: 'none',
 		borderRadius: 4,
 		height: THEME.INPUT_HEIGHT,
 		lineHeight: `${THEME.INPUT_HEIGHT}px`,
 		fontSize: THEME.FONT_SIZE_REGULAR,
-		border: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		border: `1px solid transparent`,
 		fontWeight: 600,
 		color: COLORS.BLACK.toString(),
 		transition: 'border-color .2s',

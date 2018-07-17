@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
 	},
 
 	search: {
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+		backgroundColor: COLORS.GRAY_DARK.toString(),
 		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
 	},
 
@@ -239,7 +239,6 @@ const styles = StyleSheet.create({
 	},
 
 	entities: {
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 		maxHeight: 270,
 		overflow: 'auto'
 	},

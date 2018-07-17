@@ -15,7 +15,7 @@ interface IState {
 
 export class Input extends React.PureComponent<IProps, {}> {
 	public static defaultProps: Partial<IProps> = {
-		autoFocus: false
+		autoFocus: false,
 	};
 
 	public state: IState = {
