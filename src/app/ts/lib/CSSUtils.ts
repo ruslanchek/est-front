@@ -1,5 +1,6 @@
 import { StyleDeclaration } from 'aphrodite';
 import Color = require('color');
+import { css, Interpolation } from 'styled-components';
 
 export type TStyle = string | object | null | undefined | boolean;
 
@@ -13,8 +14,15 @@ export enum ECSSMediaKind {
 	PhoneOrTablet,
 	Tablet,
 	Desktop,
-	Wide
+	Wide,
 }
+
+const sizes = {
+	giant: 1170,
+	desktop: 992,
+	tablet: 768,
+	phone: 376,
+};
 
 export class CSSUtils {
 	public static image(require: string): string {
@@ -32,11 +40,21 @@ export class CSSUtils {
 
 	public static mediaSize(size: ECSSMediaKind, styles: StyleDeclaration): StyleDeclaration {
 		switch (size) {
-			case ECSSMediaKind.Phone : return this.media(0, 720, styles);
-			case ECSSMediaKind.PhoneOrTablet : return this.media(0, 1024, styles);
-			case ECSSMediaKind.Tablet : return this.media(720, 1024, styles);
-			case ECSSMediaKind.Desktop : return this.media(1024, 1440, styles);
-			case ECSSMediaKind.Wide : return this.media(1440, 6000, styles);
+			case ECSSMediaKind.Phone : {
+				return this.media(0, 720, styles);
+			}
+			case ECSSMediaKind.PhoneOrTablet : {
+				return this.media(0, 1024, styles);
+			}
+			case ECSSMediaKind.Tablet : {
+				return this.media(720, 1024, styles);
+			}
+			case ECSSMediaKind.Desktop : {
+				return this.media(1024, 1440, styles);
+			}
+			case ECSSMediaKind.Wide : {
+				return this.media(1440, 6000, styles);
+			}
 		}
 	}
 
@@ -56,7 +74,7 @@ export class CSSUtils {
 				if (typeof result.styles === 'object') {
 					result.styles = {
 						...result.styles,
-						...item
+						...item,
 					};
 				} else {
 					result.styles = item;
@@ -68,6 +86,6 @@ export class CSSUtils {
 	}
 
 	public static linearGradient(angle: number, fromColor: Color, toColor: Color, from: number, to: number): string {
-		return `linear-gradient(${angle.toString()}deg, ${fromColor.toString()} ${from}%, ${toColor.toString()} ${to}%)`
+		return `linear-gradient(${angle.toString()}deg, ${fromColor.toString()} ${from}%, ${toColor.toString()} ${to}%)`;
 	}
 }

@@ -7,6 +7,8 @@ import { HomePage } from './pages/HomePage';
 import { Page, PageLayout } from './pages/Page';
 import { ObjectPage } from './pages/ObjectPage';
 import { AgentPage } from './pages/AgentPage';
+import { AuthSignUpPage } from './pages/AuthSignUpPage';
+import { AuthLoginPage } from './pages/AuthLoginPage';
 
 interface IState {
 	key: number;
@@ -59,6 +61,38 @@ export class Routes extends React.Component<{}, IState> {
 								authRule={RouteAuthRule.Shared}
 							>
 								<AgentPage/>
+							</Page>
+						);
+					}}
+				/>
+
+				<Route
+					exact={true}
+					path={PATHS.AUTH_SIGN_UP}
+					render={props => {
+						return (
+							<Page
+								{...props}
+								layout={PageLayout.Default}
+								authRule={RouteAuthRule.Shared}
+							>
+								<AuthSignUpPage/>
+							</Page>
+						);
+					}}
+				/>
+
+				<Route
+					exact={true}
+					path={PATHS.AUTH_LOGIN}
+					render={props => {
+						return (
+							<Page
+								{...props}
+								layout={PageLayout.Default}
+								authRule={RouteAuthRule.Shared}
+							>
+								<AuthLoginPage/>
 							</Page>
 						);
 					}}

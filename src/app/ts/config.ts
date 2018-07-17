@@ -1,5 +1,7 @@
 export const PATHS = {
 	HOME: '/',
+	AUTH_LOGIN: '/auth/login',
+	AUTH_SIGN_UP: '/auth/sign-up',
 	OBJECT: '/object/:id',
 	AGENT: '/agents/:id'
 };
