@@ -7,6 +7,7 @@ export const PATHS = {
 };
 
 export const CONFIG = {
+	STATIC_PATH: 'https://static-realthub-com.ams3.digitaloceanspaces.com',
 	GOOGLE_MAPS_KEY: 'AIzaSyBr9pzfBKKLSrG6BZk18fyYhPPmkEceSZU',
 	STORAGE: {
 		PREFIX: 'REALTHUB',

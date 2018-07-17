@@ -3,6 +3,7 @@ import { css, StyleSheet } from 'aphrodite/no-important';
 import { CSSUtils } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
 import { StyleDeclaration } from 'aphrodite';
+import { CONFIG } from '../../config';
 
 interface IProps {
 	isoCode: string;
@@ -26,7 +27,7 @@ export class Flag extends React.PureComponent<IProps, {}> {
 				style={{
 					width: size * SIZE_RATIO,
 					height: size,
-					backgroundImage: CSSUtils.image(`https://static.expertoption.com/flags/2.0/png/${isoCode.toLowerCase()}.png`)
+					backgroundImage: CSSUtils.image(`${CONFIG.STATIC_PATH}/flags/png/${isoCode.toLowerCase()}.png`)
 				}}
 			/>
 		);
