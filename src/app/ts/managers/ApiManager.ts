@@ -14,34 +14,20 @@ const enum EApiRequestType {
 }
 
 export class ApiManager extends Manager {
-	private token = null;
-
 	public retreiveToken(): void {
 		this.setToken(managers.storage.cookies.get('token'));
 	}
 
 	public setToken(token: string): void {
 		managers.storage.cookies.set('token', token);
-		this.token = token;
-	}
-
-	public getToken(): string {
-		return this.token;
 	}
 
 	public reset(): void {
-		this.token = null;
-	}
 
-	public clearToken(): void {
-		managers.storage.cookies.remove('token');
-		this.token = null;
 	}
 
 	public init(): Promise<any> {
 		return new Promise<any>((resolve, reject) => {
-			this.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTUzMTE1Mzc0MSwiZXhwIjoxNTMxMTU3MzQxfQ.wOpX2DlgbqAimiSMbJwqTb8-QSk9VCpqdZCISBsC6kg');
-
 			this.request(EApiRequestType.POST, '/api/advert', {
 				title: 'xxx',
 				type: 'Flat',
@@ -60,15 +46,16 @@ export class ApiManager extends Manager {
 		});
 	}
 	
-	public request<Input, Result>(type: EApiRequestType, path: string, data: Input): Promise<Result> {
+	public request<InputPayload, ResultPayload>(type: EApiRequestType, path: string, data: InputPayload): Promise<ResultPayload> {
 		const url: string = `${ENDPOINT}${path}`;
+		const token: string = managers.storage.cookies.get('token');
 
-		return new Promise<Result>((resolve, reject) => {
+		return new Promise<ResultPayload>((resolve, reject) => {
 			switch (type) {
 				case EApiRequestType.GET: {
 					return superagent
 						.get(url)
-						.set('Authorization', `Bearer ${this.token}`)
+						.set('Authorization', `Bearer ${token}`)
 						.query(data)
 						.end((err, res) => {
 							if(err) {
@@ -84,7 +71,7 @@ export class ApiManager extends Manager {
 						.post(url)
 						.send(data)
 						.set('accept', 'json')
-						.set('Authorization', `Bearer ${this.token}`)
+						.set('Authorization', `Bearer ${token}`)
 						.end((err, res) => {			
 							if(err) {
 								reject(err.body);
