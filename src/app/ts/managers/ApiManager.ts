@@ -37,7 +37,7 @@ export class ApiManager extends Manager {
 		return new Promise<ResultPayload>((resolve, reject) => {
 			switch (type) {
 				case EApiRequestType.GET: {
-					return superagent
+					superagent
 						.get(url)
 						.set('Authorization', `Bearer ${token}`)
 						.query(data)
@@ -48,10 +48,12 @@ export class ApiManager extends Manager {
 								resolve(res.body);
 							}
 						});
+
+					break;
 				}
 
 				case EApiRequestType.POST : {
-					return superagent
+					superagent
 						.post(url)
 						.send(data)
 						.set('accept', 'json')
@@ -63,6 +65,8 @@ export class ApiManager extends Manager {
 								resolve(res.body);
 							}
 						});
+
+					break;
 				}
 
 				// case EApiRequestType.PUT : {
