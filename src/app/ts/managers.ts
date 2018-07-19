@@ -6,6 +6,7 @@ import { ToastManager } from './managers/ToastManager';
 import { FakerManager } from './managers/FakerManager';
 import { FiltersManager } from './managers/FiltersManager';
 import { LocaleManager } from './managers/LocaleManager';
+import { AuthManager } from './managers/AuthManager';
 
 const PRELOADING_ANIMATION_TIME: number = 0;
 const LOADING_ANIMATION_TIME: number = 500;
@@ -15,6 +16,7 @@ export class Managers {
 	public route: RouteManager;
 	public storage: StorageManager;
 	public api: ApiManager;
+	public auth: AuthManager;
 	public toast: ToastManager;
 	public faker: FakerManager;
 	public filters: FiltersManager;
@@ -26,6 +28,7 @@ export class Managers {
 		this.route = new RouteManager();
 		this.storage = new StorageManager();
 		this.api = new ApiManager();
+		this.auth = new AuthManager();
 		this.toast = new ToastManager();
 		this.faker = new FakerManager();
 		this.filters = new FiltersManager();
@@ -57,6 +60,7 @@ export class Managers {
 		return new Promise((resolve, reject) => {
 			const splashLoading = document.getElementById('splashLoading');
 			const loadingEntity= document.getElementById('loadingEntity');
+			const loadingContainer= document.getElementById('loadingContainer');
 
 			this.logTime('Loading finished');
 
@@ -69,12 +73,10 @@ export class Managers {
 
 			setTimeout(() => {
 				splashLoading.classList.add('hide');
-				this.logTime('Loading 1111');
 
 				setTimeout(() => {
 					splashLoading.remove();
-					loadingEntity.remove();
-					this.logTime('Loading 2222');
+					loadingContainer.remove();
 
 					StateStore.store.setState({
 						appReady: true,
@@ -93,6 +95,7 @@ export class Managers {
 		this.route.reset();
 		this.storage.reset();
 		this.api.reset();
+		this.auth.reset();
 		this.toast.reset();
 		this.faker.reset();
 		this.filters.reset();
@@ -110,6 +113,9 @@ export class Managers {
 
 		await this.api.init();
 		this.logTime('APIManager ready');
+
+		await this.auth.init();
+		this.logTime('AuthManager ready');
 
 		await this.toast.init();
 		this.logTime('ToastManager ready');

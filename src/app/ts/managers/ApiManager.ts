@@ -1,11 +1,9 @@
 import { Manager } from './Manager';
 import * as superagent from 'superagent';
 import { managers } from '../managers';
+import { CONFIG } from '../config';
 
-const ENDPOINT: string = 'http://localhost:5666';
-const TIMEOUT: number = 1000;
-
-const enum EApiRequestType {
+export const enum EApiRequestType {
 	GET,
 	POST,
 	PATCH,
@@ -28,26 +26,12 @@ export class ApiManager extends Manager {
 
 	public init(): Promise<any> {
 		return new Promise<any>((resolve, reject) => {
-			this.request(EApiRequestType.POST, '/api/advert', {
-				title: 'xxx',
-				type: 'Flat',
-				contractType: 'Rent',
-				price: 1000,
-				agent: 17
-			})
-			.then(() => {
-								
-			})
-			.catch(() => {
-				
-			});
-
 			resolve();
 		});
 	}
 	
-	public request<InputPayload, ResultPayload>(type: EApiRequestType, path: string, data: InputPayload): Promise<ResultPayload> {
-		const url: string = `${ENDPOINT}${path}`;
+	public request<InputPayload, ResultPayload>(type: EApiRequestType, path: string, data?: InputPayload): Promise<ResultPayload> {
+		const url: string = `${CONFIG.API_BASE_URL}${path}`;
 		const token: string = managers.storage.cookies.get('token');
 
 		return new Promise<ResultPayload>((resolve, reject) => {
