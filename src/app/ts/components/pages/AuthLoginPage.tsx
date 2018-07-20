@@ -6,8 +6,8 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
-import { Input } from '../ui/Input';
-import { managers } from '../../managers';
+import { Input } from '../forms/Input';
+import { Form } from '../forms/Form';
 
 interface IProps {
 
@@ -30,27 +30,19 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 					<BreadCrumbs/>
 
 					<AuthForm>
-						<form onSubmit={this.handleSubmit}>
-							<Input autoFocus={true} value="rshashkov+24@icloud.com"/>
-							<Input autoFocus={true} type="password" value="rshashkov+24@icloud.com"/>
+						<Form>
+							<Input name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
+							<Input name="password" autoFocus={false} value="sadasdasd" type="password"/>
 
 							<button type="submit">
 								Login
 							</button>
-						</form>
+						</Form>
 					</AuthForm>
 				</Layout>
 			</React.Fragment>
 		);
 	}
-
-	private handleSubmit = async (e) => {
-		e.preventDefault();
-
-		const result = await managers.auth.login('rshashkov+24@icloud.com', '222222');
-		
-		console.log(result);
-	};
 }
 
 const styles = StyleSheet.create({

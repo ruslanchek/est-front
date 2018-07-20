@@ -2,8 +2,6 @@ import { Manager } from './Manager';
 import { managers } from '../managers';
 import { EApiRequestType } from './ApiManager';
 import { AuthStore } from '../stores/AuthStore';
-import { log } from 'util';
-import IProfile = AuthStore.IProfile;
 
 export class AuthManager extends Manager {
 	public reset(): void {
@@ -26,7 +24,7 @@ export class AuthManager extends Manager {
 
 						resolve();
 					} else {
-						reject();
+						resolve();
 					}
 				})
 				.catch(() => {
@@ -35,7 +33,7 @@ export class AuthManager extends Manager {
 						profile: null,
 					});
 
-					reject();
+					resolve();
 				});
 		});
 	}
@@ -56,7 +54,7 @@ export class AuthManager extends Manager {
 				})
 				.catch(() => {
 					console.log('err');
-					reject();
+					resolve();
 				});
 		});
 	}
