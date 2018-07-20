@@ -13,6 +13,7 @@ interface IProps {
 interface IState {
 	isFocused: boolean;
 	value: string;
+	errors: string[];
 }
 
 export class Input extends React.PureComponent<IProps, {}> {
@@ -26,19 +27,14 @@ export class Input extends React.PureComponent<IProps, {}> {
 	public state: IState = {
 		isFocused: false,
 		value: '',
+		errors: [],
 	};
 
 	private input = null;
-
 	private formContext: IFormContext = null;
 
 	public componentDidMount() {
-		this.setState({
-			value: this.props.value,
-		});
-
-		this.input.value = this.props.value;
-		this.formContext.setValue(this.props.name, this.props.value);
+		this.setValue(this.props.value);
 	}
 
 	public render() {
@@ -62,18 +58,10 @@ export class Input extends React.PureComponent<IProps, {}> {
 								});
 							}}
 							onChange={(e) => {
-								this.setState({
-									value: e.target.value,
-								});
-
-								formContext.setValue(this.props.name, e.target.value);
+								this.setValue(e.target.value);
 							}}
 							onKeyDown={(e) => {
-								this.setState({
-									value: this.input.value,
-								});
-
-								formContext.setValue(this.props.name, this.input.value);
+								this.setValue(this.input.value);
 							}}
 							autoFocus={this.props.autoFocus}
 							ref={(ref) => this.input = ref}
@@ -83,6 +71,18 @@ export class Input extends React.PureComponent<IProps, {}> {
 				}}
 			</FormContext.Consumer>
 		);
+	}
+
+	private setValue(value: string): void {
+		this.setState({
+			value,
+		});
+
+		this.input.value = value;
+		this.formContext.setValue(this.props.name, {
+			value,
+			errors: this.state.errors,
+		});
 	}
 }
 

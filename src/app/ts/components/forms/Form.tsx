@@ -1,11 +1,16 @@
 import * as React from 'react';
 
 export const FormContext = React.createContext<IFormContext>({
-	setValue: (name: string, value: string) => {},
+	setValue: null,
 });
 
 export interface IFormContext {
-	setValue: (name: string, value: string) => void;
+	setValue: (name: string, value: IFormValue) => void;
+}
+
+export interface IFormValue {
+	value: string;
+	errors: string[];
 }
 
 interface IProps {
@@ -13,10 +18,12 @@ interface IProps {
 }
 
 interface IState {
-	values: {};
+	values: {
+		[name: string]: IFormValue;
+	}
 }
 
-export class Form extends React.PureComponent<IProps, IState> {
+export class Form extends React.Component<IProps, IState> {
 	public state: IState = {
 		values: {},
 	};
@@ -37,14 +44,13 @@ export class Form extends React.PureComponent<IProps, IState> {
 		);
 	}
 
-	private setValue = (name: string, value: string) => {
-		console.log(name, value);
-		
+	private setValue = (name: string, value: IFormValue) => {
+		const newValues = this.state.values;
+
+		newValues[name] = value;
+
 		this.setState({
-			values: {
-				...this.state.values,
-				[name]: value,
-			}
+			values: newValues,
 		});
 	};
 
