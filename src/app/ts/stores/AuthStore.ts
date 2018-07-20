@@ -1,9 +1,18 @@
 import { Store } from 'react-stores';
 
 export namespace AuthStore {
+	export interface IProfile {
+		id: number;
+		email: string;
+		emailVerified: boolean;
+		name: string;
+		phone: string;
+		type: string;
+	}
+
 	export interface IState {
 		authorized: boolean;
-		profile: any;
+		profile: IProfile;
 	}
 
 	export const initialState: IState = {

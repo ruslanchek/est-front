@@ -11,6 +11,11 @@ export const enum EApiRequestType {
 	DELETE,
 }
 
+export interface IApiResult<Payload> {
+	error: any;
+	payload: Payload;
+}
+
 export class ApiManager extends Manager {
 	public retreiveToken(): void {
 		this.setToken(managers.storage.cookies.get('token'));
@@ -30,11 +35,11 @@ export class ApiManager extends Manager {
 		});
 	}
 	
-	public request<InputPayload, ResultPayload>(type: EApiRequestType, path: string, data?: InputPayload): Promise<ResultPayload> {
+	public request<ResultPayload>(type: EApiRequestType, path: string, data?: any): Promise<IApiResult<ResultPayload>> {
 		const url: string = `${CONFIG.API_BASE_URL}${path}`;
 		const token: string = managers.storage.cookies.get('token');
 
-		return new Promise<ResultPayload>((resolve, reject) => {
+		return new Promise<IApiResult<ResultPayload>>((resolve, reject) => {
 			switch (type) {
 				case EApiRequestType.GET: {
 					superagent
