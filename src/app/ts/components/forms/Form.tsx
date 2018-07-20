@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { IValidationParams, ValidationType } from './Validator';
+import { Validator } from './Validators/Validator';
 
 export const FormContext = React.createContext<IFormContext>({
 	setValue: null,
@@ -10,6 +12,7 @@ export interface IFormContext {
 
 export interface IFormValue {
 	value: string;
+	validators: Validator[];
 	errors: string[];
 }
 
@@ -44,6 +47,10 @@ export class Form extends React.Component<IProps, IState> {
 		);
 	}
 
+	private validate() {
+		const {values} = this.state;
+	}
+
 	private setValue = (name: string, value: IFormValue) => {
 		const newValues = this.state.values;
 
@@ -51,6 +58,8 @@ export class Form extends React.Component<IProps, IState> {
 
 		this.setState({
 			values: newValues,
+		}, () => {
+			this.validate();
 		});
 	};
 

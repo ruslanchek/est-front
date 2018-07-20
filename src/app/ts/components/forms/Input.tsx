@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
+import { css, StyleSheet } from 'aphrodite';
 import { COMMON_STYLES } from '../../theme';
 import { FormContext, IFormContext } from './Form';
+import { Validator } from './Validators/Validator';
 
 interface IProps {
 	autoFocus?: boolean;
 	value?: string;
 	type?: string;
+	validators?: Validator[];
 	name: string;
 }
 
@@ -18,6 +20,7 @@ interface IState {
 
 export class Input extends React.PureComponent<IProps, {}> {
 	public static defaultProps: Partial<IProps> = {
+		validators: [],
 		autoFocus: false,
 		value: '',
 		type: 'text',
@@ -81,6 +84,7 @@ export class Input extends React.PureComponent<IProps, {}> {
 		this.input.value = value;
 		this.formContext.setValue(this.props.name, {
 			value,
+			validators: this.props.validators,
 			errors: this.state.errors,
 		});
 	}

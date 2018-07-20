@@ -8,6 +8,8 @@ import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
 import { Input } from '../forms/Input';
 import { Form } from '../forms/Form';
+import { type } from 'os';
+import { ValidatorEmail } from '../forms/Validators/ValidatorEmail';
 
 interface IProps {
 
@@ -31,7 +33,7 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 
 					<AuthForm>
 						<Form>
-							<Input name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
+							<Input validators={[new ValidatorEmail()]} name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
 							<Input name="password" autoFocus={false} value="sadasdasd" type="password"/>
 
 							<button type="submit">
