@@ -32,6 +32,19 @@ export class AuthManager extends Manager {
 		});
 	}
 
+	public async login(email: string, password: string): Promise<any> {
+		return new Promise<any>(async (resolve, reject) => {
+			managers.api.request(EApiRequestType.POST, '/auth/login', {
+				email,
+				password,
+			}).then((result) => {
+				console.log(result);
+			}).catch(() => {
+				console.log('err');
+			});
+		});
+	}
+
 	public init(): Promise<any> {
 		return this.auth();
 	}

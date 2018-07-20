@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { COMMON_STYLES } from '../../theme';
 
 interface IProps {
-	autoFocus: boolean;
+	autoFocus?: boolean;
+	value?: string;
+	type?: string;
+	name?: string;
 }
 
 interface IState {
@@ -16,6 +17,9 @@ interface IState {
 export class Input extends React.PureComponent<IProps, {}> {
 	public static defaultProps: Partial<IProps> = {
 		autoFocus: false,
+		value: '',
+		type: 'text',
+		name: '',
 	};
 
 	public state: IState = {
@@ -25,9 +29,17 @@ export class Input extends React.PureComponent<IProps, {}> {
 
 	private input = null;
 
+	public componentDidMount() {
+		this.setState({
+			value: this.props.value,
+		});
+	}
+
 	public render() {
 		return (
 			<input
+				name={this.props.name}
+				type={this.props.type}
 				onFocus={() => {
 					this.setState({
 						isFocused: true,
@@ -49,8 +61,6 @@ export class Input extends React.PureComponent<IProps, {}> {
 					});
 				}}
 				autoFocus={this.props.autoFocus}
-				id="search"
-				type="text"
 				ref={(ref) => this.input = ref}
 				className={css(COMMON_STYLES.INPUT)}
 			/>
