@@ -114,7 +114,7 @@ export class Form extends React.Component<IProps, IState> {
 		return {
 			isValid: this.state.isValid,
 			values: resultModel,
-			errors: errors,
+			errors,
 		};
 	}
 
