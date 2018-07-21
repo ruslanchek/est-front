@@ -8,8 +8,14 @@ import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
 import { Input } from '../forms/Input';
 import { Form } from '../forms/Form';
-import { type } from 'os';
-import { ValidatorEmail } from '../forms/Validators/ValidatorEmail';
+import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
+import { ValidatorMinLength } from '../forms/Validators/ValidatorMinLength';
+import { ValidatorMaxLength } from '../forms/Validators/ValidatorMaxLength';
+import { ValidatorRegExp } from '../forms/Validators/ValidatorRegExp';
+import { ValidatorIsNotNumeric } from '../forms/Validators/ValidatorIsNotNumeric';
+import { ValidatorIsNumeric } from '../forms/Validators/ValidatorIsNumeric';
+import { ValidatorIsRequired } from '../forms/Validators/ValidatorIsRequired';
+import { ValidatorIsEqualModel } from '../forms/Validators/ValidatorIsEqualModel';
 
 interface IProps {
 
@@ -33,8 +39,8 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 
 					<AuthForm>
 						<Form>
-							<Input validators={[new ValidatorEmail()]} name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
-							<Input name="password" autoFocus={false} value="sadasdasd" type="password"/>
+							<Input validators={[new ValidatorIsEqualModel('password')]} name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
+							<Input name="password" autoFocus={false} value="sadasdasd" type="text"/>
 
 							<button type="submit">
 								Login

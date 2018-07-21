@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IValidationParams, ValidationType } from './Validator';
 import { Validator } from './Validators/Validator';
 
 export const FormContext = React.createContext<IFormContext>({
@@ -16,19 +15,23 @@ export interface IFormValue {
 	errors: string[];
 }
 
+export interface IFormModel {
+	[name: string]: IFormValue;
+}
+
 interface IProps {
 
 }
 
 interface IState {
-	values: {
-		[name: string]: IFormValue;
-	}
+	isValid: boolean;
+	model: IFormModel;
 }
 
 export class Form extends React.Component<IProps, IState> {
 	public state: IState = {
-		values: {},
+		isValid: null,
+		model: {},
 	};
 
 	public render() {
@@ -42,22 +45,51 @@ export class Form extends React.Component<IProps, IState> {
 
 				<br/>
 
-				{JSON.stringify(this.state.values)}
+				{this.state.isValid ? 'VALID' : 'INVALID'}
+
+				<br/>
+
+				{JSON.stringify(this.state.model)}
 			</form>
 		);
 	}
 
 	private validate() {
-		const {values} = this.state;
+		const {model} = this.state;
+		let isValid: boolean = true;
+
+		for (const modelKey in model) {
+			if (model.hasOwnProperty(modelKey)) {
+				const {validators, value} = model[modelKey];
+
+				model[modelKey].errors = [];
+
+				validators.forEach((validator) => {
+					validator.model = model;
+
+					if(!validator.validate(value)) {
+						model[modelKey].errors.push(validator.extractError());
+						isValid = false;
+					}
+
+					validator.model = null;
+				});
+			}
+		}
+
+		this.setState({
+			isValid,
+			model,
+		});
 	}
 
 	private setValue = (name: string, value: IFormValue) => {
-		const newValues = this.state.values;
+		const newValues = this.state.model;
 
 		newValues[name] = value;
 
 		this.setState({
-			values: newValues,
+			model: newValues,
 		}, () => {
 			this.validate();
 		});
