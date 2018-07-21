@@ -3,6 +3,7 @@ import { css, StyleSheet } from 'aphrodite';
 import { COMMON_STYLES } from '../../theme';
 import { FormContext, IFormContext } from './Form';
 import { Validator } from './Validators/Validator';
+import { InputErrors } from './InputErrors';
 
 interface IProps {
 	autoFocus?: boolean;
@@ -15,7 +16,6 @@ interface IProps {
 interface IState {
 	isFocused: boolean;
 	value: string;
-	errors: string[];
 }
 
 export class Input extends React.PureComponent<IProps, {}> {
@@ -30,7 +30,6 @@ export class Input extends React.PureComponent<IProps, {}> {
 	public state: IState = {
 		isFocused: false,
 		value: '',
-		errors: [],
 	};
 
 	private input = null;
@@ -45,31 +44,35 @@ export class Input extends React.PureComponent<IProps, {}> {
 			<FormContext.Consumer>
 				{(formContext) => {
 					this.formContext = formContext;
-
+					
 					return (
-						<input
-							name={this.props.name}
-							type={this.props.type}
-							onFocus={() => {
-								this.setState({
-									isFocused: true,
-								});
-							}}
-							onBlur={() => {
-								this.setState({
-									isFocused: false,
-								});
-							}}
-							onChange={(e) => {
-								this.setValue(e.target.value);
-							}}
-							onKeyDown={(e) => {
-								this.setValue(this.input.value);
-							}}
-							autoFocus={this.props.autoFocus}
-							ref={(ref) => this.input = ref}
-							className={css(COMMON_STYLES.INPUT)}
-						/>
+						<React.Fragment>
+							<InputErrors inputName={this.props.name} />
+							
+							<input
+								name={this.props.name}
+								type={this.props.type}
+								onFocus={() => {
+									this.setState({
+										isFocused: true,
+									});
+								}}
+								onBlur={() => {
+									this.setState({
+										isFocused: false,
+									});
+								}}
+								onChange={(e) => {
+									this.setValue(e.target.value);
+								}}
+								onKeyDown={(e) => {
+									this.setValue(this.input.value);
+								}}
+								autoFocus={this.props.autoFocus}
+								ref={(ref) => this.input = ref}
+								className={css(COMMON_STYLES.INPUT)}
+							/>
+						</React.Fragment>
 					);
 				}}
 			</FormContext.Consumer>
@@ -85,7 +88,6 @@ export class Input extends React.PureComponent<IProps, {}> {
 		this.formContext.setValue(this.props.name, {
 			value,
 			validators: this.props.validators,
-			errors: this.state.errors,
 		});
 	}
 }
