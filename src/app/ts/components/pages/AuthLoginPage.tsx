@@ -9,6 +9,7 @@ import { Layout } from '../common/Layout';
 import { Input } from '../forms/Input';
 import { Form, EFormValidateOn } from '../forms/Form';
 import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
+import { AuthStore } from '../../stores/AuthStore';
 import { ValidatorMinLength } from '../forms/Validators/ValidatorMinLength';
 import { ValidatorMaxLength } from '../forms/Validators/ValidatorMaxLength';
 import { ValidatorRegExp } from '../forms/Validators/ValidatorRegExp';
@@ -16,6 +17,7 @@ import { ValidatorIsNotNumeric } from '../forms/Validators/ValidatorIsNotNumeric
 import { ValidatorIsNumeric } from '../forms/Validators/ValidatorIsNumeric';
 import { ValidatorIsRequired } from '../forms/Validators/ValidatorIsRequired';
 import { ValidatorIsEqualModel } from '../forms/Validators/ValidatorIsEqualModel';
+import { Button, EButtonTheme } from '../ui/Button';
 
 interface IProps {
 
@@ -25,10 +27,9 @@ interface IState {
 
 }
 
-@followStore(ObjectsStore.store)
 export class AuthLoginPage extends React.Component<IProps, IState> {
 	public state: IState = {
-
+		
 	};
 
 	public render() {
@@ -42,9 +43,9 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 							<Input validators={[new ValidatorIsEmail(), new ValidatorIsEmail()]} name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
 							<Input name="password" autoFocus={false} value="sadasdasd" type="text"/>
 
-							<button type="submit">
+							<Button type="submit" themes={[EButtonTheme.Small, EButtonTheme.Common]}>
 								Login
-							</button>
+							</Button>
 						</Form>
 					</AuthForm>
 				</Layout>

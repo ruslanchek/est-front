@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
+import { css, StyleSheet } from 'aphrodite';
 
 interface IProps {
 
 }
 
 @followStore(AuthStore.store)
-export class AuthForm extends React.PureComponent<IProps, {}> {
+export class AuthForm extends React.Component<IProps, {}> {
 	public render() {
 		console.log(AuthStore.store.state.profile);
 
 		return (
-			<div>
+			<div className={css(styles.container)}>
 				{this.props.children}
 
 				{AuthStore.store.state.profile && (
@@ -29,3 +30,9 @@ export class AuthForm extends React.PureComponent<IProps, {}> {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		
+	}
+});
