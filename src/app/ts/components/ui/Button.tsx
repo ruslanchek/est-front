@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { css, StyleSheet } from 'aphrodite/no-important';
+import { COLORS, THEME } from '../../theme';
 
 export enum EButtonTheme {
-  Regular,
-  Small,
-  Big,
-  Common,
-  Agree,
-  Reject,
+	Regular,
+	Small,
+	Big,
+	Common,
+	Agree,
+	Reject,
 }
 
 interface IProps {
-  type: 'submit' | 'button';
-  themes: EButtonTheme[];
+	type: 'submit' | 'button';
+	themes: EButtonTheme[];
 }
 
 export class Button extends React.PureComponent<IProps, {}> {
@@ -22,15 +21,32 @@ export class Button extends React.PureComponent<IProps, {}> {
 		const { themes, type, children } = this.props;
 
 		return (
-			<button className={css(styles.button)} type={type}>
-        {children}
-      </button>
+			<button className={css(styles.button, styles.common, styles.small)} type={type}>
+				{children}
+			</button>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'red',
-  }
+	button: {
+		display: 'inline-block',
+		border: 'none',
+		background: 'none',
+		fontFamily: THEME.FONT,
+		fontWeight: 600,
+	},
+
+	small: {
+		height: THEME.INPUT_HEIGHT,
+		borderRadius: 8,
+		minWidth: 150,
+		fontSize: THEME.FONT_SIZE_SMALL,
+	},
+
+	common: {
+		backgroundColor: COLORS.BLUE.toString(),
+		color: COLORS.WHITE.toString(),
+		textTransform: 'uppercase',
+	},
 });
