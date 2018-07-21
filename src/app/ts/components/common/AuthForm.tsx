@@ -14,7 +14,9 @@ export class AuthForm extends React.Component<IProps, {}> {
 
 		return (
 			<div className={css(styles.container)}>
-				{this.props.children}
+				<div className={css(styles.inner)}>
+					{this.props.children}
+				</div>
 
 				{AuthStore.store.state.profile && (
 					<div>
@@ -33,6 +35,11 @@ export class AuthForm extends React.Component<IProps, {}> {
 
 const styles = StyleSheet.create({
 	container: {
-		
+		display: 'flex',
+		justifyContent: 'center'
+	},
+
+	inner: {
+		width: 400
 	}
 });

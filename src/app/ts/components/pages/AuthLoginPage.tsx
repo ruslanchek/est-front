@@ -18,6 +18,7 @@ import { ValidatorIsNumeric } from '../forms/Validators/ValidatorIsNumeric';
 import { ValidatorIsRequired } from '../forms/Validators/ValidatorIsRequired';
 import { ValidatorIsEqualModel } from '../forms/Validators/ValidatorIsEqualModel';
 import { Button, EButtonTheme } from '../ui/Button';
+import { Login } from '../common/Login';
 
 interface IProps {
 
@@ -36,17 +37,8 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 		return (
 			<React.Fragment>
 				<Layout verticalPadding={true}>
-					<BreadCrumbs/>
-
 					<AuthForm>
-						<Form onSubmit={(result) => {console.log(result)}} validateOn={EFormValidateOn.SUBMIT}>
-							<Input validators={[new ValidatorIsEmail(), new ValidatorIsEmail()]} name="email" autoFocus={false} value="rshashkov+24@icloud.com"/>
-							<Input name="password" autoFocus={false} value="sadasdasd" type="text"/>
-
-							<Button type="submit" themes={[EButtonTheme.Small, EButtonTheme.Common]}>
-								Login
-							</Button>
-						</Form>
+						<Login/>
 					</AuthForm>
 				</Layout>
 			</React.Fragment>
