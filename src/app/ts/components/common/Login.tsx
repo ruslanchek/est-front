@@ -45,9 +45,13 @@ export class Login extends React.PureComponent<IProps, {}> {
 	}
 
 	private handleForm = async (output: IFormModelOutput) => {
-		const result = await managers.auth.login(output.values.email, output.values.password);
-
-		console.log(result);
+		try {
+			const result = await managers.auth.login(output.values.email, output.values.password);
+			console.log(result);
+			managers.route.go(PATHS.PERSONAL);
+		} catch (e) {
+			console.log(e);
+		}
 	};
 }
 

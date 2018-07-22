@@ -45,16 +45,16 @@ export class AuthManager extends Manager {
 					email,
 					password,
 				})
-				.then(async (result) => {
+				.then((result) => {
+					console.log(result);
 					if(!result.error && result.payload.accessToken) {
 						managers.api.setToken(result.payload.accessToken);
-						await this.auth();
+						this.auth();
 						resolve();
 					}
 				})
-				.catch(() => {
-					console.log('err');
-					resolve();
+				.catch((result) => {
+					reject(result);
 				});
 		});
 	}

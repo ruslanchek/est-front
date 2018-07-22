@@ -63,7 +63,7 @@ export class ApiManager extends Manager {
 						.send(data)
 						.set('accept', 'json')
 						.set('Authorization', `Bearer ${token}`)
-						.end((err, res) => {			
+						.end((err, res) => {
 							if(err) {
 								reject(err.body);
 							} else {
