@@ -3,12 +3,9 @@ import { css, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
 
 export enum EButtonTheme {
-	Regular,
-	Small,
-	Big,
-	Common,
-	Agree,
-	Reject,
+	Agree = 'agree',
+	Reject = 'reject',
+	Full = 'full',
 }
 
 interface IProps {
@@ -20,8 +17,19 @@ export class Button extends React.PureComponent<IProps, {}> {
 	public render() {
 		const { themes, type, children } = this.props;
 
+		const style = [
+			styles.button,
+		];
+
+		themes.forEach((theme) => {
+			style.push(styles[theme]);
+		});
+
 		return (
-			<button className={css(styles.button, styles.common, styles.small)} type={type}>
+			<button
+				className={css(style)}
+				type={type}
+			>
 				{children}
 			</button>
 		);
@@ -35,18 +43,26 @@ const styles = StyleSheet.create({
 		background: 'none',
 		fontFamily: THEME.FONT,
 		fontWeight: 600,
+		height: 48,
+		fontSize: THEME.FONT_SIZE_REGULAR,
+		borderRadius: 5,
+		transition: 'background-color .2s',
 	},
 
-	small: {
-		height: THEME.INPUT_HEIGHT,
-		borderRadius: 8,
-		minWidth: 150,
-		fontSize: THEME.FONT_SIZE_SMALL,
+	agree: {
+		backgroundColor: COLORS.BLUE_LIGHT.toString(),
+		color: COLORS.BLUE.toString(),
+
+		':hover': {
+			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
+		}
 	},
 
-	common: {
-		backgroundColor: COLORS.BLUE.toString(),
-		color: COLORS.WHITE.toString(),
-		textTransform: 'uppercase',
+	reject: {
+
 	},
+
+	full: {
+		width: '100%'
+	}
 });

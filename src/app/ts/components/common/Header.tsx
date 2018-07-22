@@ -111,26 +111,22 @@ export class Header extends React.PureComponent<{}, IState> {
 
 						<nav className={css(styles.user, styles.userPhoneOrTablet)}>
 							<NavLink
-								to={PATHS.HOME}
+								to={PATHS.AUTH_LOGIN}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
 								onClick={() => {
 
 								}}
 							>
 								<IsPhone>
-									<NavLink className={css(COMMON_STYLES.LINK)} to={PATHS.AUTH_LOGIN}>
-										<Ionicon
-											icon="md-person"
-											fontSize="14px"
-											color={COLORS.BLACK.toString()}
-										/>
-									</NavLink>
+									<Ionicon
+										icon="md-person"
+										fontSize="14px"
+										color={COLORS.BLACK.toString()}
+									/>
 								</IsPhone>
 
 								<IsDesktopOrTablet>
-									<NavLink className={css(COMMON_STYLES.LINK)} to={PATHS.AUTH_LOGIN}>
-										Sign up
-									</NavLink>
+									Sign up
 								</IsDesktopOrTablet>
 							</NavLink>
 

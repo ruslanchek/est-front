@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { FilterFromTo } from '../ui/FilterFromTo';
 import { FilterAnd } from '../ui/FilterAnd';
 import { FilterRangeEntities } from '../ui/FilterRangeEntities';
 import { Money } from '../ui/Money';
 import { FilterGroup } from '../ui/FilterGroup';
-import { FilterCountry } from '../ui/FilterCountry';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICountry = ObjectsStore.ICountry;
 import { managers } from '../../managers';
@@ -166,13 +165,13 @@ const styles = StyleSheet.create({
 	},
 
 	add: {
-		backgroundColor: COLORS.BLUE.alpha(0.1).toString(),
+		backgroundColor: COLORS.BLUE_LIGHT.toString(),
 		color: COLORS.BLUE.toString(),
 		fontWeight: 600,
 		borderRadius: 10,
 
 		':hover': {
-			backgroundColor: COLORS.BLUE.alpha(0.2).toString(),
+			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
 		},
 	},
 

@@ -11,6 +11,10 @@ export const COLORS = {
 	BLACK_LIGHT: Color('#5A636F'),
 	BLACK_EXTRA_LIGHT: Color('#5A636F').lighten(.5),
 	RED: Color('#DA1D58'),
+	RED_LIGHT: Color('#FCEAEE'),
+	RED_LIGHT_ACTIVE: Color('#FAD6DE'),
+	BLUE_LIGHT: Color('#E9F1FB'),
+	BLUE_LIGHT_ACTIVE: Color('#D3E4F7'),
 	BLUE: Color('#017AD5'),
 	BLUE_SELECTED: Color('#017AD5').alpha(.05),
 	GREEN: Color('#00914D')

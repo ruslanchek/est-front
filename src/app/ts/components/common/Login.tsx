@@ -18,7 +18,10 @@ export class Login extends React.PureComponent<IProps, {}> {
 					<Input validators={[new ValidatorIsEmail()]} name="email" autoFocus={false}/>
 					<Input name="password" autoFocus={false} type="password"/>
 
-					<Button type="submit" themes={[EButtonTheme.Small, EButtonTheme.Common]}>
+					<Button type="submit" themes={[
+						EButtonTheme.Agree,
+						EButtonTheme.Full,
+					]}>
 						Login
 					</Button>
 				</Form>

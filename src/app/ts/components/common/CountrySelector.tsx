@@ -46,6 +46,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 							items={[
 								{
 									id: 1,
+									pre: (<Flag style={styles.flag} isoCode="gb"/>),
 									title: 'United Kingdom',
 									type: EModalSelectItemType.Plain,
 									selected: true,
@@ -55,7 +56,8 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 								},
 
 								{
-									id: 1,
+									id: 2,
+									pre: (<Flag style={styles.flag} isoCode="de"/>),
 									title: 'Germany',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -65,7 +67,8 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 								},
 
 								{
-									id: 1,
+									id: 3,
+									pre: (<Flag style={styles.flag} isoCode="it"/>),
 									title: 'Italy',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -75,7 +78,8 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 								},
 
 								{
-									id: 1,
+									id: 4,
+									pre: (<Flag style={styles.flag} isoCode="fr"/>),
 									title: 'France',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -85,7 +89,8 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 								},
 
 								{
-									id: 1,
+									id: 5,
+									pre: (<Flag style={styles.flag} isoCode="es"/>),
 									title: 'Spain',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -97,11 +102,16 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 						/>
 					</ModalContext>
 
-					<a href="#" className={css(COMMON_STYLES.LINK, styles.link)} onClick={() => {
-						this.setState({
-							isOpen: true,
-						});
-					}}>
+					<a
+						href="#"
+						className={css(COMMON_STYLES.LINK, styles.link)}
+						onClick={(e) => {
+							e.preventDefault();
+							this.setState({
+								isOpen: true,
+							});
+						}}
+					>
 						<Flag isoCode="gb"/>
 
 						<IsDesktop>
@@ -123,6 +133,10 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 }
 
 const styles = StyleSheet.create({
+	flag: {
+		marginRight: THEME.SECTION_PADDING_H / 2,
+	},
+
 	link: {
 		display: 'flex'
 	},

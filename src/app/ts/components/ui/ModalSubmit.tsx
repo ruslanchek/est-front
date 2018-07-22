@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 		},
 
 		':hover': {
-			backgroundColor: COLORS.BLUE.alpha(.1).toString()
+			backgroundColor: COLORS.BLUE_LIGHT.toString()
 		}
 	},
 });

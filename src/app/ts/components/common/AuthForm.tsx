@@ -2,6 +2,7 @@ import * as React from 'react';
 import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
 import { css, StyleSheet } from 'aphrodite';
+import { COLORS, THEME } from '../../theme';
 
 interface IProps {
 
@@ -17,17 +18,6 @@ export class AuthForm extends React.Component<IProps, {}> {
 				<div className={css(styles.inner)}>
 					{this.props.children}
 				</div>
-
-				{AuthStore.store.state.profile && (
-					<div>
-						{AuthStore.store.state.profile.id}<br/>
-						{AuthStore.store.state.profile.email}<br/>
-						{AuthStore.store.state.profile.name}<br/>
-						{AuthStore.store.state.profile.phone}<br/>
-						{AuthStore.store.state.profile.type}<br/>
-						{AuthStore.store.state.profile.emailVerified}<br/>
-					</div>
-				)}
 			</div>
 		);
 	}
@@ -36,10 +26,14 @@ export class AuthForm extends React.Component<IProps, {}> {
 const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 
 	inner: {
-		width: 400
+		width: 400,
+		backgroundColor: COLORS.GRAY_DARK.toString(),
+		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
+		padding: 20,
+		borderRadius: 10
 	}
 });

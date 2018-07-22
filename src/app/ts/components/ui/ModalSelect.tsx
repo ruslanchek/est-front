@@ -15,13 +15,13 @@ export interface IModalSelectItem {
 	title: string;
 	type: EModalSelectItemType;
 	selected: boolean;
-
+	pre?: JSX.Element;
 	onClick?: (id: number) => void;
 }
 
 export enum EModalSelectItemType {
 	Plain,
-	CheckBox
+	CheckBox,
 }
 
 export class ModalSelect extends React.PureComponent<IProps, {}> {
@@ -37,7 +37,11 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 							onClick={this.onClick.bind(this, item)}
 							className={css(COMMON_STYLES.LINK, styles.selectable)}
 						>
-							{item.title}
+							{item.pre}
+
+							<span className={css(styles.title)}>
+								{item.title}
+							</span>
 
 							<Checker checked={item.selected}/>
 						</span>
@@ -71,4 +75,8 @@ const styles = StyleSheet.create({
 			borderTop: 'none'
 		}
 	},
+
+	title: {
+		flexGrow: 1,
+	}
 });
