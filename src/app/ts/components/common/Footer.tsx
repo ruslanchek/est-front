@@ -61,10 +61,17 @@ export class Footer extends React.PureComponent<{}, IState> {
 								</NavLink>
 
 								<NavLink
-									to={PATHS.HOME}
+									to={PATHS.AUTH_LOGIN}
 									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
 								>
 									Login
+								</NavLink>
+
+								<NavLink
+									to={PATHS.AUTH_SIGN_UP}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Sign up
 								</NavLink>
 							</nav>
 						</div>

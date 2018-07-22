@@ -110,7 +110,7 @@ export const COMMON_STYLES = StyleSheet.create({
 		height: THEME.INPUT_HEIGHT,
 		lineHeight: `${THEME.INPUT_HEIGHT}px`,
 		fontSize: THEME.FONT_SIZE_REGULAR,
-		border: `1px solid transparent`,
+		border: `2px solid transparent`,
 		fontWeight: 600,
 		color: COLORS.BLACK.toString(),
 		transition: 'border-color .2s',
