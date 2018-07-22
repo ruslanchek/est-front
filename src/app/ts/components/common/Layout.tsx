@@ -5,15 +5,20 @@ import { COMMON_STYLES, THEME } from '../../theme';
 
 interface IProps {
 	outerStyles?: StyleDeclaration;
-	verticalPadding?: boolean;
+	topPadding?: boolean;
+	bottomPadding?: boolean;
 }
 
 export class Layout extends React.PureComponent<IProps, {}> {
 	public render() {
 		const verticalSpace = [];
 
-		if(this.props.verticalPadding) {
-			verticalSpace.push(styles.layout, styles.layoutPhone);
+		if(this.props.topPadding) {
+			verticalSpace.push(styles.topPadding, styles.topPaddingPhone);
+		}
+
+		if(this.props.bottomPadding) {
+			verticalSpace.push(styles.bottomPadding, styles.bottomPaddingPhone);
 		}
 
 		return (
@@ -32,11 +37,19 @@ export class Layout extends React.PureComponent<IProps, {}> {
 }
 
 const styles = StyleSheet.create({
-	layout: {
+	topPadding: {
 		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP,
 	},
 
-	layoutPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	topPaddingPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
 		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE,
+	}),
+
+	bottomPadding: {
+		paddingBottom: THEME.PAGE_SIDE_PADDING_DESKTOP,
+	},
+
+	bottomPaddingPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+		paddingBottom: THEME.PAGE_SIDE_PADDING_PHONE,
 	}),
 });

@@ -58,14 +58,6 @@ export class Form extends React.Component<IProps, IState> {
 				}}>
 					{this.props.children}
 				</FormContext.Provider>
-
-				<br />
-
-				{this.state.isValid ? 'VALID' : 'INVALID'}
-
-				<br />
-
-				{JSON.stringify(this.state.model)}
 			</form>
 		);
 	}

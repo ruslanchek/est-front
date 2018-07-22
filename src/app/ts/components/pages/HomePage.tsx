@@ -21,7 +21,7 @@ export class HomePage extends React.Component<IProps, IState> {
 
 	public render() {
 		return (
-			<Layout verticalPadding={true}>
+			<Layout topPadding={true}>
 				<BreadCrumbs/>
 				<List objects={ObjectsStore.store.state.objects}/>
 			</Layout>

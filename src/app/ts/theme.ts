@@ -64,6 +64,10 @@ export const COMMON_STYLES = StyleSheet.create({
 		}
 	},
 
+	SMALL_TEXT: {
+		fontSize: THEME.FONT_SIZE_SMALL,
+	},
+
 	LAYOUT_DESKTOP: {
 		position: 'relative',
 		maxWidth: THEME.PAGE_MAX_WIDTH,

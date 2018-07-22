@@ -2,6 +2,9 @@ export const PATHS = {
 	HOME: '/',
 	AUTH_LOGIN: '/auth/login',
 	AUTH_SIGN_UP: '/auth/sign-up',
+	AUTH_PASSWORD_RESET: '/auth/password-reset',
+	AUTH_: '/auth/sign-up',
+	PERSONAL: '/personal',
 	OBJECT: '/object/:id',
 	AGENT: '/agents/:id'
 };

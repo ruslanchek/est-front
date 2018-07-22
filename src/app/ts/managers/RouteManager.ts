@@ -3,6 +3,7 @@ import { History } from 'history';
 import { CONFIG, PATHS } from '../config';
 import { StateStore } from '../stores/StateStore';
 import { Manager } from './Manager';
+import { AuthStore } from '../stores/AuthStore';
 
 export enum RouteAuthRule {
 	UnauthorizedOnly,
@@ -41,6 +42,9 @@ export class RouteManager extends Manager {
 			}
 
 			case RouteAuthRule.UnauthorizedOnly : {
+				if(AuthStore.store.state.profile && AuthStore.store.state.authorized) {
+					this.go(PATHS.PERSONAL);
+				}
 				break;
 			}
 

@@ -24,7 +24,7 @@ export class AuthSignUpPage extends React.Component<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<Layout verticalPadding={true}>
+				<Layout topPadding={true}>
 					<BreadCrumbs/>
 
 					<AuthForm>

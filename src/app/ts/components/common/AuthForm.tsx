@@ -3,6 +3,7 @@ import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
 import { css, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
+import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
 
 interface IProps {
 
@@ -11,11 +12,10 @@ interface IProps {
 @followStore(AuthStore.store)
 export class AuthForm extends React.Component<IProps, {}> {
 	public render() {
-		console.log(AuthStore.store.state.profile);
-
 		return (
 			<div className={css(styles.container)}>
 				<div className={css(styles.inner)}>
+					<ModalHeaderFilter color={COLORS.BLUE} title="Login" icon="md-person"/>
 					{this.props.children}
 				</div>
 			</div>
@@ -31,9 +31,10 @@ const styles = StyleSheet.create({
 
 	inner: {
 		width: 400,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
+		backgroundColor: COLORS.WHITE.toString(),
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
-		padding: 20,
-		borderRadius: 10
+		borderRadius: 10,
+		overflow: 'hidden',
+		position: 'relative',
 	}
 });
