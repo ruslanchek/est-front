@@ -6,13 +6,13 @@
         "env": {
           "PORT": 5566,
           "NODE_ENV": "production",
-          "DATABASE_URL": "postgres://realthub:Tukzara2044@realthub.com:5432/realthub"
+					"DATABASE_URL": "postgres://realthub:Tukzara2044@realthub.com:5432/realthub"
         },
         "name": "realthub.com",
         "instances": 1,
         "exec_mode": "cluster",
         "error_file": "error-app.log",
-        "out_file": "out-app.log"
+				"out_file": "out-app.log"
       }
     ]
   }
