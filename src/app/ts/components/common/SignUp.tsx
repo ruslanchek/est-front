@@ -13,7 +13,7 @@ interface IProps {
 
 }
 
-export class Login extends React.PureComponent<IProps, {}> {
+export class SignUp extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
@@ -28,16 +28,12 @@ export class Login extends React.PureComponent<IProps, {}> {
 				</div>
 
 				<div className={css(styles.links)}>
-					<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_SIGN_UP}>
-						Sign up
-					</NavLink>
-
-					<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_PASSWORD_RESET}>
-						Remember password
+					<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_LOGIN}>
+						Login
 					</NavLink>
 				</div>
 
-				<ModalSubmit isEnabled={true} text="Login"/>
+				<ModalSubmit isEnabled={true} text="Sign up"/>
 			</Form>
 		);
 	}
@@ -45,7 +41,7 @@ export class Login extends React.PureComponent<IProps, {}> {
 	private handleForm = async (output: IFormModelOutput) => {
 		if(output.isValid) {
 			try {
-				const result = await managers.auth.login(output.values.email, output.values.password);
+				const result = await managers.auth.signUp(output.values.email, output.values.password);
 				console.log(result);
 				managers.route.go(PATHS.PERSONAL);
 			} catch (e) {

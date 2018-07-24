@@ -1,11 +1,10 @@
 import * as React from 'react';
 
 import { StyleSheet } from 'aphrodite/no-important';
-import { followStore } from 'react-stores';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
+import { Login } from '../common/Login';
+import { SignUp } from '../common/SignUp';
 
 interface IProps {
 
@@ -15,7 +14,6 @@ interface IState {
 
 }
 
-@followStore(ObjectsStore.store)
 export class AuthSignUpPage extends React.Component<IProps, IState> {
 	public state: IState = {
 
@@ -24,11 +22,9 @@ export class AuthSignUpPage extends React.Component<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<Layout topPadding={true}>
-					<BreadCrumbs/>
-
-					<AuthForm>
-						sdsad
+				<Layout topPadding={true} bottomPadding={true}>
+					<AuthForm title="Sign up">
+						<SignUp/>
 					</AuthForm>
 				</Layout>
 			</React.Fragment>
