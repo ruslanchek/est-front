@@ -4,6 +4,7 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { ModalReset } from './ModalReset';
 import { ModalSubmit } from './ModalSubmit';
+import { COLORS, THEME } from '../../theme';
 
 interface IProps {
 	isResetEnabled: boolean;
@@ -18,16 +19,20 @@ export class ModalResetSubmit extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<div className={css(styles.container)}>
-				<ModalReset
-					text={this.props.resetText}
-					onClick={this.props.onResetClick}
-					isEnabled={this.props.isResetEnabled}
-				/>
-				<ModalSubmit
-					text={this.props.submitText}
-					onClick={this.props.onSubmitClick}
-					isEnabled={this.props.isSubmitEnabled}
-				/>
+				<div className={css(styles.button)}>
+					<ModalReset
+						text={this.props.resetText}
+						onClick={this.props.onResetClick}
+						isEnabled={this.props.isResetEnabled}
+					/>
+				</div>
+				<div className={css(styles.button)}>
+					<ModalSubmit
+						text={this.props.submitText}
+						onClick={this.props.onSubmitClick}
+						isEnabled={this.props.isSubmitEnabled}
+					/>
+				</div>
 			</div>
 		);
 	}
@@ -35,6 +40,16 @@ export class ModalResetSubmit extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	container: {
-		display: 'flex'
+		display: 'flex',
+		padding: THEME.SECTION_PADDING_H,
+		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
+	},
+
+	button: {
+		width: '50%',
+
+		':first-of-type': {
+			marginRight: THEME.SECTION_PADDING_H,
+		},
 	}
 });

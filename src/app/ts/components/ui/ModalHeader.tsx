@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { THEME } from '../../theme';
 
 interface IProps {
@@ -26,6 +24,7 @@ const styles = StyleSheet.create({
 	},
 
 	title: {
-		margin: 0
+		margin: 0,
+		fontWeight: 800,
 	},
 });

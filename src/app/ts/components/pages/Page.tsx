@@ -7,8 +7,6 @@ import { RouteAuthRule } from '../../managers/RouteManager';
 import { StateStore } from '../../stores/StateStore';
 import { COLORS, THEME } from '../../theme';
 import { Header } from '../common/Header';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
-import { Layout } from '../common/Layout';
 import { Footer } from '../common/Footer';
 
 export enum PageLayout {
@@ -27,7 +25,7 @@ interface IState {
 @followStore(StateStore.store)
 export class Page extends React.Component<IProps, IState> {
 	public state: IState = {
-		routeKey: null
+		routeKey: null,
 	};
 
 	public componentDidMount() {
@@ -40,7 +38,7 @@ export class Page extends React.Component<IProps, IState> {
 
 		if (key !== this.state.routeKey) {
 			this.setState({
-				routeKey: key
+				routeKey: key,
 			});
 
 			managers.route.initPage(this.props.history, this.props.match.params, authRule);
@@ -70,6 +68,6 @@ const styles: any = StyleSheet.create({
 		fontFamily: THEME.FONT,
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		backgroundColor: COLORS.GRAY_LIGHT.toString(),
-		color: COLORS.BLACK.toString()
+		color: COLORS.BLACK.toString(),
 	}
 });

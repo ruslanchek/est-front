@@ -3,7 +3,7 @@ import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
 import { css, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
-import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
+import { ModalHeader } from '../ui/ModalHeader';
 
 interface IProps {
 
@@ -15,7 +15,7 @@ export class AuthForm extends React.Component<IProps, {}> {
 		return (
 			<div className={css(styles.container)}>
 				<div className={css(styles.inner)}>
-					<ModalHeaderFilter color={COLORS.BLUE} title="Login" icon="md-person"/>
+					<ModalHeader title="Login"/>
 					{this.props.children}
 				</div>
 			</div>

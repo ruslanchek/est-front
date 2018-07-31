@@ -4,10 +4,10 @@ import { EFormValidateOn, Form, IFormModelOutput } from '../forms/Form';
 import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
 import { Input } from '../forms/Input';
 import { managers } from '../../managers';
-import { ModalSubmit } from '../ui/ModalSubmit';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
+import { Button } from '../ui/Button';
 
 interface IProps {
 
@@ -38,7 +38,9 @@ export class Login extends React.PureComponent<IProps, {}> {
 						</NavLink>
 					</div>
 
-					<ModalSubmit isEnabled={true} text="Login"/>
+					<Button>
+						Login
+					</Button>
 				</Form>
 			</div>
 		);

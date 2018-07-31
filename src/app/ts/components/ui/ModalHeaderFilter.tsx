@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
 
 	title: {
 		margin: 0,
-		fontSize: THEME.FONT_SIZE_SMALL,
 		textTransform: 'uppercase',
 		color: COLORS.BLACK.toString(),
 		display: 'flex',
 		justifyContent: 'flex-start',
-		alignItems: 'center'
+		alignItems: 'center',
+		fontWeight: 800,
 	},
 
 	add: {

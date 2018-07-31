@@ -28,6 +28,7 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 						<NumberFormat value={from}/>
 					</strong>&ndash;
+
 					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
 						<NumberFormat value={to}/>
 					</strong>&nbsp;{what}

@@ -1,24 +1,38 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
+import { css, StyleSheet, StyleDeclaration } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
 
 export enum EButtonTheme {
 	Agree = 'agree',
+	AgreeBright = 'agreeBright',
 	Reject = 'reject',
+	RejectBright = 'rejectBright',
 	Full = 'full',
 }
 
 interface IProps {
-	type: 'submit' | 'button';
-	themes: EButtonTheme[];
+	themes?: EButtonTheme[];
+	type?: 'submit' | 'button';
+	disabled?: boolean;
+	onClick?: () => void;
+	styles?: StyleDeclaration;
 }
 
 export class Button extends React.PureComponent<IProps, {}> {
+	public static defaultProps: Partial<IProps> = {
+		themes: [EButtonTheme.AgreeBright],
+		type: 'submit',
+		disabled: false,
+		onClick: () => {},
+		styles: null,
+	};
+
 	public render() {
 		const { themes, type, children } = this.props;
 
 		const style = [
 			styles.button,
+			this.props.styles,
 		];
 
 		themes.forEach((theme) => {
@@ -29,6 +43,7 @@ export class Button extends React.PureComponent<IProps, {}> {
 			<button
 				className={css(style)}
 				type={type}
+				onClick={() => this.props.onClick()}
 			>
 				{children}
 			</button>
@@ -43,10 +58,17 @@ const styles = StyleSheet.create({
 		background: 'none',
 		fontFamily: THEME.FONT,
 		fontWeight: 600,
-		height: 48,
+		height: 34,
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		borderRadius: 5,
+		textAlign: 'center',
+		outline: 'none',
 		transition: 'background-color .2s',
+		cursor: 'pointer',
+
+		':disabled': {
+			opacity: .5,
+		},
 	},
 
 	agree: {
@@ -55,14 +77,37 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
-		}
+		},
+	},
+
+	agreeBright: {
+		backgroundColor: COLORS.BLUE.toString(),
+		color: COLORS.WHITE.toString(),
+
+		':hover': {
+			backgroundColor: COLORS.BLUE.lighten(.1).toString(),
+		},
 	},
 
 	reject: {
+		backgroundColor: COLORS.RED_LIGHT.toString(),
+		color: COLORS.RED.toString(),
 
+		':hover': {
+			backgroundColor: COLORS.RED_LIGHT_ACTIVE.toString(),
+		},
+	},
+
+	rejectBright: {
+		backgroundColor: COLORS.RED.toString(),
+		color: COLORS.WHITE.toString(),
+
+		':hover': {
+			backgroundColor: COLORS.RED.lighten(.1).toString(),
+		},
 	},
 
 	full: {
-		width: '100%'
-	}
+		width: '100%',
+	},
 });

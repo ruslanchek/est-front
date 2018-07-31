@@ -1,6 +1,7 @@
 import { css, StyleSheet } from 'aphrodite/no-important';
 import * as React from 'react';
 import { COLORS, THEME } from '../../theme';
+import { Button, EButtonTheme } from './Button';
 
 interface IProps {
 	isEnabled: boolean;
@@ -11,18 +12,19 @@ interface IProps {
 export class ModalSubmit extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<button
+			<Button
+				themes={[EButtonTheme.AgreeBright]}
 				onClick={() => {
 					if(this.props.onClick) {
 						this.props.onClick();
 					}
 				}}
 				disabled={!this.props.isEnabled}
-				className={css(styles.submit)}
+				styles={styles.submit}
 				type="submit"
 			>
 				{this.props.text}
-			</button>
+			</Button>
 		);
 	}
 }
@@ -31,24 +33,5 @@ const styles = StyleSheet.create({
 	submit: {
 		display: 'block',
 		width: '100%',
-		height: 48,
-		fontSize: THEME.FONT_SIZE_REGULAR,
-		fontWeight: 600,
-		border: 'none',
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		outline: 'none',
-		textAlign: 'center',
-		color: COLORS.BLUE.toString(),
-		transition: 'background-color .2s',
-		cursor: 'pointer',
-		backgroundColor: 'transparent',
-
-		':disabled': {
-			opacity: 0.5,
-		},
-
-		':hover': {
-			backgroundColor: COLORS.BLUE_LIGHT.toString()
-		}
 	},
 });
