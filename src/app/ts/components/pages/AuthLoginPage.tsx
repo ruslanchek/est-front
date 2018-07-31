@@ -22,7 +22,7 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 		return (
 			<React.Fragment>
 				<Layout topPadding={true} bottomPadding={true}>
-					<AuthForm title="Login">
+					<AuthForm>
 						<Login/>
 					</AuthForm>
 				</Layout>

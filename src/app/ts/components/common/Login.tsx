@@ -8,6 +8,7 @@ import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Button } from '../ui/Button';
+import { ModalHeader } from '../ui/ModalHeader';
 
 interface IProps {
 
@@ -17,6 +18,8 @@ export class Login extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<div>
+				<ModalHeader title="Login"/>
+
 				<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
 					<div className={css(styles.rows)}>
 						<div className={css(styles.row)}>
@@ -60,7 +63,6 @@ export class Login extends React.PureComponent<IProps, {}> {
 const styles = StyleSheet.create({
 	rows: {
 		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
 	},
 
 	row: {
