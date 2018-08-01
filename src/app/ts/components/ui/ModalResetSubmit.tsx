@@ -19,20 +19,11 @@ export class ModalResetSubmit extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<div className={css(styles.container)}>
-				<div className={css(styles.button)}>
-					<ModalReset
-						text={this.props.resetText}
-						onClick={this.props.onResetClick}
-						isEnabled={this.props.isResetEnabled}
-					/>
-				</div>
-				<div className={css(styles.button)}>
 					<ModalSubmit
 						text={this.props.submitText}
 						onClick={this.props.onSubmitClick}
 						isEnabled={this.props.isSubmitEnabled}
 					/>
-				</div>
 			</div>
 		);
 	}

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
 	selectable: {
 		cursor: 'pointer',
 		display: 'flex',
+		fontSize: THEME.FONT_SIZE_SMALL,
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		fontWeight: 600,

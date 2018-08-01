@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 		background: 'none',
 		fontFamily: THEME.FONT,
 		fontWeight: 600,
-		height: 34,
+		height: 36,
 		fontSize: THEME.FONT_SIZE_REGULAR,
 		borderRadius: 5,
 		textAlign: 'center',

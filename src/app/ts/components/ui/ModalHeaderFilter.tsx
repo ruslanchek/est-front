@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
 
 	title: {
 		margin: 0,
+		fontSize: THEME.FONT_SIZE_SMALL,
 		textTransform: 'uppercase',
 		color: COLORS.BLACK.toString(),
 		display: 'flex',
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
 	},
 
 	add: {
-		backgroundColor: COLORS.BLUE.alpha(0.1).toString(),
+		backgroundColor: COLORS.BLUE.alpha(.1).toString(),
 		color: COLORS.BLUE.toString(),
 		fontWeight: 600,
 		height: 26,
