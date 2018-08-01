@@ -32,7 +32,7 @@ export class ModalResetSubmit extends React.PureComponent<IProps, {}> {
 const styles = StyleSheet.create({
 	container: {
 		display: 'flex',
-		padding: THEME.SECTION_PADDING_H,
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
 		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 	},
 

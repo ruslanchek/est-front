@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 		backgroundColor: COLORS.BLUE_LIGHT.toString(),
 		color: COLORS.BLUE.toString(),
 		fontWeight: 600,
-		borderRadius: 10,
+		borderRadius: 4,
 
 		':hover': {
 			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
 
 	brick: {
 		marginRight: THEME.SECTION_PADDING_H / 2,
-		borderRadius: 10
+		borderRadius: 4
 	},
 
 	brickMiddle: {
@@ -189,13 +189,13 @@ const styles = StyleSheet.create({
 	},
 
 	brickRoundedLeft: {
-		borderBottomLeftRadius: 10,
-		borderTopLeftRadius: 10,
+		borderBottomLeftRadius: 4,
+		borderTopLeftRadius: 4,
 		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
 	},
 
 	brickRoundedRight: {
-		borderBottomRightRadius: 10,
-		borderTopRightRadius: 10,
+		borderBottomRightRadius: 4,
+		borderTopRightRadius: 4,
 	},
 });

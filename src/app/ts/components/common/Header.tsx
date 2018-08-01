@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
 		color: COLORS.WHITE.toString(),
 		backgroundColor: COLORS.BLUE.toString(),
 		padding: `5px 8px`,
-		borderRadius: 10,
+		borderRadius: 4,
 		fontSize: THEME.FONT_SIZE_SMALL,
 		fontWeight: 600,
 		textTransform: 'uppercase',

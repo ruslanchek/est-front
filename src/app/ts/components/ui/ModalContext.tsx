@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
 	content: {
 		fontSize: THEME.FONT_SIZE_SMALL,
 		width: 400,
-		borderRadius: 10,
+		borderRadius: 6,
 		overflow: 'hidden',
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
 		backgroundColor: COLORS.WHITE.toString(),

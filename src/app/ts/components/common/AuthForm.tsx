@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 		width: 400,
 		backgroundColor: COLORS.WHITE.toString(),
 		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
-		borderRadius: 10,
+		borderRadius: 6,
 		overflow: 'hidden',
 		position: 'relative',
 	}
