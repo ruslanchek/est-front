@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { css, StyleSheet } from 'aphrodite/no-important';
+import { COMMON_STYLES, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
 import { ModalContext } from '../ui/ModalContext';
-import { Flag } from '../ui/Flag';
 import { IsPhone } from './IsPhone';
-import { IsDesktop } from './IsDesktop';
 import { IsDesktopOrTablet } from './IsDesktopOrTablet';
 import { ModalHeader } from '../ui/ModalHeader';
 
