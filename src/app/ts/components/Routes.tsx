@@ -9,6 +9,7 @@ import { ObjectPage } from './pages/ObjectPage';
 import { AgentPage } from './pages/AgentPage';
 import { AuthSignUpPage } from './pages/AuthSignUpPage';
 import { AuthLoginPage } from './pages/AuthLoginPage';
+import { PersonalPage } from './pages/PersonalPage';
 
 interface IState {
 	key: number;
@@ -93,6 +94,22 @@ export class Routes extends React.Component<{}, IState> {
 								authRule={RouteAuthRule.UnauthorizedOnly}
 							>
 								<AuthLoginPage/>
+							</Page>
+						);
+					}}
+				/>
+
+				<Route
+					exact={true}
+					path={PATHS.PERSONAL}
+					render={props => {
+						return (
+							<Page
+								{...props}
+								layout={PageLayout.Default}
+								authRule={RouteAuthRule.AuthorizedOnly}
+							>
+								<PersonalPage/>
 							</Page>
 						);
 					}}

@@ -17,14 +17,6 @@ export interface IApiResult<Payload> {
 }
 
 export class ApiManager extends Manager {
-	public retreiveToken(): void {
-		this.setToken(managers.storage.cookies.get('token'));
-	}
-
-	public setToken(token: string): void {
-		managers.storage.cookies.set('token', token);
-	}
-
 	public reset(): void {
 
 	}

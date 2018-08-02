@@ -11,73 +11,53 @@ export class AuthManager extends Manager {
 		});
 	}
 
+	public logOut(): void {
+		this.reset();
+		this.setToken('');
+	}
+
+	public setToken(token: string): void {
+		managers.storage.cookies.set('token', token);
+	}
+
 	public async auth(): Promise<any> {
-		return new Promise<any>(async (resolve, reject) => {
-			managers.api
-				.request<any>(EApiRequestType.GET, '/profile')
-				.then((result) => {
-					if(!result.error && result.payload.entity) {
-						AuthStore.store.setState({
-							authorized: true,
-							profile: result.payload.entity,
-						});
+		const result = await managers.api.request<any>(EApiRequestType.GET, '/profile');
 
-						resolve();
-					} else {
-						resolve();
-					}
-				})
-				.catch(() => {
-					AuthStore.store.setState({
-						authorized: false,
-						profile: null,
-					});
-
-					resolve();
-				});
-		});
+		if(result && !result.error && result.payload.entity) {
+			AuthStore.store.setState({
+				authorized: true,
+				profile: result.payload.entity,
+			});
+		} else {
+			AuthStore.store.setState({
+				authorized: false,
+				profile: null,
+			});
+		}
 	}
 
 	public async login(email: string, password: string): Promise<any> {
-		return new Promise<any>(async (resolve, reject) => {
-			managers.api
-				.request<any>(EApiRequestType.POST, '/auth/login', {
-					email,
-					password,
-				})
-				.then((result) => {
-					console.log(result);
-					if(!result.error && result.payload.accessToken) {
-						managers.api.setToken(result.payload.accessToken);
-						this.auth();
-						resolve();
-					}
-				})
-				.catch((result) => {
-					reject(result);
-				});
+		const result = await managers.api.request<any>(EApiRequestType.POST, '/auth/login', {
+			email,
+			password,
 		});
+
+		if(!result.error && result.payload.accessToken) {
+			this.setToken(result.payload.accessToken);
+			await this.auth();
+		}
 	}
 
 	public async signUp(email: string, password: string): Promise<any> {
-		return new Promise<any>(async (resolve, reject) => {
-			managers.api
-				.request<any>(EApiRequestType.POST, '/auth/register', {
-					email,
-					password,
-				})
-				.then((result) => {
-					console.log(result);
-					if(!result.error && result.payload.accessToken) {
-						managers.api.setToken(result.payload.accessToken);
-						this.auth();
-						resolve();
-					}
-				})
-				.catch((result) => {
-					reject(result);
-				});
+		const result = await managers.api.request<any>(EApiRequestType.POST, '/auth/register', {
+			email,
+			password,
 		});
+
+		if(!result.error && result.payload.accessToken) {
+			this.setToken(result.payload.accessToken);
+			await this.auth();
+		}
 	}
 
 	public init(): Promise<any> {

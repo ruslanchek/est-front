@@ -9,7 +9,7 @@ export const PATHS = {
 };
 
 export const CONFIG = {
-	API_BASE_URL: 'http://localhost:5566/api',
+	API_BASE_URL: 'https://realthub.com/api',
 	STATIC_PATH: 'https://static-realthub-com.ams3.digitaloceanspaces.com',
 	GOOGLE_MAPS_KEY: 'AIzaSyBr9pzfBKKLSrG6BZk18fyYhPPmkEceSZU',
 	STORAGE: {
