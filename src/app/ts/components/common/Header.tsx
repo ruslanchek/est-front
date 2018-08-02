@@ -122,7 +122,7 @@ export class Header extends React.PureComponent<{}, IState> {
 									</IsPhone>
 
 									<IsDesktopOrTablet>
-										{AuthStore.store.state.profile.email}
+										{AuthStore.store.state.profile.name}
 									</IsDesktopOrTablet>
 								</NavLink>
 							) : (
