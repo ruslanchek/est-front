@@ -118,18 +118,18 @@ export const COMMON_STYLES = StyleSheet.create({
 		height: THEME.INPUT_HEIGHT,
 		lineHeight: `${THEME.INPUT_HEIGHT}px`,
 		fontSize: THEME.FONT_SIZE_REGULAR,
-		border: `2px solid transparent`,
+		border: `1px solid ${COLORS.GRAY_DARK.darken(.05)}`,
 		fontWeight: 600,
 		color: COLORS.BLACK.toString(),
 		transition: 'border-color .2s',
 		boxSizing: 'border-box',
 
 		':hover': {
-			borderColor: COLORS.GRAY_DARK.darken(.05).toString(),
+			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
 		},
 
 		':focus': {
-			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
+			borderColor: COLORS.GRAY_DARK.darken(.15).toString(),
 		},
 	}
 });

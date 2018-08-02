@@ -14,7 +14,15 @@ interface IProps {
 
 }
 
-export class Login extends React.PureComponent<IProps, {}> {
+interface IState {
+	loading: boolean;
+}
+
+export class Login extends React.PureComponent<IProps, IState> {
+	public state: IState = {
+		loading: false
+	};
+
 	public render() {
 		return (
 			<div>
@@ -31,6 +39,12 @@ export class Login extends React.PureComponent<IProps, {}> {
 						</div>
 					</div>
 
+					<div className={css(styles.buttons)}>
+						<Button loading={this.state.loading}>
+							Login
+						</Button>
+					</div>
+
 					<div className={css(styles.links)}>
 						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_SIGN_UP}>
 							Sign up
@@ -40,19 +54,19 @@ export class Login extends React.PureComponent<IProps, {}> {
 							Remember password
 						</NavLink>
 					</div>
-
-					<Button>
-						Login
-					</Button>
 				</Form>
 			</div>
 		);
 	}
 
 	private handleForm = async (output: IFormModelOutput) => {
+		this.setState({
+			loading: true,
+		});
+
 		try {
 			const result = await managers.auth.login(output.values.email, output.values.password);
-			console.log(result);
+
 			managers.route.go(PATHS.PERSONAL);
 		} catch (e) {
 			console.log(e);
@@ -77,5 +91,9 @@ const styles = StyleSheet.create({
 
 	link: {
 		margin: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-	}
+	},
+
+	buttons: {
+		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+	},
 });

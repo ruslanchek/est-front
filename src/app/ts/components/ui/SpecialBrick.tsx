@@ -44,7 +44,7 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 const styles = StyleSheet.create({
 	container: {
 		display: 'block',
-		borderRadius: 10,
+		borderRadius: 6,
 		overflow: 'hidden',
 		color: COLORS.WHITE.toString(),
 		textDecoration: 'none',

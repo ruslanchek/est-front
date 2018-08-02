@@ -217,8 +217,8 @@ const styles = StyleSheet.create({
 	},
 
 	search: {
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
+		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
+		borderBottom: `1px solid ${COLORS.GRAY_DARK.toString()}`,
 	},
 
 	symbolHolder: {

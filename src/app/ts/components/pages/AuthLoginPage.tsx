@@ -3,7 +3,7 @@ import * as React from 'react';
 import { StyleSheet } from 'aphrodite/no-important';
 import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
-import { Login } from '../common/Login';
+import { Login } from '../auth/Login';
 
 interface IProps {
 

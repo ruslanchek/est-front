@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 
 	title: {
 		fontSize: THEME.FONT_SIZE_SMALL,
+		textTransform: 'uppercase',
 		margin: 0,
 		fontWeight: 800,
 	},

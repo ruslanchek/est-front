@@ -73,7 +73,7 @@ export class ObjectInList extends React.Component<IProps, {}> {
 
 const styles = StyleSheet.create({
 	container: {
-		borderRadius: 10,
+		borderRadius: 6,
 		position: 'relative',
 		overflow: 'hidden',
 		backgroundColor: COLORS.WHITE.toString(),

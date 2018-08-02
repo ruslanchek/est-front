@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { css, StyleSheet, StyleDeclaration } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
+import { Loading } from '../common/Loading';
 
 export enum EButtonTheme {
 	Agree = 'agree',
@@ -14,6 +15,7 @@ interface IProps {
 	themes?: EButtonTheme[];
 	type?: 'submit' | 'button';
 	disabled?: boolean;
+	loading?: boolean;
 	onClick?: () => void;
 	styles?: StyleDeclaration;
 }
@@ -23,12 +25,13 @@ export class Button extends React.PureComponent<IProps, {}> {
 		themes: [EButtonTheme.AgreeBright],
 		type: 'submit',
 		disabled: false,
+		loading: false,
 		onClick: () => {},
 		styles: null,
 	};
 
 	public render() {
-		const { themes, type, children } = this.props;
+		const { themes, type, children, loading, disabled } = this.props;
 
 		const style = [
 			styles.button,
@@ -41,11 +44,18 @@ export class Button extends React.PureComponent<IProps, {}> {
 
 		return (
 			<button
+				disabled={disabled || loading}
 				className={css(style)}
 				type={type}
 				onClick={() => this.props.onClick()}
 			>
-				{children}
+				{loading ? (
+					<Loading
+						className={css(styles.loading)}
+						size={24}
+						color={COLORS.WHITE}
+					/>
+				) : children}
 			</button>
 		);
 	}
@@ -53,7 +63,9 @@ export class Button extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	button: {
-		display: 'inline-block',
+		display: 'block',
+		position: 'relative',
+		width: '100%',
 		border: 'none',
 		background: 'none',
 		fontFamily: THEME.FONT,
@@ -69,6 +81,13 @@ const styles = StyleSheet.create({
 		':disabled': {
 			opacity: .5,
 		},
+	},
+
+	loading: {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)'
 	},
 
 	agree: {

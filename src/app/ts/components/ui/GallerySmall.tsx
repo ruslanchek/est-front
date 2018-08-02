@@ -172,6 +172,6 @@ const styles = StyleSheet.create({
 	},
 
 	image: {
-		borderRadius: '10px 10px 0 0'
+		borderRadius: '6px 6px 0 0'
 	}
 });
