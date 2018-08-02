@@ -38,6 +38,9 @@ export class RouteManager extends Manager {
 
 		switch (authRule) {
 			case RouteAuthRule.AuthorizedOnly : {
+				if(AuthStore.store.state.profile && AuthStore.store.state.authorized) {
+					this.go(PATHS.AUTH_LOG_IN);
+				}
 				break;
 			}
 
