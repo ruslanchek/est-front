@@ -127,7 +127,7 @@ export class Header extends React.PureComponent<{}, IState> {
 								</NavLink>
 							) : (
 								<NavLink
-									to={PATHS.AUTH_LOG_IN}
+									to={PATHS.AUTH_SIGN_UP}
 									className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
 									onClick={() => {
 
