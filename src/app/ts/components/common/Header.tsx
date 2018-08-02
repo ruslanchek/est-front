@@ -28,7 +28,7 @@ const FLOATING_THRESHOLD: number = 0;
 
 @followStore(StateStore.store)
 @followStore(AuthStore.store)
-export class Header extends React.PureComponent<{}, IState> {
+export class Header extends React.Component<{}, IState> {
 	public state: IState = {
 		isFloating: false,
 		phoneNavIsVisible: false,
