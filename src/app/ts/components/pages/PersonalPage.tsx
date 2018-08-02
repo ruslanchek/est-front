@@ -34,7 +34,9 @@ export class PersonalPage extends React.Component<IProps, IState> {
 					<p>
 						<Button onClick={() => {
 							managers.auth.logOut();
-						}}/>
+						}}>
+							Log out
+						</Button>
 					</p>
 				</Layout>
 			</React.Fragment>
