@@ -4,11 +4,11 @@ import { EFormValidateOn, Form, IFormModelOutput } from '../forms/Form';
 import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
 import { Input } from '../forms/Input';
 import { managers } from '../../managers';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COMMON_STYLES, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
-import { Button } from '../ui/Button';
 import { ModalHeader } from '../ui/ModalHeader';
+import { Button } from '../ui/Button';
 
 interface IProps {
 
@@ -18,7 +18,8 @@ interface IState {
 	loading: boolean;
 }
 
-export class Login extends React.PureComponent<IProps, IState> {
+
+export class SignUp extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		loading: false
 	};
@@ -26,7 +27,7 @@ export class Login extends React.PureComponent<IProps, IState> {
 	public render() {
 		return (
 			<div>
-				<ModalHeader title="Login"/>
+				<ModalHeader title="Sign up"/>
 
 				<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
 					<div className={css(styles.rows)}>
@@ -39,19 +40,23 @@ export class Login extends React.PureComponent<IProps, IState> {
 						</div>
 					</div>
 
+					<div className={css(styles.social)}>
+						<i>Or</i>
+
+						<Button>
+							Continue with Facebook
+						</Button>
+					</div>
+
 					<div className={css(styles.buttons)}>
 						<Button loading={this.state.loading}>
-							Login
+							Sign up
 						</Button>
 					</div>
 
 					<div className={css(styles.links)}>
-						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_SIGN_UP}>
-							Sign up
-						</NavLink>
-
-						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_PASSWORD_RESET}>
-							Remember password
+						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_LOG_IN}>
+							Log in
 						</NavLink>
 					</div>
 				</Form>
@@ -60,16 +65,14 @@ export class Login extends React.PureComponent<IProps, IState> {
 	}
 
 	private handleForm = async (output: IFormModelOutput) => {
-		this.setState({
-			loading: true,
-		});
-
-		try {
-			const result = await managers.auth.login(output.values.email, output.values.password);
-
-			managers.route.go(PATHS.PERSONAL);
-		} catch (e) {
-			console.log(e);
+		if(output.isValid) {
+			try {
+				const result = await managers.auth.signUp(output.values.email, output.values.password);
+				console.log(result);
+				managers.route.go(PATHS.PERSONAL);
+			} catch (e) {
+				console.log(e);
+			}
 		}
 	};
 }
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
 	},
 
 	links: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
 		display: 'flex',
 		justifyContent: 'center',
 	},
@@ -94,6 +97,11 @@ const styles = StyleSheet.create({
 	},
 
 	buttons: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
+		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
+	},
+
+	social: {
+
 	},
 });
+

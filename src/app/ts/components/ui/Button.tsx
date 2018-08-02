@@ -75,11 +75,12 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 		textAlign: 'center',
 		outline: 'none',
-		transition: 'background-color .2s',
+		transition: 'background-color .2s, opacity .2s',
 		cursor: 'pointer',
 
 		':disabled': {
-			opacity: .5,
+			opacity: .65,
+			pointerEvents: 'none',
 		},
 	},
 

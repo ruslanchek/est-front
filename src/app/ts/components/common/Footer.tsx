@@ -61,7 +61,7 @@ export class Footer extends React.PureComponent<{}, IState> {
 								</NavLink>
 
 								<NavLink
-									to={PATHS.AUTH_LOGIN}
+									to={PATHS.AUTH_LOG_IN}
 									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
 								>
 									Login

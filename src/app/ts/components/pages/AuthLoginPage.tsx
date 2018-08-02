@@ -3,7 +3,7 @@ import * as React from 'react';
 import { StyleSheet } from 'aphrodite/no-important';
 import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
-import { Login } from '../auth/Login';
+import { LogIn } from '../auth/Login';
 
 interface IProps {
 
@@ -23,7 +23,7 @@ export class AuthLoginPage extends React.Component<IProps, IState> {
 			<React.Fragment>
 				<Layout topPadding={true} bottomPadding={true}>
 					<AuthForm>
-						<Login/>
+						<LogIn/>
 					</AuthForm>
 				</Layout>
 			</React.Fragment>

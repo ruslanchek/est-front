@@ -84,7 +84,7 @@ export class Routes extends React.Component<{}, IState> {
 
 				<Route
 					exact={true}
-					path={PATHS.AUTH_LOGIN}
+					path={PATHS.AUTH_LOG_IN}
 					render={props => {
 						return (
 							<Page
