@@ -17,7 +17,8 @@ export const COLORS = {
 	BLUE_LIGHT_ACTIVE: Color('#D3E4F7'),
 	BLUE: Color('#017AD5'),
 	BLUE_SELECTED: Color('#017AD5').alpha(.05),
-	GREEN: Color('#00914D')
+	GREEN: Color('#00914D'),
+	FACEBOOK: Color('#3B5998'),
 };
 
 export const THEME = {

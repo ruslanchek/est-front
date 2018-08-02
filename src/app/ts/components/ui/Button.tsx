@@ -9,6 +9,7 @@ export enum EButtonTheme {
 	Reject = 'reject',
 	RejectBright = 'rejectBright',
 	Full = 'full',
+	Facebook = 'facebook',
 }
 
 interface IProps {
@@ -63,7 +64,9 @@ export class Button extends React.PureComponent<IProps, {}> {
 
 const styles = StyleSheet.create({
 	button: {
-		display: 'block',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
 		position: 'relative',
 		width: '100%',
 		border: 'none',
@@ -124,6 +127,15 @@ const styles = StyleSheet.create({
 
 		':hover': {
 			backgroundColor: COLORS.RED.lighten(.1).toString(),
+		},
+	},
+
+	facebook: {
+		backgroundColor: COLORS.FACEBOOK.alpha(.1).toString(),
+		color: COLORS.FACEBOOK.toString(),
+
+		':hover': {
+			backgroundColor: COLORS.FACEBOOK.alpha(.2).toString(),
 		},
 	},
 

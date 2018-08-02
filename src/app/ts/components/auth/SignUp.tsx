@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as Ionicon from 'react-ionicons';
+
 import { css, StyleSheet } from 'aphrodite/no-important';
 import { EFormValidateOn, Form, IFormModelOutput } from '../forms/Form';
 import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
@@ -51,7 +53,18 @@ export class SignUp extends React.PureComponent<IProps, IState> {
 					</div>
 
 					<div className={css(styles.buttons)}>
-						<Button type="button" loading={this.state.loading} themes={[EButtonTheme.Agree]}>
+						<Button
+							type="button"
+							styles={styles.facebookButton}
+							loading={this.state.loading}
+							themes={[EButtonTheme.Agree, EButtonTheme.Facebook]}
+						>
+							<Ionicon
+								icon="logo-facebook"
+								fontSize="22px"
+								color={COLORS.FACEBOOK}
+							/>
+
 							Continue with Facebook
 						</Button>
 					</div>
@@ -131,6 +144,10 @@ const styles = StyleSheet.create({
 		backgroundColor: COLORS.WHITE.toString(),
 		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
 		zIndex: 2,
+	},
+
+	facebookButton: {
+		color: '#3B5998',
 	},
 });
 

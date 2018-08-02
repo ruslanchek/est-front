@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite';
+import * as Ionicon from 'react-ionicons';
+
+import { css, StyleSheet } from 'aphrodite';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
@@ -7,17 +9,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { EIcon, EIconType, Icon } from './Icon';
-import { Modal } from '../ui/Modal';
 import { Filters } from './Filters';
 import { IsDesktop } from './IsDesktop';
-import { IsPhoneOrTablet } from './IsPhoneOrTablet';
-import { ModalHeader } from '../ui/ModalHeader';
-import * as Ionicon from 'react-ionicons';
-import { FilterCountry } from '../ui/FilterCountry';
-import { Flag } from '../ui/Flag';
-import { managers } from '../../managers';
-import { ModalContext } from '../ui/ModalContext';
-import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
 import { LocaleSelector } from './LocaleSelector';
 import { CountrySelector } from './CountrySelector';
 import { CurrencySelector } from './CurrencySelector';
