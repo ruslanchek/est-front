@@ -9,6 +9,14 @@ import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Button } from '../ui/Button';
 import { ModalHeader } from '../ui/ModalHeader';
+import { ModalHeaderBig } from '../ui/ModalHeaderBig';
+import { FormRows } from '../forms/ui/FormRows';
+import { FormRow } from '../forms/ui/FormRow';
+import { ValidatorIsRequired } from '../forms/Validators/ValidatorIsRequired';
+import { FormButtonsBlock } from '../forms/ui/FormButtonsBlock';
+import { FormLinks } from '../forms/ui/FormLinks';
+import { FormDivider } from '../forms/ui/FormDivider';
+import { FormButtonSocial } from '../forms/ui/FormButtonSocial';
 
 interface IProps {
 
@@ -25,27 +33,33 @@ export class LogIn extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<div>
-				<ModalHeader title="Log in"/>
+			<React.Fragment>
+				<ModalHeaderBig title="Log in"/>
 
 				<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
-					<div className={css(styles.rows)}>
-						<div className={css(styles.row)}>
+					<FormRows>
+						<FormRow>
 							<Input validators={[new ValidatorIsEmail()]} name="email" autoFocus={false}/>
-						</div>
+						</FormRow>
 
-						<div className={css(styles.row)}>
-							<Input name="password" autoFocus={false} type="password"/>
-						</div>
-					</div>
+						<FormRow>
+							<Input validators={[new ValidatorIsRequired()]} name="password" autoFocus={false} type="password"/>
+						</FormRow>
+					</FormRows>
 
-					<div className={css(styles.buttons)}>
+					<FormButtonsBlock>
 						<Button loading={this.state.loading}>
 							Log in
 						</Button>
-					</div>
+					</FormButtonsBlock>
 
-					<div className={css(styles.links)}>
+					<FormDivider text="or"/>
+
+					<FormButtonsBlock>
+						<FormButtonSocial loading={false}/>
+					</FormButtonsBlock>
+
+					<FormLinks>
 						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_SIGN_UP}>
 							Sign up
 						</NavLink>
@@ -53,23 +67,24 @@ export class LogIn extends React.PureComponent<IProps, IState> {
 						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_PASSWORD_RESET}>
 							Remember password
 						</NavLink>
-					</div>
+					</FormLinks>
 				</Form>
-			</div>
+			</React.Fragment>
 		);
 	}
 
 	private handleForm = async (output: IFormModelOutput) => {
-		this.setState({
-			loading: true,
-		});
-
 		try {
+			this.setState({
+				loading: true,
+			});
 			const result = await managers.auth.login(output.values.email, output.values.password);
 
 			managers.route.go(PATHS.PERSONAL);
 		} catch (e) {
-			console.log(e);
+			this.setState({
+				loading: false,
+			});
 		}
 	};
 }

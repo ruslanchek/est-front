@@ -65,6 +65,27 @@ export const COMMON_STYLES = StyleSheet.create({
 		}
 	},
 
+	CONTEXTUAL_LINK: {
+		color: COLORS.BLUE.toString(),
+		textDecoration: 'none',
+
+		':link': {
+			color: COLORS.BLUE.toString(),
+		},
+
+		':visited': {
+			color: COLORS.BLUE.toString(),
+		},
+
+		':hover': {
+			color: COLORS.BLUE.lighten(.15).toString(),
+		},
+
+		':active': {
+			color: COLORS.BLUE.lighten(.15).toString(),
+		}
+	},
+
 	SMALL_TEXT: {
 		fontSize: THEME.FONT_SIZE_SMALL,
 	},

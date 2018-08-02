@@ -16,6 +16,7 @@ import { CountrySelector } from './CountrySelector';
 import { CurrencySelector } from './CurrencySelector';
 import { IsPhone } from './IsPhone';
 import { IsDesktopOrTablet } from './IsDesktopOrTablet';
+import { AuthStore } from '../../stores/AuthStore';
 
 interface IState {
 	isFloating: boolean;
@@ -26,6 +27,7 @@ interface IState {
 const FLOATING_THRESHOLD: number = 0;
 
 @followStore(StateStore.store)
+@followStore(AuthStore.store)
 export class Header extends React.PureComponent<{}, IState> {
 	public state: IState = {
 		isFloating: false,
@@ -103,25 +105,47 @@ export class Header extends React.PureComponent<{}, IState> {
 						</div>
 
 						<nav className={css(styles.user, styles.userPhoneOrTablet)}>
-							<NavLink
-								to={PATHS.AUTH_LOG_IN}
-								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
-								onClick={() => {
+							{AuthStore.store.state.authorized ? (
+								<NavLink
+									to={PATHS.PERSONAL}
+									className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
+									onClick={() => {
 
-								}}
-							>
-								<IsPhone>
-									<Ionicon
-										icon="md-person"
-										fontSize="14px"
-										color={COLORS.BLACK.toString()}
-									/>
-								</IsPhone>
+									}}
+								>
+									<IsPhone>
+										<Ionicon
+											icon="md-person"
+											fontSize="14px"
+											color={COLORS.BLACK.toString()}
+										/>
+									</IsPhone>
 
-								<IsDesktopOrTablet>
-									Sign up
-								</IsDesktopOrTablet>
-							</NavLink>
+									<IsDesktopOrTablet>
+										{AuthStore.store.state.profile.email}
+									</IsDesktopOrTablet>
+								</NavLink>
+							) : (
+								<NavLink
+									to={PATHS.AUTH_LOG_IN}
+									className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
+									onClick={() => {
+
+									}}
+								>
+									<IsPhone>
+										<Ionicon
+											icon="md-person"
+											fontSize="14px"
+											color={COLORS.BLACK.toString()}
+										/>
+									</IsPhone>
+
+									<IsDesktopOrTablet>
+										Sign up
+									</IsDesktopOrTablet>
+								</NavLink>
+							)}
 
 							<NavLink
 								to={PATHS.HOME}
@@ -180,14 +204,6 @@ export class Header extends React.PureComponent<{}, IState> {
 
 		this.setState({
 			isFloating: scrollTop > FLOATING_THRESHOLD,
-		});
-	};
-
-	private openPhoneNav = (e) => {
-		e.preventDefault();
-
-		this.setState({
-			phoneNavIsVisible: true,
 		});
 	};
 }
