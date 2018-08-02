@@ -8,6 +8,7 @@ export namespace AuthStore {
 		name: string;
 		phone: string;
 		type: string;
+		avatar: string;
 	}
 
 	export interface IState {
