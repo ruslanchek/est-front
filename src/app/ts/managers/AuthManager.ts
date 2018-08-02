@@ -2,6 +2,8 @@ import { Manager } from './Manager';
 import { managers } from '../managers';
 import { EApiRequestType } from './ApiManager';
 import { AuthStore } from '../stores/AuthStore';
+import { THEME } from '../theme';
+import { PATHS } from '../config';
 
 export class AuthManager extends Manager {
 	public reset(): void {
@@ -14,6 +16,9 @@ export class AuthManager extends Manager {
 	public logOut(): void {
 		this.reset();
 		this.setToken('');
+
+		// TODO: Make checks for Authorized only pages. Redirect to HOME_PAGE from secured routes and refresh page on shared ones.
+		managers.route.go(PATHS.AUTH_LOG_IN);
 	}
 
 	public setToken(token: string): void {
