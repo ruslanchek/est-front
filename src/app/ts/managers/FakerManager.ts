@@ -30,7 +30,7 @@ export class FakerManager extends Manager {
 			EObjectAgentType.Agency,
 		]);
 
-		const agentName: string = agentType === EObjectAgentType.Agency ? faker.company.companyName() : `${faker.name.firstName()} ${faker.name.lastName()}`;
+		const name: string = agentType === EObjectAgentType.Agency ? faker.company.companyName() : `${faker.name.firstName()} ${faker.name.lastName()}`;
 
 		return {
 			id: faker.random.number({
@@ -39,8 +39,7 @@ export class FakerManager extends Manager {
 			}),
 			avatar: `https://picsum.photos/600/400?i=${objectId}&t=agent`,
 			type: agentType,
-			fullName: agentName,
-			contact: faker.phone.phoneNumberFormat(),
+			name,
 		};
 	}
 

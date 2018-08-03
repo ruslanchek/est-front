@@ -59,15 +59,15 @@ export class Managers {
 	private onLoadingFinished(): Promise<any> {
 		return new Promise((resolve, reject) => {
 			const splashLoading = document.getElementById('splashLoading');
-			const loadingEntity= document.getElementById('loadingEntity');
-			const loadingContainer= document.getElementById('loadingContainer');
+			const loadingEntity = document.getElementById('loadingEntity');
+			const loadingContainer = document.getElementById('loadingContainer');
 
 			this.logTime('Loading finished');
 
 			const initTime: number = Date.now() - this.initStartTime;
 			let preloadingTimeout: number = PRELOADING_ANIMATION_TIME;
 
-			if(initTime < PRELOADING_ANIMATION_TIME) {
+			if (initTime < PRELOADING_ANIMATION_TIME) {
 				preloadingTimeout = PRELOADING_ANIMATION_TIME - initTime;
 			}
 
@@ -80,7 +80,7 @@ export class Managers {
 
 					StateStore.store.setState({
 						appReady: true,
-					} as StateStore.IState);
+					});
 
 					this.logTime('UI ready');
 

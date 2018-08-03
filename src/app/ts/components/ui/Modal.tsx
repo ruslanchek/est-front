@@ -100,7 +100,7 @@ export class Modal extends React.PureComponent<IProps, IState> {
 	}
 
 	private handleKeyDown = (e: KeyboardEvent) => {
-		if (e.key.toLowerCase() === 'escape') {
+		if (e && e.key && e.key.toLowerCase() === 'escape') {
 			this.close();
 		}
 	};

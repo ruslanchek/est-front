@@ -64,7 +64,7 @@ export class ObjectInList extends React.Component<IProps, {}> {
 				</div>
 
 				<footer className={css(styles.footer)}>
-					<Avatar objectData={objectData}/>
+					<Avatar objectAgent={objectData.agent}/>
 				</footer>
 			</section>
 		);

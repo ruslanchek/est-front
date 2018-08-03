@@ -59,8 +59,7 @@ export namespace ObjectsStore {
 		id: number;
 		avatar: string;
 		type: EObjectAgentType;
-		fullName: string;
-		contact: string;
+		name: string;
 	}
 
 	export interface IObjectParam {

@@ -4,14 +4,15 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { PATHS } from '../../config';
+import IObjectAgent = ObjectsStore.IObjectAgent;
 
 interface IProps {
-	objectData: IObject;
+	objectAgent: IObjectAgent;
 }
 
 export class Avatar extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { agent } = this.props.objectData;
+		const { id, avatar, name, type } = this.props.objectAgent;
 
 		return (
 			<div className={css(styles.container)}>
@@ -23,10 +24,10 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 					<a
 						className={css(styles.imageLink)}
 						target="_blank"
-						href={PATHS.AGENT.replace(':id', agent.id.toString())}
+						href={PATHS.AGENT.replace(':id', id.toString())}
 					>
 						<img
-							src={agent.avatar}
+							src={avatar}
 							className={css(styles.image)}
 						/>
 					</a>
@@ -34,14 +35,14 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 					<div className={css(styles.contact)}>
 						<a
 							target="_blank"
-							href={PATHS.AGENT.replace(':id', agent.id.toString())}
+							href={PATHS.AGENT.replace(':id', id.toString())}
 							className={css(styles.contactRow, styles.contactRowAccent, COMMON_STYLES.LINK)}
 						>
-							{agent.fullName}
+							{name}
 						</a>
 
 						<div className={css(styles.contactRow, styles.contactRowDecent)}>
-							{agent.contact}
+							{type}
 						</div>
 					</div>
 				</div>
@@ -50,7 +51,7 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 	}
 
 	private getAgentTypeName(): string {
-		switch (this.props.objectData.agent.type) {
+		switch (this.props.objectAgent.type) {
 			case ObjectsStore.EObjectAgentType.Private : return 'Private';
 			case ObjectsStore.EObjectAgentType.Realtor : return 'Realtor';
 			case ObjectsStore.EObjectAgentType.Agency : return 'Agency';
