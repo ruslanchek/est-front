@@ -73,14 +73,12 @@ export class RouteManager extends Manager {
 
 	public backAvailable(backAvailable: boolean): void {
 		StateStore.store.setState({
-			...StateStore.store.state,
-			backAvailable
+			backAvailable,
 		});
 	}
 
 	public setTitle(title: string): void {
 		StateStore.store.setState({
-			...StateStore.store.state,
 			title,
 		});
 	}
