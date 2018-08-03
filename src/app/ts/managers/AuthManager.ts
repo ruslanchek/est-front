@@ -5,6 +5,18 @@ import { AuthStore } from '../stores/AuthStore';
 import { THEME } from '../theme';
 import { PATHS } from '../config';
 
+export interface IApiResult<Payload> {
+	payload: Payload;
+	error: IApiResultError;
+}
+
+export interface IApiResultError {
+	status: number;
+	code: string;
+	fields?: {[field: string]: string};
+	details?: any;
+}
+
 export class AuthManager extends Manager {
 	public reset(): void {
 		AuthStore.store.setState({
@@ -41,7 +53,7 @@ export class AuthManager extends Manager {
 		}
 	}
 
-	public async login(email: string, password: string): Promise<any> {
+	public async login(email: string, password: string): Promise<IApiResult<any>> {
 		const result = await managers.api.request<any>(EApiRequestType.POST, '/auth/login', {
 			email,
 			password,
@@ -51,9 +63,11 @@ export class AuthManager extends Manager {
 			this.setToken(result.payload.accessToken);
 			await this.auth();
 		}
+
+		return result;
 	}
 
-	public async signUp(email: string, password: string): Promise<any> {
+	public async signUp(email: string, password: string): Promise<IApiResult<any>> {
 		const result = await managers.api.request<any>(EApiRequestType.POST, '/auth/register', {
 			email,
 			password,
@@ -63,6 +77,8 @@ export class AuthManager extends Manager {
 			this.setToken(result.payload.accessToken);
 			await this.auth();
 		}
+
+		return result;
 	}
 
 	public init(): Promise<any> {

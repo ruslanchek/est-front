@@ -74,18 +74,19 @@ export class LogIn extends React.PureComponent<IProps, IState> {
 
 	private handleForm = async (output: IFormModelOutput) => {
 		if (output.isValid) {
-			try {
-				this.setState({
-					loading: true,
-				});
-				const result = await managers.auth.login(output.values.email, output.values.password);
+			this.setState({
+				loading: true,
+			});
 
-				managers.route.go(PATHS.PERSONAL);
-			} catch (e) {
-				this.setState({
-					loading: false,
-				});
-			}
+			const result = await managers.auth.login(output.values.email, output.values.password);
+
+			this.setState({
+				loading: false,
+			}, () => {
+				if(!result.error) {
+					managers.route.go(PATHS.PERSONAL);
+				}
+			});
 		}
 	};
 }
