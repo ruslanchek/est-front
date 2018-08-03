@@ -35,27 +35,6 @@ export class RouteManager extends Manager {
 
 		this.setMeta();
 		this.scroll(0);
-
-		switch (authRule) {
-			case ERouteAuthRule.AuthorizedOnly : {
-				if(!AuthStore.store.state.profile || !AuthStore.store.state.authorized) {
-					this.go(PATHS.AUTH_LOG_IN);
-				}
-				break;
-			}
-
-			case ERouteAuthRule.UnauthorizedOnly : {
-				if(AuthStore.store.state.profile && AuthStore.store.state.authorized) {
-					this.go(PATHS.PERSONAL);
-				}
-				break;
-			}
-
-			case ERouteAuthRule.Shared :
-			default : {
-
-			}
-		}
 	}
 
 	public scroll(x: number): void {
