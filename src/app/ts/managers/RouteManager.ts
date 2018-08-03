@@ -5,7 +5,7 @@ import { StateStore } from '../stores/StateStore';
 import { Manager } from './Manager';
 import { AuthStore } from '../stores/AuthStore';
 
-export enum RouteAuthRule {
+export enum ERouteAuthRule {
 	UnauthorizedOnly,
 	AuthorizedOnly,
 	Shared
@@ -29,7 +29,7 @@ export class RouteManager extends Manager {
 		});
 	}
 
-	public initPage(history: History, params: any, authRule: RouteAuthRule): void {
+	public initPage(history: History, params: any, authRule: ERouteAuthRule): void {
 		this.history = history;
 		this.params = params;
 
@@ -37,21 +37,21 @@ export class RouteManager extends Manager {
 		this.scroll(0);
 
 		switch (authRule) {
-			case RouteAuthRule.AuthorizedOnly : {
+			case ERouteAuthRule.AuthorizedOnly : {
 				if(!AuthStore.store.state.profile || !AuthStore.store.state.authorized) {
 					this.go(PATHS.AUTH_LOG_IN);
 				}
 				break;
 			}
 
-			case RouteAuthRule.UnauthorizedOnly : {
+			case ERouteAuthRule.UnauthorizedOnly : {
 				if(AuthStore.store.state.profile && AuthStore.store.state.authorized) {
 					this.go(PATHS.PERSONAL);
 				}
 				break;
 			}
 
-			case RouteAuthRule.Shared :
+			case ERouteAuthRule.Shared :
 			default : {
 
 			}

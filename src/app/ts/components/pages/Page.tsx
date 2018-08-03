@@ -3,7 +3,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { followStore } from 'react-stores';
 import { managers } from '../../managers';
-import { RouteAuthRule } from '../../managers/RouteManager';
+import { ERouteAuthRule } from '../../managers/RouteManager';
 import { StateStore } from '../../stores/StateStore';
 import { COLORS, THEME } from '../../theme';
 import { Header } from '../common/Header';
@@ -15,7 +15,7 @@ export enum PageLayout {
 
 interface IProps extends RouteComponentProps<{}> {
 	layout: PageLayout;
-	authRule: RouteAuthRule;
+	authRule: ERouteAuthRule;
 }
 
 interface IState {

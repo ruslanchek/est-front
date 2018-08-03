@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
 import { CONFIG, PATHS } from '../config';
-import { RouteAuthRule } from '../managers/RouteManager';
+import { ERouteAuthRule } from '../managers/RouteManager';
 import { HomePage } from './pages/HomePage';
 import { Page, PageLayout } from './pages/Page';
 import { ObjectPage } from './pages/ObjectPage';
@@ -27,7 +27,7 @@ export class Routes extends React.Component<{}, IState> {
 							<Page
 								{...props}
 								layout={PageLayout.Default}
-								authRule={RouteAuthRule.Shared}
+								authRule={ERouteAuthRule.Shared}
 							>
 								<HomePage/>
 							</Page>
@@ -43,7 +43,7 @@ export class Routes extends React.Component<{}, IState> {
 							<Page
 								{...props}
 								layout={PageLayout.Default}
-								authRule={RouteAuthRule.Shared}
+								authRule={ERouteAuthRule.Shared}
 							>
 								<ObjectPage/>
 							</Page>
@@ -59,7 +59,7 @@ export class Routes extends React.Component<{}, IState> {
 							<Page
 								{...props}
 								layout={PageLayout.Default}
-								authRule={RouteAuthRule.Shared}
+								authRule={ERouteAuthRule.Shared}
 							>
 								<AgentPage/>
 							</Page>
@@ -75,7 +75,7 @@ export class Routes extends React.Component<{}, IState> {
 							<Page
 								{...props}
 								layout={PageLayout.Default}
-								authRule={RouteAuthRule.Shared}
+								authRule={ERouteAuthRule.Shared}
 							>
 								<AuthSignUpPage/>
 							</Page>
@@ -91,7 +91,7 @@ export class Routes extends React.Component<{}, IState> {
 							<Page
 								{...props}
 								layout={PageLayout.Default}
-								authRule={RouteAuthRule.UnauthorizedOnly}
+								authRule={ERouteAuthRule.UnauthorizedOnly}
 							>
 								<AuthLoginPage/>
 							</Page>
@@ -107,7 +107,7 @@ export class Routes extends React.Component<{}, IState> {
 							<Page
 								{...props}
 								layout={PageLayout.Default}
-								authRule={RouteAuthRule.AuthorizedOnly}
+								authRule={ERouteAuthRule.AuthorizedOnly}
 							>
 								<PersonalPage/>
 							</Page>
