@@ -16,6 +16,12 @@ export enum ECSSMediaKind {
 	Wide,
 }
 
+export const globalExtension = {
+	selectorHandler: (selector, baseSelector, generateSubtreeStyles) => {
+		return baseSelector.includes('global') ? generateSubtreeStyles(selector) : null;
+	},
+};
+
 export class CSSUtils {
 	public static image(require: string): string {
 		return `url(${require})`;
