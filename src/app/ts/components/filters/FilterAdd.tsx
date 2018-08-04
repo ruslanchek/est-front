@@ -127,7 +127,7 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 							<span className={css(styles.itemIcon)}>
 								<Ionicon
 									icon="md-home"
-									fontSize="32px"
+									fontSize="28px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
 							</span>
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 		transition: 'border-color .2s',
 
 		':hover': {
-			borderColor: COLORS.GRAY_DARK.darken(.2).toString(),
+			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
 		}
 	},
 
