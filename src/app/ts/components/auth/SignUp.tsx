@@ -9,7 +9,7 @@ import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Button } from '../ui/Button';
-import { ModalHeaderBig } from '../ui/ModalHeaderBig';
+import { ModalHeaderBig } from '../modals/ModalHeaderBig';
 import { FormButtonSocial } from '../forms/ui/FormButtonSocial';
 import { FormButtonsBlock } from '../forms/ui/FormButtonsBlock';
 import { FormDivider } from '../forms/ui/FormDivider';

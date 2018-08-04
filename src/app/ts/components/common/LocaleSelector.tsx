@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { css, StyleSheet } from 'aphrodite/no-important';
 import { COMMON_STYLES, THEME } from '../../theme';
-import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
-import { ModalContext } from '../ui/ModalContext';
+import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
+import { ModalContext } from '../modals/ModalContext';
 import { IsPhone } from './IsPhone';
 import { IsDesktopOrTablet } from './IsDesktopOrTablet';
-import { ModalHeader } from '../ui/ModalHeader';
+import { ModalHeader } from '../modals/ModalHeader';
 
 interface IProps {
 

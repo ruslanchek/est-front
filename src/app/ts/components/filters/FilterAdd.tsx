@@ -3,9 +3,9 @@ import * as Ionicon from 'react-ionicons';
 
 import { css, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { ModalResetSubmit } from '../ui/ModalResetSubmit';
-import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
-import { ModalContext } from '../ui/ModalContext';
+import { ModalResetSubmit } from '../modals/ModalResetSubmit';
+import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
+import { ModalContext } from '../modals/ModalContext';
 import { CSSUtils } from '../../lib/CSSUtils';
 import Color = require('color');
 

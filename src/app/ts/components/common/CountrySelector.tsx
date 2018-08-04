@@ -3,14 +3,14 @@ import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
-import { ModalContext } from '../ui/ModalContext';
+import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
+import { ModalContext } from '../modals/ModalContext';
 import { Flag } from '../ui/Flag';
 import { IsPhone } from './IsPhone';
 import { IsDesktop } from './IsDesktop';
 import { IsDesktopOrTablet } from './IsDesktopOrTablet';
 import { IsTablet } from './IsTablet';
-import { ModalHeader } from '../ui/ModalHeader';
+import { ModalHeader } from '../modals/ModalHeader';
 
 interface IProps {
 

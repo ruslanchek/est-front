@@ -3,7 +3,7 @@ import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { COLORS, THEME } from '../../theme';
-import { Portal } from './Portal';
+import { Portal } from '../ui/Portal';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 
 interface IProps {

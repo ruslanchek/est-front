@@ -8,7 +8,7 @@ import { CONFIG, PATHS } from '../../config';
 import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
 import { Layout } from './Layout';
 import { EIcon, EIconType, Icon } from './Icon';
-import { Modal } from '../ui/Modal';
+import { Modal } from '../modals/Modal';
 import { Filters } from './Filters';
 
 interface IState {
