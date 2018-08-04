@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { Modal } from './Modal';
-import { EModalSelectItemType, ModalSelect } from './ModalSelect';
-import { ModalResetSubmit } from './ModalResetSubmit';
-import { ModalHeaderFilter } from './ModalHeaderFilter';
-import { ModalContext } from './ModalContext';
+import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
+import { ModalResetSubmit } from '../ui/ModalResetSubmit';
+import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
+import { ModalContext } from '../ui/ModalContext';
 
 interface IProps {
 	entities: string[];

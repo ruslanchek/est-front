@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { Modal } from './Modal';
-import { EModalSelectItemType, ModalSelect } from './ModalSelect';
-import { ModalResetSubmit } from './ModalResetSubmit';
-import { ModalHeaderFilter } from './ModalHeaderFilter';
-import { ModalContext } from './ModalContext';
+import { Modal } from '../ui/Modal';
+import { EModalSelectItemType, ModalSelect } from '../ui/ModalSelect';
+import { ModalResetSubmit } from '../ui/ModalResetSubmit';
+import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
+import { ModalContext } from '../ui/ModalContext';
 import { CSSUtils } from '../../lib/CSSUtils';
-import { Flag } from './Flag';
+import { Flag } from '../ui/Flag';
 
 interface IProps {
 	isoCode: string;

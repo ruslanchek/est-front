@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { NumberFormat } from './NumberFormat';
+import { NumberFormat } from '../ui/NumberFormat';
 
 interface IProps {
 	from: number;

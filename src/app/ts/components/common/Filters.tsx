@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { css, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { FilterFromTo } from '../ui/FilterFromTo';
-import { FilterAnd } from '../ui/FilterAnd';
-import { FilterRangeEntities } from '../ui/FilterRangeEntities';
+import { FilterFromTo } from '../filters/FilterFromTo';
+import { FilterAnd } from '../filters/FilterAnd';
+import { FilterRangeEntities } from '../filters/FilterRangeEntities';
 import { Money } from '../ui/Money';
-import { FilterGroup } from '../ui/FilterGroup';
+import { FilterGroup } from '../filters/FilterGroup';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICountry = ObjectsStore.ICountry;
 import { managers } from '../../managers';
 import ICity = ObjectsStore.ICity;
-import { FilterSearch, ISearchFilterEntity } from '../ui/FilterSearch';
-import { FilterContractType } from '../ui/FilterContractType';
+import { FilterSearch, ISearchFilterEntity } from '../filters/FilterSearch';
+import { FilterContractType } from '../filters/FilterContractType';
+import { FilterAdd } from '../filters/FilterAdd';
 
 interface IProps {
 
@@ -133,9 +134,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 					what="garage"
 				/>
 
-				<div className={css(COMMON_STYLES.FILTER_BRICK, styles.add)}>
-					+ Add new filter
-				</div>
+				<FilterAdd/>
 			</div>
 		);
 	}
@@ -162,17 +161,6 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		color: COLORS.BLACK_LIGHT.toString(),
 		fontSize: THEME.FONT_SIZE_SMALL,
-	},
-
-	add: {
-		backgroundColor: COLORS.BLUE_LIGHT.toString(),
-		color: COLORS.BLUE.toString(),
-		fontWeight: 600,
-		borderRadius: 4,
-
-		':hover': {
-			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
-		},
 	},
 
 	group: {

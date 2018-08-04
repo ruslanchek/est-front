@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { ModalContext } from './ModalContext';
-import { ModalHeaderFilter } from './ModalHeaderFilter';
-import { ModalResetSubmit } from './ModalResetSubmit';
-import { Search } from './Search';
+import { ModalContext } from '../ui/ModalContext';
+import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
+import { ModalResetSubmit } from '../ui/ModalResetSubmit';
+import { Search } from '../ui/Search';
 
 export interface ISearchFilterEntity {
 	title: string;

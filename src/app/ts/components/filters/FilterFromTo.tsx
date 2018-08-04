@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { ModalHeaderFilter } from './ModalHeaderFilter';
-import { Rheostat } from './Rheostat';
-import { ModalResetSubmit } from './ModalResetSubmit';
-import { ModalContext } from './ModalContext';
+import { ModalHeaderFilter } from '../ui/ModalHeaderFilter';
+import { Rheostat } from '../ui/Rheostat';
+import { ModalResetSubmit } from '../ui/ModalResetSubmit';
+import { ModalContext } from '../ui/ModalContext';
 
 interface IProps {
 	from: number;
