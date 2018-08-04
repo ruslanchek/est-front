@@ -1,7 +1,6 @@
-import { css, StyleSheet } from 'aphrodite/no-important';
+import { StyleSheet } from 'aphrodite/no-important';
 import * as React from 'react';
-import { COLORS, THEME } from '../../theme';
-import { Button, EButtonTheme } from './Button';
+import { Button, EButtonTheme } from '../ui/Button';
 
 interface IProps {
 	isEnabled: boolean;

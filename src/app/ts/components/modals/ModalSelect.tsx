@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { Checker } from './Checker';
+import { Checker } from '../ui/Checker';
 
 interface IProps {
 	items: IModalSelectItem[];
