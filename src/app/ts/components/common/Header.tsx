@@ -165,7 +165,7 @@ export class Header extends React.Component<{}, IState> {
 							</NavLink>
 
 							<NavLink
-								to={PATHS.HOME}
+								to={PATHS.PERSONAL_PLACE_ADVERT}
 								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
 							>
 								<IsPhone>

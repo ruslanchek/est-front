@@ -22,39 +22,42 @@ interface IProps extends RouteComponentProps<{}> {
 
 interface IState {
 	routeKey: string;
-	redirect: string;
+	location: string;
 }
 
 @followStore(StateStore.store)
 export class Page extends React.Component<IProps, IState> {
 	public state: IState = {
 		routeKey: null,
-		redirect: null,
+		location: null,
 	};
 
 	public componentWillMount() {
 		managers.route.initPage(this.props.history, this.props.match.params, this.props.authRule);
-		this.checkAuth(this.props.authRule);
 	}
 
 	public componentDidUpdate() {
 		const { key } = this.props.location;
 		const { authRule } = this.props;
+		const { pathname, hash, search } = this.props.history.location;
+		const location = `${pathname}${search}${hash}`;
 
-		if (key !== this.state.routeKey) {
+		if (key !== this.state.routeKey || location !== this.state.location) {
 			this.setState({
 				routeKey: key,
+				location,
 			});
 
 			managers.route.initPage(this.props.history, this.props.match.params, authRule);
-			this.checkAuth(authRule);
 		}
 	}
 
 	public render() {
-		if(this.state.redirect) {
+		const redirectUrl: string = this.getRedirectUrl();
+
+		if(redirectUrl) {
 			return (
-				<Redirect to={this.state.redirect}/>
+				<Redirect to={redirectUrl}/>
 			);
 		} else {
 			switch (this.props.layout) {
@@ -62,9 +65,7 @@ export class Page extends React.Component<IProps, IState> {
 					return (
 						<div className={css(styles.page)} id="appContainer">
 							<Header/>
-
 							{this.props.children}
-
 							<Footer/>
 						</div>
 					);
@@ -73,10 +74,10 @@ export class Page extends React.Component<IProps, IState> {
 		}
 	}
 
-	private checkAuth(authRule: ERouteAuthRule): void {
+	private getRedirectUrl(): string {
 		let url: string = null;
 
-		switch (authRule) {
+		switch (this.props.authRule) {
 			case ERouteAuthRule.AuthorizedOnly : {
 				if(!AuthStore.store.state.profile || !AuthStore.store.state.authorized) {
 					url = PATHS.AUTH_LOG_IN;
@@ -97,9 +98,7 @@ export class Page extends React.Component<IProps, IState> {
 			}
 		}
 
-		this.setState({
-			redirect: url,
-		});
+		return url;
 	}
 }
 

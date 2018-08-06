@@ -116,6 +116,22 @@ export class Routes extends React.Component<{}, IState> {
 				/>
 
 				<Route
+					exact={true}
+					path={PATHS.PERSONAL_PLACE_ADVERT}
+					render={props => {
+						return (
+							<Page
+								{...props}
+								layout={PageLayout.Default}
+								authRule={ERouteAuthRule.AuthorizedOnly}
+							>
+								<PersonalPage/>
+							</Page>
+						);
+					}}
+				/>
+
+				<Route
 					exact
 					path="*"
 					render={() => <Redirect to={PATHS.HOME}/>}
