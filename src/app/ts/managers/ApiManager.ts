@@ -12,8 +12,15 @@ export const enum EApiRequestType {
 }
 
 export interface IApiResult<Payload> {
-	error: any;
 	payload: Payload;
+	error: IApiResultError;
+}
+
+export interface IApiResultError {
+	status: number;
+	code: string;
+	fields?: {[field: string]: string};
+	details?: any;
 }
 
 export class ApiManager extends Manager {

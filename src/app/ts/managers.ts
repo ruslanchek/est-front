@@ -7,6 +7,7 @@ import { FakerManager } from './managers/FakerManager';
 import { FiltersManager } from './managers/FiltersManager';
 import { LocaleManager } from './managers/LocaleManager';
 import { AuthManager } from './managers/AuthManager';
+import { AdvertManager } from './managers/AdvertManager';
 
 const PRELOADING_ANIMATION_TIME: number = 0;
 const LOADING_ANIMATION_TIME: number = 500;
@@ -18,6 +19,7 @@ export class Managers {
 	public api: ApiManager;
 	public auth: AuthManager;
 	public toast: ToastManager;
+	public advert: AdvertManager;
 	public faker: FakerManager;
 	public filters: FiltersManager;
 
@@ -30,6 +32,7 @@ export class Managers {
 		this.api = new ApiManager();
 		this.auth = new AuthManager();
 		this.toast = new ToastManager();
+		this.advert = new AdvertManager();
 		this.faker = new FakerManager();
 		this.filters = new FiltersManager();
 
@@ -97,6 +100,7 @@ export class Managers {
 		this.api.reset();
 		this.auth.reset();
 		this.toast.reset();
+		this.advert.reset();
 		this.faker.reset();
 		this.filters.reset();
 	}
@@ -119,6 +123,9 @@ export class Managers {
 
 		await this.toast.init();
 		this.logTime('ToastManager ready');
+
+		await this.advert.init();
+		this.logTime('AdvertManager ready');
 
 		await this.faker.init();
 		this.logTime('FakerManager ready');

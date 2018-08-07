@@ -10,6 +10,7 @@ import { AgentPage } from './pages/AgentPage';
 import { AuthSignUpPage } from './pages/AuthSignUpPage';
 import { AuthLoginPage } from './pages/AuthLoginPage';
 import { PersonalPage } from './pages/PersonalPage';
+import { PlaceAdvertPage } from './pages/PlaceAdvertPage';
 
 interface IState {
 	key: number;
@@ -125,7 +126,7 @@ export class Routes extends React.Component<{}, IState> {
 								layout={PageLayout.Default}
 								authRule={ERouteAuthRule.AuthorizedOnly}
 							>
-								<PersonalPage/>
+								<PlaceAdvertPage/>
 							</Page>
 						);
 					}}

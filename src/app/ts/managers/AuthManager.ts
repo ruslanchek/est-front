@@ -1,21 +1,9 @@
 import { Manager } from './Manager';
 import { managers } from '../managers';
-import { EApiRequestType } from './ApiManager';
+import { EApiRequestType, IApiResult } from './ApiManager';
 import { AuthStore } from '../stores/AuthStore';
 import { THEME } from '../theme';
 import { PATHS } from '../config';
-
-export interface IApiResult<Payload> {
-	payload: Payload;
-	error: IApiResultError;
-}
-
-export interface IApiResultError {
-	status: number;
-	code: string;
-	fields?: {[field: string]: string};
-	details?: any;
-}
 
 export class AuthManager extends Manager {
 	public reset(): void {
