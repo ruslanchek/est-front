@@ -16,14 +16,20 @@ interface IProps {
 }
 
 interface IState {
-	loading: boolean;
+  loading: boolean;
+  adverts: any[];
 }
 
 @followStore(AuthStore.store)
 export class PlaceAdvertPage extends React.Component<IProps, IState> {
 	public state: IState = {
-		loading: false,
-	};
+    loading: false,
+    adverts: [],
+  };
+  
+  public componentDidMount() {
+    this.loadAdverts();
+  }
 
 	public render() {
 		return (
@@ -38,10 +44,31 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 							Place advert
 						</Button>
 					</Form>
+
+          <ul>
+            {this.state.adverts.map((item, i) => {
+              return (
+                <li key={i}>
+                  {item.id} {item.title}
+                </li>
+              );
+            })}
+          </ul>
 				</Layout>
 			</React.Fragment>
 		);
-	}
+  }
+  
+  private loadAdverts = async () => {
+    const {payload} = await managers.auth.getProfileAdverts();
+
+    if(payload.list) {
+      this.setState({
+        loading: false,
+        adverts: payload.list,
+      });
+    }
+  };
 
 	private handleForm = async (output: IFormModelOutput) => {
 		this.setState({
@@ -58,7 +85,9 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 
 		this.setState({
 			loading: false,
-		});
+    });
+    
+    this.loadAdverts();
 	};
 }
 
