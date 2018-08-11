@@ -10,6 +10,7 @@ import { Button } from '../ui/Button';
 import { managers } from '../../managers';
 import { EAdvertContractType, EAdvertType } from '../../managers/AdvertManager';
 import { Input } from '../forms/Input';
+import { ListTable } from '../common/ListTable';
 
 interface IProps {
 
@@ -28,7 +29,9 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
   };
   
   public componentDidMount() {
-    this.loadAdverts();
+    setInterval(() => {
+      this.loadAdverts();
+    }, 1000);
   }
 
 	public render() {
@@ -39,21 +42,16 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 
 					<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
 						<Input name="title"/>
+						<Input name="price"/>
 
 						<Button loading={this.state.loading}>
 							Place advert
 						</Button>
 					</Form>
 
-          <ul>
-            {this.state.adverts.map((item, i) => {
-              return (
-                <li key={i}>
-                  {item.id} {item.title}
-                </li>
-              );
-            })}
-          </ul>
+          <ListTable
+            items={this.state.adverts}
+          />
 				</Layout>
 			</React.Fragment>
 		);
@@ -80,7 +78,7 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 			type: EAdvertType.DetachedHouse,
 			contractType: EAdvertContractType.Purchase,
 			constructionDate: Date.now(),
-			price: 100000,
+			price: parseFloat(output.values.price) || 1000,
 		});
 
 		this.setState({
