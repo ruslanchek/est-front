@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite';
-import { COMMON_STYLES } from '../../theme';
+import { COMMON_STYLES_EMOTION } from '../../theme';
 import { FormContext, IFormContext } from './Form';
 import { Validator } from './Validators/Validator';
 import { InputErrors } from './InputErrors';
@@ -70,7 +69,7 @@ export class Input extends React.PureComponent<IProps, {}> {
 								}}
 								autoFocus={this.props.autoFocus}
 								ref={(ref) => this.input = ref}
-								className={css(COMMON_STYLES.INPUT)}
+								className={COMMON_STYLES_EMOTION.INPUT}
 							/>
 						</React.Fragment>
 					);
@@ -91,7 +90,3 @@ export class Input extends React.PureComponent<IProps, {}> {
 		});
 	}
 }
-
-const styles = StyleSheet.create({
-
-});

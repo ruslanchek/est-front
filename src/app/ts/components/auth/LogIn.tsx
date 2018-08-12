@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
+import { css } from 'react-emotion';
 import { EFormValidateOn, Form, IFormModelOutput } from '../forms/Form';
 import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
 import { Input } from '../forms/Input';
 import { managers } from '../../managers';
-import { COMMON_STYLES, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Button } from '../ui/Button';
@@ -27,7 +27,7 @@ interface IState {
 
 export class LogIn extends React.PureComponent<IProps, IState> {
 	public state: IState = {
-		loading: false
+		loading: false,
 	};
 
 	public render() {
@@ -59,11 +59,25 @@ export class LogIn extends React.PureComponent<IProps, IState> {
 					</FormButtonsBlock>
 
 					<FormLinks>
-						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_SIGN_UP}>
+						<NavLink
+							className={css`
+								${COMMON_STYLES_EMOTION.LINK};
+								${COMMON_STYLES_EMOTION.LINK};
+								margin: 0 ${THEME.SECTION_PADDING_H / 2}px;
+							`}
+							to={PATHS.AUTH_SIGN_UP}
+						>
 							Sign up
 						</NavLink>
 
-						<NavLink className={css(COMMON_STYLES.LINK, COMMON_STYLES.SMALL_TEXT, styles.link)} to={PATHS.AUTH_PASSWORD_RESET}>
+						<NavLink
+							className={css`
+								${COMMON_STYLES_EMOTION.LINK};
+								${COMMON_STYLES_EMOTION.LINK};
+								margin: 0 ${THEME.SECTION_PADDING_H / 2}px;
+							`}
+							to={PATHS.AUTH_PASSWORD_RESET}
+						>
 							Remember password
 						</NavLink>
 					</FormLinks>
@@ -83,34 +97,10 @@ export class LogIn extends React.PureComponent<IProps, IState> {
 			this.setState({
 				loading: false,
 			}, () => {
-				if(!result.error) {
+				if (!result.error) {
 					managers.route.go(PATHS.PERSONAL);
 				}
 			});
 		}
 	};
 }
-
-const styles = StyleSheet.create({
-	rows: {
-		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-	},
-
-	row: {
-		paddingTop: THEME.SECTION_PADDING_V,
-	},
-
-	links: {
-		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-		display: 'flex',
-		justifyContent: 'center',
-	},
-
-	link: {
-		margin: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-	},
-
-	buttons: {
-		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-	},
-});

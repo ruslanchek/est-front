@@ -1,5 +1,6 @@
 import { StyleDeclaration } from 'aphrodite';
 import Color = require('color');
+import { css } from 'emotion';
 
 export type TStyle = string | object | null | undefined | boolean;
 
@@ -16,10 +17,12 @@ export enum ECSSMediaKind {
 	Wide,
 }
 
-export const globalExtension = {
-	selectorHandler: (selector, baseSelector, generateSubtreeStyles) => {
-		return baseSelector.includes('global') ? generateSubtreeStyles(selector) : null;
-	},
+const breakpoints = {
+	small: 576,
+	medium: 768,
+	large: 992,
+	xLarge: 1200,
+	tallPhone: '(max-width: 360px) and (min-height: 740px)',
 };
 
 export class CSSUtils {
@@ -85,5 +88,23 @@ export class CSSUtils {
 
 	public static linearGradient(angle: number, fromColor: Color, toColor: Color, from: number, to: number): string {
 		return `linear-gradient(${angle.toString()}deg, ${fromColor.toString()} ${from}%, ${toColor.toString()} ${to}%)`;
+	}
+
+	public static mq() {
+		return Object.keys(breakpoints).reduce(
+			(accumulator, label) => {
+				const prefix = typeof breakpoints[label] === 'string' ? '' : 'min-width:';
+				const suffix = typeof breakpoints[label] === 'string' ? '' : 'px';
+
+				accumulator[label] = (cls) => {
+					return css`
+						@media (${prefix + breakpoints[label] + suffix}) {
+							${cls};
+						}
+					`;
+				};
+
+				return accumulator;
+			}, {});
 	}
 }

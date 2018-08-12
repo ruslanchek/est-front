@@ -4,8 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { followStore } from 'react-stores';
 import { StateStore } from '../stores/StateStore';
 import { Toast } from './ui/Toast';
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { globalExtension } from '../lib/CSSUtils';
 
 const locales = [
 	{
@@ -35,11 +33,3 @@ export class App extends React.Component<{}, {}> {
 		}
 	}
 }
-
-const extended = StyleSheet.extend([globalExtension]);
-
-const styles = extended.StyleSheet.create({
-	global: {
-
-	},
-});

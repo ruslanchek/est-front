@@ -1,14 +1,8 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
-import { ObjectInList } from '../blocks/ObjectInList';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
-import { SpecialBrick } from '../ui/SpecialBrick';
-import Color = require('color');
-import { CONFIG } from '../../config';
-import { StateStore } from '../../stores/StateStore';
 import { THEME, COLORS } from '../../theme';
+import styled from 'react-emotion';
 
 interface IProps {
 	items: IObject[];
@@ -17,86 +11,86 @@ interface IProps {
 export class ListTable extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.container)}>
-				<div className={css(styles.header)}>
-					<div className={css(styles.col)} style={{ width: '5%' }}>
+			<Container>
+				<Header>
+					<Col style={{ width: '5%' }}>
 						ID
-					</div>
+					</Col>
 
-					<div className={css(styles.col)} style={{ width: '40%' }}>
+					<Col style={{ width: '40%' }}>
 						Title
-					</div>
+					</Col>
 
-					<div className={css(styles.col)} style={{ width: '15%' }}>
+					<Col style={{ width: '15%' }}>
 						Price
-					</div>
+					</Col>
 
-					<div className={css(styles.col)} style={{ width: '20%' }}>
+					<Col style={{ width: '20%' }}>
 						Type
-					</div>
+					</Col>
 
-					<div className={css(styles.col)} style={{ width: '20%' }}>
+					<Col style={{ width: '20%' }}>
 						Contract type
-					</div>
-				</div>
+					</Col>
+				</Header>
 
 				{this.props.items.map((item: IObject, i) => {
 					return (
-						<div className={css(styles.row)} key={i}>
-							<div className={css(styles.col)} style={{ width: '5%' }}>
+						<Row key={i}>
+							<Col style={{ width: '5%' }}>
 								{item.id}
-							</div>
+							</Col>
 
-							<div className={css(styles.col)} style={{ width: '40%' }}>
+							<Col style={{ width: '40%' }}>
 								{item.title}
-							</div>
+							</Col>
 
-							<div className={css(styles.col)} style={{ width: '15%' }}>
+							<Col style={{ width: '15%' }}>
 								{item.price}
-							</div>
+							</Col>
 
-							<div className={css(styles.col)} style={{ width: '20%' }}>
+							<Col style={{ width: '20%' }}>
 								{item.type}
-							</div>
+							</Col>
 
-							<div className={css(styles.col)} style={{ width: '20%' }}>
+							<Col style={{ width: '20%' }}>
 								{item.contractType}
-							</div>
-						</div>
+							</Col>
+						</Row>
 					);
 				})}
-			</div>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		borderRadius: 6,
-		overflow: 'hidden',
-		marginTop: THEME.SECTION_PADDING_V * 2,
-		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
-	},
+const Container = styled('div')`
+  border-radius: 6px;
+	overflow: hidden;
+	margin-top: ${THEME.SECTION_PADDING_V * 2}px;
+	background-color: ${COLORS.WHITE.toString()};
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1};
+`;
 
-	header: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		fontWeight: 600,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-	},
+const Header = styled('div')`
+	display: flex;
+	justify-content: space-between;
+	font-weight: 600;
+	background-color: ${COLORS.GRAY_DARK.toString()};
+`;
 
-	row: {
-		display: 'flex',
-		justifyContent: 'space-between',
+const Row = styled('div')`
+	display: flex;
+	justify-content: space-between;
 
-		':nth-child(odd)': {
-			backgroundColor: COLORS.BLUE_LIGHT.toString(),
-		},
-	},
+	:nth-child(odd) {
+		background-color: ${COLORS.BLUE_LIGHT.toString()};
+	}
+`;
 
-	col: {
-		textAlign: 'left',
-		padding: THEME.SECTION_PADDING_V,
-	},
-});
+const Col = styled('div')`
+	text-align: left;
+	padding: ${THEME.SECTION_PADDING_V}px;
+	width: ${props => props.theme}%;
+`;
+
