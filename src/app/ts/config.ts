@@ -25,22 +25,7 @@ export const CONFIG = {
 		}
 	},
 	REF_PARAMS: [
-		'id',
-		'refid',
-		'click_id',
-		'source_id',
-		'banner_id',
-		'keywords',
-		'land',
-		'campaign_id',
-		'adset_id',
-		'tr',
-		'tr2',
-		'uniq',
-		'page',
-		'bonusCode',
-		'referer',
-		'ctime'
+
 	],
 	DEFAULT_LOCALE: 'en',
 	LOCALE_SYNONYMS: {

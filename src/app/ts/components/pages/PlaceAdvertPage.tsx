@@ -11,28 +11,29 @@ import { managers } from '../../managers';
 import { EAdvertContractType, EAdvertType } from '../../managers/AdvertManager';
 import { Input } from '../forms/Input';
 import { ListTable } from '../common/ListTable';
+import { Selector } from '../ui/Selector';
 
 interface IProps {
 
 }
 
 interface IState {
-  loading: boolean;
-  adverts: any[];
+	loading: boolean;
+	adverts: any[];
 }
 
 @followStore(AuthStore.store)
 export class PlaceAdvertPage extends React.Component<IProps, IState> {
 	public state: IState = {
-    loading: false,
-    adverts: [],
-  };
-  
-  public componentDidMount() {
-    setInterval(() => {
-      this.loadAdverts();
-    }, 1000);
-  }
+		loading: false,
+		adverts: [],
+	};
+
+	public componentDidMount() {
+		setInterval(() => {
+			this.loadAdverts();
+		}, 1000);
+	}
 
 	public render() {
 		return (
@@ -43,30 +44,31 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 					<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
 						<Input name="title"/>
 						<Input name="price"/>
+						<Selector/>
 
 						<Button loading={this.state.loading}>
 							Place advert
 						</Button>
 					</Form>
 
-          <ListTable
-            items={this.state.adverts}
-          />
+					<ListTable
+						items={this.state.adverts}
+					/>
 				</Layout>
 			</React.Fragment>
 		);
-  }
-  
-  private loadAdverts = async () => {
-    const {payload} = await managers.auth.getProfileAdverts();
+	}
 
-    if(payload.list) {
-      this.setState({
-        loading: false,
-        adverts: payload.list,
-      });
-    }
-  };
+	private loadAdverts = async () => {
+		const { payload } = await managers.auth.getProfileAdverts();
+
+		if (payload.list) {
+			this.setState({
+				loading: false,
+				adverts: payload.list,
+			});
+		}
+	};
 
 	private handleForm = async (output: IFormModelOutput) => {
 		this.setState({
@@ -83,12 +85,10 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 
 		this.setState({
 			loading: false,
-    });
-    
-    this.loadAdverts();
+		});
+
+		this.loadAdverts();
 	};
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

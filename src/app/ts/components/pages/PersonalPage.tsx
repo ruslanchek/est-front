@@ -34,12 +34,13 @@ export class PersonalPage extends React.Component<IProps, IState> {
 					{JSON.stringify(AuthStore.store.state.profile)}
 
 					<p>
-						<img src={`${CONFIG.CONTENT_PATH}/${AuthStore.store.state.profile.avatar}`}/>
+						<img src={`${CONFIG.CONTENT_PATH}/${AuthStore.store.state.profile.avatar}.webp`}/>
 					</p>
 
 					<h2>
 						{AuthStore.store.state.profile.name}
 					</h2>
+
 					<h3>
 						{AuthStore.store.state.profile.email}
 					</h3>
