@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { COMMON_STYLES, THEME } from '../../theme';
+import styled, { css } from 'react-emotion';
+import { COMMON_STYLES, THEME, COMMON_STYLES_EMOTION } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { Flag } from '../ui/Flag';
@@ -23,8 +23,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<React.Fragment>
-				<div className={css(styles.container)}>
+				<Container>
 					<ModalContext
 						isVisible={this.state.isOpen}
 						onClose={() => {
@@ -42,7 +41,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 							items={[
 								{
 									id: 1,
-									pre: (<Flag style={styles.flag} isoCode="gb"/>),
+									pre: (<Flag style={css({marginRight: THEME.SECTION_PADDING_H / 2})} isoCode="gb"/>),
 									title: 'United Kingdom',
 									type: EModalSelectItemType.Plain,
 									selected: true,
@@ -53,7 +52,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 2,
-									pre: (<Flag style={styles.flag} isoCode="de"/>),
+									pre: (<Flag style={css({marginRight: THEME.SECTION_PADDING_H / 2})} isoCode="de"/>),
 									title: 'Germany',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -64,7 +63,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 3,
-									pre: (<Flag style={styles.flag} isoCode="it"/>),
+									pre: (<Flag style={css({marginRight: THEME.SECTION_PADDING_H / 2})} isoCode="it"/>),
 									title: 'Italy',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -75,7 +74,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 4,
-									pre: (<Flag style={styles.flag} isoCode="fr"/>),
+									pre: (<Flag style={css({marginRight: THEME.SECTION_PADDING_H / 2})} isoCode="fr"/>),
 									title: 'France',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -86,7 +85,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 								{
 									id: 5,
-									pre: (<Flag style={styles.flag} isoCode="es"/>),
+									pre: (<Flag style={css({marginRight: THEME.SECTION_PADDING_H / 2})} isoCode="es"/>),
 									title: 'Spain',
 									type: EModalSelectItemType.Plain,
 									selected: false,
@@ -100,7 +99,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 					<a
 						href="#"
-						className={css(COMMON_STYLES.LINK, styles.link)}
+						className={css(COMMON_STYLES_EMOTION.LINK, { display: 'flex', })}
 						onClick={(e) => {
 							e.preventDefault();
 							this.setState({
@@ -111,38 +110,27 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 						<Flag isoCode="gb"/>
 
 						<IsDesktop>
-							<span className={css(styles.text)}>
+							<Text>
 								United kingdom
-							</span>
+							</Text>
 						</IsDesktop>
 
 						<IsTablet>
-							<span className={css(styles.text)}>
+							<Text>
 								GB
-							</span>
+							</Text>
 						</IsTablet>
 					</a>
-				</div>
-			</React.Fragment>
+				</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	flag: {
-		marginRight: THEME.SECTION_PADDING_H / 2,
-	},
+const Container = styled('div')`
+  position: relative;
+	margin-right: ${THEME.SECTION_PADDING_H}px; 
+`;
 
-	link: {
-		display: 'flex'
-	},
-
-	container: {
-		position: 'relative',
-		marginRight: THEME.SECTION_PADDING_H
-	},
-
-	text: {
-		marginLeft: THEME.SECTION_PADDING_H / 3
-	}
-});
+const Text = styled('div')`
+  margin-left: ${THEME.SECTION_PADDING_H / 3}px;
+`;
