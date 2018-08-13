@@ -1,7 +1,7 @@
 import * as React from 'react';
+import styled from 'react-emotion';
 import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
-import { css, StyleSheet } from 'aphrodite';
 import { COLORS, THEME } from '../../theme';
 
 interface IProps {
@@ -10,29 +10,27 @@ interface IProps {
 
 @followStore(AuthStore.store)
 export class AuthForm extends React.Component<IProps, {}> {
-	public render() {
-		return (
-			<div className={css(styles.container)}>
-				<div className={css(styles.inner)}>
-					{this.props.children}
-				</div>
-			</div>
-		);
-	}
+  public render() {
+    return (
+      <Container>
+        <Inner>
+          {this.props.children}
+        </Inner>
+      </Container>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-	container: {
-		display: 'flex',
-		justifyContent: 'center',
-	},
+const Container = styled('div')`
+  display: flex;
+  justify-content: center;
+`;
 
-	inner: {
-		width: 400,
-		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
-		borderRadius: 6,
-		overflow: 'hidden',
-		position: 'relative',
-	}
-});
+const Inner = styled('div')`
+  width: 400px;
+  background-color: ${COLORS.WHITE.toString()};
+  box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1};
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+`;

@@ -76,7 +76,7 @@ const Container = styled('section')`
 	position: relative;
 	overflow: hidden;
 	background-color: ${COLORS.WHITE.toString()};
-	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1}
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1};
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 40px;
@@ -121,7 +121,7 @@ const Price = styled('div')`
 `;
 
 const AddressContainer = styled('div')`
-	color: COLORS.BLACK_LIGHT.toString();
+	color: ${COLORS.BLACK_LIGHT.toString()};
 	font-size: ${THEME.FONT_SIZE_SMALL}px;
 `;
 
@@ -131,6 +131,6 @@ const ParamsContainer = styled('div')`
 `;
 
 const Footer = styled('footer')`
-	background-color: COLORS.GRAY_DARK.toString();
+	background-color: ${COLORS.GRAY_DARK.toString()};
 	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
 `;
