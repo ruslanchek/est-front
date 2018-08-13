@@ -5,7 +5,7 @@ import { mq } from '../../lib/CSSUtils';
 export class IsTablet extends React.PureComponent<{}, {}> {
 	public render() {
 		return (
-			<MediaQuery query={mq.tablet}>
+			<MediaQuery query={mq.tablet.replace('@media ', '')}>
 				{this.props.children}
 			</MediaQuery>
 		);
