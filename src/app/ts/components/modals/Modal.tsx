@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import { COLORS, THEME } from '../../theme';
 import { Portal } from '../ui/Portal';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 
 interface IProps {
 	isVisible: boolean;
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
 		boxSizing: 'border-box'
 	},
 
-	containerPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	containerPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		width: '100vw',
 		height: '100vh'
 	}),
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 		fontSize: THEME.FONT_SIZE_SMALL,
 	},
 
-	contentPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	contentPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		width: '100% !important',
 		overflow: 'auto',
 		'-webkit-overflow-scrolling': 'touch'

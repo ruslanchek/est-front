@@ -3,7 +3,7 @@ import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { ObjectInList } from '../blocks/ObjectInList';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 import { SpecialBrick } from '../ui/SpecialBrick';
 import Color = require('color');
 import { CONFIG } from '../../config';
@@ -42,7 +42,6 @@ export class List extends React.PureComponent<IProps, {}> {
 							<ObjectInList
 								key={i}
 								objectData={object}
-								containerStyles={[styles.item, styles.itemPhone, styles.itemTablet, styles.itemDesktop, styles.itemWide]}
 							/>
 						);
 					})}
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 
-	containerPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	containerPhone: CSSUtils.mediaSize(EMQ.Phone, {
 
 	}),
 
@@ -73,20 +72,20 @@ const styles = StyleSheet.create({
 		marginBottom: 40
 	},
 
-	itemPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	itemPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		width: '100%',
 		marginBottom: 20
 	}),
 
-	itemTablet: CSSUtils.mediaSize(ECSSMediaKind.Tablet, {
+	itemTablet: CSSUtils.mediaSize(EMQ.Tablet, {
 		width: '48%'
 	}),
 
-	itemDesktop: CSSUtils.mediaSize(ECSSMediaKind.Desktop, {
+	itemDesktop: CSSUtils.mediaSize(EMQ.Desktop, {
 		width: '23%'
 	}),
 
-	itemWide: CSSUtils.mediaSize(ECSSMediaKind.Wide, {
+	itemWide: CSSUtils.mediaSize(EMQ.Wide, {
 		width: '23%'
 	}),
 });

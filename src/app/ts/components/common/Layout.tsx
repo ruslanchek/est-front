@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 import { COMMON_STYLES, THEME } from '../../theme';
 
 interface IProps {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP,
 	},
 
-	topPaddingPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	topPaddingPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE,
 	}),
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		paddingBottom: THEME.PAGE_SIDE_PADDING_DESKTOP,
 	},
 
-	bottomPaddingPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	bottomPaddingPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		paddingBottom: THEME.PAGE_SIDE_PADDING_PHONE,
 	}),
 });

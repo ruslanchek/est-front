@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import * as Ionicon from 'react-ionicons';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 
 interface IProps {
 	autoFocus: boolean;

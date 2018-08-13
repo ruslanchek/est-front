@@ -1,7 +1,7 @@
 import Color = require('color');
 import { css } from 'emotion';
 import { StyleSheet } from 'aphrodite/no-important';
-import { CSSUtils, ECSSMediaKind } from './lib/CSSUtils';
+import { CSSUtils, EMQ } from './lib/CSSUtils';
 
 export const COLORS = {
 	GRAY_LIGHT: Color('#F3F5F7'),
@@ -101,7 +101,7 @@ export const COMMON_STYLES = StyleSheet.create({
 		paddingRight: THEME.PAGE_SIDE_PADDING_DESKTOP
 	},
 
-	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
+	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
 		paddingLeft: THEME.PAGE_SIDE_PADDING_PHONE,
 		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE
 	}),
@@ -214,7 +214,7 @@ export const COMMON_STYLES_EMOTION = {
 		paddingRight: THEME.PAGE_SIDE_PADDING_DESKTOP,
 	}),
 
-	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
+	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
 		paddingLeft: THEME.PAGE_SIDE_PADDING_PHONE,
 		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE,
 	}),

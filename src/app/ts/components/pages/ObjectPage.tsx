@@ -7,7 +7,7 @@ import { BreadCrumbs } from '../ui/BreadCrumbs';
 import { COLORS, THEME } from '../../theme';
 import IObject = ObjectsStore.IObject;
 import { managers } from '../../managers';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 import { Layout } from '../common/Layout';
 import { Money } from '../ui/Money';
 
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP
 	},
 
-	layoutPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	layoutPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE
 	}),
 

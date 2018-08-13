@@ -7,7 +7,7 @@ import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
 import { Link, NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 import { EIcon, EIconType, Icon } from './Icon';
 import { Filters } from './Filters';
 import { IsDesktop } from './IsDesktop';
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
 		marginRight: THEME.SECTION_PADDING_H,
 	},
 
-	logoPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	logoPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		width: 34,
 		minWidth: 34,
 		marginRight: THEME.SECTION_PADDING_H,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
 		marginRight: THEME.SECTION_PADDING_H / 2,
 	},
 
-	userIconPhone: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
+	userIconPhone: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
 		marginRight: 0,
 	}),
 
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 	},
 
-	userPhoneOrTablet: CSSUtils.mediaSize(ECSSMediaKind.PhoneOrTablet, {
+	userPhoneOrTablet: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
 		flexGrow: 1,
 	}),
 
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
 		whiteSpace: 'nowrap',
 	},
 
-	userLinkPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	userLinkPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		marginLeft: THEME.SECTION_PADDING_H / 1.5,
 	}),
 

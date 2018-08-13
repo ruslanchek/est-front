@@ -5,7 +5,7 @@ import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
 import { Link, NavLink } from 'react-router-dom';
 import { CONFIG, PATHS } from '../../config';
-import { CSSUtils, ECSSMediaKind } from '../../lib/CSSUtils';
+import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 import { Layout } from './Layout';
 import { EIcon, EIconType, Icon } from './Icon';
 import { Modal } from '../modals/Modal';
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 		paddingBottom: THEME.SECTION_PADDING_V / 2,
 	},
 
-	topPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	topPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		display: 'block',
 		paddingBottom: 0
 	}),
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 		paddingBottom: THEME.SECTION_PADDING_V * 1.5,
 	},
 
-	bottomPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	bottomPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		display: 'block'
 	}),
 
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap'
 	},
 
-	copyPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	copyPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		display: 'block'
 	}),
 
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
 		whiteSpace: 'nowrap'
 	},
 
-	copyItemPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	copyItemPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		display: 'block',
 		marginTop: THEME.SECTION_PADDING_V
 	}),
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
 		marginLeft: THEME.SECTION_PADDING_H,
 	},
 
-	navLinkPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone, {
+	navLinkPhone: CSSUtils.mediaSize(EMQ.Phone, {
 		marginTop: THEME.SECTION_PADDING_V,
 		marginLeft: 0,
 		display: 'block'
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 
-	socialPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone,{
+	socialPhone: CSSUtils.mediaSize(EMQ.Phone,{
 		justifyContent: 'flex-start',
 		marginTop: THEME.SECTION_PADDING_V * 2
 	}),
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
 		}
 	},
 
-	socialIconPhone: CSSUtils.mediaSize(ECSSMediaKind.Phone,{
+	socialIconPhone: CSSUtils.mediaSize(EMQ.Phone,{
 		marginLeft: 0,
 		marginRight: THEME.SECTION_PADDING_H
 	}),

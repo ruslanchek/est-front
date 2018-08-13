@@ -1,7 +1,6 @@
-import { css, StyleSheet, StyleDeclaration } from 'aphrodite';
 import * as React from 'react';
+import styled, { css } from 'react-emotion';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
 import { Favorite } from '../ui/Favorite';
 import { COLORS, THEME } from '../../theme';
 import { ObjectSubtitle } from '../ui/ObjectSubtitle';
@@ -12,109 +11,126 @@ import { Avatar } from '../ui/Avatar';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Money } from '../ui/Money';
+import { EMQ, mq } from '../../lib/CSSUtils';
+import IObject = ObjectsStore.IObject;
 
 interface IProps {
 	objectData: IObject;
-	containerStyles: StyleDeclaration[];
 }
 
 export class ObjectInList extends React.Component<IProps, {}> {
 	public render() {
 		const {
 			objectData,
-			containerStyles,
 		} = this.props;
 
 		const {
 			id,
 			isFavorite,
 			price,
-		} = objectData;
+			agent,
+		} = this.props.objectData;
 
 		return (
-			<section className={css(styles.container, containerStyles)}>
-				<header className={css(styles.header)}>
-					<div className={css(styles.favorite)}>
+			<Container>
+				<Header>
+					<FavoriteContainer>
 						<Favorite
 							id={id}
 							title={'xxxx'}
 							isFavorite={isFavorite}
 						/>
-					</div>
+					</FavoriteContainer>
 
 					<Link to={PATHS.OBJECT.replace(':id', id.toString())}>
 						<GallerySmall objectData={objectData}/>
 					</Link>
-				</header>
+				</Header>
 
-				<div className={css(styles.body)}>
-					<ObjectSubtitle objectData={objectData}/>
+				<Body>
+				<ObjectSubtitle objectData={objectData}/>
 
-					<div className={css(styles.price)}>
-						<Money value={price}/>
-					</div>
+				<Price>
+					<Money value={price}/>
+				</Price>
 
-					<div className={css(styles.address)}>
-						<Address objectData={objectData}/>
-					</div>
-				</div>
+				<AddressContainer>
+					<Address objectData={objectData}/>
+				</AddressContainer>
+				</Body>
 
-				<div className={css(styles.params)}>
+				<ParamsContainer>
 					<Params objectData={objectData}/>
-				</div>
+				</ParamsContainer>
 
-				<footer className={css(styles.footer)}>
-					<Avatar objectAgent={objectData.agent}/>
-				</footer>
-			</section>
+				<Footer>
+					<Avatar objectAgent={agent}/>
+				</Footer>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		borderRadius: 6,
-		position: 'relative',
-		overflow: 'hidden',
-		backgroundColor: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
-		display: 'flex',
-		flexDirection: 'column',
-	},
+const Container = styled('section')`
+	border-radius: 6px;
+	position: relative;
+	overflow: hidden;
+	background-color: ${COLORS.WHITE.toString()};
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1}
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 40px;
+	
+	${mq[EMQ.Phone]} {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	
+	${mq[EMQ.Tablet]} {
+		width: 48%;
+	}
+	
+	${mq[EMQ.Desktop]} {
+		width: 23%;
+	}
+	
+	${mq[EMQ.Wide]} {
+		width: 23%;
+	}
+`;
 
-	header: {
-		position: 'relative',
-	},
+const Header = styled('header')`
+	position: relative;
+`;
 
-	favorite: {
-		position: 'absolute',
-		top: THEME.SECTION_PADDING_V,
-		right: THEME.SECTION_PADDING_H,
-		zIndex: 2,
-	},
+const FavoriteContainer = styled('div')`
+	position: absolute;
+	top: ${THEME.SECTION_PADDING_V}px;
+	right: ${THEME.SECTION_PADDING_H}px;
+	z-index: 2;
+`;
 
-	body: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		flexGrow: 1,
-	},
+const Body = styled('div')`
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	flex-grow: 1;
+`;
 
-	price: {
-		fontSize: THEME.FONT_SIZE_H1,
-		margin: '0.25em 0',
-	},
+const Price = styled('div')`
+	font-size: ${THEME.FONT_SIZE_H1}px;
+	margin: 0.25em 0;
+`;
 
-	address: {
-		color: COLORS.BLACK_LIGHT.toString(),
-		fontSize: THEME.FONT_SIZE_SMALL,
-	},
+const AddressContainer = styled('div')`
+	color: COLORS.BLACK_LIGHT.toString();
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+`;
 
-	params: {
-		padding: `${THEME.SECTION_PADDING_V / 2}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-	},
+const ParamsContainer = styled('div')`
+	padding: ${THEME.SECTION_PADDING_V / 2}px ${THEME.SECTION_PADDING_H}px;
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()}px;
+`;
 
-	footer: {
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
-	},
-});
+const Footer = styled('footer')`
+	background-color: COLORS.GRAY_DARK.toString();
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+`;

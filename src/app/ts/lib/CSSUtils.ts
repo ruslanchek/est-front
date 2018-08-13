@@ -1,6 +1,5 @@
 import { StyleDeclaration } from 'aphrodite';
 import Color = require('color');
-import { css } from 'emotion';
 
 export type TStyle = string | object | null | undefined | boolean;
 
@@ -9,7 +8,7 @@ export interface IReactComponentStyles {
 	styles?: object;
 }
 
-export enum ECSSMediaKind {
+export enum EMQ {
 	Phone,
 	PhoneOrTablet,
 	Tablet,
@@ -17,19 +16,21 @@ export enum ECSSMediaKind {
 	Wide,
 }
 
-const breakpoints = {
-	small: 576,
-	medium: 768,
-	large: 992,
-	xLarge: 1200,
-	tallPhone: '(max-width: 360px) and (min-height: 740px)',
+export const mq = {
+	[EMQ.Phone]: '@media (max-width: 720px) and (min-width: 0px)',
+	[EMQ.PhoneOrTablet]: '@media (max-width: 1024px) and (min-width: 0px)',
+	[EMQ.Tablet]: '@media (max-width: 1024px) and (min-width: 720px)',
+	[EMQ.Desktop]: '@media (max-width: 1440px) and (min-width: 1024px)',
+	[EMQ.Wide]: '@media (max-width: 6000px) and (min-width: 1440px)',
 };
 
 export class CSSUtils {
+	// TODO: Deprecated
 	public static image(require: string): string {
 		return `url(${require})`;
 	}
 
+	// TODO: Deprecated
 	public static media(min: number, max: number, styles: StyleDeclaration): StyleDeclaration {
 		const key: string = `@media screen and (max-width: ${max}px) and (min-width: ${min}px)`;
 		const result = {};
@@ -39,21 +40,22 @@ export class CSSUtils {
 		return result;
 	}
 
-	public static mediaSize(size: ECSSMediaKind, styles: StyleDeclaration): StyleDeclaration {
+	// TODO: Deprecated
+	public static mediaSize(size: EMQ, styles: StyleDeclaration): StyleDeclaration {
 		switch (size) {
-			case ECSSMediaKind.Phone : {
+			case EMQ.Phone : {
 				return this.media(0, 720, styles);
 			}
-			case ECSSMediaKind.PhoneOrTablet : {
+			case EMQ.PhoneOrTablet : {
 				return this.media(0, 1024, styles);
 			}
-			case ECSSMediaKind.Tablet : {
+			case EMQ.Tablet : {
 				return this.media(720, 1024, styles);
 			}
-			case ECSSMediaKind.Desktop : {
+			case EMQ.Desktop : {
 				return this.media(1024, 1440, styles);
 			}
-			case ECSSMediaKind.Wide : {
+			case EMQ.Wide : {
 				return this.media(1440, 6000, styles);
 			}
 		}
@@ -88,23 +90,5 @@ export class CSSUtils {
 
 	public static linearGradient(angle: number, fromColor: Color, toColor: Color, from: number, to: number): string {
 		return `linear-gradient(${angle.toString()}deg, ${fromColor.toString()} ${from}%, ${toColor.toString()} ${to}%)`;
-	}
-
-	public static mq() {
-		return Object.keys(breakpoints).reduce(
-			(accumulator, label) => {
-				const prefix = typeof breakpoints[label] === 'string' ? '' : 'min-width:';
-				const suffix = typeof breakpoints[label] === 'string' ? '' : 'px';
-
-				accumulator[label] = (cls) => {
-					return css`
-						@media (${prefix + breakpoints[label] + suffix}) {
-							${cls};
-						}
-					`;
-				};
-
-				return accumulator;
-			}, {});
 	}
 }
