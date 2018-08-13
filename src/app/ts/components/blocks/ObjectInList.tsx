@@ -11,7 +11,7 @@ import { Avatar } from '../ui/Avatar';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Money } from '../ui/Money';
-import { EMQ, mq } from '../../lib/CSSUtils';
+import { mq } from '../../lib/CSSUtils';
 import IObject = ObjectsStore.IObject;
 
 interface IProps {
