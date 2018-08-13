@@ -17,11 +17,11 @@ export enum EMQ {
 }
 
 export const mq = {
-	[EMQ.Phone]: '@media (max-width: 720px) and (min-width: 0px)',
-	[EMQ.PhoneOrTablet]: '@media (max-width: 1024px) and (min-width: 0px)',
-	[EMQ.Tablet]: '@media (max-width: 1024px) and (min-width: 720px)',
-	[EMQ.Desktop]: '@media (max-width: 1440px) and (min-width: 1024px)',
-	[EMQ.Wide]: '@media (max-width: 6000px) and (min-width: 1440px)',
+	phone: '@media (max-width: 720px) and (min-width: 0px)',
+	phoneOrTablet: '@media (max-width: 1024px) and (min-width: 0px)',
+	tablet: '@media (max-width: 1024px) and (min-width: 720px)',
+	desktop: '@media (max-width: 1440px) and (min-width: 1024px)',
+	wide: '@media (max-width: 6000px) and (min-width: 1440px)',
 };
 
 export class CSSUtils {

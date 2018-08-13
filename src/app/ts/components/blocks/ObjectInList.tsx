@@ -81,20 +81,20 @@ const Container = styled('section')`
 	flex-direction: column;
 	margin-bottom: 40px;
 	
-	${mq[EMQ.Phone]} {
+	${mq.phone} {
 		width: 100%;
 		margin-bottom: 20px;
 	}
 	
-	${mq[EMQ.Tablet]} {
+	${mq.tablet} {
 		width: 48%;
 	}
 	
-	${mq[EMQ.Desktop]} {
+	${mq.desktop} {
 		width: 23%;
 	}
 	
-	${mq[EMQ.Wide]} {
+	${mq.wide} {
 		width: 23%;
 	}
 `;
