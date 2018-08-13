@@ -1,10 +1,11 @@
 import MediaQuery from 'react-responsive';
 import * as React from 'react';
+import { mq } from '../../lib/CSSUtils';
 
 export class IsTablet extends React.PureComponent<{}, {}> {
 	public render() {
 		return (
-			<MediaQuery query="(min-width: 720px) and (max-width: 1024px)">
+			<MediaQuery query={mq.tablet}>
 				{this.props.children}
 			</MediaQuery>
 		);

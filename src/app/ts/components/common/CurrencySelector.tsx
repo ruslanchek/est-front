@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
-import { Flag } from '../ui/Flag';
 import { IsPhone } from './IsPhone';
-import { IsDesktop } from './IsDesktop';
-import { IsDesktopOrTablet } from './IsDesktopOrTablet';
+import { IsTabletOrDesktop } from './IsTabletOrDesktop';
 import { ModalHeader } from '../modals/ModalHeader';
 
 interface IProps {
@@ -85,9 +81,9 @@ export class CurrencySelector extends React.PureComponent<IProps, IState> {
 							&euro;
 						</IsPhone>
 
-						<IsDesktopOrTablet>
+						<IsTabletOrDesktop>
 							&euro; EUR
-						</IsDesktopOrTablet>
+						</IsTabletOrDesktop>
 					</a>
 				</div>
 			</React.Fragment>

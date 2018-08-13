@@ -4,7 +4,7 @@ import { COMMON_STYLES, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { IsPhone } from './IsPhone';
-import { IsDesktopOrTablet } from './IsDesktopOrTablet';
+import { IsTabletOrDesktop } from './IsTabletOrDesktop';
 import { ModalHeader } from '../modals/ModalHeader';
 
 interface IProps {
@@ -101,9 +101,9 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 							EN
 						</IsPhone>
 
-						<IsDesktopOrTablet>
+						<IsTabletOrDesktop>
 							English
-						</IsDesktopOrTablet>
+						</IsTabletOrDesktop>
 					</a>
 				</div>
 			</React.Fragment>

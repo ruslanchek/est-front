@@ -15,7 +15,7 @@ import { LocaleSelector } from './LocaleSelector';
 import { CountrySelector } from './CountrySelector';
 import { CurrencySelector } from './CurrencySelector';
 import { IsPhone } from './IsPhone';
-import { IsDesktopOrTablet } from './IsDesktopOrTablet';
+import { IsTabletOrDesktop } from './IsTabletOrDesktop';
 import { AuthStore } from '../../stores/AuthStore';
 
 interface IState {
@@ -97,9 +97,9 @@ export class Header extends React.Component<{}, IState> {
 									href="#"
 									className={css(COMMON_STYLES.LINK, styles.navLink)}
 								>
-									<IsDesktopOrTablet>
+									<IsTabletOrDesktop>
 										Help
-									</IsDesktopOrTablet>
+									</IsTabletOrDesktop>
 								</a>
 							</nav>
 						</div>
@@ -121,9 +121,9 @@ export class Header extends React.Component<{}, IState> {
 										/>
 									</IsPhone>
 
-									<IsDesktopOrTablet>
+									<IsTabletOrDesktop>
 										{AuthStore.store.state.profile.name}
-									</IsDesktopOrTablet>
+									</IsTabletOrDesktop>
 								</NavLink>
 							) : (
 								<NavLink
@@ -141,9 +141,9 @@ export class Header extends React.Component<{}, IState> {
 										/>
 									</IsPhone>
 
-									<IsDesktopOrTablet>
+									<IsTabletOrDesktop>
 										Sign up
-									</IsDesktopOrTablet>
+									</IsTabletOrDesktop>
 								</NavLink>
 							)}
 
@@ -178,9 +178,9 @@ export class Header extends React.Component<{}, IState> {
 									</span>
 								</IsPhone>
 
-								<IsDesktopOrTablet>
+								<IsTabletOrDesktop>
 									Place advert
-								</IsDesktopOrTablet>
+								</IsTabletOrDesktop>
 							</NavLink>
 						</nav>
 					</div>

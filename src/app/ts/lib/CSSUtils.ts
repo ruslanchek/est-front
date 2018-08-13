@@ -21,6 +21,7 @@ export const mq = {
 	phone: '@media (max-width: 720px) and (min-width: 0px)',
 	phoneOrTablet: '@media (max-width: 1024px) and (min-width: 0px)',
 	tablet: '@media (max-width: 1024px) and (min-width: 720px)',
+	tabletOrDesktop: '@media (max-width: 1440px) and (min-width: 720px)',
 	desktop: '@media (max-width: 1440px) and (min-width: 1024px)',
 	wide: '@media (max-width: 6000px) and (min-width: 1440px)',
 };
