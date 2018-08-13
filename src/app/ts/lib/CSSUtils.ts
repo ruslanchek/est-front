@@ -8,6 +8,7 @@ export interface IReactComponentStyles {
 	styles?: object;
 }
 
+// TODO: Deprecated
 export enum EMQ {
 	Phone,
 	PhoneOrTablet,
