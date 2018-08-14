@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
 import { CSSUtils } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
-import { StyleDeclaration } from 'aphrodite';
 import { CONFIG } from '../../config';
+import styled from 'react-emotion';
 
 interface IProps {
 	isoCode: string;
-	size?: number;
-	style?: StyleDeclaration;
+  size?: number;
+  className?: string;
 }
 
 const SIZE_RATIO: number = 1.55;
@@ -19,11 +18,11 @@ export class Flag extends React.PureComponent<IProps, {}> {
 	};
 
 	public render() {
-		const { isoCode, size } = this.props;
+		const { isoCode, size, className } = this.props;
 
 		return (
-			<span
-				className={css(styles.flag, this.props.style)}
+			<Container
+				className={className}
 				style={{
 					width: size * SIZE_RATIO,
 					height: size,
@@ -34,13 +33,11 @@ export class Flag extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const styles = StyleSheet.create({
-	flag: {
-		display: 'inline-block',
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: '50%',
-		backgroundSize: 'cover',
-		borderRadius: 2,
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL
-	}
-});
+const Container = styled('span')`
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 2px;
+  box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+`;
