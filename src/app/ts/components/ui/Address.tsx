@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 
@@ -18,5 +17,3 @@ export class Address extends React.PureComponent<IProps, {}> {
 		);
 	}
 }
-
-const styles = StyleSheet.create({});

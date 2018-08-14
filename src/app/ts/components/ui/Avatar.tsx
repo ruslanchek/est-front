@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME, COMMON_STYLES_EMOTION } from '../../theme';
 import { PATHS } from '../../config';
 import IObjectAgent = ObjectsStore.IObjectAgent;
+import styled, { css } from 'react-emotion';
 
 interface IProps {
 	objectAgent: IObjectAgent;
@@ -15,38 +14,34 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 		const { id, avatar, name, type } = this.props.objectAgent;
 
 		return (
-			<div className={css(styles.container)}>
-				<div className={css(styles.title)}>
+			<Container>
+				<Title>
 					{this.getAgentTypeName()}
-				</div>
+				</Title>
 
-				<div className={css(styles.info)}>
-					<a
-						className={css(styles.imageLink)}
+				<Info>
+					<ImageLink
 						target="_blank"
 						href={PATHS.AGENT.replace(':id', id.toString())}
 					>
-						<img
-							src={avatar}
-							className={css(styles.image)}
-						/>
-					</a>
+            <Image src={avatar}/>
+					</ImageLink>
 
-					<div className={css(styles.contact)}>
+					<Contact>
 						<a
 							target="_blank"
 							href={PATHS.AGENT.replace(':id', id.toString())}
-							className={css(styles.contactRow, styles.contactRowAccent, COMMON_STYLES.LINK)}
+							className={`${contactRowStyle} ${contactRowAccentStyle} ${COMMON_STYLES_EMOTION.LINK}`}
 						>
 							{name}
 						</a>
 
-						<div className={css(styles.contactRow, styles.contactRowDecent)}>
+						<div className={`${contactRowStyle} ${contactRowDecentStyle}`}>
 							{type}
 						</div>
-					</div>
-				</div>
-			</div>
+					</Contact>
+				</Info>
+			</Container>
 		);
 	}
 
@@ -59,57 +54,55 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
+const Container = styled('div')`
 
-	},
+`;
 
-	title: {
-		fontSize: THEME.FONT_SIZE_TINY,
-		textTransform: 'uppercase',
-		marginBottom: THEME.SECTION_PADDING_V / 2,
-		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
-		fontWeight: 600
-	},
+const Title = styled('div')`
+  font-size: ${THEME.FONT_SIZE_TINY}px;
+  text-transform: uppercase;
+  margin-bottom: ${THEME.SECTION_PADDING_V / 2};
+  color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+  font-weight: 600;
+`;
 
-	image: {
-		width: 40,
-		height: 40,
-		minWidth: 40,
-		maxWidth: 40,
-		borderRadius: '100%',
-		display: 'block',
-		flexGrow: 0,
-		marginRight: THEME.SECTION_PADDING_H / 2
-	},
+const Info = styled('div')`
+  display: flex;
+  align-items: center;
+`;
 
-	imageLink: {
-		transition: 'opacity .2s',
+const ImageLink = styled('a')`
+  transition: opacity .2s;
 
-		':hover': {
-			opacity: 0.75
-		}
-	},
+  &:hover {
+    opacity: .75;
+  }
+`;
 
-	info: {
-		display: 'flex',
-		alignItems: 'center'
-	},
+const Image = styled('img')`
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 100%;
+  display: block;
+  flex-grow: 0;
+  margin-right: ${THEME.SECTION_PADDING_H / 2}px;
+`;
 
-	contact: {
-		flexGrow: 1
-	},
+const Contact = styled('div')`
+  flex-grow: 1;
+`;
 
-	contactRow: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		margin: `.2em 0`
-	},
+const contactRowStyle = styled('div')`
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+  margin: .2em 0;
+`;
 
-	contactRowAccent: {
-		fontWeight: 600
-	},
+const contactRowAccentStyle = css`
+  font-weight: 600;
+`;
 
-	contactRowDecent: {
-		color: COLORS.BLACK_EXTRA_LIGHT.toString()
-	}
-});
+const contactRowDecentStyle = css`
+  color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+`;

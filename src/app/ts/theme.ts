@@ -158,6 +158,8 @@ export const COMMON_STYLES = StyleSheet.create({
 });
 
 export const COMMON_STYLES_EMOTION = {
+  // TODO: Move it to the global!!!
+
 	LINK: css({
 		color: COLORS.BLACK.toString(),
 		textDecoration: 'none',
