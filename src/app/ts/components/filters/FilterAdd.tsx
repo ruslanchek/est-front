@@ -22,7 +22,7 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<Filter
+			<Add
 				onClick={() => {
 					this.setState({
 						isOpen: true,
@@ -47,100 +47,98 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 						title="Add new filter"
 					/>
 
-					<div className={css(styles.filters)}>
-						<div className={css(styles.filterItem)}>
-							<span className={css(styles.itemIcon)}>
+					<FiltersList>
+						<FilterItem>
+							<ItemIcon>
 								<Ionicon
 									icon="md-home"
 									fontSize="32px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
-							</span>
+							</ItemIcon>
 
-							<span className={css(styles.itemTitle)}>
+							<ItemTitle>
 								Select property type
-							</span>
-						</div>
+							</ItemTitle>
+						</FilterItem>
 
-						<div className={css(styles.filterItem)}>
-							<span className={css(styles.itemIcon)}>
+						<FilterItem>
+							<ItemIcon>
 								<Ionicon
 									icon="md-home"
 									fontSize="32px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
-							</span>
+							</ItemIcon>
 
-							<span className={css(styles.itemTitle)}>
+							<ItemTitle>
 								Select property type
-							</span>
-						</div>
+							</ItemTitle>
+						</FilterItem>
 
-						<div className={css(styles.filterItem)}>
-							<span className={css(styles.itemIcon)}>
+						<FilterItem>
+							<ItemIcon>
 								<Ionicon
 									icon="md-home"
 									fontSize="32px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
-							</span>
+							</ItemIcon>
 
-							<span className={css(styles.itemTitle)}>
+							<ItemTitle>
 								Select property type
-							</span>
-						</div>
+							</ItemTitle>
+						</FilterItem>
 
-						<div className={css(styles.filterItem)}>
-							<span className={css(styles.itemIcon)}>
+						<FilterItem>
+							<ItemIcon>
 								<Ionicon
 									icon="md-home"
 									fontSize="32px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
-							</span>
+							</ItemIcon>
 
-							<span className={css(styles.itemTitle)}>
+							<ItemTitle>
 								Select property type
-							</span>
-						</div>
+							</ItemTitle>
+						</FilterItem>
 
-						<div className={css(styles.filterItem)}>
-							<span className={css(styles.itemIcon)}>
+						<FilterItem>
+							<ItemIcon>
 								<Ionicon
 									icon="md-home"
 									fontSize="32px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
-							</span>
+							</ItemIcon>
 
-							<span className={css(styles.itemTitle)}>
+							<ItemTitle>
 								Select property type
-							</span>
-						</div>
+							</ItemTitle>
+						</FilterItem>
 
-						<div
-							className={css(styles.filterItem)}
-						>
-							<span className={css(styles.itemIcon)}>
+						<FilterItem>
+							<ItemIcon>
 								<Ionicon
 									icon="md-home"
 									fontSize="28px"
 									color={COLORS.GRAY_EXTRA_DARK.toString()}
 								/>
-							</span>
+							</ItemIcon>
 
-							<span className={css(styles.itemTitle)}>
+							<ItemTitle>
 								Select property type
-							</span>
-						</div>
-					</div>
+							</ItemTitle>
+						</FilterItem>
+					</FiltersList>
 				</ModalContext>
-			</Filter>
+			</Add>
 		);
 	}
 }
 
-const Filter = styled(FilterBrick)`
+const Add = styled(FilterBrick)`
 	background-color: ${COLORS.BLUE_LIGHT.toString()};
 	color: ${COLORS.BLUE.toString()};
 	font-weight: 600;
@@ -152,41 +150,39 @@ const Filter = styled(FilterBrick)`
 	}
 `;
 
-const styles = StyleSheet.create({
-	filters: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		padding: `${THEME.SECTION_PADDING_V / 2}px ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-		flexWrap: 'wrap',
-	},
+const FiltersList = styled('div')`
+	display: flex;
+	justify-content: space-between;
+	padding: ${THEME.SECTION_PADDING_V / 2}px ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px;
+	flex-wrap: wrap;
+`;
 
-	filterItem: {
-		padding: THEME.SECTION_PADDING_H / 2,
-		borderRadius: 6,
-		width: '48%',
-		boxSizing: 'border-box',
-		height: 100,
-		display: 'flex',
-		justifyContent: 'flex-end',
-		flexDirection: 'column',
-		border: `1px solid ${COLORS.GRAY_DARK}`,
-		marginTop: 10,
-		cursor: 'pointer',
-		transition: 'border-color .2s',
+const FilterItem = styled('div')`
+	padding: ${THEME.SECTION_PADDING_H / 2}px;
+	border-radius: 6px;
+	width: 48%;
+	box-sizing: border-box;
+	height: 100px;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	border: 1px solid ${COLORS.GRAY_DARK.toString()};
+	margin-top: 10px;
+	cursor: pointer;
+	transition: border-color .2s;
 
-		':hover': {
-			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
-		}
-	},
+	&:hover {
+		border-color: ${COLORS.GRAY_DARK.darken(.1).toString()};
+	}
+`;
 
-	itemTitle: {
-		fontWeight: 400,
-		whiteSpace: 'normal',
-		color: COLORS.BLACK_LIGHT.toString(),
-	},
+const ItemTitle = styled('span')`
+	font-weight: 400;
+	white-space: normal;
+	color: ${COLORS.BLACK_LIGHT.toString()};
+`;
 
-	itemIcon: {
-		alignSelf: 'flex-start',
-		marginBottom: 10,
-	},
-});
+const ItemIcon = styled('span')`
+	align-self: flex-start;
+	margin-bottom: 10px;
+`;
