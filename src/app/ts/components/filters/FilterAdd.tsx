@@ -1,13 +1,11 @@
 import * as React from 'react';
 import * as Ionicon from 'react-ionicons';
 
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
-import { ModalResetSubmit } from '../modals/ModalResetSubmit';
+import styled, { css } from 'react-emotion';
+import { COLORS, THEME } from '../../theme';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalContext } from '../modals/ModalContext';
-import { CSSUtils } from '../../lib/CSSUtils';
-import Color = require('color');
+import { FilterBrick } from './FilterBrick';
 
 interface IProps {
 
@@ -24,8 +22,7 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<div
-				className={css(COMMON_STYLES.FILTER_BRICK, styles.add)}
+			<Filter
 				onClick={() => {
 					this.setState({
 						isOpen: true,
@@ -138,24 +135,24 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 						</div>
 					</div>
 				</ModalContext>
-			</div>
+			</Filter>
 		);
 	}
 }
 
+const Filter = styled(FilterBrick)`
+	background-color: ${COLORS.BLUE_LIGHT.toString()};
+	color: ${COLORS.BLUE.toString()};
+	font-weight: 600;
+	border-radius: 4px;
+	position: relative;
+
+	&:hover {
+		background-color: ${COLORS.BLUE_LIGHT_ACTIVE.toString()};
+	}
+`;
+
 const styles = StyleSheet.create({
-	add: {
-		backgroundColor: COLORS.BLUE_LIGHT.toString(),
-		color: COLORS.BLUE.toString(),
-		fontWeight: 600,
-		borderRadius: 4,
-		position: 'relative',
-
-		':hover': {
-			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
-		},
-	},
-
 	filters: {
 		display: 'flex',
 		justifyContent: 'space-between',

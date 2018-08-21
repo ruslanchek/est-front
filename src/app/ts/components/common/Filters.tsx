@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import styled, { css } from 'react-emotion';
+import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { FilterFromTo } from '../filters/FilterFromTo';
 import { FilterAnd } from '../filters/FilterAnd';
 import { FilterRangeEntities } from '../filters/FilterRangeEntities';
 import { Money } from '../ui/Money';
-import { FilterGroup } from '../filters/FilterGroup';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import ICountry = ObjectsStore.ICountry;
 import { managers } from '../../managers';
@@ -64,15 +63,15 @@ export class Filters extends React.PureComponent<IProps, IState> {
 		}
 
 		return (
-			<div className={css(styles.filters)}>
-				<div className={css(styles.title)}>
-					Showing <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>2,436</strong> objects
-				</div>
+			<Container>
+				<Title>
+					Showing <strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>2,436</strong> objects
+				</Title>
 
-				<FilterGroup styles={styles.group}>
+				<FilterGroup>
 					{firstEntity && (
 						<FilterSearch
-							filterTitle={"Select city"}
+							filterTitle="Select city"
 							entities={this.state.cityEntities}
 							currentId={this.state.currentCityId}
 							styles={styles.brickRoundedLeft}
@@ -135,38 +134,41 @@ export class Filters extends React.PureComponent<IProps, IState> {
 				/>
 
 				<FilterAdd/>
-			</div>
+			</Container>
 		);
 	}
 }
 
+const Container = styled('div')`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  padding-top: 4px;
+  width: 100%;
+`;
+
+const Title = styled('div')`
+  margin-right: ${THEME.SECTION_PADDING_H}px;
+  padding: 0;
+  background-color: transparent;
+  height: 26px;
+  line-height: 26px;
+  margin-top: 10px;
+  color: ${COLORS.BLACK_LIGHT.toString()};
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+`;
+
+const FilterGroup = styled('div')`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: ${THEME.SECTION_PADDING_H / 2}px;
+`;
+
 const styles = StyleSheet.create({
-	filters: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-		whiteSpace: 'nowrap',
-		flexWrap: 'wrap',
-		paddingBottom: 14,
-		paddingTop: 4,
-		width: '100%',
-	},
-
-	title: {
-		marginRight: THEME.SECTION_PADDING_H,
-		padding: 0,
-		backgroundColor: 'transparent',
-		height: 26,
-		lineHeight: '26px',
-		marginTop: 10,
-		color: COLORS.BLACK_LIGHT.toString(),
-		fontSize: THEME.FONT_SIZE_SMALL,
-	},
-
-	group: {
-		marginRight: THEME.SECTION_PADDING_H / 2,
-	},
-
 	brick: {
 		marginRight: THEME.SECTION_PADDING_H / 2,
 		borderRadius: 4

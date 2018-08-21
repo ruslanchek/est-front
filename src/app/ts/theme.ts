@@ -221,23 +221,6 @@ export const COMMON_STYLES_EMOTION = {
 		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE,
 	}),
 
-	FILTER_BRICK: css({
-		height: 27,
-		display: 'flex',
-		alignItems: 'center',
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		cursor: 'pointer',
-		transition: 'background-color .2s',
-		marginTop: 10,
-		fontSize: THEME.FONT_SIZE_SMALL,
-		userSelect: 'none',
-
-		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.darken(0.075).toString(),
-		}
-	}),
-
 	FILTER_SELECTED: css({
 		backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
 	}),
