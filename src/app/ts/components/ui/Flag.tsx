@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { CSSUtils } from '../../lib/CSSUtils';
 import { THEME } from '../../theme';
 import { CONFIG } from '../../config';
 import styled from 'react-emotion';
@@ -23,14 +22,18 @@ export class Flag extends React.PureComponent<IProps, {}> {
 		return (
 			<Container
 				className={className}
-				style={{
-					width: size * SIZE_RATIO,
-					height: size,
-					backgroundImage: CSSUtils.image(`${CONFIG.STATIC_PATH}/flags/png/${isoCode.toLowerCase()}.png`)
-				}}
+				width={size * SIZE_RATIO}
+				height={size}
+				imageSrc={`${CONFIG.STATIC_PATH}/flags/png/${isoCode.toLowerCase()}.png`}
 			/>
 		);
 	}
+}
+
+type ContainerProps = {
+	width: number;
+	height: number;
+	imageSrc: string;
 }
 
 const Container = styled('span')`
@@ -38,6 +41,9 @@ const Container = styled('span')`
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
+	background-image: url('${(props: ContainerProps) => props.imageSrc}');
   border-radius: 2px;
   box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+	width: ${(props: ContainerProps) => props.width}px;
+	height: ${(props: ContainerProps) => props.height}px;
 `;

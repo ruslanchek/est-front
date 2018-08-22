@@ -6,6 +6,7 @@ import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { EGisMarkerType, GisMarker } from './GisMarker';
 import { COLORS } from '../../theme';
+import styled from 'react-emotion';
 
 interface IProps {
 	width: string;
@@ -40,12 +41,9 @@ export class Gis extends React.PureComponent<IProps, IState> {
 		const {width, height, zoom, objects} = this.props;
 
 		return (
-			<div
-				style={{
-					width,
-					height
-				}}
-				className={css(styles.container)}
+			<Container
+				width={width}
+				height={height}
 			>
 				<GoogleMapReact
 					bootstrapURLKeys={{
@@ -78,16 +76,21 @@ export class Gis extends React.PureComponent<IProps, IState> {
 						);
 					})}
 				</GoogleMapReact>
-			</div>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		borderRadius: 10,
-		marginBottom: 40,
-		overflow: 'hidden',
-		position: 'relative'
-	}
-});
+type ContainerProps = {
+	width: string;
+	height: string;
+};
+
+const Container = styled('div')`
+	border-radius: 10px;
+	margin-bottom: 40px;
+	overflow: hidden;
+	position: relative;
+	width: ${(props: ContainerProps) => props.width};
+	height: ${(props: ContainerProps) => props.height};
+`;

@@ -17,7 +17,7 @@ interface IProps {
 
 export enum EGisMarkerType {
 	Small,
-	Big
+	Big,
 }
 
 export class GisMarker extends React.PureComponent<IProps, {}> {

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
+import styled, { keyframes } from 'react-emotion';
 import { COLORS } from '../../theme';
 import Color = require('color');
 
 interface IProps {
 	isVisible: boolean;
-	outerStyles: StyleDeclaration;
+	className: string;
 	size: number;
 	color: Color;
 }
@@ -14,18 +14,14 @@ const ANIMATION_TIME: number = 600;
 
 export class Preload extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { size, isVisible, outerStyles, color } = this.props;
+		const { size, isVisible, className, color } = this.props;
 
-		if(isVisible) {
+		if (isVisible) {
 			return (
-				<i
-					className={css(styles.preLoader, outerStyles)}
-					style={{
-						borderColor: color.toString(),
-						width: size,
-						height: size,
-						margin: `-${size / 2}px 0 0 -${size / 2}px`,
-					}}
+				<Container
+					className={className}
+					color={color.toString()}
+					size={size}
 				/>
 			);
 		} else {
@@ -34,33 +30,39 @@ export class Preload extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const translateKeyframes = {
-	'0%': {
-		transform: 'scale(0)',
-		backgroundColor: COLORS.WHITE.alpha(.5).toString(),
-		opacity: 1
-	},
-
-	'100%': {
-		transform: 'scale(2)',
-		backgroundColor: COLORS.WHITE.alpha(.1).toString(),
-		opacity: 0
-	}
+type ContainerProps = {
+	size: number;
+	color: string;
 };
 
-const styles = StyleSheet.create({
-	preLoader: {
-		border: `2px solid`,
-		display: 'block',
-		borderRadius: '100%',
-		boxSizing: 'border-box',
-		position: 'absolute',
-		zIndex: 2,
-		top: '50%',
-		left: '50%',
-		animationName: [translateKeyframes],
-		animationDuration: `${ANIMATION_TIME}ms`,
-		animationIterationCount: 'infinite',
-		animationDelay: 100
+const translateKeyframes = keyframes`
+	0% {
+		transform: scale(0);
+		background-color: ${COLORS.WHITE.alpha(.5).toString()};
+		opacity: 1;
 	}
-});
+
+	100% {
+		transform: scale(2);
+		background-color: ${COLORS.WHITE.alpha(.1).toString()};
+		opacity: 0;
+	}
+`;
+
+const Container = styled('i')`
+	width: ${(props: ContainerProps) => props.size}px;
+	height: ${(props: ContainerProps) => props.size}px;
+	margin: ${(props: ContainerProps) => `-${props.size / 2}px 0 0 -${props.size / 2}px`};
+	border: 2px solid ${(props: ContainerProps) => props.color};
+	display: block;
+	border-radius: 100%;
+	box-sizing: border-box;
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	animation-name: ${translateKeyframes};
+	animation-duration: ${ANIMATION_TIME}ms;
+	animation-iteration-count: infinite;
+	animation-delay: .1s;
+`;
