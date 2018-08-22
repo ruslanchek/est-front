@@ -1,8 +1,5 @@
 import * as React from 'react';
-import * as Ionicon from 'react-ionicons';
-
-import { Button, EButtonTheme } from '../../ui/Button';
-import { COLORS, THEME } from '../../../theme';
+import { THEME } from '../../../theme';
 import { css, StyleSheet } from 'aphrodite';
 
 export class FormButtonsBlock extends React.PureComponent<{}, {}> {
