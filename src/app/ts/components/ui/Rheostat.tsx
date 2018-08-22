@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
+import styled from 'react-emotion';
 import { COLORS, THEME } from '../../theme';
-import { CSSUtils } from '../../lib/CSSUtils';
 
 interface IProps {
 	min: number;
@@ -49,18 +48,17 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	}
 
 	public render() {
-		const {currentMin, currentMax} = this.state;
+		const { currentMin, currentMax } = this.state;
 
 		return (
-			<div
-				className={css(styles.container)}
+			<Container
 				onTouchMove={(e) => {
-					if(e.touches && e.touches[0]) {
+					if (e.touches && e.touches[0]) {
 						this.calculatePositions(e.touches[0].clientX);
 					}
 				}}
 				onTouchStart={(e) => {
-					if(e.touches && e.touches[0]) {
+					if (e.touches && e.touches[0]) {
 						this.calculatePositions(e.touches[0].clientX);
 					}
 				}}
@@ -91,26 +89,25 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 					});
 				}}
 			>
-				<div className={css(styles.title)}>
-					<span className={css(styles.fromTo)}>from</span>
+				<Title>
+					<FromTo>from</FromTo>
 					{' '}
 					{this.props.renderValue(currentMin)}
 					{' '}
-					<span className={css(styles.fromTo)}>to</span>
+					<FromTo>to</FromTo>
 					{' '}
 					{this.props.renderValue(currentMax)}
-				</div>
+				</Title>
 
-				<div
-					className={css(styles.bar)}
-					ref={(ref) => this.bar = ref}
-				>
-					<i
-						className={css(styles.line)}
-						style={{left: this.state.minPosition + '%', right: 100 - this.state.maxPosition + '%'}}
-					/>
+				<Bar ref={(ref) => this.bar = ref}>
+					<Line style={{
+						left: this.state.minPosition + '%',
+						right: 100 - this.state.maxPosition + '%',
+					}} />
 
-					<i
+					<Handle 
+						active={this.state.boundId === 1}
+						left={`${this.state.minPosition}%`}
 						onTouchStart={() => {
 							this.setState({
 								boundId: 1
@@ -136,14 +133,11 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 								boundId: null
 							});
 						}}
-						{...CSSUtils.mergeStyles(
-							css(styles.handle),
-							this.state.boundId === 1 && css(styles.handleActive)
-						)}
-						style={{left: this.state.minPosition + '%'}}
 					/>
 
-					<i
+					<Handle 
+						active={this.state.boundId === 2}
+						left={`${this.state.maxPosition}%`}
 						onTouchStart={() => {
 							this.setState({
 								boundId: 2
@@ -169,22 +163,17 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 								boundId: null
 							});
 						}}
-						{...CSSUtils.mergeStyles(
-							css(styles.handle),
-							this.state.boundId === 2 && css(styles.handleActive)
-						)}
-						style={{left: this.state.maxPosition + '%'}}
 					/>
 
-					<span className={css(styles.value, styles.minValue)}>
+					<MinValue>
 						{this.props.renderValue(this.props.min)}
-					</span>
+					</MinValue>
 
-					<span className={css(styles.value, styles.maxValue)}>
+					<MaxValue>
 						{this.props.renderValue(this.props.max)}
-					</span>
-				</div>
-			</div>
+					</MaxValue>
+				</Bar>
+			</Container>
 		);
 	}
 
@@ -198,25 +187,25 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	private calculatePositions(clientX: number): void {
 		const box: ClientRect = this.bar.getBoundingClientRect();
 		const position: number = clientX - box.left;
-		let value: number = this.getPositionValue(position);
 
+		let value: number = this.getPositionValue(position);
 		let min: number = this.state.currentMin;
 		let max: number = this.state.currentMax;
 
 		value = Math.round(value / this.props.step) * this.props.step;
 
-		if(value < this.props.min || value > this.props.max) {
+		if (value < this.props.min || value > this.props.max) {
 			return;
 		}
 
-		if(this.state.boundId === 1) {
-			if(value <= this.state.currentMax) {
+		if (this.state.boundId === 1) {
+			if (value <= this.state.currentMax) {
 				min = value;
 			}
 		}
 
-		if(this.state.boundId === 2) {
-			if(value >= this.state.currentMin) {
+		if (this.state.boundId === 2) {
+			if (value >= this.state.currentMin) {
 				max = value;
 			}
 		}
@@ -231,7 +220,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	}
 
 	private getValuePosition(value: number): number {
-		if(this.bar) {
+		if (this.bar) {
 			return (value - this.props.min) / ((this.props.max - this.props.min) / 100);
 		} else {
 			return 0;
@@ -239,7 +228,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	}
 
 	private getPositionValue(x: number): number {
-		if(this.bar) {
+		if (this.bar) {
 			const barBox: ClientRect = this.bar.getBoundingClientRect();
 			return (x / (barBox.width / 100) * (this.props.max - this.props.min) / 100) + this.props.min;
 		} else {
@@ -248,95 +237,95 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		paddingBottom: 30,
-		userSelect: 'none'
-	},
+const Container = styled('div')`
+	padding-bottom: 30px;
+	user-select: none;
+`;
 
-	fromTo: {
-		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
-		fontWeight: 400
-	},
+const FromTo = styled('span')`
+	color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+	font-weight: 400;
+`;
 
-	value: {
-		position: 'absolute',
-		top: 20,
-		color: COLORS.BLACK_LIGHT.toString(),
-		fontSize: THEME.FONT_SIZE_SMALL,
-		fontWeight: 600
-	},
+const Value = styled('span')`
+	position: absolute;
+	top: 20px;
+	color: ${COLORS.BLACK_LIGHT.toString()};
+	font-size: ${THEME.FONT_SIZE_SMALL};
+	font-weight: 600;
+`;
 
-	minValue: {
-		left: -HANDLE_SIZE / 2
-	},
+// @TODO: check
+const MinValue = styled(Value)`
+	left: -${HANDLE_SIZE / 2}px;
+`;
 
-	maxValue: {
-		right: -HANDLE_SIZE / 2
-	},
+const MaxValue = styled(Value)`
+	right: -${HANDLE_SIZE / 2}px;
+`;
 
-	title: {
-		textAlign: 'center',
-		marginBottom: THEME.SECTION_PADDING_V * 1.5,
-		fontWeight: 600
-	},
+const Title = styled('div')`
+	text-align: center;
+	margin-bottom: ${THEME.SECTION_PADDING_V * 1.5}px;
+	font-weight: 600;
+`;
 
-	bar: {
-		height: BAR_SIZE,
-		position: 'relative',
-		margin: `0 ${HANDLE_SIZE / 2}px`,
+const Line = styled('i')`
+	height: ${BAR_SIZE}px;
+	background-color: ${COLORS.BLUE.toString()};
+	border-radius: ${BAR_SIZE}px;
+	display: block;
+	top: 0px;
+	position: absolute;
+`;
 
-		':before': {
-			display: 'block',
-			content: '""',
-			position: 'relative',
-			top: 0,
-			left: -HANDLE_SIZE / 2,
-			width: '100%',
-			padding: `0 ${HANDLE_SIZE /2}px`,
-			height: BAR_SIZE,
-			borderRadius: BAR_SIZE,
-			backgroundColor: COLORS.GRAY_DARK.toString(),
-			boxShadow: `inset 0 1px 1px ${COLORS.BLACK.alpha(.1).toString()}`
-		}
-	},
+const Bar = styled('div')`
+	height: ${BAR_SIZE}px;
+	position: relative;
+	margin: 0 ${HANDLE_SIZE / 2}px;
 
-	line: {
-		height: BAR_SIZE,
-		backgroundColor: COLORS.BLUE.toString(),
-		borderRadius: BAR_SIZE,
-		display: 'block',
-		top: 0,
-		position: 'absolute'
-	},
-
-	handle: {
-		height: HANDLE_SIZE,
-		width: HANDLE_SIZE,
-		borderRadius: HANDLE_SIZE,
-		position: 'absolute',
-		boxSizing: 'border-box',
-		top: '50%',
-		margin: `-${HANDLE_SIZE / 2}px 0 0 -${HANDLE_SIZE / 2}px`,
-		backgroundColor: COLORS.BLUE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
-		cursor: 'pointer',
-		transition: 'transform .2s, background-color .2s',
-		border: `2px solid ${COLORS.WHITE.toString()}`,
-
-		':hover': {
-			backgroundColor: COLORS.BLUE.lighten(0.2).toString(),
-			transform: 'scale(1.1)',
-		}
-	},
-
-	handleActive: {
-		backgroundColor: COLORS.BLUE.lighten(0.4).toString(),
-		transform: 'scale(1.05)',
-
-		':hover': {
-			backgroundColor: COLORS.BLUE.lighten(0.4).toString(),
-			transform: 'scale(1.05)',
-		}
+	&:before {
+		display: block;
+		content: '';
+		position: relative;
+		top: 0;
+		left: -${HANDLE_SIZE / 2}px;
+		width: 100%;
+		padding: 0 ${HANDLE_SIZE / 2}px;
+		height: ${BAR_SIZE}px;
+		border-radius: ${BAR_SIZE}px;
+		background-color: ${COLORS.GRAY_DARK.toString()};
+		box-shadow: inset 0 1px 1px ${COLORS.BLACK.alpha(.1).toString()};
 	}
-});
+`;
+
+type THandleProps = {
+  left: string;
+  active: boolean;
+}
+
+const Handle = styled('i')`
+	height: ${HANDLE_SIZE}px;
+	width: ${HANDLE_SIZE}px;
+	border-radius: ${HANDLE_SIZE}px;
+	position: absolute;
+	box-sizing: border-box;
+	top: 50%;
+	margin: -${HANDLE_SIZE / 2}px 0 0 -${HANDLE_SIZE / 2}px;
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+	cursor: pointer;
+	transition: transform .2s, background-color .2s;
+	border: 2px solid ${COLORS.WHITE.toString()};
+	left: ${(props: THandleProps) => props.left};
+	background-color: ${(props: THandleProps) => {
+		return props.active ? COLORS.BLUE.toString() : COLORS.BLUE.lighten(0.4).toString();
+	}};
+	transform: ${(props: THandleProps) => {
+		return props.active ? 'scale(1.05)' : 'scale(1)';
+	}};
+
+	&:hover {
+		background-color: ${COLORS.BLUE.lighten(.2).toString()};
+		transform: scale(1.1);
+	}
+`;
