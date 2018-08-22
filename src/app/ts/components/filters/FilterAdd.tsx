@@ -22,7 +22,7 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		return (
-			<Add
+			<Container
 				onClick={() => {
 					this.setState({
 						isOpen: true,
@@ -133,12 +133,12 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 						</FilterItem>
 					</FiltersList>
 				</ModalContext>
-			</Add>
+			</Container>
 		);
 	}
 }
 
-const Add = styled(FilterBrick)`
+const Container = styled(FilterBrick)`
 	background-color: ${COLORS.BLUE_LIGHT.toString()};
 	color: ${COLORS.BLUE.toString()};
 	font-weight: 600;

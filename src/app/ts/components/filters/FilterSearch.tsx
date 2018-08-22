@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import styled, { css } from 'react-emotion';
+import { COLORS, COMMON_STYLES, THEME, COMMON_STYLES_EMOTION } from '../../theme';
 import { ModalContext } from '../modals/ModalContext';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { Search } from '../ui/Search';
+import { FilterBrick } from './FilterBrick';
 
 export interface ISearchFilterEntity {
 	title: string;
@@ -17,7 +18,7 @@ interface IProps {
 	entities: ISearchFilterEntity[];
 	currentId: string | number;
 	onSelect: (id: string | number) => void;
-	styles?: StyleDeclaration;
+	className?: string;
 }
 
 interface IState {
@@ -44,19 +45,19 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 		let prevSymbol: string = '';
 
 		return (
-			<div className={css(styles.container)}>
-				<div
-					className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}
+			<Container>
+				<FilterBrick
+					className={this.props.className}
 					onClick={() => {
 						this.setState({
 							isOpen: true,
 						});
 					}}
 				>
-					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
 						{this.props.title}
 					</strong>
-				</div>
+				</FilterBrick>
 
 				<ModalContext
 					isVisible={isOpen}
@@ -195,16 +196,16 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 		}
 
 		this.setState({
-			entities
+			entities,
 		});
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		position: 'relative'
-	},
+const Container = styled('div')`
+	position: relative;
+`;
 
+const styles = StyleSheet.create({
 	nothingFound: {
 		fontWeight: 400,
 		textAlign: 'center',

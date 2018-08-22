@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import styled from 'react-emotion';
+import { COLORS, COMMON_STYLES_EMOTION } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalContext } from '../modals/ModalContext';
+import { FilterBrick } from './FilterBrick';
 
 interface IProps {
 	entities: string[];
 	filterName: string;
-	styles?: StyleDeclaration;
+	className?: string;
 }
 
 interface IState {
@@ -25,9 +26,9 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 		const { entities } = this.props;
 
 		return (
-			<div className={css(styles.container)}>
-				<div
-					className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}
+			<Container>
+				<FilterBrick
+					className={this.props.className}
 					onClick={() => {
 						this.setState({
 							isOpen: true,
@@ -38,7 +39,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 						{entities.map((entity, i) => {
 							return (
 								<React.Fragment key={i}>
-									<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+									<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
 										{entity}
 									</strong>
 
@@ -47,7 +48,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 							);
 						})}
 					</span>
-				</div>
+				</FilterBrick>
 
 				<ModalContext
 					isVisible={this.state.isOpen}
@@ -110,7 +111,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 						}}
 					/>
 				</ModalContext>
-			</div>
+			</Container>
 		);
 	}
 
@@ -129,8 +130,6 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		position: 'relative'
-	}
-});
+const Container = styled('div')`
+	position: relative;
+`;

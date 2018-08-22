@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import styled from 'react-emotion';
+import { COLORS, THEME, COMMON_STYLES_EMOTION } from '../../theme';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { Rheostat } from '../ui/Rheostat';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalContext } from '../modals/ModalContext';
+import { FilterBrick } from './FilterBrick';
 
 interface IProps {
 	from: number;
 	to: number;
 	filterName: string;
 	renderValue: (value: number) => JSX.Element;
-	styles?: StyleDeclaration;
+	className?: string;
 }
 
 interface IState {
@@ -24,21 +25,21 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		isOpen: false,
 		from: 0,
-		to: 0
+		to: 0,
 	};
 
 	public componentDidMount() {
 		this.setState({
 			from: this.props.from,
-			to: this.props.to
+			to: this.props.to,
 		});
 	}
 
 	public render() {
 		return (
-			<div className={css(styles.container)}>
-				<div
-					className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}
+			<Container>
+				<FilterBrick
+					className={this.props.className}
 					onClick={() => {
 						this.setState({
 							isOpen: true,
@@ -46,11 +47,11 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 					}}
 				>
 					<span>
-						from <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.props.from)}</strong>
+						from <strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>{this.props.renderValue(this.props.from)}</strong>
 						{' '}
-						to <strong className={css(COMMON_STYLES.FILTER_ACCENT)}>{this.props.renderValue(this.props.to)}</strong>
+						to <strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>{this.props.renderValue(this.props.to)}</strong>
 					</span>
-				</div>
+				</FilterBrick>
 
 				<ModalContext
 					isVisible={this.state.isOpen}
@@ -66,7 +67,8 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 						title={this.props.filterName}
 					/>
 
-					<div className={css(styles.rheostat)}>
+					// @TODO: move to className
+					<RheostatContainer>
 						<Rheostat
 							min={this.props.from}
 							max={this.props.to}
@@ -81,7 +83,7 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 								});
 							}}
 						/>
-					</div>
+					</RheostatContainer>
 
 					<ModalResetSubmit
 						isResetEnabled={true}
@@ -101,18 +103,16 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 						}}
 					/>
 				</ModalContext>
-			</div>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		position: 'relative'
-	},
+const Container = styled('div')`
+	position: relative;
+`;
 
-	rheostat: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-	}
-});
+const RheostatContainer = styled('div')`
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
+`;
