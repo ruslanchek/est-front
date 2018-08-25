@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css } from 'react-emotion';
+import styled from 'react-emotion';
 import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { FilterFromTo } from '../filters/FilterFromTo';
 import { FilterAnd } from '../filters/FilterAnd';
@@ -12,6 +12,7 @@ import ICity = ObjectsStore.ICity;
 import { FilterSearch, ISearchFilterEntity } from '../filters/FilterSearch';
 import { FilterContractType } from '../filters/FilterContractType';
 import { FilterAdd } from '../filters/FilterAdd';
+import { EBrickType } from '../filters/FilterBrick';
 
 interface IProps {
 
@@ -71,10 +72,10 @@ export class Filters extends React.PureComponent<IProps, IState> {
 				<FilterGroup>
 					{firstEntity && (
 						<FilterSearch
+							brickType={EBrickType.Left}
 							filterTitle="Select city"
 							entities={this.state.cityEntities}
 							currentId={this.state.currentCityId}
-							styles={styles.brickRoundedLeft}
 							title={firstEntity.title}
 							onSelect={(id) => {
 								this.setState({
@@ -85,7 +86,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 					)}
 
 					<FilterAnd
-						styles={styles.brickMiddle}
+						brickType={EBrickType.Middle}
 						filterName="Property type"
 						entities={[
 							'Flats',
@@ -95,13 +96,13 @@ export class Filters extends React.PureComponent<IProps, IState> {
 					/>
 
 					<FilterContractType
-						styles={styles.brickRoundedRight}
+						brickType={EBrickType.Right}
 						type={ObjectsStore.EObjectContractType.Rent}
 					/>
 				</FilterGroup>
 
 				<FilterFromTo
-					styles={styles.brick}
+					brickType={EBrickType.Default}
 					from={0}
 					to={1000000}
 					filterName="Price range"
@@ -113,21 +114,21 @@ export class Filters extends React.PureComponent<IProps, IState> {
 				/>
 
 				<FilterRangeEntities
-					styles={styles.brick}
+					brickType={EBrickType.Default}
 					from={2}
 					to={4}
 					what="bedrooms"
 				/>
 
 				<FilterRangeEntities
-					styles={styles.brick}
+					brickType={EBrickType.Default}
 					from={1}
 					to={2}
 					what="bathrooms"
 				/>
 
 				<FilterRangeEntities
-					styles={styles.brick}
+					brickType={EBrickType.Default}
 					from={1}
 					to={1}
 					what="garage"
@@ -167,25 +168,3 @@ const FilterGroup = styled('div')`
   cursor: pointer;
   margin-right: ${THEME.SECTION_PADDING_H / 2}px;
 `;
-
-const styles = StyleSheet.create({
-	brick: {
-		marginRight: THEME.SECTION_PADDING_H / 2,
-		borderRadius: 4
-	},
-
-	brickMiddle: {
-		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
-	},
-
-	brickRoundedLeft: {
-		borderBottomLeftRadius: 4,
-		borderTopLeftRadius: 4,
-		borderRight: `1px solid ${COLORS.GRAY_EXTRA_DARK}`
-	},
-
-	brickRoundedRight: {
-		borderBottomRightRadius: 4,
-		borderTopRightRadius: 4,
-	},
-});

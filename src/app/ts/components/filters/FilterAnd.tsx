@@ -5,11 +5,12 @@ import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalContext } from '../modals/ModalContext';
-import { FilterBrick } from './FilterBrick';
+import { EBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	entities: string[];
 	filterName: string;
+	brickType: EBrickType;
 	className?: string;
 }
 
@@ -28,7 +29,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 		return (
 			<Container>
 				<FilterBrick
-					className={this.props.className}
+					type={this.props.brickType}
 					onClick={() => {
 						this.setState({
 							isOpen: true,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'react-emotion';
+import styled, { css } from 'react-emotion';
 import { COLORS, THEME } from '../../theme';
 
 interface IProps {
@@ -25,7 +25,7 @@ const BAR_SIZE: number = 3;
 
 export class Rheostat extends React.PureComponent<IProps, IState> {
 	public static defaultProps: Partial<IProps> = {
-		step: 1
+		step: 1,
 	};
 
 	public state: IState = {
@@ -33,7 +33,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 		currentMax: 0,
 		minPosition: 0,
 		maxPosition: 0,
-		boundId: null
+		boundId: null,
 	};
 
 	private bar = null;
@@ -41,7 +41,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 	public componentDidMount() {
 		this.setState({
 			currentMin: this.props.currentMin,
-			currentMax: this.props.currentMax
+			currentMax: this.props.currentMax,
 		}, () => {
 			this.calculateMinMaxPositions();
 		});
@@ -70,22 +70,22 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 				}}
 				onMouseLeave={() => {
 					this.setState({
-						boundId: null
+						boundId: null,
 					});
 				}}
 				onMouseUp={() => {
 					this.setState({
-						boundId: null
+						boundId: null,
 					});
 				}}
 				onTouchEnd={() => {
 					this.setState({
-						boundId: null
+						boundId: null,
 					});
 				}}
 				onTouchCancel={() => {
 					this.setState({
-						boundId: null
+						boundId: null,
 					});
 				}}
 			>
@@ -99,68 +99,68 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 					{this.props.renderValue(currentMax)}
 				</Title>
 
-				<Bar ref={(ref) => this.bar = ref}>
+				<Bar innerRef={(ref) => this.bar = ref}>
 					<Line style={{
 						left: this.state.minPosition + '%',
 						right: 100 - this.state.maxPosition + '%',
-					}} />
+					}}/>
 
-					<Handle 
+					<Handle
 						active={this.state.boundId === 1}
 						left={`${this.state.minPosition}%`}
 						onTouchStart={() => {
 							this.setState({
-								boundId: 1
+								boundId: 1,
 							});
 						}}
 						onMouseDown={() => {
 							this.setState({
-								boundId: 1
+								boundId: 1,
 							});
 						}}
 						onTouchEnd={() => {
 							this.setState({
-								boundId: null
+								boundId: null,
 							});
 						}}
 						onTouchCancel={() => {
 							this.setState({
-								boundId: null
+								boundId: null,
 							});
 						}}
 						onMouseUp={() => {
 							this.setState({
-								boundId: null
+								boundId: null,
 							});
 						}}
 					/>
 
-					<Handle 
+					<Handle
 						active={this.state.boundId === 2}
 						left={`${this.state.maxPosition}%`}
 						onTouchStart={() => {
 							this.setState({
-								boundId: 2
+								boundId: 2,
 							});
 						}}
 						onMouseDown={() => {
 							this.setState({
-								boundId: 2
+								boundId: 2,
 							});
 						}}
 						onTouchEnd={() => {
 							this.setState({
-								boundId: null
+								boundId: null,
 							});
 						}}
 						onTouchCancel={() => {
 							this.setState({
-								boundId: null
+								boundId: null,
 							});
 						}}
 						onMouseUp={() => {
 							this.setState({
-								boundId: null
+								boundId: null,
 							});
 						}}
 					/>
@@ -212,7 +212,7 @@ export class Rheostat extends React.PureComponent<IProps, IState> {
 
 		this.setState({
 			currentMin: min,
-			currentMax: max
+			currentMax: max,
 		}, () => {
 			this.calculateMinMaxPositions();
 			this.props.onChange(this.state.currentMin, this.state.currentMax);
@@ -255,7 +255,6 @@ const Value = styled('span')`
 	font-weight: 600;
 `;
 
-// @TODO: check
 const MinValue = styled(Value)`
 	left: -${HANDLE_SIZE / 2}px;
 `;
@@ -299,9 +298,9 @@ const Bar = styled('div')`
 	}
 `;
 
-type THandleProps = {
-  left: string;
-  active: boolean;
+interface IHandleProps {
+	left: string;
+	active: boolean;
 }
 
 const Handle = styled('i')`
@@ -316,16 +315,18 @@ const Handle = styled('i')`
 	cursor: pointer;
 	transition: transform .2s, background-color .2s;
 	border: 2px solid ${COLORS.WHITE.toString()};
-	left: ${(props: THandleProps) => props.left};
-	background-color: ${(props: THandleProps) => {
-		return props.active ? COLORS.BLUE.toString() : COLORS.BLUE.lighten(0.4).toString();
-	}};
-	transform: ${(props: THandleProps) => {
-		return props.active ? 'scale(1.05)' : 'scale(1)';
-	}};
+	left: ${(props: IHandleProps) => props.left};
 
 	&:hover {
 		background-color: ${COLORS.BLUE.lighten(.2).toString()};
 		transform: scale(1.1);
 	}
+	
+	${(props: IHandleProps) => props.active ? css`
+		background-color: ${COLORS.BLUE.toString()};
+		transform: scale(1.05);
+	` : css`
+		background-color: ${COLORS.BLUE.lighten(.4).toString()};
+		transform: scale(1);
+	`};
 `;

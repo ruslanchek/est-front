@@ -2,12 +2,12 @@ import * as React from 'react';
 import styled from 'react-emotion';
 import { COMMON_STYLES_EMOTION } from '../../theme';
 import { Flag } from '../ui/Flag';
-import { FilterBrick } from './FilterBrick';
+import { EBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	isoCode: string;
 	title: string;
-	className?: string;
+	brickType: EBrickType;
 }
 
 interface IState {
@@ -23,7 +23,7 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 		return (
 			<Container>
 				<FilterBrick
-					className={this.props.className}
+					type={this.props.brickType}
 					onClick={() => {
 						this.setState({
 							isOpen: true,

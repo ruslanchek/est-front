@@ -1,43 +1,39 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COMMON_STYLES_EMOTION } from '../../theme';
 import { NumberFormat } from '../ui/NumberFormat';
+import { EBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	from: number;
 	to: number;
 	what: string;
-	styles?: StyleDeclaration;
+	brickType: EBrickType;
 }
 
 export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 	public render() {
-		const {from, to, what} = this.props;
+		const { from, to, what } = this.props;
 
-		if(from === to) {
+		if (from === to) {
 			return (
-				<div className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}>
-					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+				<FilterBrick type={this.props.brickType}>
+					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
 						<NumberFormat value={from}/>
 					</strong>&nbsp;{what}
-				</div>
+				</FilterBrick>
 			);
 		} else {
 			return (
-				<div className={css(COMMON_STYLES.FILTER_BRICK, this.props.styles)}>
-					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+				<FilterBrick type={this.props.brickType}>
+					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
 						<NumberFormat value={from}/>
 					</strong>&ndash;
 
-					<strong className={css(COMMON_STYLES.FILTER_ACCENT)}>
+					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
 						<NumberFormat value={to}/>
 					</strong>&nbsp;{what}
-				</div>
+				</FilterBrick>
 			);
 		}
 	}
 }
-
-const styles = StyleSheet.create({
-
-});

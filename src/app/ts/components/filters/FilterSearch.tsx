@@ -5,7 +5,7 @@ import { ModalContext } from '../modals/ModalContext';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { Search } from '../ui/Search';
-import { FilterBrick } from './FilterBrick';
+import { EBrickType, FilterBrick } from './FilterBrick';
 
 export interface ISearchFilterEntity {
 	title: string;
@@ -18,6 +18,7 @@ interface IProps {
 	entities: ISearchFilterEntity[];
 	currentId: string | number;
 	onSelect: (id: string | number) => void;
+	brickType: EBrickType;
 	className?: string;
 }
 
@@ -31,22 +32,23 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		isOpen: false,
 		search: '',
-		entities: []
+		entities: [],
 	};
 
 	public componentDidMount() {
 		this.setState({
-			entities: this.props.entities
+			entities: this.props.entities,
 		});
 	}
 
 	public render() {
-		const {entities, isOpen} = this.state;
+		const { entities, isOpen } = this.state;
 		let prevSymbol: string = '';
 
 		return (
 			<Container>
 				<FilterBrick
+					type={this.props.brickType}
 					className={this.props.className}
 					onClick={() => {
 						this.setState({
@@ -64,7 +66,7 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 					width={300}
 					onClose={() => {
 						this.setState({
-							isOpen: false
+							isOpen: false,
 						});
 					}}
 				>
@@ -74,56 +76,56 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 						title={this.props.filterTitle}
 					/>
 
-					<div className={css(styles.search)}>
+					<SearchContainer>
 						<Search
 							autoFocus={true}
 							onChange={(value) => {
 								this.setState({
-									search: value
+									search: value,
 								}, () => {
 									this.filter();
 								});
 							}}
 						/>
-					</div>
+					</SearchContainer>
 
-					<div className={css(styles.entities)}>
+					<Entities>
 						{entities.length > 0 && (
 							<React.Fragment>
 								{entities.map((entity, i) => {
-									const firstSymbol: string = entity.title.substr(0, 1);
+									const firstSymbol = entity.title.substr(0, 1);
 
-									if(firstSymbol !== prevSymbol) {
+									if (firstSymbol !== prevSymbol) {
 										prevSymbol = firstSymbol;
 
 										return (
 											<React.Fragment key={i}>
-												<div className={css(styles.symbolHolder)}>
-													<span className={css(styles.symbol)}>{firstSymbol}</span>
-												</div>
+												<SymbolHolder>
+													<Symbol>{firstSymbol}</Symbol>
+												</SymbolHolder>
 
-												<div
+												<Entity
 													key={i}
-													className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)}
+													active={this.props.currentId === entity.id}
 													onClick={() => {
 														this.props.onSelect(entity.id);
 													}}
 												>
 													{entity.title}
-												</div>
+												</Entity>
 											</React.Fragment>
 										);
 									} else {
 										return (
-											<div
+											<Entity
 												key={i}
-												className={css(styles.entity, this.props.currentId === entity.id && styles.entitySelected)}
+												active={this.props.currentId === entity.id}
 												onClick={() => {
 													this.props.onSelect(entity.id);
 												}}
 											>
 												{entity.title}
-											</div>
+											</Entity>
 										);
 									}
 								})}
@@ -131,13 +133,11 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 						)}
 
 						{entities.length === 0 && (
-							<div
-								className={css(styles.nothingFound)}
-							>
+							<NothingFound>
 								Nothing found
-							</div>
+							</NothingFound>
 						)}
-					</div>
+					</Entities>
 
 					<ModalResetSubmit
 						isResetEnabled={true}
@@ -145,18 +145,16 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 						resetText="Reset"
 						submitText="Confirm"
 						onResetClick={() => {
-							this.setState({
-
-							});
+							this.setState({});
 						}}
 						onSubmitClick={() => {
 							this.setState({
-								isOpen: false
+								isOpen: false,
 							});
 						}}
 					/>
 				</ModalContext>
-			</div>
+			</Container>
 		);
 	}
 
@@ -189,7 +187,7 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 	private filter(): void {
 		let entities: ISearchFilterEntity[] = this.props.entities;
 
-		if(this.state.search) {
+		if (this.state.search) {
 			entities = entities.filter((entity) => {
 				return this.isMatch(entity.title, this.state.search);
 			});
@@ -205,69 +203,67 @@ const Container = styled('div')`
 	position: relative;
 `;
 
-const styles = StyleSheet.create({
-	nothingFound: {
-		fontWeight: 400,
-		textAlign: 'center',
-		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		boxSizing: 'border-box',
-		whiteSpace: 'nowrap',
-		overflow: 'hidden',
-		cursor: 'pointer',
-	},
+const SearchContainer = styled('div')`
+	padding: 0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px;
+	border-bottom: 1px solid ${COLORS.GRAY_DARK.toString()};
+`;
 
-	search: {
-		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-		borderBottom: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-	},
+const NothingFound = styled('div')`
+	font-weight: 400;
+	text-align: center;
+	color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+`;
 
-	symbolHolder: {
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		fontWeight: 600,
-		display: 'block',
-		width: '100%',
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		boxSizing: 'border-box',
+const SymbolHolder = styled('div')`
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
+	font-weight: 600;
+	display: block;
+	width: 100%;
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	box-sizing: border-box;
 
-		':first-of-type': {
-			borderTop: 'none'
-		}
-	},
-
-	symbol: {
-		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
-	},
-
-	entities: {
-		maxHeight: 270,
-		overflow: 'auto'
-	},
-
-	entity: {
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		fontWeight: 600,
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		transition: 'background-color .2s',
-		boxSizing: 'border-box',
-		whiteSpace: 'nowrap',
-		overflow: 'hidden',
-		cursor: 'pointer',
-
-		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.toString(),
-		}
-	},
-
-	entitySelected: {
-		backgroundColor: COLORS.BLUE_SELECTED.toString(),
-		color: COLORS.BLUE.toString(),
-
-		':hover': {
-			backgroundColor: COLORS.BLUE_SELECTED.toString(),
-		}
+	&:first-of-type {
+		border-top: none;
 	}
-});
+`;
+
+const Entities = styled('div')`
+	max-height: 270px;
+	overflow: auto;
+`;
+
+const Symbol = styled('span')`
+	color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+`;
+
+interface IEntityProps {
+	active: boolean;
+}
+
+const Entity = styled('div')`
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
+	font-weight: 600;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	transition: background-color .2s;
+	box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+	color: ${COLORS.BLUE.toString()};
+	
+	${(props: IEntityProps) => props.active ? css`
+		background-color: ${COLORS.BLUE_SELECTED.toString()};
+	` : css`
+		&:hover {
+			background-color: ${COLORS.BLUE_HOVER.toString()};
+		}
+	`};
+`;

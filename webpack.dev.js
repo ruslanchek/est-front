@@ -14,7 +14,6 @@ let plugins = [
 	}),
 	new ErrorOverlayPlugin(),
 	new webpack.NamedModulesPlugin(),
-	new HardSourceWebpackPlugin(),
 	new webpack.HotModuleReplacementPlugin(),
 	new HandlebarsPlugin({
 		entry: path.join(process.cwd(), 'src/app/hbs', '*.hbs'),
@@ -23,6 +22,7 @@ let plugins = [
 			publicPath: '/',
 		},
 	}),
+	new HardSourceWebpackPlugin(),
 ];
 
 module.exports = {

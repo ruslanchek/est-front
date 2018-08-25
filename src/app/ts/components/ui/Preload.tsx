@@ -30,10 +30,10 @@ export class Preload extends React.PureComponent<IProps, {}> {
 	}
 }
 
-type ContainerProps = {
+interface IContainerProps {
 	size: number;
 	color: string;
-};
+}
 
 const translateKeyframes = keyframes`
 	0% {
@@ -50,10 +50,11 @@ const translateKeyframes = keyframes`
 `;
 
 const Container = styled('i')`
-	width: ${(props: ContainerProps) => props.size}px;
-	height: ${(props: ContainerProps) => props.size}px;
-	margin: ${(props: ContainerProps) => `-${props.size / 2}px 0 0 -${props.size / 2}px`};
-	border: 2px solid ${(props: ContainerProps) => props.color};
+	width: ${(props: IContainerProps) => props.size}px;
+	height: ${(props: IContainerProps) => props.size}px;
+	margin: ${(props: IContainerProps) => `-${props.size / 2}px 0 0 -${props.size / 2}px`};
+	border: 2px solid ${(props: IContainerProps) => props.color};
+	
 	display: block;
 	border-radius: 100%;
 	box-sizing: border-box;

@@ -5,13 +5,14 @@ import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { Rheostat } from '../ui/Rheostat';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalContext } from '../modals/ModalContext';
-import { FilterBrick } from './FilterBrick';
+import { EBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	from: number;
 	to: number;
 	filterName: string;
 	renderValue: (value: number) => JSX.Element;
+	brickType: EBrickType;
 	className?: string;
 }
 
@@ -39,7 +40,7 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 		return (
 			<Container>
 				<FilterBrick
-					className={this.props.className}
+					type={this.props.brickType}
 					onClick={() => {
 						this.setState({
 							isOpen: true,
@@ -67,7 +68,6 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 						title={this.props.filterName}
 					/>
 
-					// @TODO: move to className
 					<RheostatContainer>
 						<Rheostat
 							min={this.props.from}
