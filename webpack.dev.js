@@ -3,15 +3,18 @@ const webpack = require('webpack');
 const HandlebarsPlugin = require('handlebars-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const port = 5656;
 const host = '0.0.0.0';
-const production = process.env.NODE_ENV === 'production';
 
 let plugins = [
 	new CleanWebpackPlugin(['dist'], {
 		verbose: true,
 	}),
+	new ErrorOverlayPlugin(),
 	new webpack.NamedModulesPlugin(),
+	new HardSourceWebpackPlugin(),
 	new webpack.HotModuleReplacementPlugin(),
 	new HandlebarsPlugin({
 		entry: path.join(process.cwd(), 'src/app/hbs', '*.hbs'),
@@ -87,18 +90,17 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				loaders: [
-					'awesome-typescript-loader',
+					{
+						loader: 'awesome-typescript-loader',
+						options: {
+							useCache: true,
+						},
+					},
 				],
 				exclude: ['node_modules'],
 				include: [
-					path.resolve(__dirname, 'src/chart/ts'),
 					path.resolve(__dirname, 'src/app/ts'),
-				],
-			},
-
-			{
-				test: /\.glsl$/,
-				loader: 'webpack-glsl-loader',
+				]
 			},
 
 			{
