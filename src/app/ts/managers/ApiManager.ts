@@ -1,5 +1,4 @@
 import { Manager } from './Manager';
-import * as superagent from 'superagent';
 import { managers } from '../managers';
 import { CONFIG } from '../config';
 import axios from 'axios';
