@@ -67,10 +67,16 @@ export class ApiManager extends Manager {
 			result = e.response;
 		}
 
-		if(result.data) {
+		if(result && result.data) {
 			return result.data;
 		} else {
-			return null;
+			return {
+				payload: null,
+				error: {
+					code: null,
+					status: null,
+				}
+			};
 		}
 	}
 

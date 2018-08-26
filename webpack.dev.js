@@ -11,7 +11,7 @@ let plugins = [
 	new CleanWebpackPlugin(['dist'], {
 		verbose: true,
 	}),
-	new ErrorOverlayPlugin(),
+	// new ErrorOverlayPlugin(),
 	new webpack.NamedModulesPlugin(),
 	new webpack.HotModuleReplacementPlugin(),
 	new HandlebarsPlugin({
