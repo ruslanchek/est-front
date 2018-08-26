@@ -11,6 +11,7 @@
 		"object-literal-sort-keys": false,
 		"no-namespace": false,
 		"no-console": false,
+		"no-string-literal": false,
 		"indent": [
 			true,
 			"tabs",

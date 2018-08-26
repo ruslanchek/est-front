@@ -2,8 +2,9 @@ import { Manager } from './Manager';
 import * as superagent from 'superagent';
 import { managers } from '../managers';
 import { CONFIG } from '../config';
+import axios from 'axios';
 
-export const enum EApiRequestType {
+export enum EApiRequestType {
 	GET,
 	POST,
 	PATCH,
@@ -19,7 +20,7 @@ export interface IApiResult<Payload> {
 export interface IApiResultError {
 	status: number;
 	code: string;
-	fields?: {[field: string]: string};
+	fields?: { [field: string]: string };
 	details?: any;
 }
 
@@ -33,58 +34,54 @@ export class ApiManager extends Manager {
 			resolve();
 		});
 	}
-	
-	public request<ResultPayload>(type: EApiRequestType, path: string, data?: any): Promise<IApiResult<ResultPayload>> {
-		const url: string = `${CONFIG.API_BASE_URL}${path}`;
-		const token: string = managers.storage.cookies.get('token');
 
-		return new Promise<IApiResult<ResultPayload>>((resolve, reject) => {
+	public async request<ResultPayload>(type: EApiRequestType, path: string, data?: any): Promise<IApiResult<ResultPayload>> {
+		const url: string = `${CONFIG.API_BASE_URL}${path}`;
+		let token: string = managers.storage.cookies.get('token');
+		let result = null;
+
+		token = token ? `Bearer ${token}` : '';
+
+		try {
 			switch (type) {
 				case EApiRequestType.GET: {
-					superagent
-						.get(url)
-						.set('Authorization', `Bearer ${token}`)
-						.query(data)
-						.end((err, res) => {
-							if(err) {
-								reject(err.body);
-							} else {
-								resolve(res.body);
-							}
-						});
+					result = await axios.get(`${url}${this.serialize(data)}`, {
+						headers: {
+							Authorization: token,
+						},
+					});
 
 					break;
 				}
 
 				case EApiRequestType.POST : {
-					superagent
-						.post(url)
-						.send(data)
-						.set('accept', 'json')
-						.set('Authorization', `Bearer ${token}`)
-						.end((err, res) => {
-							if(err) {
-								reject(err.body);
-							} else {
-								resolve(res.body);
-							}
-						});
+					result = await axios.post(url, data, {
+						headers: {
+							Authorization: token,
+						},
+					});
 
 					break;
 				}
-
-				// case EApiRequestType.PUT : {
-				// 	return await this.instance.put(path);
-				// }
-
-				// case EApiRequestType.PATCH : {
-				// 	return await this.instance.patch(path);
-				// }
-
-				// case EApiRequestType.DELETE : {
-				// 	return await this.instance.delete(path);
-				// }
 			}
-		});
+		} catch(e) {
+			result = e.response;
+		}
+
+		if(result.data) {
+			return result.data;
+		} else {
+			return null;
+		}
+	}
+
+	private serialize(obj): string {
+		if (obj) {
+			return Object.keys(obj).map((key, val) => {
+				return `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`;
+			}).join('&');
+		} else {
+			return '';
+		}
 	}
 }

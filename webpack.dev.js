@@ -4,7 +4,6 @@ const HandlebarsPlugin = require('handlebars-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const port = 5656;
 const host = '0.0.0.0';
 
@@ -22,7 +21,7 @@ let plugins = [
 			publicPath: '/',
 		},
 	}),
-	new HardSourceWebpackPlugin(),
+	// new HardSourceWebpackPlugin(),
 ];
 
 module.exports = {
@@ -93,7 +92,7 @@ module.exports = {
 					{
 						loader: 'awesome-typescript-loader',
 						options: {
-							useCache: true,
+							useCache: false,
 						},
 					},
 				],

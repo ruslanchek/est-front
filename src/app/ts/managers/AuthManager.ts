@@ -2,7 +2,6 @@ import { Manager } from './Manager';
 import { managers } from '../managers';
 import { EApiRequestType, IApiResult } from './ApiManager';
 import { AuthStore } from '../stores/AuthStore';
-import { THEME } from '../theme';
 import { PATHS } from '../config';
 
 export class AuthManager extends Manager {
@@ -17,27 +16,27 @@ export class AuthManager extends Manager {
 		this.reset();
 		this.setToken('');
 
-    // @TODO: Make checks for Authorized only pages. 
-    // Redirect to HOME_PAGE from secured 
-    // routes and refresh page on shared ones.
+		// @TODO: Make checks for Authorized only pages.
+		// Redirect to HOME_PAGE from secured
+		// routes and refresh page on shared ones.
 		managers.route.go(PATHS.AUTH_LOG_IN);
 	}
 
 	public setToken(token: string): void {
 		managers.storage.cookies.set('token', token);
-  }
-  
-  public async getProfileAdverts(): Promise<any> {
-    return await managers.api.request<any>(EApiRequestType.GET, '/profile/adverts');
-  }
+	}
+
+	public async getProfileAdverts(): Promise<any> {
+		return managers.api.request<any>(EApiRequestType.GET, '/profile/adverts');
+	}
 
 	public async auth(): Promise<any> {
 		const result = await managers.api.request<any>(EApiRequestType.GET, '/profile');
 
-		if(result && !result.error && result.payload.entity) {
+		if (result && !result.error && result.payload.entity) {
 			AuthStore.store.setState({
 				authorized: true,
-        profile: result.payload.entity,
+				profile: result.payload.entity,
 			});
 		} else {
 			AuthStore.store.setState({
@@ -53,7 +52,7 @@ export class AuthManager extends Manager {
 			password,
 		});
 
-		if(!result.error && result.payload.accessToken) {
+		if (!result.error && result.payload.accessToken) {
 			this.setToken(result.payload.accessToken);
 			await this.auth();
 		}
@@ -67,7 +66,7 @@ export class AuthManager extends Manager {
 			password,
 		});
 
-		if(!result.error && result.payload.accessToken) {
+		if (!result.error && result.payload.accessToken) {
 			this.setToken(result.payload.accessToken);
 			await this.auth();
 		}
