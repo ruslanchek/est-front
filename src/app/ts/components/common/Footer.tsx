@@ -31,49 +31,12 @@ export class Footer extends React.PureComponent<{}, IState> {
 						</div>
 
 						<div className={css(styles.right)}>
-							<nav className={css(styles.nav)}>
-								<NavLink
-									to={PATHS.HOME}
-									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
-								>
-									Purchase
-								</NavLink>
-
-								<NavLink
-									to={PATHS.HOME}
-									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
-								>
-									Rent
-								</NavLink>
-
-								<NavLink
-									to={PATHS.HOME}
-									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
-								>
-									Flats
-								</NavLink>
-
-								<NavLink
-									to={PATHS.HOME}
-									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
-								>
-									Houses
-								</NavLink>
-
-								<NavLink
-									to={PATHS.AUTH_LOG_IN}
-									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
-								>
-									Login
-								</NavLink>
-
-								<NavLink
-									to={PATHS.AUTH_SIGN_UP}
-									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
-								>
-									Sign up
-								</NavLink>
-							</nav>
+							<div className={css(styles.social, styles.socialPhone)}>
+								<a href="#" title="Facebook" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconFacebook)}/>
+								<a href="#" title="Instagram" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconInstagram)}/>
+								<a href="#" title="Twitter" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconTwitter)}/>
+								<a href="#" title="YouTube" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconYoutube)}/>
+							</div>
 						</div>
 					</div>
 
@@ -123,12 +86,49 @@ export class Footer extends React.PureComponent<{}, IState> {
 						</div>
 
 						<div className={css(styles.right)}>
-							<div className={css(styles.social, styles.socialPhone)}>
-								<a href="#" title="Facebook" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconFacebook)}/>
-								<a href="#" title="Instagram" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconInstagram)}/>
-								<a href="#" title="Twitter" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconTwitter)}/>
-								<a href="#" title="YouTube" className={css(styles.socialIcon, styles.socialIconPhone, styles.socialIconYoutube)}/>
-							</div>
+							<nav className={css(styles.nav)}>
+								<NavLink
+									to={PATHS.HOME}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Purchase
+								</NavLink>
+
+								<NavLink
+									to={PATHS.HOME}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Rent
+								</NavLink>
+
+								<NavLink
+									to={PATHS.HOME}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Flats
+								</NavLink>
+
+								<NavLink
+									to={PATHS.HOME}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Houses
+								</NavLink>
+
+								<NavLink
+									to={PATHS.AUTH_LOG_IN}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Login
+								</NavLink>
+
+								<NavLink
+									to={PATHS.AUTH_SIGN_UP}
+									className={css(COMMON_STYLES.LINK, styles.navLink, styles.navLinkPhone)}
+								>
+									Sign up
+								</NavLink>
+							</nav>
 						</div>
 					</div>
 				</div>
