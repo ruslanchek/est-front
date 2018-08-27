@@ -5,12 +5,12 @@ import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalContext } from '../modals/ModalContext';
-import { EBrickType, FilterBrick } from './FilterBrick';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	entities: string[];
 	filterName: string;
-	brickType: EBrickType;
+	brickType: EFilterBrickType;
 	className?: string;
 }
 

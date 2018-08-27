@@ -5,7 +5,7 @@ import styled, { css } from 'react-emotion';
 import { COLORS, THEME } from '../../theme';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalContext } from '../modals/ModalContext';
-import { EBrickType, FilterBrick } from './FilterBrick';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 
@@ -23,7 +23,7 @@ export class FilterAdd extends React.PureComponent<IProps, IState> {
 	public render() {
 		return (
 			<Container
-				type={EBrickType.Default}
+				type={EFilterBrickType.Default}
 				onClick={() => {
 					this.setState({
 						isOpen: true,

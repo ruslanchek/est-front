@@ -6,7 +6,7 @@ import { Input } from '../forms/Input';
 import { managers } from '../../managers';
 import { COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
-import { CONFIG, PATHS } from '../../config';
+import { PATHS } from '../../config';
 import { Button } from '../ui/Button';
 import { ModalHeaderBig } from '../modals/ModalHeaderBig';
 import { FormRows } from '../forms/ui/FormRows';
@@ -16,7 +16,6 @@ import { FormButtonsBlock } from '../forms/ui/FormButtonsBlock';
 import { FormLinks } from '../forms/ui/FormLinks';
 import { FormDivider } from '../forms/ui/FormDivider';
 import { FormButtonSocial } from '../forms/ui/FormButtonSocial';
-import axios from 'axios';
 
 interface IProps {
 

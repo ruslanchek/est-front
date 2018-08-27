@@ -2,11 +2,11 @@ import * as React from 'react';
 import styled from 'react-emotion';
 import { COMMON_STYLES_EMOTION } from '../../theme';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import { EBrickType, FilterBrick } from './FilterBrick';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	type: ObjectsStore.EObjectContractType;
-	brickType: EBrickType;
+	brickType: EFilterBrickType;
 	className?: string;
 }
 

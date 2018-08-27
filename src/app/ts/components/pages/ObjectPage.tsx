@@ -1,15 +1,12 @@
 import * as React from 'react';
-
-import { StyleSheet, css } from 'aphrodite/no-important';
-import { followStore, StoreEvent } from 'react-stores';
+import { followStore } from 'react-stores';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
-import { COLORS, THEME } from '../../theme';
-import IObject = ObjectsStore.IObject;
 import { managers } from '../../managers';
-import { CSSUtils, EMQ } from '../../lib/CSSUtils';
 import { Layout } from '../common/Layout';
 import { Money } from '../ui/Money';
+import IObject = ObjectsStore.IObject;
+import styled from 'react-emotion';
 
 interface IProps {
 
@@ -28,45 +25,35 @@ export class ObjectPage extends React.Component<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<Layout outerStyles={[styles.layout, styles.layoutPhone]}>
+				<Layout>
 					<BreadCrumbs/>
 
 					<Money value={this.state.object.price}/>
 				</Layout>
 
-				<div className={css(styles.gallery)}>
+				<Gallery>
 					{this.state.object.pictures.map((picture, i) => {
 						return (
-							<div className={css(styles.picture)}>
-								<img className={css(styles.pictureImage)} src={picture.src}/>
-							</div>
+							<Picture key={i}>
+								<Img src={picture.src}/>
+							</Picture>
 						);
 					})}
-				</div>
+				</Gallery>
 			</React.Fragment>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	layout: {
-		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP
-	},
+const Gallery = styled('div')`
+	display: flex;
+`;
 
-	layoutPhone: CSSUtils.mediaSize(EMQ.Phone, {
-		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE
-	}),
+const Picture = styled('div')`
+	width: 300px;
+`;
 
-	gallery: {
-		display: 'flex'
-	},
-
-	picture: {
-		width: 300
-	},
-
-	pictureImage: {
-		width: 300,
-		display: 'block'
-	}
-});
+const Img = styled('img')`
+	width: 300px;
+	display: block;
+`;

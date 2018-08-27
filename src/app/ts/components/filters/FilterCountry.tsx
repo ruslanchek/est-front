@@ -2,12 +2,12 @@ import * as React from 'react';
 import styled from 'react-emotion';
 import { COMMON_STYLES_EMOTION } from '../../theme';
 import { Flag } from '../ui/Flag';
-import { EBrickType, FilterBrick } from './FilterBrick';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	isoCode: string;
 	title: string;
-	brickType: EBrickType;
+	brickType: EFilterBrickType;
 }
 
 interface IState {

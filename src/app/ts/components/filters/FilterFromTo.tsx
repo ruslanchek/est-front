@@ -5,14 +5,14 @@ import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { Rheostat } from '../ui/Rheostat';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalContext } from '../modals/ModalContext';
-import { EBrickType, FilterBrick } from './FilterBrick';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	from: number;
 	to: number;
 	filterName: string;
 	renderValue: (value: number) => JSX.Element;
-	brickType: EBrickType;
+	brickType: EFilterBrickType;
 	className?: string;
 }
 

@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { IFilter } from '../../managers/FiltersManager';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COLORS, THEME } from '../../theme';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
+import styled from 'react-emotion';
 
 interface IProps {
 	groupName: string;
 	filter: IFilter;
+	brickType: EFilterBrickType;
 }
 
 interface IState {
@@ -21,19 +23,17 @@ export class FilterRangePredefined extends React.PureComponent<IProps, IState> {
 		const { filter, groupName } = this.props;
 
 		return (
-			<div className={css(styles.container)}>
-				<div className={css(COMMON_STYLES.FILTER_BRICK)}>
-					<div className={css(styles.label)}>
+			<Container>
+				<FilterBrick type={this.props.brickType}>
+					<Label>
 						{filter.title}
-					</div>
+					</Label>
 
-					<div className={css(styles.current)} onClick={this.toggle.bind(this)}>
-						<div>
-							{filter.value}
-						</div>
-					</div>
-				</div>
-			</div>
+					<Current onClick={this.toggle.bind(this)}>
+						{filter.value}
+					</Current>
+				</FilterBrick>
+			</Container>
 		);
 	}
 
@@ -44,26 +44,20 @@ export class FilterRangePredefined extends React.PureComponent<IProps, IState> {
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
+const Container = styled('div')`
+	position: relative;
+`;
 
-	},
+const Label = styled('div')`
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+`;
 
-	content: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
-	},
-
-	current: {
-		borderRadius: 4,
-		backgroundColor: COLORS.GRAY_EXTRA_DARK.toString(),
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		fontSize: THEME.FONT_SIZE_SMALL,
-		height: 26,
-		lineHeight: '26px',
-		width: 100
-	},
-
-	label: {
-		fontSize: THEME.FONT_SIZE_SMALL
-	},
-});
+const Current = styled('div')`
+	border-radius: 4px;
+	background-color: ${COLORS.GRAY_EXTRA_DARK.toString()};
+	padding: 0 ${THEME.SECTION_PADDING_H / 2}px;
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+	height: 26px;
+	line-height: 26px;
+	width: 100px;
+`;

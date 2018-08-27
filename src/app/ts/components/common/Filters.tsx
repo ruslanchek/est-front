@@ -12,7 +12,7 @@ import ICity = ObjectsStore.ICity;
 import { FilterSearch, ISearchFilterEntity } from '../filters/FilterSearch';
 import { FilterContractType } from '../filters/FilterContractType';
 import { FilterAdd } from '../filters/FilterAdd';
-import { EBrickType } from '../filters/FilterBrick';
+import { EFilterBrickType } from '../filters/FilterBrick';
 
 interface IProps {
 
@@ -72,7 +72,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 				<FilterGroup>
 					{firstEntity && (
 						<FilterSearch
-							brickType={EBrickType.Left}
+							brickType={EFilterBrickType.Left}
 							filterTitle="Select city"
 							entities={this.state.cityEntities}
 							currentId={this.state.currentCityId}
@@ -86,7 +86,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 					)}
 
 					<FilterAnd
-						brickType={EBrickType.Middle}
+						brickType={EFilterBrickType.Middle}
 						filterName="Property type"
 						entities={[
 							'Flats',
@@ -96,13 +96,13 @@ export class Filters extends React.PureComponent<IProps, IState> {
 					/>
 
 					<FilterContractType
-						brickType={EBrickType.Right}
+						brickType={EFilterBrickType.Right}
 						type={ObjectsStore.EObjectContractType.Rent}
 					/>
 				</FilterGroup>
 
 				<FilterFromTo
-					brickType={EBrickType.Default}
+					brickType={EFilterBrickType.Default}
 					from={0}
 					to={1000000}
 					filterName="Price range"
@@ -114,21 +114,21 @@ export class Filters extends React.PureComponent<IProps, IState> {
 				/>
 
 				<FilterRangeEntities
-					brickType={EBrickType.Default}
+					brickType={EFilterBrickType.Default}
 					from={2}
 					to={4}
 					what="bedrooms"
 				/>
 
 				<FilterRangeEntities
-					brickType={EBrickType.Default}
+					brickType={EFilterBrickType.Default}
 					from={1}
 					to={2}
 					what="bathrooms"
 				/>
 
 				<FilterRangeEntities
-					brickType={EBrickType.Default}
+					brickType={EFilterBrickType.Default}
 					from={1}
 					to={1}
 					what="garage"

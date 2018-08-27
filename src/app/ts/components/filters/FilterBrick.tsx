@@ -1,7 +1,7 @@
 import styled, { css } from 'react-emotion';
 import { THEME, COLORS } from '../../theme';
 
-export enum EBrickType {
+export enum EFilterBrickType {
 	Default,
 	Middle,
 	Left,
@@ -9,7 +9,7 @@ export enum EBrickType {
 }
 
 export interface IBrickProps {
-	type: EBrickType;
+	type: EFilterBrickType;
 }
 
 export const FilterBrick = styled('div')<IBrickProps>`
@@ -30,7 +30,7 @@ export const FilterBrick = styled('div')<IBrickProps>`
   
   ${(props: IBrickProps) => {
 		switch (props.type) {
-			case EBrickType.Left : {
+			case EFilterBrickType.Left : {
 				return css`
 					border-bottom-left-radius: 4px;
 					border-top-left-radius: 4px;
@@ -38,20 +38,20 @@ export const FilterBrick = styled('div')<IBrickProps>`
 				`;
 			}
 
-			case EBrickType.Right : {
+			case EFilterBrickType.Right : {
 				return css`
 					border-bottom-right-radius: 4px;
 					border-top-right-radius: 4px;
 				`;
 			}
 
-			case EBrickType.Middle : {
+			case EFilterBrickType.Middle : {
 				return css`
 					border-right: 1px solid ${COLORS.GRAY_EXTRA_DARK.toString()};
 				`;
 			}
 			
-			case EBrickType.Default : {
+			case EFilterBrickType.Default : {
 				return css`
 					margin-right: ${THEME.SECTION_PADDING_H / 2}px;
 					border-radius: 4px;

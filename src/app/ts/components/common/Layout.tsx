@@ -1,55 +1,31 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { CSSUtils, EMQ } from '../../lib/CSSUtils';
-import { COMMON_STYLES, THEME } from '../../theme';
+import { mq } from '../../lib/CSSUtils';
+import { THEME } from '../../theme';
+import styled from 'react-emotion';
 
 interface IProps {
-	outerStyles?: StyleDeclaration;
 	topPadding?: boolean;
 	bottomPadding?: boolean;
 }
 
-export class Layout extends React.PureComponent<IProps, {}> {
-	public render() {
-		const verticalSpace = [];
-
-		if(this.props.topPadding) {
-			verticalSpace.push(styles.topPadding, styles.topPaddingPhone);
-		}
-
-		if(this.props.bottomPadding) {
-			verticalSpace.push(styles.bottomPadding, styles.bottomPaddingPhone);
-		}
-
-		return (
-			<div
-				className={
-					css(COMMON_STYLES.LAYOUT_DESKTOP,
-					COMMON_STYLES.LAYOUT_PHONE_OR_TABLET,
-					this.props.outerStyles,
-					verticalSpace
-				)}
-			>
-				{this.props.children}
-			</div>
-		);
+export const Layout = styled('div')<IProps>`
+	position: relative;
+	max-width: ${THEME.PAGE_MAX_WIDTH}px;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	
+	${mq.desktop} {
+		padding-left: ${THEME.PAGE_SIDE_PADDING_DESKTOP}px;
+		padding-right: ${THEME.PAGE_SIDE_PADDING_DESKTOP}px;
+		padding-top: ${(props: IProps) => props.topPadding ? THEME.PAGE_SIDE_PADDING_DESKTOP : 0}px;
+		padding-bottom: ${(props: IProps) => props.bottomPadding ? THEME.PAGE_SIDE_PADDING_DESKTOP : 0}px;
 	}
-}
-
-const styles = StyleSheet.create({
-	topPadding: {
-		paddingTop: THEME.PAGE_SIDE_PADDING_DESKTOP,
-	},
-
-	topPaddingPhone: CSSUtils.mediaSize(EMQ.Phone, {
-		paddingTop: THEME.PAGE_SIDE_PADDING_PHONE,
-	}),
-
-	bottomPadding: {
-		paddingBottom: THEME.PAGE_SIDE_PADDING_DESKTOP,
-	},
-
-	bottomPaddingPhone: CSSUtils.mediaSize(EMQ.Phone, {
-		paddingBottom: THEME.PAGE_SIDE_PADDING_PHONE,
-	}),
-});
+	
+	${mq.phoneOrTablet} {
+		padding-left: ${THEME.PAGE_SIDE_PADDING_PHONE}px;
+		padding-right: ${THEME.PAGE_SIDE_PADDING_PHONE}px;
+		padding-top: ${(props: IProps) => props.topPadding ? THEME.PAGE_SIDE_PADDING_PHONE : 0}px;
+		padding-bottom: ${(props: IProps) => props.bottomPadding ? THEME.PAGE_SIDE_PADDING_PHONE : 0}px;
+	}
+`;

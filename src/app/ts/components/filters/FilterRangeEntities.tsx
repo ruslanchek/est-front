@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { COMMON_STYLES_EMOTION } from '../../theme';
 import { NumberFormat } from '../ui/NumberFormat';
-import { EBrickType, FilterBrick } from './FilterBrick';
+import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
 	from: number;
 	to: number;
 	what: string;
-	brickType: EBrickType;
+	brickType: EFilterBrickType;
 }
 
 export class FilterRangeEntities extends React.PureComponent<IProps, {}> {

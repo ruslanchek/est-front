@@ -30,7 +30,7 @@ export class Flag extends React.PureComponent<IProps, {}> {
 	}
 }
 
-type ContainerProps = {
+interface IContainerProps {
 	width: number;
 	height: number;
 	imageSrc: string;
@@ -41,9 +41,9 @@ const Container = styled('span')`
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
-	background-image: url('${(props: ContainerProps) => props.imageSrc}');
+	background-image: url('${(props: IContainerProps) => props.imageSrc}');
   border-radius: 2px;
   box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
-	width: ${(props: ContainerProps) => props.width}px;
-	height: ${(props: ContainerProps) => props.height}px;
+	width: ${(props: IContainerProps) => props.width}px;
+	height: ${(props: IContainerProps) => props.height}px;
 `;
