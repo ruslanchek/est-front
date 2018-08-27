@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import { COLORS, COMMON_STYLES, THEME, COMMON_STYLES_EMOTION } from '../../theme';
+import { COLORS, THEME, COMMON_STYLES_EMOTION } from '../../theme';
 import { PATHS } from '../../config';
 import IObjectAgent = ObjectsStore.IObjectAgent;
 import styled, { css } from 'react-emotion';
@@ -14,7 +14,7 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 		const { id, avatar, name, type } = this.props.objectAgent;
 
 		return (
-			<Container>
+			<div>
 				<Title>
 					{this.getAgentTypeName()}
 				</Title>
@@ -24,24 +24,25 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 						target="_blank"
 						href={PATHS.AGENT.replace(':id', id.toString())}
 					>
-            <Image src={avatar}/>
+						<Image
+							src={avatar}
+						/>
 					</ImageLink>
 
 					<Contact>
-						<a
+						<ContactRowAccent
 							target="_blank"
 							href={PATHS.AGENT.replace(':id', id.toString())}
-							className={`${contactRowStyle} ${contactRowAccentStyle} ${COMMON_STYLES_EMOTION.LINK}`}
 						>
 							{name}
-						</a>
+						</ContactRowAccent>
 
-						<div className={`${contactRowStyle} ${contactRowDecentStyle}`}>
+						<ContactRowDecent>
 							{type}
-						</div>
+						</ContactRowDecent>
 					</Contact>
 				</Info>
-			</Container>
+			</div>
 		);
 	}
 
@@ -54,14 +55,10 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const Container = styled('div')`
-
-`;
-
 const Title = styled('div')`
   font-size: ${THEME.FONT_SIZE_TINY}px;
   text-transform: uppercase;
-  margin-bottom: ${THEME.SECTION_PADDING_V / 2};
+  margin-bottom: ${THEME.SECTION_PADDING_V / 2}px;
   color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
   font-weight: 600;
 `;
@@ -94,15 +91,14 @@ const Contact = styled('div')`
   flex-grow: 1;
 `;
 
-const contactRowStyle = styled('div')`
-  font-size: ${THEME.FONT_SIZE_SMALL}px;
+const ContactRowAccent = styled('a')`
+	${COMMON_STYLES_EMOTION.LINK};
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
   margin: .2em 0;
 `;
 
-const contactRowAccentStyle = css`
-  font-weight: 600;
-`;
-
-const contactRowDecentStyle = css`
+const ContactRowDecent = styled('div')`
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+  margin: .2em 0;
   color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
 `;

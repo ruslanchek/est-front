@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COMMON_STYLES, COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { IsPhone } from './IsPhone';
 import { IsTabletOrDesktop } from './IsTabletOrDesktop';
 import { ModalHeader } from '../modals/ModalHeader';
+import styled from 'react-emotion';
 
 interface IProps {
-	styles: StyleDeclaration;
+	className: string;
 }
 
 interface IState {
@@ -23,7 +23,7 @@ export class CurrencySelector extends React.PureComponent<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<div className={css(styles.container)}>
+				<Container>
 					<ModalContext
 						isVisible={this.state.isOpen}
 						onClose={() => {
@@ -72,11 +72,14 @@ export class CurrencySelector extends React.PureComponent<IProps, IState> {
 						/>
 					</ModalContext>
 
-					<a href="#" className={css(COMMON_STYLES.LINK)} onClick={() => {
-						this.setState({
-							isOpen: true,
-						});
-					}}>
+					<Link
+						href="#"
+						onClick={() => {
+							this.setState({
+								isOpen: true,
+							});
+						}}
+					>
 						<IsPhone>
 							&euro;
 						</IsPhone>
@@ -84,16 +87,18 @@ export class CurrencySelector extends React.PureComponent<IProps, IState> {
 						<IsTabletOrDesktop>
 							&euro; EUR
 						</IsTabletOrDesktop>
-					</a>
-				</div>
+					</Link>
+				</Container>
 			</React.Fragment>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		position: 'relative',
-		marginRight: THEME.SECTION_PADDING_H
-	}
-});
+const Link = styled('a')`
+  ${COMMON_STYLES_EMOTION.LINK};
+`;
+
+const Container = styled('div')`
+  position: relative;
+	margin-right: ${THEME.SECTION_PADDING_H}px;
+`;

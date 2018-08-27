@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
+import styled from 'react-emotion';
 
 interface IProps {
 
@@ -9,39 +9,37 @@ interface IProps {
 export class BreadCrumbs extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.container)}>
-				<div className={css(styles.subtitle)}>
+			<Container>
+				<Subtitle>
 					Italy
 					&nbsp;&bull;&nbsp;
 					Rome
 					&nbsp;&bull;&nbsp;
 					Buy house
-				</div>
+				</Subtitle>
 
-				<h1 className={css(styles.h1)}>
+				<H1>
 					Buy 4-bedroom House in Rome, Italy
-				</h1>
-			</div>
+				</H1>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	h1: {
-		fontSize: THEME.FONT_SIZE_H1,
-		fontWeight: 800,
-		margin: 0
-	},
+const Container = styled('div')`
+	margin-bottom: ${THEME.PAGE_SIDE_PADDING_DESKTOP}px;
+`;
 
-	subtitle: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		color: COLORS.BLACK_LIGHT.toString(),
-		textTransform: 'uppercase',
-		fontWeight: 600,
-		marginBottom: THEME.SECTION_PADDING_V / 2
-	},
+const Subtitle = styled('div')`
+  font-size: ${THEME.FONT_SIZE_SMALL};
+	color: ${COLORS.BLACK_LIGHT.toString()};
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: ${THEME.SECTION_PADDING_V / 2}px;
+`;
 
-	container: {
-		marginBottom: THEME.PAGE_SIDE_PADDING_DESKTOP
-	}
-});
+const H1 = styled('h1')`
+  font-size: ${THEME.FONT_SIZE_H1};
+	font-weight: 800;
+	margin: 0;
+`;

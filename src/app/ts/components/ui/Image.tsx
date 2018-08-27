@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { css, StyleSheet, StyleDeclaration } from 'aphrodite/no-important';
 import { COLORS } from '../../theme';
 import { EIcon, Icon } from '../common/Icon';
 import { Preload } from './Preload';
-import styled from 'react-emotion';
+import styled, { css } from 'react-emotion';
 
 interface IProps {
 	src: string;
-	imageStyle?: StyleDeclaration;
 }
 
 interface IState {
@@ -33,10 +31,8 @@ export class Image extends React.PureComponent<IProps, IState> {
 	}
 
 	public render() {
-		const additionalClass = this.state.loaded ? styles.loaded : styles.before;
-
 		return (
-			<Container loaded={this.state.loaded}>
+			<Container>
 				<Preload
 					isVisible={!this.state.loaded}
 					className={''}
@@ -54,6 +50,7 @@ export class Image extends React.PureComponent<IProps, IState> {
 					</Err>
 				) : (
 					<Img
+						loaded={this.state.loaded}
 						onLoad={() => {
 							setTimeout(() => {
 								this.setState({
@@ -69,7 +66,6 @@ export class Image extends React.PureComponent<IProps, IState> {
 								});
 							}, 10);
 						}}
-						className={css(styles.img, additionalClass, this.props.imageStyle)}
 						src={this.props.src}
 					/>
 				)}
@@ -82,7 +78,7 @@ interface ILoadedProps {
 	loaded: boolean;
 }
 
-const Container = styled('div')<ILoadedProps>`
+const Container = styled('div')`
 	padding-top: 66.666666%;
 	position: relative;
 	overflow: hidden;
@@ -101,18 +97,10 @@ const Err = styled('div')<ILoadedProps>`
 	left: 50%;
 	opacity: 0;
 	transition: opacity ${ANIMATION_TIME}ms;
-	
-	${(props: ILoadedProps) => {
-		if(props.loaded) {
-			return css`
-				opacity: 1;
-				transform: translate(-50%, -50%);
-			`;
-		}
-	}}
+	${(props: ILoadedProps) => props.loaded && loaded}
 `;
 
-const Img = styled('img')`
+const Img = styled('img')<ILoadedProps>`
 	display: block;
 	min-height: 100%;
 	max-width: 100%;
@@ -123,31 +111,10 @@ const Img = styled('img')`
 	transform: translate(-50%, -50%);
 	opacity: 0;
 	transition: opacity ${ANIMATION_TIME}ms;
+	${(props: ILoadedProps) => props.loaded && loaded}
 `;
 
-
-const styles = StyleSheet.create({
-	img: {
-
-	},
-
-	container: {
-
-	},
-
-	loaded: {
-
-	},
-
-	before: {
-
-	},
-
-	error: {
-
-	},
-
-	preloader: {
-
-	}
-});
+const loaded = css`
+  opacity: 1;
+	transform: translate(-50%, -50%);
+`;

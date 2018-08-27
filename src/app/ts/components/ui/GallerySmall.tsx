@@ -22,7 +22,7 @@ export class GallerySmall extends React.Component<IProps, IState> {
 	public state: IState = {
 		currentPage: 0,
 		currentPicSrc: '',
-		showPages: false
+		showPages: false,
 	};
 
 	public componentDidMount() {
