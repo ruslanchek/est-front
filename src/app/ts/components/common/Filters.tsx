@@ -55,7 +55,6 @@ export class Filters extends React.PureComponent<IProps, IState> {
 	}
 
 	public render() {
-		const country: ICountry = managers.faker.generateCountry();
 		const {cityEntities} = this.state;
 		let firstEntity: ISearchFilterEntity = null;
 

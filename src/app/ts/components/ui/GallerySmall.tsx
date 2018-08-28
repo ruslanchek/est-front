@@ -63,7 +63,7 @@ export class GallerySmall extends React.Component<IProps, IState> {
 			>
 				<Image
 					src={this.state.currentPicSrc}
-					imageStyle={styles.image}
+					className={css(styles.image)}
 				/>
 
 				<CSSTransition

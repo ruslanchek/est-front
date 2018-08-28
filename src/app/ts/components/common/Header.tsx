@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as Ionicon from 'react-ionicons';
+import styled, { css, cx } from 'react-emotion';
 
-import { css, StyleSheet } from 'aphrodite';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
 import { Link, NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
-import { CSSUtils, EMQ } from '../../lib/CSSUtils';
+import { mq } from '../../lib/CSSUtils';
 import { EIcon, EIconType, Icon } from './Icon';
 import { Filters } from './Filters';
 import { IsDesktop } from './IsDesktop';
@@ -17,6 +17,7 @@ import { CurrencySelector } from './CurrencySelector';
 import { IsPhone } from './IsPhone';
 import { IsTabletOrDesktop } from './IsTabletOrDesktop';
 import { AuthStore } from '../../stores/AuthStore';
+import { Layout } from './Layout';
 
 interface IState {
 	isFloating: boolean;
@@ -47,68 +48,32 @@ export class Header extends React.Component<{}, IState> {
 		const { isFloating } = this.state;
 
 		return (
-			<header className={css(styles.container)}>
-				<div className={css(styles.floatingTrigger)}>
-					<div className={css(styles.floatingTriggerInner)}>
-						<Ionicon
-							icon="md-options"
-							fontSize="18px"
-							color={COLORS.WHITE.toString()}
-						/>
+			<Container>
+				<HeaderContainer isFloating={isFloating}>
+					<Layout className={block}>
+						<Link to={PATHS.HOME} className={logo} />
 
-						<div className={css(styles.floatingTriggerText)}>
-							Filters
-						</div>
-					</div>
-				</div>
-
-				<div {...CSSUtils.mergeStyles(
-					css(styles.header),
-					isFloating && css(styles.headerFloating),
-				)}>
-					<div {...CSSUtils.mergeStyles(
-						css(styles.block, COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET),
-						isFloating && css(styles.blockFloating),
-					)}>
-						<Link
-							to={PATHS.HOME}
-							{...CSSUtils.mergeStyles(
-								css(styles.logo, styles.logoPhone),
-								isFloating && css(styles.logoFloating),
-							)}
-						/>
-
-						<div
-							{...CSSUtils.mergeStyles(
-								css(styles.navContainer),
-								isFloating && css(styles.navContainerFloating),
-							)}
-						>
-							<nav className={css(styles.nav)}>
+						<NavContainer>
+							<Nav>
 								<CountrySelector/>
 
 								<LocaleSelector/>
 
-								<CurrencySelector
-									styles={[COMMON_STYLES.LINK, styles.navLink]}
-								/>
+								<CurrencySelector className={navLink}/>
 
-								<a
-									href="#"
-									className={css(COMMON_STYLES.LINK, styles.navLink)}
-								>
+								<a href="#" className={cx(COMMON_STYLES_EMOTION.LINK, navLink)}>
 									<IsTabletOrDesktop>
 										Help
 									</IsTabletOrDesktop>
 								</a>
-							</nav>
-						</div>
+							</Nav>
+						</NavContainer>
 
-						<nav className={css(styles.user, styles.userPhoneOrTablet)}>
+						<NavUser>
 							{AuthStore.store.state.authorized ? (
 								<NavLink
 									to={PATHS.PERSONAL}
-									className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
+									className={cx(userLink)}
 									onClick={() => {
 
 									}}
@@ -126,13 +91,7 @@ export class Header extends React.Component<{}, IState> {
 									</IsTabletOrDesktop>
 								</NavLink>
 							) : (
-								<NavLink
-									to={PATHS.AUTH_SIGN_UP}
-									className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
-									onClick={() => {
-
-									}}
-								>
+								<NavLink to={PATHS.AUTH_SIGN_UP} className={userLink}>
 									<IsPhone>
 										<Ionicon
 											icon="md-person"
@@ -149,14 +108,14 @@ export class Header extends React.Component<{}, IState> {
 
 							<NavLink
 								to={PATHS.HOME}
-								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone)}
+								className={cx(userLink)}
 							>
 								<Icon
 									icon={EIcon.Favorite}
 									type={EIconType.TwoTone}
 									size={18}
 									color={COLORS.RED}
-									outerStyles={[styles.icon, styles.userIconPhone]}
+									className={icon}
 								/>
 
 								<IsDesktop>
@@ -166,35 +125,32 @@ export class Header extends React.Component<{}, IState> {
 
 							<NavLink
 								to={PATHS.PERSONAL_PLACE_ADVERT}
-								className={css(COMMON_STYLES.LINK, styles.userLink, styles.userLinkPhone, styles.placeAdvert)}
+								className={cx(userLink, placeAdvert)}
 							>
 								<IsPhone>
-									<span className={css(styles.placeAdvertIcon)}>
+									<PlaceAdvertIcon>
 										<Ionicon
 											icon="md-add"
 											fontSize="18px"
 											color={COLORS.WHITE.toString()}
 										/>
-									</span>
+									</PlaceAdvertIcon>
 								</IsPhone>
 
 								<IsTabletOrDesktop>
 									Place advert
 								</IsTabletOrDesktop>
 							</NavLink>
-						</nav>
-					</div>
-				</div>
+						</NavUser>
+					</Layout>
+				</HeaderContainer>
 
-				<div {...CSSUtils.mergeStyles(
-					css(styles.filters, styles.block),
-					isFloating && css(styles.filtersFloating),
-				)} style={{}}>
-					<div className={css(COMMON_STYLES.LAYOUT_DESKTOP, COMMON_STYLES.LAYOUT_PHONE_OR_TABLET)}>
+				<FiltersContainer isFloating={isFloating}>
+					<Layout>
 						<Filters/>
-					</div>
-				</div>
-			</header>
+					</Layout>
+				</FiltersContainer>
+			</Container>
 		);
 	}
 
@@ -208,222 +164,175 @@ export class Header extends React.Component<{}, IState> {
 	};
 }
 
-const styles = StyleSheet.create({
-	logo: {
-		backgroundImage: CSSUtils.image(require('../../../img/logos/realthub-color.svg')),
-		backgroundPosition: '0 50%',
-		backgroundSize: 'auto 35px',
-		backgroundRepeat: 'no-repeat',
-		width: 132,
-		minWidth: 132,
-		height: THEME.HEADER_HEIGHT,
-		display: 'block',
-		flexGrow: 0,
-		top: -1,
-		willChange: 'transform',
-		transition: 'transform .3s',
-		transformOrigin: '0 50%',
-		marginRight: THEME.SECTION_PADDING_H,
-	},
+interface IFloatingProps {
+	isFloating: boolean;
+}
 
-	logoPhone: CSSUtils.mediaSize(EMQ.Phone, {
-		width: 34,
-		minWidth: 34,
-		marginRight: THEME.SECTION_PADDING_H,
-	}),
-
-	logoFloating: {},
-
-	icon: {
-		marginRight: THEME.SECTION_PADDING_H / 2,
-	},
-
-	userIconPhone: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
-		marginRight: 0,
-	}),
-
-	container: {
-		paddingTop: THEME.HEADER_HEIGHT,
-	},
-
-	linkText: {
-
-	},
-
-	linkTextPhone: {
-
-	},
-
-	floatingTrigger: {
-		position: 'fixed',
-		display: 'none',
-		zIndex: 950,
-		bottom: THEME.SECTION_PADDING_V,
-		right: 40,
-		borderRadius: 20,
-		height: 32,
-	},
-
-	floatingTriggerText: {
-		marginLeft: 10,
-	},
-
-	floatingTriggerInner: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		height: 28,
-		padding: `0 10px`,
-		backgroundColor: COLORS.BLUE.toString(),
-		borderRadius: 20,
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
-		color: COLORS.WHITE.toString(),
-		fontSize: THEME.FONT_SIZE_SMALL,
-		textTransform: 'uppercase',
-		fontWeight: 600,
-	},
-
-	header: {
-		backgroundColor: COLORS.WHITE.toString(),
-		zIndex: 10,
-		width: '100%',
-		left: 0,
-		top: 0,
-		maxWidth: '100%',
-		position: 'fixed',
-		display: 'flex',
-		flexDirection: 'column',
-		transition: 'box-shadow .3s',
-	},
-
-	headerFloating: {
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
-	},
-
-	filters: {
-		backgroundColor: COLORS.WHITE.toString(),
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL,
-		transition: 'box-shadow .3s',
-	},
-
-	filtersFloating: {},
-
-	block: {
-		minHeight: THEME.HEADER_HEIGHT,
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
-
-	blockFloating: {},
-
-	navContainer: {
-		flexGrow: 1,
-	},
-
-	navContainerFloating: {},
-
-	phoneNavButton: {
-		transition: 'opacity .2s',
-		height: 26,
-		top: 1,
-		position: 'relative',
-
-		':hover': {
-			opacity: .7,
-		},
-	},
-
-	nav: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		fontWeight: 600,
-		textTransform: 'uppercase',
-		display: 'flex',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-	},
-
-	navLink: {
-		marginRight: THEME.SECTION_PADDING_H,
-		display: 'flex',
-		justifyContent: 'flex-start',
-		position: 'relative',
-		whiteSpace: 'nowrap'
-	},
-
-	mobileNavLink: {
-		display: 'block',
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		transition: 'background-color .2s',
-
-		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.toString(),
-		},
-	},
-
-	mobileNav: {
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'flex-start',
-	},
-
-	user: {
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'flex-end',
-		fontSize: THEME.FONT_SIZE_SMALL,
-		fontWeight: 600,
-		textTransform: 'uppercase',
-	},
-
-	userPhoneOrTablet: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
-		flexGrow: 1,
-	}),
-
-	userLink: {
-		marginLeft: THEME.SECTION_PADDING_H,
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-		whiteSpace: 'nowrap',
-	},
-
-	userLinkPhone: CSSUtils.mediaSize(EMQ.Phone, {
-		marginLeft: THEME.SECTION_PADDING_H / 1.5,
-	}),
-
-	placeAdvert: {
-		color: COLORS.WHITE.toString(),
-		backgroundColor: COLORS.BLUE.toString(),
-		padding: `5px 8px`,
-		borderRadius: 4,
-		fontSize: THEME.FONT_SIZE_SMALL,
-		fontWeight: 600,
-		textTransform: 'uppercase',
-		transition: 'background-color .2s',
-
-		':link': {
-			color: COLORS.WHITE.toString(),
-		},
-
-		':visited': {
-			color: COLORS.WHITE.toString(),
-		},
-
-		':hover': {
-			color: COLORS.WHITE.toString(),
-			backgroundColor: COLORS.BLUE.alpha(0.9).toString(),
-		},
-
-		':active': {
-			color: COLORS.WHITE.toString(),
-		},
-	},
-
-	placeAdvertIcon: {
-		display: 'flex',
-		alignItems: 'center',
+const logo = css`
+  background-image: url(${require('../../../img/logos/realthub-color.svg')});
+	background-position: 0 50%;
+	background-size: auto 35px;
+	background-repeat: no-repeat;
+	width: 132px;
+	min-width: 132px;
+	height: ${THEME.HEADER_HEIGHT}px;
+	display: block;
+	flex-grow: 0;
+	top: -1px;
+	will-change: transform;
+	transition: transform .3s;
+	transform-origin: 0 50%;
+	margin-right: ${THEME.SECTION_PADDING_H}px;
+	
+	${mq.phone} {
+		width: 34px;
+		min-width: 34px;
+		margin-right: ${THEME.SECTION_PADDING_H}px;
 	}
-});
+`;
+
+const navLink = css`
+  margin-right: ${THEME.SECTION_PADDING_H}px;
+	display: flex;
+	justify-content: flex-start;
+	position: relative;
+	white-space: nowrap;
+	
+	${mq.phone} {
+  	display: block;
+		padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+		border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
+		transition: background-color .2s;
+
+		&:hover {
+			background-color: ${COLORS.GRAY_DARK.toString()};
+		}
+  }
+`;
+
+const userLink = css`
+	margin-left: ${THEME.SECTION_PADDING_H}px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	white-space: nowrap;
+	
+	${mq.phone} {
+		margin-left: ${THEME.SECTION_PADDING_H / 1.5}px;
+	}
+`;
+
+const placeAdvert = css`
+	color: ${COLORS.WHITE.toString()};
+	background-color: ${COLORS.BLUE.toString()};
+	padding: 5px 8px;
+	border-radius: 4px;
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+	font-weight: 600;
+	text-transform: uppercase;
+	transition: background-color .2s;
+
+	&:link {
+		color: ${COLORS.WHITE.toString()};
+	}
+
+	&:visited {
+		color: ${COLORS.WHITE.toString()};
+	}
+
+	&:hover {
+		color: ${COLORS.WHITE.toString()};
+		background-color: ${COLORS.BLUE.alpha(0.9).toString()};
+	}
+
+	&:active {
+		color: ${COLORS.WHITE.toString()};
+	}
+`;
+
+const block = css`
+  min-height: ${THEME.HEADER_HEIGHT}px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+
+const icon = css`
+  margin-right: ${THEME.SECTION_PADDING_H / 2}px;
+  
+  ${mq.phoneOrTablet} {
+  	margin-right: 0;
+  }
+`;
+
+const PlaceAdvertIcon = styled('span')`
+  display: flex;
+	align-items: center;
+`;
+
+const Container = styled('header')`
+  padding-top: ${THEME.HEADER_HEIGHT}px;
+`;
+
+const HeaderContainer = styled('div')<IFloatingProps>`
+  background-color: ${COLORS.WHITE.toString()};
+	z-index: 10;
+	width: 100%;
+	left: 0;
+	top: 0;
+	max-width: 100%;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow .3s;
+	
+	${(props: IFloatingProps) => {
+		if(props.isFloating) {
+			return css`
+				boxShadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+			`;
+		}
+	}}
+`;
+
+const Nav = styled('nav')`
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+	font-weight: 600;
+	text-transform: uppercase;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+`;
+
+const NavUser = styled('nav')`
+  display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	font-size: ${THEME.FONT_SIZE_SMALL};
+	font-weight: 600;
+	text-transform: uppercase;
+	
+	${mq.phoneOrTablet} {
+		flex-grow: 1;
+	}
+`;
+
+const FiltersContainer = styled('div')<IFloatingProps>`
+	${block};
+	background-color: ${COLORS.WHITE.toString()}
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+	transition: box-shadow .3s;
+	
+	${(props: IFloatingProps) => {
+		if (props.isFloating) {
+			return css`
+				boxShadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+			`;
+		}
+	}}
+`;
+
+const NavContainer = styled('div')`
+  flex-grow: 1;
+`;

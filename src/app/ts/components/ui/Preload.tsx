@@ -5,9 +5,9 @@ import Color = require('color');
 
 interface IProps {
 	isVisible: boolean;
-	className: string;
 	size: number;
 	color: Color;
+	className?: string;
 }
 
 const ANIMATION_TIME: number = 600;

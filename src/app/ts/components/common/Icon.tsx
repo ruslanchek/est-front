@@ -25,7 +25,7 @@ interface IProps {
 	size: number;
 	color: Color;
 	type?: EIconType;
-	outerStyles?: StyleDeclaration;
+	className?: string;
 }
 
 const TWO_TONE_ALPHA: number = 0.5;
@@ -38,7 +38,7 @@ export class Icon extends React.PureComponent<IProps, {}> {
 		if (icon) {
 			return (
 				<svg
-					className={css(this.props.outerStyles)}
+					className={this.props.className}
 					xmlns="http://www.w3.org/2000/svg"
 					width={size}
 					height={size}

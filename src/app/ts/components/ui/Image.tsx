@@ -6,6 +6,7 @@ import styled, { css } from 'react-emotion';
 
 interface IProps {
 	src: string;
+	className?: string;
 }
 
 interface IState {
