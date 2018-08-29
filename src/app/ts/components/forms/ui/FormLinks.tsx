@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { THEME } from '../../../theme';
-import { css, StyleSheet } from 'aphrodite';
+import styled from 'react-emotion';
 
 interface IProps {
 	text?: string;
@@ -9,17 +9,15 @@ interface IProps {
 export class FormLinks extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.links)}>
+			<Container>
 				{this.props.children}
-			</div>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	links: {
-		padding: `0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px`,
-		display: 'flex',
-		justifyContent: 'center',
-	},
-});
+const Container = styled('div')`
+  padding: 0 ${THEME.SECTION_PADDING_H}px ${THEME.SECTION_PADDING_V}px;
+	display: flex;
+	justify-content: center;
+`;

@@ -1,23 +1,6 @@
-import * as React from 'react';
-import { COLORS, THEME } from '../../../theme';
-import { css, StyleSheet } from 'aphrodite';
+import { THEME } from '../../../theme';
+import styled from 'react-emotion';
 
-interface IProps {
-	text?: string;
-}
-
-export class FormRow extends React.PureComponent<IProps, {}> {
-	public render() {
-		return (
-			<div className={css(styles.row)}>
-				{this.props.children}
-			</div>
-		);
-	}
-}
-
-const styles = StyleSheet.create({
-	row: {
-		paddingTop: THEME.SECTION_PADDING_V,
-	},
-});
+export const FormRow = styled('div')`
+  padding-top: ${THEME.SECTION_PADDING_V}px;
+`;
