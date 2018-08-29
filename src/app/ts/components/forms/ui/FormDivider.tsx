@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { COLORS, THEME } from '../../../theme';
-import { css, StyleSheet } from 'aphrodite';
+import styled from 'react-emotion';
 
 interface IProps {
 	text?: string;
@@ -9,46 +9,44 @@ interface IProps {
 export class FormDivider extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.social)}>
+			<Social>
 				{this.props.text && (
-					<i className={css(styles.socialOr)}>
+					<Or>
 						{this.props.text}
-					</i>
+					</Or>
 				)}
-			</div>
+			</Social>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	social: {
-		position: 'relative',
-		textAlign: 'center',
-		height: THEME.FONT_SIZE_SMALL,
-		lineHeight: `${THEME.FONT_SIZE_SMALL}px`,
-		marginBottom: THEME.SECTION_PADDING_V,
+const Social = styled('div')`
+  position: relative;
+	text-align: center;
+	height: ${THEME.FONT_SIZE_SMALL}px;
+	line-height: ${THEME.FONT_SIZE_SMALL}px;
+	margin-bottom: ${THEME.SECTION_PADDING_V}px;
 
-		':after': {
-			position: 'relative',
-			height: 1,
-			top: '50%',
-			transform: 'translate(0, -50%)',
-			backgroundColor: COLORS.GRAY_DARK.toString(),
-			display: 'block',
-			content: '""',
-			zIndex: 1,
-		},
-	},
+	&:after {
+		position: relative;
+		height: 1px;
+		top: 50%;
+		transform: translate(0, -50%);
+		background-color: ${COLORS.GRAY_DARK.toString()};
+		display: block;
+		content: '';
+		z-index: 1;
+	}
+`;
 
-	socialOr: {
-		color: COLORS.BLACK_EXTRA_LIGHT.toString(),
-		position: 'absolute',
-		fontSize: THEME.FONT_SIZE_SMALL,
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		backgroundColor: COLORS.WHITE.toString(),
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		zIndex: 2,
-	},
-});
+const Or = styled('i')`
+  color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+	position: absolute;
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: ${COLORS.WHITE.toString()};
+	padding: 0 ${THEME.SECTION_PADDING_H / 2}px;
+	z-index: 2;
+`;

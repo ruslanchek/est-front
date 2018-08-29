@@ -26,21 +26,21 @@ interface IState {
 export class Filters extends React.PureComponent<IProps, IState> {
 	public state: IState = {
 		currentCityId: null,
-		cityEntities: []
+		cityEntities: [],
 	};
 
 	public componentDidMount() {
 		let entities: ISearchFilterEntity[] = [];
 		let currentCity: ICity = null;
 
-		for(let i = 0; i < 1200; i++) {
+		for (let i = 0; i < 1200; i++) {
 			const city: ICity = managers.faker.generateCity(1);
 
 			currentCity = city;
 
 			entities.push({
 				title: city.title,
-				id: city.id
+				id: city.id,
 			});
 		}
 
@@ -50,15 +50,15 @@ export class Filters extends React.PureComponent<IProps, IState> {
 
 		this.setState({
 			cityEntities: entities,
-			currentCityId: entities[0].id
+			currentCityId: entities[0].id,
 		});
 	}
 
 	public render() {
-		const {cityEntities} = this.state;
+		const { cityEntities } = this.state;
 		let firstEntity: ISearchFilterEntity = null;
 
-		if(cityEntities) {
+		if (cityEntities) {
 			firstEntity = cityEntities[0];
 		}
 
@@ -78,7 +78,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 							title={firstEntity.title}
 							onSelect={(id) => {
 								this.setState({
-									currentCityId: id
+									currentCityId: id,
 								});
 							}}
 						/>
