@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { css, StyleSheet, StyleDeclaration } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
 import { Loading } from '../common/Loading';
+import styled, { css, cx } from 'react-emotion';
 
 export enum EButtonTheme {
 	Agree = 'agree',
@@ -18,7 +18,7 @@ interface IProps {
 	disabled?: boolean;
 	loading?: boolean;
 	onClick?: () => void;
-	styles?: StyleDeclaration;
+	className?: string;
 }
 
 export class Button extends React.PureComponent<IProps, {}> {
@@ -27,119 +27,126 @@ export class Button extends React.PureComponent<IProps, {}> {
 		type: 'submit',
 		disabled: false,
 		loading: false,
-		onClick: () => {},
-		styles: null,
+		onClick: () => {
+		},
+		className: '',
 	};
 
 	public render() {
-		const { themes, type, children, loading, disabled } = this.props;
+		const {
+			themes,
+			type,
+			children,
+			loading,
+			disabled,
+			className,
+		} = this.props;
 
-		const style = [
-			styles.button,
-			this.props.styles,
+		const classNames = [
+			className,
 		];
 
 		themes.forEach((theme) => {
-			style.push(styles[theme]);
+			classNames.push(buttonStyles[theme]);
 		});
 
 		return (
-			<button
+			<Btn
 				disabled={disabled || loading}
-				className={css(style)}
+				className={cx(classNames)}
 				type={type}
 				onClick={() => this.props.onClick()}
 			>
 				{loading ? (
 					<Loading
-						className={css(styles.loading)}
+						className={loadingStyle}
 						size={24}
 						color={COLORS.WHITE}
 					/>
 				) : children}
-			</button>
+			</Btn>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	button: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		position: 'relative',
-		width: '100%',
-		border: 'none',
-		background: 'none',
-		fontFamily: THEME.FONT,
-		fontWeight: 400,
-		height: 34,
-		fontSize: THEME.FONT_SIZE_REGULAR,
-		borderRadius: 4,
-		textAlign: 'center',
-		outline: 'none',
-		transition: 'background-color .2s, opacity .2s',
-		cursor: 'pointer',
+const Btn = styled('button')`
+  display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	border: none;
+	background: none;
+	font-family: ${THEME.FONT};
+	font-weight: 400;
+	height: 34px;
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	border-radius: 4px;
+	text-align: center;
+	outline: none;
+	transition: background-color .2s, opacity .2s;
+	cursor: pointer;
 
-		':disabled': {
-			opacity: .65,
-			pointerEvents: 'none',
+	&:disabled {
+		opacity: .65;
+		pointer-events: none;
+	}
+`;
+
+const loadingStyle = css`
+  position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+`;
+
+const buttonStyles = {
+	agree: css`
+		background-color: ${COLORS.BLUE_LIGHT.toString()};
+		color: ${COLORS.BLUE.toString()};
+
+		&:hover {
+			background-color: ${COLORS.BLUE_LIGHT_ACTIVE.toString()};
+		}
+	`,
+
+	agreeBright: css`
+		background-color: ${COLORS.BLUE.toString()};
+		color: ${COLORS.WHITE.toString()};
+
+		&:hover {
+			background-color: ${COLORS.BLUE.lighten(.1).toString()};
+		}
+	`,
+
+	reject: css`
+		background-color: ${COLORS.RED_LIGHT.toString()};
+		color: ${COLORS.RED.toString()};
+
+		&:hover {
+			background-color: ${COLORS.RED_LIGHT_ACTIVE.toString()};
+		}
+	`,
+
+	rejectBright: css`
+		background-color: ${COLORS.RED.toString()};
+		color: ${COLORS.WHITE.toString()};
+
+		&:hover {
+			background-color: ${COLORS.RED.lighten(.1).toString()};
+		}
+	`,
+
+	facebook: css`
+		background-color: ${COLORS.FACEBOOK.alpha(.1).toString()};
+		color: ${COLORS.FACEBOOK.toString()};
+
+		&:hover {
+			background-color: ${COLORS.FACEBOOK.alpha(.2).toString()};
 		},
-	},
+	`,
 
-	loading: {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)'
-	},
-
-	agree: {
-		backgroundColor: COLORS.BLUE_LIGHT.toString(),
-		color: COLORS.BLUE.toString(),
-
-		':hover': {
-			backgroundColor: COLORS.BLUE_LIGHT_ACTIVE.toString(),
-		},
-	},
-
-	agreeBright: {
-		backgroundColor: COLORS.BLUE.toString(),
-		color: COLORS.WHITE.toString(),
-
-		':hover': {
-			backgroundColor: COLORS.BLUE.lighten(.1).toString(),
-		},
-	},
-
-	reject: {
-		backgroundColor: COLORS.RED_LIGHT.toString(),
-		color: COLORS.RED.toString(),
-
-		':hover': {
-			backgroundColor: COLORS.RED_LIGHT_ACTIVE.toString(),
-		},
-	},
-
-	rejectBright: {
-		backgroundColor: COLORS.RED.toString(),
-		color: COLORS.WHITE.toString(),
-
-		':hover': {
-			backgroundColor: COLORS.RED.lighten(.1).toString(),
-		},
-	},
-
-	facebook: {
-		backgroundColor: COLORS.FACEBOOK.alpha(.1).toString(),
-		color: COLORS.FACEBOOK.toString(),
-
-		':hover': {
-			backgroundColor: COLORS.FACEBOOK.alpha(.2).toString(),
-		},
-	},
-
-	full: {
-		width: '100%',
-	},
-});
+	full: css`
+		width: 100%;
+	`,
+};

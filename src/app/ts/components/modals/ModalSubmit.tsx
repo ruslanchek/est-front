@@ -1,6 +1,6 @@
-import { StyleSheet } from 'aphrodite/no-important';
 import * as React from 'react';
 import { Button, EButtonTheme } from '../ui/Button';
+import { css } from 'emotion';
 
 interface IProps {
 	isEnabled: boolean;
@@ -19,7 +19,7 @@ export class ModalSubmit extends React.PureComponent<IProps, {}> {
 					}
 				}}
 				disabled={!this.props.isEnabled}
-				styles={styles.submit}
+				className={button}
 				type="submit"
 			>
 				{this.props.text}
@@ -28,9 +28,7 @@ export class ModalSubmit extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const styles = StyleSheet.create({
-	submit: {
-		display: 'block',
-		width: '100%',
-	},
-});
+const button = css`
+  display: block;
+	width: 100%;
+`;
