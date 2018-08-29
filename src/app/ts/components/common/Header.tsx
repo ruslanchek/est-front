@@ -211,6 +211,7 @@ const navLink = css`
 `;
 
 const userLink = css`
+	${COMMON_STYLES_EMOTION.LINK};
 	margin-left: ${THEME.SECTION_PADDING_H}px;
 	display: flex;
 	align-items: center;
@@ -251,6 +252,7 @@ const placeAdvert = css`
 `;
 
 const block = css`
+	background-color: ${COLORS.WHITE.toString()};
   min-height: ${THEME.HEADER_HEIGHT}px;
 	display: flex;
 	align-items: center;
@@ -289,7 +291,7 @@ const HeaderContainer = styled('div')<IFloatingProps>`
 	${(props: IFloatingProps) => {
 		if(props.isFloating) {
 			return css`
-				boxShadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+				box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
 			`;
 		}
 	}}
@@ -308,7 +310,7 @@ const NavUser = styled('nav')`
   display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	font-size: ${THEME.FONT_SIZE_SMALL};
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
 	font-weight: 600;
 	text-transform: uppercase;
 	
@@ -319,7 +321,7 @@ const NavUser = styled('nav')`
 
 const FiltersContainer = styled('div')<IFloatingProps>`
 	${block};
-	background-color: ${COLORS.WHITE.toString()}
+	background-color: ${COLORS.WHITE.toString()};
 	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
 	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
 	transition: box-shadow .3s;
@@ -327,7 +329,7 @@ const FiltersContainer = styled('div')<IFloatingProps>`
 	${(props: IFloatingProps) => {
 		if (props.isFloating) {
 			return css`
-				boxShadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+				box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
 			`;
 		}
 	}}
