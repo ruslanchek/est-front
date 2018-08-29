@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import { StyleSheet } from 'aphrodite/no-important';
 import { followStore } from 'react-stores';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
@@ -29,7 +27,3 @@ export class AgentPage extends React.Component<IProps, IState> {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-
-});

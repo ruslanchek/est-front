@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, THEME } from '../../theme';
+import { css, StyleSheet } from 'aphrodite/no-important';
+import { THEME } from '../../theme';
 import { ToastContainer } from 'react-toastify';
 import Transition from 'react-transition-group/Transition';
 

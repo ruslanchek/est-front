@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, COMMON_STYLES, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { Checker } from '../ui/Checker';
+import styled from 'react-emotion';
 
 interface IProps {
 	items: IModalSelectItem[];
@@ -30,19 +30,18 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 			<div>
 				{items.map((item, i) => {
 					return (
-						<span
+						<Selectable
 							key={i}
 							onClick={this.onClick.bind(this, item)}
-							className={css(COMMON_STYLES.LINK, styles.selectable)}
 						>
 							{item.pre}
 
-							<span className={css(styles.title)}>
+							<Title>
 								{item.title}
-							</span>
+							</Title>
 
 							<Checker checked={item.selected}/>
-						</span>
+						</Selectable>
 					);
 				})}
 			</div>
@@ -54,24 +53,24 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 	};
 }
 
-const styles = StyleSheet.create({
-	selectable: {
-		cursor: 'pointer',
-		display: 'flex',
-		fontSize: THEME.FONT_SIZE_SMALL,
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		fontWeight: 600,
-		padding: `${THEME.SECTION_PADDING_V / 1.25}px ${THEME.SECTION_PADDING_H}px`,
-		borderTop: `1px solid ${COLORS.GRAY_DARK.toString()}`,
-		transition: 'background-color .2s',
+const Selectable = styled('span')`
+  ${COMMON_STYLES_EMOTION.LINK};
+  
+  cursor: pointer;
+	display: flex;
+	font-size: ${THEME.FONT_SIZE_SMALL};
+	justify-content: space-between;
+	align-items: center;
+	font-weight: 600;
+	padding: ${THEME.SECTION_PADDING_V / 1.25}px ${THEME.SECTION_PADDING_H}px;
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
+	transition: background-color .2s;
 
-		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.toString(),
-		}
-	},
-
-	title: {
-		flexGrow: 1,
+	&:hover {
+		background-color: ${COLORS.GRAY_DARK.toString()};
 	}
-});
+`;
+
+const Title = styled('span')`
+  flex-grow: 1;
+`;

@@ -1,9 +1,5 @@
 import * as React from 'react';
-
-import { StyleSheet } from 'aphrodite/no-important';
-import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
-import { LogIn } from '../auth/LogIn';
 import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
@@ -63,7 +59,3 @@ export class PersonalPage extends React.Component<IProps, IState> {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-
-});

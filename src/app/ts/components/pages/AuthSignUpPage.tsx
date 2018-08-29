@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import { StyleSheet } from 'aphrodite/no-important';
 import { AuthForm } from '../common/AuthForm';
 import { Layout } from '../common/Layout';
 import { SignUp } from '../auth/SignUp';
@@ -30,7 +28,3 @@ export class AuthSignUpPage extends React.Component<IProps, IState> {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-
-});

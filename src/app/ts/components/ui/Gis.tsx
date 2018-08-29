@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyleSheet, css } from 'aphrodite/no-important';
 import GoogleMapReact from 'google-map-react';
 import { CONFIG } from '../../config';
 import { ObjectsStore } from '../../stores/ObjectsStore';
@@ -81,16 +80,16 @@ export class Gis extends React.PureComponent<IProps, IState> {
 	}
 }
 
-type ContainerProps = {
+interface IContainerProps {
 	width: string;
 	height: string;
-};
+}
 
 const Container = styled('div')`
 	border-radius: 10px;
 	margin-bottom: 40px;
 	overflow: hidden;
 	position: relative;
-	width: ${(props: ContainerProps) => props.width};
-	height: ${(props: ContainerProps) => props.height};
+	width: ${(props: IContainerProps) => props.width};
+	height: ${(props: IContainerProps) => props.height};
 `;

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { COMMON_STYLES, THEME } from '../../theme';
+import { COMMON_STYLES_EMOTION, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { IsPhone } from './IsPhone';
 import { IsTabletOrDesktop } from './IsTabletOrDesktop';
 import { ModalHeader } from '../modals/ModalHeader';
+import styled from 'react-emotion';
 
 interface IProps {
 
@@ -23,7 +23,7 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 	public render() {
 		return (
 			<React.Fragment>
-				<div className={css(styles.container)}>
+				<Container>
 					<ModalContext
 						isVisible={this.state.isOpen}
 						onClose={() => {
@@ -92,11 +92,14 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 						/>
 					</ModalContext>
 
-					<a href="#" className={css(COMMON_STYLES.LINK, styles.navLink)} onClick={() => {
-						this.setState({
-							isOpen: true,
-						});
-					}}>
+					<Link
+						href="#"
+						onClick={() => {
+							this.setState({
+								isOpen: true,
+							});
+						}}
+					>
 						<IsPhone>
 							EN
 						</IsPhone>
@@ -104,23 +107,23 @@ export class LocaleSelector extends React.PureComponent<IProps, IState> {
 						<IsTabletOrDesktop>
 							English
 						</IsTabletOrDesktop>
-					</a>
-				</div>
+					</Link>
+				</Container>
 			</React.Fragment>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		marginRight: THEME.SECTION_PADDING_H,
-		position: 'relative'
-	},
+const Container = styled('div')`
+  margin-right: ${THEME.SECTION_PADDING_H}px;
+	position: relative;
+`;
 
-	navLink: {
-		display: 'flex',
-		justifyContent: 'flex-start',
-		position: 'relative',
-		whiteSpace: 'nowrap'
-	}
-});
+const Link = styled('a')`
+	${COMMON_STYLES_EMOTION.LINK};
+  display: flex;
+	justify-content: flex-start;
+	position: relative;
+	white-space: nowrap;
+`;
+

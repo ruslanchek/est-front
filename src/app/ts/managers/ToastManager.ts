@@ -1,9 +1,8 @@
-import { Manager } from './Manager';
-import { StyleSheet } from 'aphrodite/no-important';
-import { css } from 'aphrodite';
-import { toast, cssTransition, ToastType } from 'react-toastify';
-import { COLORS, THEME } from '../theme';
 import Color = require('color');
+import { Manager } from './Manager';
+import { toast, ToastType } from 'react-toastify';
+import { css } from 'emotion';
+import { COLORS, THEME } from '../theme';
 
 export enum EToastType {
 	Info,
@@ -28,9 +27,9 @@ export class ToastManager extends Manager {
 		toast(text, {
 			type: this.getType(type),
 			autoClose: delay,
-			className: css(styles.toast),
-			bodyClassName: css(styles.body),
-			progressClassName: css(styles.progressClassName)
+			className: toastStyle,
+			bodyClassName: bodyStyle,
+			progressClassName: progressStyle,
 		});
 	}
 
@@ -60,25 +59,22 @@ export class ToastManager extends Manager {
 	}
 }
 
-const styles = StyleSheet.create({
-	toast: {
-		background: Color('#000').alpha(0.5).toString(),
-		borderRadius: 10,
-		fontFamily: THEME.FONT,
-		fontSize: THEME.FONT_SIZE_SMALL,
-		padding: '10px 15px',
-		marginTop: 5,
-		color: COLORS.WHITE.toString(),
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_2
-	},
+const toastStyle = css`
+  background: ${Color('#000').alpha(0.5).toString()};
+	border-radius: 10px;
+	font-family: ${THEME.FONT};
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+	padding: 10px 15px;
+	margin-top: 5px;
+	color: ${COLORS.WHITE.toString()};
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_2};
+`;
 
-	body: {
+const progressStyle = css`
+	display: block;
+	height: 0;
+`;
 
-	},
-
-	progressClassName: {
-		animationName: [{}],
-		display: 'block',
-		height: 0,
-	}
-});
+const bodyStyle = css`
+  
+`;

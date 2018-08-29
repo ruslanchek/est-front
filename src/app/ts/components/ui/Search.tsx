@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import * as Ionicon from 'react-ionicons';
-import { CSSUtils, EMQ } from '../../lib/CSSUtils';
+import { CSSUtils } from '../../lib/CSSUtils';
 
 interface IProps {
 	autoFocus: boolean;
@@ -125,6 +125,6 @@ const styles = StyleSheet.create({
 	},
 
 	input: {
-		paddingLeft: THEME.INPUT_HEIGHT
+		paddingLeft: THEME.INPUT_HEIGHT,
 	},
 });

@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import { StyleSheet } from 'aphrodite/no-important';
 import { Layout } from '../common/Layout';
 import { followStore } from 'react-stores';
 import { AuthStore } from '../../stores/AuthStore';
@@ -90,5 +88,3 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 		this.loadAdverts();
 	};
 }
-
-const styles = StyleSheet.create({});

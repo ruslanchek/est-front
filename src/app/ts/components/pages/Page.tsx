@@ -1,4 +1,3 @@
-import { css, StyleSheet } from 'aphrodite/no-important';
 import * as React from 'react';
 import { Redirect, RouteComponentProps } from 'react-router';
 import { followStore } from 'react-stores';
@@ -10,9 +9,10 @@ import { Header } from '../common/Header';
 import { Footer } from '../common/Footer';
 import { AuthStore } from '../../stores/AuthStore';
 import { PATHS } from '../../config';
+import styled from 'react-emotion';
 
 export enum PageLayout {
-	Default
+	Default,
 }
 
 interface IProps extends RouteComponentProps<{}> {
@@ -63,11 +63,11 @@ export class Page extends React.Component<IProps, IState> {
 			switch (this.props.layout) {
 				default : {
 					return (
-						<div className={css(styles.page)} id="appContainer">
+						<Container id="appContainer">
 							<Header/>
-							{this.props.children}
+								{this.props.children}
 							<Footer/>
-						</div>
+						</Container>
 					);
 				}
 			}
@@ -102,12 +102,10 @@ export class Page extends React.Component<IProps, IState> {
 	}
 }
 
-const styles: any = StyleSheet.create({
-	page: {
-		minWidth: '100%',
-		fontFamily: THEME.FONT,
-		fontSize: THEME.FONT_SIZE_REGULAR,
-		backgroundColor: COLORS.GRAY_LIGHT.toString(),
-		color: COLORS.BLACK.toString(),
-	}
-});
+const Container = styled('div')`
+  min-width: 100%;
+	font-family: ${THEME.FONT};
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	background-color: ${COLORS.GRAY_LIGHT.toString()};
+	color: ${COLORS.BLACK.toString()};
+`;

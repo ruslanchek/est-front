@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
 import { THEME } from '../../theme';
+import styled from 'react-emotion';
 
 interface IProps {
 	title: string;
@@ -9,24 +9,22 @@ interface IProps {
 export class ModalHeader extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.header)}>
-				<h2 className={css(styles.title)}>
+			<Header>
+				<Title>
 					{this.props.title}
-				</h2>
-			</div>
+				</Title>
+			</Header>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	header: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`
-	},
+const Header = styled('div')`
+  padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+`;
 
-	title: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		textTransform: 'uppercase',
-		margin: 0,
-		fontWeight: 800,
-	},
-});
+const Title = styled('h2')`
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+	text-transform: uppercase;
+	margin: 0;
+	font-weight: 800;
+`;

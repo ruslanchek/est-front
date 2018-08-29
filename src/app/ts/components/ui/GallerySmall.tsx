@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
+import { css, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
-import { COLORS, THEME } from '../../theme';
+import { THEME } from '../../theme';
 import { Image } from './Image';
 import { CSSTransition } from 'react-transition-group';
 

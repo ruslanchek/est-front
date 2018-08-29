@@ -1,10 +1,8 @@
 import * as React from 'react';
-import * as Ionicon from 'react-ionicons';
-
-import { css, StyleSheet } from 'aphrodite/no-important';
-import { COLORS, THEME } from '../../theme';
-
+import styled from 'react-emotion';
 import Color = require('color');
+import * as Ionicon from 'react-ionicons';
+import { COLORS, THEME } from '../../theme';
 
 interface IProps {
 	title: string;
@@ -15,62 +13,52 @@ interface IProps {
 export class ModalHeaderFilter extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<div className={css(styles.header)}>
-				<h2 className={css(styles.title)}>
-					<i className={css(styles.icon)} style={{
-						backgroundColor: this.props.color.toString()
-					}}>
+			<Header>
+				<Title>
+					<Icon backgroundColor={this.props.color.toString()}>
 						<Ionicon
 							icon={this.props.icon}
 							fontSize="16px"
 							color={COLORS.WHITE.toString()}
 						/>
-					</i>
+					</Icon>
+
 					{this.props.title}
-				</h2>
-			</div>
+				</Title>
+			</Header>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	header: {
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
+interface IIconProps {
+	backgroundColor: string;
+}
 
-	title: {
-		margin: 0,
-		fontSize: THEME.FONT_SIZE_SMALL,
-		textTransform: 'uppercase',
-		color: COLORS.BLACK.toString(),
-		display: 'flex',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		fontWeight: 800,
-	},
+const Header = styled('div')`
+  padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
 
-	add: {
-		backgroundColor: COLORS.BLUE.alpha(.1).toString(),
-		color: COLORS.BLUE.toString(),
-		fontWeight: 600,
-		height: 26,
-		marginTop: 1,
-		lineHeight: '26px',
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		borderRadius: 20,
-		fontSize: THEME.FONT_SIZE_SMALL
-	},
+const Title = styled('h2')`
+  margin: 0;
+	font-size: ${THEME.FONT_SIZE_SMALL}px;
+	text-transform: uppercase;
+	color: COLORS.BLACK.toString();
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-weight: 800;
+`;
 
-	icon: {
-		width: 22,
-		height: 22,
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 3,
-		marginRight: THEME.SECTION_PADDING_H / 2
-	}
-});
+const Icon = styled('i')<IIconProps>`
+  width: 22px;
+	height: 22px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	margin-right: ${THEME.SECTION_PADDING_H / 2}px;
+	background-color: ${(props: IIconProps) => props.backgroundColor};
+`;

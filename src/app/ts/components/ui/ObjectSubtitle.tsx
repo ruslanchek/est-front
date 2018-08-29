@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { COLORS, THEME } from '../../theme';
 import EObjectType = ObjectsStore.EObjectType;
-import * as dayjs from 'dayjs';
 import { CONFIG } from '../../config';
+import styled from 'react-emotion';
+import * as dayjs from 'dayjs';
 
 interface IProps {
 	objectData: IObject;
@@ -14,9 +14,9 @@ interface IProps {
 export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
-			<h2 className={css(styles.title)}>
+			<H2>
 				{this.getTypeName()}{this.getAge()}
-			</h2>
+			</H2>
 		);
 	}
 
@@ -51,11 +51,9 @@ export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const styles = StyleSheet.create({
-	title: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		color: COLORS.BLACK_LIGHT.toString(),
-		textTransform: 'uppercase',
-		margin: 0,
-	},
-});
+const H2 = styled('h2')`
+  font-size: ${THEME.FONT_SIZE_SMALL};
+	color: ${COLORS.BLACK_LIGHT.toString()};
+	text-transform: uppercase;
+	margin: 0;
+`;
