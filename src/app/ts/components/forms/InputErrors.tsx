@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { StyleSheet } from 'aphrodite/no-important';
 import { FormContext } from './Form';
 
 interface IProps {
-  inputName: string;
+	inputName: string;
 }
 
 export class InputErrors extends React.PureComponent<IProps, {}> {
@@ -11,23 +10,21 @@ export class InputErrors extends React.PureComponent<IProps, {}> {
 		const { inputName } = this.props;
 
 		return (
-      <FormContext.Consumer>
+			<FormContext.Consumer>
 				{(formContext) => {
-          const errors = formContext.getErrors(inputName);
+					const errors = formContext.getErrors(inputName);
 
-          return (
-            <div>
-              {errors.map((error, i) => {
-                return (
-                  <div key={i}>{error}</div>
-                );
-              })}
-            </div>
-          );
-        }}
-      </FormContext.Consumer>
+					return (
+						<div>
+							{errors.map((error, i) => {
+								return (
+									<div key={i}>{error}</div>
+								);
+							})}
+						</div>
+					);
+				}}
+			</FormContext.Consumer>
 		);
 	}
 }
-
-const styles = StyleSheet.create({});

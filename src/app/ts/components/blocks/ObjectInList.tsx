@@ -11,11 +11,11 @@ import { Avatar } from '../ui/Avatar';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Money } from '../ui/Money';
-import { mq } from '../../lib/CSSUtils';
 import IObject = ObjectsStore.IObject;
 
 interface IProps {
 	objectData: IObject;
+	className: string;
 }
 
 export class ObjectInList extends React.Component<IProps, {}> {
@@ -32,7 +32,7 @@ export class ObjectInList extends React.Component<IProps, {}> {
 		} = this.props.objectData;
 
 		return (
-			<Container>
+			<Container className={this.props.className}>
 				<Header>
 					<FavoriteContainer>
 						<Favorite
@@ -79,24 +79,6 @@ const Container = styled('section')`
 	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1};
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 40px;
-	
-	${mq.phone} {
-		width: 100%;
-		margin-bottom: 20px;
-	}
-	
-	${mq.tablet} {
-		width: 48%;
-	}
-	
-	${mq.desktop} {
-		width: 23%;
-	}
-	
-	${mq.wide} {
-		width: 23%;
-	}
 `;
 
 const Header = styled('header')`

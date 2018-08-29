@@ -1,82 +1,87 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
-import { Link } from 'react-router-dom';
-import { PATHS } from '../../config';
 import Color = require('color');
+import { Link, LinkProps } from 'react-router-dom';
+import { PATHS } from '../../config';
 import { CSSUtils } from '../../lib/CSSUtils';
 import { COLORS, THEME } from '../../theme';
+import styled, { css } from 'react-emotion';
 
 interface IProps {
 	color1: Color;
 	color2: Color;
 	title: string;
 	subtitle: string;
-	containerStyles?: StyleDeclaration;
+	className?: string;
 }
 
 export class SpecialBrick extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { color1, color2, title, subtitle, containerStyles } = this.props;
+		const {
+			color1,
+			color2,
+			title,
+			subtitle,
+			className,
+		} = this.props;
 
 		return (
-			<div className={css(containerStyles)}>
-				<Link to={PATHS.HOME} className={css(styles.container)} style={{
-					backgroundColor: color1.toString(),
-					backgroundImage: CSSUtils.linearGradient(10, color1, color2, 10, 100),
-				}}>
-					<span className={css(styles.inner)}>
-						<span className={css(styles.title)}>
+			<div className={className}>
+				<Link
+					to={PATHS.HOME}
+					className={container}
+					style={{
+						backgroundColor: color1.toString(),
+						backgroundImage: CSSUtils.linearGradient(10, color1, color2, 10, 100),
+					}}>
+					<Inner>
+						<Title>
 							{title}
-						</span>
+						</Title>
 
-						<span className={css(styles.subtitle)}>
+						<Subtitle>
 							{subtitle}
-						</span>
-					</span>
+						</Subtitle>
+					</Inner>
 				</Link>
 			</div>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		display: 'block',
-		borderRadius: 6,
-		overflow: 'hidden',
-		color: COLORS.WHITE.toString(),
-		textDecoration: 'none',
-		paddingTop: '40%',
-		position: 'relative',
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_1,
-	},
+const container = css`
+  display: block;
+	border-radius: 6px;
+	overflow: hidden;
+	color: ${COLORS.WHITE.toString()};
+	text-decoration: none;
+	padding-top: 40%;
+	position: relative;
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1};
+`;
 
-	inner: {
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		width: '100%',
-		height: '100%',
-		display: 'flex',
-		justifyContent: 'flex-end',
-		flexDirection: 'column',
-		boxSizing: 'border-box',
-		padding: `${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px`,
-		textShadow: '0 1px 1px rgba(0, 0, 0, .1)'
-	},
+const Inner = styled('span')`
+  position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+`;
 
-	title: {
-		fontSize: THEME.FONT_SIZE_BIG,
-		textTransform: 'uppercase',
-		fontWeight: 800,
-		marginBottom: '.25em',
-	},
+const Title = styled('span')`
+  font-size: ${THEME.FONT_SIZE_BIG}px;
+	text-transform: uppercase;
+	font-weight: 800;
+	margin-bottom: .25em;
+`;
 
-	subtitle: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		textTransform: 'uppercase',
-		opacity: .75,
-	},
-});
+const Subtitle = styled('span')`
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+	text-transform: uppercase;
+	opacity: .75;
+`;

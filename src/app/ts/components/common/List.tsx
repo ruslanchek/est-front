@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
-import { ObjectInList } from '../blocks/ObjectInList';
-import { CSSUtils, EMQ } from '../../lib/CSSUtils';
-import { SpecialBrick } from '../ui/SpecialBrick';
+import styled, { css } from 'react-emotion';
 import Color = require('color');
+import { ObjectsStore } from '../../stores/ObjectsStore';
+import { ObjectInList } from '../blocks/ObjectInList';
+import { mq } from '../../lib/CSSUtils';
+import { SpecialBrick } from '../ui/SpecialBrick';
 import { CONFIG } from '../../config';
+import IObject = ObjectsStore.IObject;
 
 interface IProps {
 	objects: IObject[];
@@ -16,8 +16,8 @@ export class List extends React.PureComponent<IProps, {}> {
 	public render() {
 
 		return (
-			<div className={css(styles.container, styles.containerPhone)}>
-				<div className={css(styles.list)}>
+			<Container>
+				<ListContainer>
 					{ObjectsStore.store.state.presets.map((preset, i) => {
 						return (
 							<SpecialBrick
@@ -26,13 +26,7 @@ export class List extends React.PureComponent<IProps, {}> {
 								color2={Color(preset.color2)}
 								title={preset.title}
 								subtitle={`From ${preset.price.toLocaleString(CONFIG.DEFAULT_LOCALE)} EUR`}
-								containerStyles={[
-									styles.item,
-									styles.itemPhone,
-									styles.itemTablet,
-									styles.itemDesktop,
-									styles.itemWide
-								]}
+								className={item}
 							/>
 						);
 					})}
@@ -42,50 +36,45 @@ export class List extends React.PureComponent<IProps, {}> {
 							<ObjectInList
 								key={i}
 								objectData={object}
+								className={item}
 							/>
 						);
 					})}
-				</div>
-			</div>
+				</ListContainer>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		display: 'flex',
-		justifyContent: 'center'
-	},
+const Container = styled('div')`
+  display: flex;
+	justify-content: center;
+`;
 
-	containerPhone: CSSUtils.mediaSize(EMQ.Phone, {
+const ListContainer = styled('div')`
+  width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+`;
 
-	}),
-
-	list: {
-		width: '100%',
-		display: 'flex',
-		flexWrap: 'wrap',
-		justifyContent: 'space-between'
-	},
-
-	item: {
-		marginBottom: 40
-	},
-
-	itemPhone: CSSUtils.mediaSize(EMQ.Phone, {
-		width: '100%',
-		marginBottom: 20
-	}),
-
-	itemTablet: CSSUtils.mediaSize(EMQ.Tablet, {
-		width: '48%'
-	}),
-
-	itemDesktop: CSSUtils.mediaSize(EMQ.Desktop, {
-		width: '23%'
-	}),
-
-	itemWide: CSSUtils.mediaSize(EMQ.Wide, {
-		width: '23%'
-	}),
-});
+const item = css`
+  margin-bottom: 40px;
+  
+  ${mq.phone} {
+  	width: 100%;
+		margin-bottom: 20px;
+  }
+  
+  ${mq.tablet} {
+  	width: 48%;
+  }
+  
+  ${mq.desktop} {
+  	width: 23%;
+  }
+  
+  ${mq.wide} {
+  	width: 23%;
+  }
+`;

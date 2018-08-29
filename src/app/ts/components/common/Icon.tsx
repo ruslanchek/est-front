@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Color = require('color');
-import { css, StyleDeclaration } from 'aphrodite';
 
 export enum EIcon {
 	Favorite,
