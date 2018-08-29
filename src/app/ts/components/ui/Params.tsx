@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
 import { Icon } from '../common/Icon';
 import { COLORS, THEME } from '../../theme';
+import styled from 'react-emotion';
+import IObject = ObjectsStore.IObject;
 
 interface IProps {
 	objectData: IObject;
@@ -14,60 +14,58 @@ export class Params extends React.PureComponent<IProps, {}> {
 		const { params } = this.props.objectData;
 
 		return (
-			<div className={css(styles.params)}>
+			<Container>
 				{params.map((param, i) => {
 					return (
-						<div className={css(styles.param)} key={i}>
+						<Param key={i}>
 							<Icon
 								icon={param.icon}
 								size={18}
 								color={COLORS.BLACK_EXTRA_LIGHT}
 							/>
 
-							<div className={css(styles.title)}>
-								<span className={css(styles.titleValue)}>
+							<Title>
+								<TitleValue>
 									{param.value}
-								</span>
+								</TitleValue>
 
-								<span className={css(styles.titleName)}>
+								<TitleName>
 									{param.name}
-								</span>
-							</div>
-						</div>
+								</TitleName>
+							</Title>
+						</Param>
 					);
 				})}
-			</div>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	params: {
-		display: 'flex',
-		justifyContent: 'flex-start',
-		flexWrap: 'wrap'
-	},
+const Container = styled('div')`
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+`;
 
-	param: {
-		display: 'flex',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		marginRight: '2ex',
-		marginTop: THEME.SECTION_PADDING_V / 2,
-		marginBottom: THEME.SECTION_PADDING_V / 2
-	},
+const Param = styled('div')`
+  display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-right: 2ex;
+	margin-top: ${THEME.SECTION_PADDING_V / 2}px;
+	margin-bottom: ${THEME.SECTION_PADDING_V / 2}px;
+`;
 
-	title: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		marginLeft: '1ex'
-	},
+const Title = styled('div')`
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+	margin-left: 1ex;
+`;
 
-	titleValue: {
-		fontWeight: 600,
-		marginRight: '.5ex'
-	},
+const TitleValue = styled('span')`
+  font-weight: 600;
+	margin-right: .5ex;
+`;
 
-	titleName: {
-		color: COLORS.BLACK_LIGHT.toString()
-	}
-});
+const TitleName = styled('span')`
+  color: ${COLORS.BLACK_LIGHT.toString()};
+`;
