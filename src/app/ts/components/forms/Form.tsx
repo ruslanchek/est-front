@@ -36,6 +36,7 @@ export enum EFormValidateOn {
 interface IProps {
 	onSubmit: (output: IFormModelOutput) => void;
 	validateOn: EFormValidateOn;
+	className?: string;
 }
 
 interface IState {
@@ -51,7 +52,10 @@ export class Form extends React.Component<IProps, IState> {
 
 	public render() {
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form
+				onSubmit={this.handleSubmit}
+				className={this.props.className}
+			>
 				<FormContext.Provider value={{
 					setValue: this.setValue,
 					getErrors: this.getErrors,

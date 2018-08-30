@@ -5,6 +5,7 @@ import styled, { keyframes } from 'react-emotion';
 interface IProps {
 	color: Color;
 	size: number;
+	className?: string;
 }
 
 export class Loading extends React.PureComponent<IProps, {}> {
@@ -27,7 +28,7 @@ export class Loading extends React.PureComponent<IProps, {}> {
 		};
 
 		return (
-			<Container>
+			<Container className={this.props.className}>
 				<Spinner style={spinnerStyle}>
 					<Segment style={segmentStyle}>
 						<Inner style={innerStyle}/>

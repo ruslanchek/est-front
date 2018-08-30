@@ -1,15 +1,24 @@
 import * as React from 'react';
-import { COMMON_STYLES_EMOTION } from '../../theme';
+import * as Ionicon from 'react-ionicons';
+import { COLORS, THEME } from '../../theme';
 import { FormContext, IFormContext } from './Form';
 import { Validator } from './Validators/Validator';
 import { InputErrors } from './InputErrors';
+import styled, { css, cx } from 'react-emotion';
 
 interface IProps {
+	name: string;
+	label: string;
 	autoFocus?: boolean;
 	value?: string;
 	type?: string;
+	icon?: string;
 	validators?: Validator[];
-	name: string;
+	className?: string;
+	onFocus?: (e) => void;
+	onBlur?: (e) => void;
+	onChange?: (e) => void;
+	onKeyDown?: (e) => void;
 }
 
 interface IState {
@@ -22,8 +31,15 @@ export class Input extends React.PureComponent<IProps, {}> {
 		validators: [],
 		autoFocus: false,
 		value: '',
+		icon: '',
 		type: 'text',
 		name: '',
+		label: '',
+		className: '',
+		onFocus: (e) => {},
+		onBlur: (e) => {},
+		onChange: (e) => {},
+		onKeyDown: (e) => {},
 	};
 
 	public state: IState = {
@@ -43,34 +59,59 @@ export class Input extends React.PureComponent<IProps, {}> {
 			<FormContext.Consumer>
 				{(formContext) => {
 					this.formContext = formContext;
-					
+
 					return (
 						<React.Fragment>
-							<InputErrors inputName={this.props.name} />
-							
-							<input
-								name={this.props.name}
-								type={this.props.type}
-								onFocus={() => {
-									this.setState({
-										isFocused: true,
-									});
-								}}
-								onBlur={() => {
-									this.setState({
-										isFocused: false,
-									});
-								}}
-								onChange={(e) => {
-									this.setValue(e.target.value);
-								}}
-								onKeyDown={(e) => {
-									this.setValue(this.input.value);
-								}}
-								autoFocus={this.props.autoFocus}
-								ref={(ref) => this.input = ref}
-								className={COMMON_STYLES_EMOTION.INPUT}
-							/>
+							<Label htmlFor="search">
+								<InputErrors inputName={this.props.name}/>
+
+								<Labels>
+									{this.props.icon && (
+										<Icon>
+											<Ionicon
+												icon={this.props.icon}
+												fontSize="22px"
+												color={COLORS.BLACK.toString()}
+											/>
+										</Icon>
+									)}
+
+									<LabelText
+										isIcon={!Boolean(this.props.icon)}
+										isFocused={this.state.isFocused || Boolean(this.state.value)}
+									>
+										{this.props.label}
+									</LabelText>
+								</Labels>
+
+								<input
+									name={this.props.name}
+									type={this.props.type}
+									autoFocus={this.props.autoFocus}
+									ref={(ref) => this.input = ref}
+									className={cx(input, this.props.className, this.props.icon ? inputIcon : '')}
+									onFocus={(e) => {
+										this.setState({
+											isFocused: true,
+										});
+										this.props.onFocus(e);
+									}}
+									onBlur={(e) => {
+										this.setState({
+											isFocused: false,
+										});
+										this.props.onBlur(e);
+									}}
+									onChange={(e) => {
+										this.setValue(e.target.value);
+										this.props.onChange(e);
+									}}
+									onKeyDown={(e) => {
+										this.setValue(this.input.value);
+										this.props.onKeyDown(e);
+									}}
+								/>
+							</Label>
 						</React.Fragment>
 					);
 				}}
@@ -90,3 +131,77 @@ export class Input extends React.PureComponent<IProps, {}> {
 		});
 	}
 }
+
+interface IIconText {
+	isFocused: boolean;
+	isIcon: boolean;
+}
+
+const input = css`
+  width: 100%;
+	background-color: ${COLORS.WHITE.toString()};
+	padding: 0 ${THEME.SECTION_PADDING_H / 2}px;
+	outline: none;
+	border-radius: 4px;
+	height: ${THEME.INPUT_HEIGHT}px;
+	line-height: ${THEME.INPUT_HEIGHT}px;
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	border: 1px solid ${COLORS.GRAY_DARK.darken(.05).toString()};
+	font-weight: 600;
+	color: ${COLORS.BLACK.toString()};
+	transition: border-color .2s;
+	box-sizing: border-box;
+
+	&:hover {
+		border-color: ${COLORS.GRAY_DARK.darken(.1).toString()};
+	}
+
+	&:focus {
+		border-color: ${COLORS.GRAY_DARK.darken(.15).toString()};
+	}
+`;
+
+const inputIcon = css`
+  padding-left: ${THEME.INPUT_HEIGHT}px;
+`;
+
+const Label = styled('label')`
+  display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+	height: ${THEME.INPUT_HEIGHT}px;
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	top: 0;
+	left: 0;
+`;
+
+const Labels = styled('div')`
+	pointer-events: none;
+	user-select: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const Icon = styled('div')`
+  display: flex;
+	justify-content: center;
+	align-items: center;
+	width: ${THEME.INPUT_HEIGHT}px;
+`;
+
+const LabelText = styled('span')<IIconText>`
+	transition: transform .2s, opacity .2s;
+	opacity: ${(props: IIconText) => props.isFocused ? 0 : 1};
+	transform: ${(props: IIconText) => props.isFocused ? 'scale(.8)' : 'scale(1)'};
+	height: ${THEME.INPUT_HEIGHT}px;
+	line-height: ${THEME.INPUT_HEIGHT}px;
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	white-space: nowrap;
+	margin-left: ${(props: IIconText) => props.isIcon ? `${THEME.SECTION_PADDING_H / 2}px` : 0};
+`;
