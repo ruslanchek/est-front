@@ -38,11 +38,22 @@ export class LogIn extends React.PureComponent<IProps, IState> {
 				<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
 					<FormRows>
 						<FormRow>
-							<Input label="E-mail" validators={[new ValidatorIsEmail()]} name="email" autoFocus={false}/>
+							<Input
+								label="E-mail"
+								validators={[new ValidatorIsEmail()]}
+								name="email"
+								autoFocus={true}
+							/>
 						</FormRow>
 
 						<FormRow>
-							<Input label="Password" validators={[new ValidatorIsRequired()]} name="password" autoFocus={false} type="password"/>
+							<Input
+								label="Password"
+								validators={[new ValidatorIsRequired()]}
+								name="password"
+								autoFocus={false}
+								type="password"
+							/>
 						</FormRow>
 					</FormRows>
 
