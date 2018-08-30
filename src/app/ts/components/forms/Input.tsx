@@ -24,6 +24,7 @@ interface IProps {
 interface IState {
 	isFocused: boolean;
 	value: string;
+	animatedLabel: boolean;
 }
 
 export class Input extends React.PureComponent<IProps, {}> {
@@ -45,13 +46,31 @@ export class Input extends React.PureComponent<IProps, {}> {
 	public state: IState = {
 		isFocused: false,
 		value: '',
+		animatedLabel: false,
 	};
 
+	private animatedLabelTimeout = null;
 	private input = null;
 	private formContext: IFormContext = null;
 
 	public componentDidMount() {
-		this.setValue(this.props.value);
+		if(this.props.value) {
+			this.setValue(this.props.value);
+		}
+
+		if(this.input.value) {
+			this.setValue(this.input.value);
+		}
+
+		this.animatedLabelTimeout = setTimeout(() => {
+			this.setState({
+				animatedLabel: true,
+			});
+		}, 400);
+	}
+
+	public componentWillMount() {
+		clearTimeout(this.animatedLabelTimeout);
 	}
 
 	public render() {
@@ -77,8 +96,9 @@ export class Input extends React.PureComponent<IProps, {}> {
 									)}
 
 									<LabelText
-										isIcon={!Boolean(this.props.icon)}
-										isFocused={this.state.isFocused || Boolean(this.state.value)}
+										isAnimated={this.state.animatedLabel}
+										isIcon={!this.props.icon}
+										isShowed={!this.state.isFocused && !this.state.value}
 									>
 										{this.props.label}
 									</LabelText>
@@ -133,8 +153,9 @@ export class Input extends React.PureComponent<IProps, {}> {
 }
 
 interface IIconText {
-	isFocused: boolean;
+	isShowed: boolean;
 	isIcon: boolean;
+	isAnimated: boolean;
 }
 
 const input = css`
@@ -196,9 +217,9 @@ const Icon = styled('div')`
 `;
 
 const LabelText = styled('span')<IIconText>`
-	transition: transform .2s, opacity .2s;
-	opacity: ${(props: IIconText) => props.isFocused ? 0 : 1};
-	transform: ${(props: IIconText) => props.isFocused ? 'scale(.8)' : 'scale(1)'};
+	transition: ${(props: IIconText) => props.isAnimated ? 'transform .2s, opacity .2s' : ''};
+	opacity: ${(props: IIconText) => props.isShowed ? 1 : 0};
+	transform: ${(props: IIconText) => props.isShowed ? 'scale(1)' : 'scale(.8)'};
 	height: ${THEME.INPUT_HEIGHT}px;
 	line-height: ${THEME.INPUT_HEIGHT}px;
 	font-size: ${THEME.FONT_SIZE_REGULAR}px;
