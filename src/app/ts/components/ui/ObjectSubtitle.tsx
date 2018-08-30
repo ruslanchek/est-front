@@ -52,7 +52,7 @@ export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 }
 
 const H2 = styled('h2')`
-  font-size: ${THEME.FONT_SIZE_SMALL};
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
 	color: ${COLORS.BLACK_LIGHT.toString()};
 	text-transform: uppercase;
 	margin: 0;

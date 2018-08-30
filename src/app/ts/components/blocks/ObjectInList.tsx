@@ -109,7 +109,7 @@ const AddressContainer = styled('div')`
 
 const ParamsContainer = styled('div')`
 	padding: ${THEME.SECTION_PADDING_V / 2}px ${THEME.SECTION_PADDING_H}px;
-	border-top: 1px solid ${COLORS.GRAY_DARK.toString()}px;
+	border-top: 1px solid ${COLORS.GRAY_DARK.toString()};
 `;
 
 const Footer = styled('footer')`

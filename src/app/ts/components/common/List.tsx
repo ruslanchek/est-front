@@ -73,8 +73,4 @@ const item = css`
   ${mq.desktop} {
   	width: 23%;
   }
-  
-  ${mq.wide} {
-  	width: 23%;
-  }
 `;
