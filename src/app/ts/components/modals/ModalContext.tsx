@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { IsDesktop } from '../common/IsDesktop';
 import { Modal } from './Modal';
 import { COLORS, THEME } from '../../theme';
 import { CSSTransition } from 'react-transition-group';
 import { IsPhoneOrTablet } from '../common/IsPhoneOrTablet';
+import { css } from 'emotion';
+import styled from 'react-emotion';
 
 interface IProps {
 	isVisible: boolean;
@@ -45,24 +46,17 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 						unmountOnExit
 						timeout={ANIMATION_TIME}
 						classNames={{
-							enter: css(styles.enterContent),
-							enterActive: css(styles.enterActiveContent),
-							exit: css(styles.exitContent),
-							exitActive: css(styles.exitActiveContent)
+							enter: content.enter,
+							enterActive: content.enterActive,
+							exit: content.exit,
+							exitActive: content.exitActive,
 						}}
 					>
-						<div
-							className={css(styles.context)}
-							ref={(ref) => this.wrapperRef = ref}
-						>
-							<div
-								style={{
-									width: this.props.width || DEFAULT_WIDTH
-								}}
-								className={css(styles.content)}>
+						<Context innerRef={(ref) => this.wrapperRef = ref}>
+							<Content width={this.props.width || DEFAULT_WIDTH}>
 								{this.props.children}
-							</div>
-						</div>
+							</Content>
+						</Context>
 					</CSSTransition>
 				</IsDesktop>
 			</React.Fragment>
@@ -76,61 +70,65 @@ export class ModalContext extends React.PureComponent<IProps, {}> {
 	}
 }
 
-const styles = StyleSheet.create({
-	context: {
-		position: 'absolute',
-		top: '100%',
-		left: '50%',
-		transform: 'translate(-50%, 20px)',
-		transition: `transform ${ANIMATION_TIME}ms, opacity ${ANIMATION_TIME}ms`,
-		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)',
-		zIndex: 5,
-		cursor: 'default',
+interface IContentProps {
+	width: number;
+}
 
-		':before': {
-			content: '""',
-			display: 'block',
-			position: 'absolute',
-			top: 0,
-			left: '50%',
-			backgroundColor: COLORS.WHITE.toString(),
-			width: 24,
-			zIndex: 1,
-			height: 24,
-			margin: '-10px 0 0 -13px',
-			transform: 'rotateZ(45deg)',
-			boxShadow: THEME.BOX_SHADOW_ELEVATION_MINIMAL_INVERTED
-		}
-	},
+const Context = styled('div')`
+  position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translate(-50%, 20px);
+	transition: transform ${ANIMATION_TIME}ms, opacity ${ANIMATION_TIME}ms;
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.390, 1.100);
+	z-index: 5;
+	cursor: default;
 
-	content: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-		width: 400,
-		borderRadius: 6,
-		overflow: 'hidden',
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
-		backgroundColor: COLORS.WHITE.toString(),
-		zIndex: 2,
-		position: 'relative'
-	},
-
-	enterContent: {
-		transform: 'translate(-50%, 20px) scale(0.98) !important',
-		opacity: 0
-	},
-
-	enterActiveContent: {
-		opacity: 1,
-		transform: 'translate(-50%, 20px) scale(1) !important',
-	},
-
-	exitContent: {
-		opacity: 1,
-		transform: 'translate(-50%, 20px) scale(1) !important'
-	},
-
-	exitActiveContent: {
-		opacity: 0,
-		transform: 'translate(-50%, 20px) scale(0.98) !important',
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		background-color: ${COLORS.WHITE.toString()};
+		width: 24px;
+		z-index: 1;
+		height: 24px;
+		margin: -10px 0 0 -13px;
+		transform: rotateZ(45deg);
+		box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL_INVERTED};
 	}
-});
+`;
+
+const Content = styled('div')`
+  font-size: ${THEME.FONT_SIZE_SMALL}px;
+	width: ${(props: IContentProps) => props.width}px;
+	border-radius: 6px;
+	overflow: hidden;
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_2};
+	background-color: ${COLORS.WHITE.toString()};
+	z-index: 2;
+	position: relative;
+`;
+
+const content = {
+	enter: css`
+		transform: translate(-50%, 20px) scale(.98);
+		opacity: 0;
+	`,
+
+	enterActive: css`
+		opacity: 1;
+		transform: translate(-50%, 20px) scale(1);
+	`,
+
+	exit: css`
+		opacity: 1;
+		transform: translate(-50%, 20px) scale(1);
+	`,
+
+	exitActive: css`
+		opacity: 0;
+		transform: translate(-50%, 20px) scale(.98);
+	`,
+};
