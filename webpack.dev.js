@@ -4,6 +4,7 @@ const HandlebarsPlugin = require('handlebars-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const port = 5656;
 const host = '0.0.0.0';
 
@@ -21,6 +22,7 @@ let plugins = [
 			publicPath: '/',
 		},
 	}),
+	new BundleAnalyzerPlugin(),
 	// new HardSourceWebpackPlugin(),
 ];
 

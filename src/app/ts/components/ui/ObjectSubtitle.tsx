@@ -5,7 +5,6 @@ import { COLORS, THEME } from '../../theme';
 import EObjectType = ObjectsStore.EObjectType;
 import { CONFIG } from '../../config';
 import styled from 'react-emotion';
-import * as dayjs from 'dayjs';
 
 interface IProps {
 	objectData: IObject;
@@ -22,7 +21,7 @@ export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 
 	private getAge() {
 		const { constructionDate } = this.props.objectData;
-		const years: number = dayjs(new Date()).diff(dayjs(constructionDate), 'year', false);
+		const years: number = constructionDate.getFullYear();
 
 		if (years >= 1) {
 			return (
