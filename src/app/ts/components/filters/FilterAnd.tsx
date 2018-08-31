@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'react-emotion';
-import { COLORS, COMMON_STYLES_EMOTION } from '../../theme';
+import { COLORS, COMMON_STYLES } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
@@ -40,7 +40,7 @@ export class FilterAnd extends React.PureComponent<IProps, IState> {
 						{entities.map((entity, i) => {
 							return (
 								<React.Fragment key={i}>
-									<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
+									<strong className={COMMON_STYLES.FILTER_ACCENT}>
 										{entity}
 									</strong>
 

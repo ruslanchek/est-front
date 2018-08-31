@@ -1,6 +1,5 @@
 import Color = require('color');
 import { css } from 'emotion';
-import { CSSUtils, EMQ } from './lib/CSSUtils';
 
 export const COLORS = {
 	GRAY_LIGHT: Color('#F3F5F7'),
@@ -44,7 +43,7 @@ export const THEME = {
 	INPUT_HEIGHT: 38
 };
 
-export const COMMON_STYLES_EMOTION = {
+export const COMMON_STYLES = {
 	LINK: css({
 		color: COLORS.BLACK.toString(),
 		textDecoration: 'none',
@@ -66,76 +65,12 @@ export const COMMON_STYLES_EMOTION = {
 		}
 	}),
 
-	CONTEXTUAL_LINK: css({
-		color: COLORS.BLUE.toString(),
-		textDecoration: 'none',
-
-		':link': {
-			color: COLORS.BLUE.toString(),
-		},
-
-		':visited': {
-			color: COLORS.BLUE.toString(),
-		},
-
-		':hover': {
-			color: COLORS.BLUE.lighten(.15).toString(),
-		},
-
-		':active': {
-			color: COLORS.BLUE.lighten(.15).toString(),
-		}
-	}),
-
 	SMALL_TEXT: css({
 		fontSize: THEME.FONT_SIZE_SMALL,
-	}),
-
-	LAYOUT_DESKTOP: css({
-		position: 'relative',
-		maxWidth: THEME.PAGE_MAX_WIDTH,
-		width: '100%',
-		margin: '0 auto',
-		boxSizing: 'border-box',
-		paddingLeft: THEME.PAGE_SIDE_PADDING_DESKTOP,
-		paddingRight: THEME.PAGE_SIDE_PADDING_DESKTOP,
-	}),
-
-	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
-		paddingLeft: THEME.PAGE_SIDE_PADDING_PHONE,
-		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE,
-	}),
-
-	FILTER_SELECTED: css({
-		backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
 	}),
 
 	FILTER_ACCENT: css({
 		color: COLORS.BLACK.toString(),
 		fontWeight: 600,
-	}),
-
-	INPUT: css({
-		width: '100%',
-		backgroundColor: COLORS.WHITE.toString(),
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		outline: 'none',
-		borderRadius: '4px',
-		height: THEME.INPUT_HEIGHT,
-		lineHeight: `${THEME.INPUT_HEIGHT}px`,
-		fontSize: THEME.FONT_SIZE_REGULAR,
-		border: `1px solid ${COLORS.GRAY_DARK.darken(.05)}`,
-		fontWeight: 600,
-		color: COLORS.BLACK.toString(),
-		transition: 'border-color .2s',
-		boxSizing: 'border-box',
-
-		'&:hover': {
-			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
-		},
-
-		'&:focus': {
-			borderColor: COLORS.GRAY_DARK.darken(.15).toString(),
-		},
 	}),
 };

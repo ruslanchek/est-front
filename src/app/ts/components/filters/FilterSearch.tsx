@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'react-emotion';
-import { COLORS, COMMON_STYLES, THEME, COMMON_STYLES_EMOTION } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { ModalContext } from '../modals/ModalContext';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
@@ -56,7 +56,7 @@ export class FilterSearch extends React.PureComponent<IProps, IState> {
 						});
 					}}
 				>
-					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
+					<strong className={COMMON_STYLES.FILTER_ACCENT}>
 						{this.props.title}
 					</strong>
 				</FilterBrick>

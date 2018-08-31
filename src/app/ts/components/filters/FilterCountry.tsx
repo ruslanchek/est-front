@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'react-emotion';
-import { COMMON_STYLES_EMOTION } from '../../theme';
+import { COMMON_STYLES } from '../../theme';
 import { Flag } from '../ui/Flag';
 import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
@@ -32,7 +32,7 @@ export class FilterCountry extends React.PureComponent<IProps, IState> {
 				>
 					<Flag isoCode={this.props.isoCode} />
 
-					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
+					<strong className={COMMON_STYLES.FILTER_ACCENT}>
 						{this.props.title}
 					</strong>
 				</FilterBrick>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { COMMON_STYLES, COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COMMON_STYLES, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { IsPhone } from './IsPhone';
@@ -17,7 +17,7 @@ interface IState {
 
 export class CurrencySelector extends React.PureComponent<IProps, IState> {
 	public state: IState = {
-		isOpen: false
+		isOpen: false,
 	};
 
 	public render() {
@@ -95,7 +95,7 @@ export class CurrencySelector extends React.PureComponent<IProps, IState> {
 }
 
 const Link = styled('a')`
-  ${COMMON_STYLES_EMOTION.LINK};
+  ${COMMON_STYLES.LINK};
 `;
 
 const Container = styled('div')`

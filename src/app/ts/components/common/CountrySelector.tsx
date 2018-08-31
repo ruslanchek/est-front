@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'react-emotion';
-import { THEME, COMMON_STYLES_EMOTION } from '../../theme';
+import { THEME, COMMON_STYLES } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { Flag } from '../ui/Flag';
@@ -99,7 +99,7 @@ export class CountrySelector extends React.PureComponent<IProps, IState> {
 
 					<a
 						href="#"
-						className={css(COMMON_STYLES_EMOTION.LINK, { display: 'flex', })}
+						className={css(COMMON_STYLES.LINK, { display: 'flex', })}
 						onClick={(e) => {
 							e.preventDefault();
 							this.setState({

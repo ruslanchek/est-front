@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { Link, NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { mq } from '../../lib/CSSUtils';
@@ -188,7 +188,7 @@ const Nav = styled('nav')`
 `;
 
 const copyItem = css`
-	${COMMON_STYLES_EMOTION.LINK};
+	${COMMON_STYLES.LINK};
   margin-right: ${THEME.SECTION_PADDING_H}px;
 	white-space: nowrap;
 	
@@ -199,7 +199,7 @@ const copyItem = css`
 `;
 
 const navLink = css`
-	${COMMON_STYLES_EMOTION.LINK};
+	${COMMON_STYLES.LINK};
   margin-left: ${THEME.SECTION_PADDING_H}px;
   
   ${mq.phone} {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'react-emotion';
-import { COLORS, THEME, COMMON_STYLES_EMOTION } from '../../theme';
+import { COLORS, THEME, COMMON_STYLES } from '../../theme';
 import { ModalHeaderFilter } from '../modals/ModalHeaderFilter';
 import { Rheostat } from '../ui/Rheostat';
 import { ModalResetSubmit } from '../modals/ModalResetSubmit';
@@ -48,9 +48,9 @@ export class FilterFromTo extends React.PureComponent<IProps, IState> {
 					}}
 				>
 					<span>
-						from <strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>{this.props.renderValue(this.props.from)}</strong>
+						from <strong className={COMMON_STYLES.FILTER_ACCENT}>{this.props.renderValue(this.props.from)}</strong>
 						{' '}
-						to <strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>{this.props.renderValue(this.props.to)}</strong>
+						to <strong className={COMMON_STYLES.FILTER_ACCENT}>{this.props.renderValue(this.props.to)}</strong>
 					</span>
 				</FilterBrick>
 

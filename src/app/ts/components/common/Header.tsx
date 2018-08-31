@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as Ionicon from 'react-ionicons';
 import styled, { css, cx } from 'react-emotion';
 
-import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { followStore } from 'react-stores';
 import { StateStore } from '../../stores/StateStore';
 import { Link, NavLink } from 'react-router-dom';
@@ -61,7 +61,7 @@ export class Header extends React.Component<{}, IState> {
 
 								<CurrencySelector className={navLink}/>
 
-								<a href="#" className={cx(COMMON_STYLES_EMOTION.LINK, navLink)}>
+								<a href="#" className={cx(COMMON_STYLES.LINK, navLink)}>
 									<IsTabletOrDesktop>
 										Help
 									</IsTabletOrDesktop>
@@ -211,7 +211,7 @@ const navLink = css`
 `;
 
 const userLink = css`
-	${COMMON_STYLES_EMOTION.LINK};
+	${COMMON_STYLES.LINK};
 	margin-left: ${THEME.SECTION_PADDING_H}px;
 	display: flex;
 	align-items: center;

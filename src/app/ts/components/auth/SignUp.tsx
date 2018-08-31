@@ -4,7 +4,7 @@ import { EFormValidateOn, Form, IFormModelOutput } from '../forms/Form';
 import { ValidatorIsEmail } from '../forms/Validators/ValidatorIsEmail';
 import { Input } from '../forms/Input';
 import { managers } from '../../managers';
-import { COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COMMON_STYLES, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Button } from '../ui/Button';
@@ -72,8 +72,8 @@ export class SignUp extends React.PureComponent<IProps, IState> {
 					<FormLinks>
 						<NavLink
 							className={css`
-								${COMMON_STYLES_EMOTION.LINK};
-								${COMMON_STYLES_EMOTION.SMALL_TEXT};
+								${COMMON_STYLES.LINK};
+								${COMMON_STYLES.SMALL_TEXT};
 								margin: 0 ${THEME.SECTION_PADDING_H / 2}px;
 							`}
 							to={PATHS.AUTH_LOG_IN}

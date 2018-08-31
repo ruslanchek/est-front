@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COMMON_STYLES, THEME } from '../../theme';
 import { EModalSelectItemType, ModalSelect } from '../modals/ModalSelect';
 import { ModalContext } from '../modals/ModalContext';
 import { IsPhone } from './IsPhone';
@@ -120,7 +120,7 @@ const Container = styled('div')`
 `;
 
 const Link = styled('a')`
-	${COMMON_STYLES_EMOTION.LINK};
+	${COMMON_STYLES.LINK};
   display: flex;
 	justify-content: flex-start;
 	position: relative;

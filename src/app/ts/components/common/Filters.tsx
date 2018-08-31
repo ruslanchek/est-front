@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'react-emotion';
-import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { FilterFromTo } from '../filters/FilterFromTo';
 import { FilterAnd } from '../filters/FilterAnd';
 import { FilterRangeEntities } from '../filters/FilterRangeEntities';
@@ -65,7 +65,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 		return (
 			<Container>
 				<Title>
-					Showing <strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>2,436</strong> objects
+					Showing <strong className={COMMON_STYLES.FILTER_ACCENT}>2,436</strong> objects
 				</Title>
 
 				<FilterGroup>

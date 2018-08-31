@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { COMMON_STYLES_EMOTION } from '../../theme';
+import { COMMON_STYLES } from '../../theme';
 import { NumberFormat } from '../ui/NumberFormat';
 import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
@@ -17,7 +17,7 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 		if (from === to) {
 			return (
 				<FilterBrick type={this.props.brickType}>
-					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
+					<strong className={COMMON_STYLES.FILTER_ACCENT}>
 						<NumberFormat value={from}/>
 					</strong>&nbsp;{what}
 				</FilterBrick>
@@ -25,11 +25,11 @@ export class FilterRangeEntities extends React.PureComponent<IProps, {}> {
 		} else {
 			return (
 				<FilterBrick type={this.props.brickType}>
-					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
+					<strong className={COMMON_STYLES.FILTER_ACCENT}>
 						<NumberFormat value={from}/>
 					</strong>&ndash;
 
-					<strong className={COMMON_STYLES_EMOTION.FILTER_ACCENT}>
+					<strong className={COMMON_STYLES.FILTER_ACCENT}>
 						<NumberFormat value={to}/>
 					</strong>&nbsp;{what}
 				</FilterBrick>

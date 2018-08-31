@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { COLORS, COMMON_STYLES_EMOTION, THEME } from '../../theme';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { Checker } from '../ui/Checker';
 import styled from 'react-emotion';
 
@@ -54,7 +54,7 @@ export class ModalSelect extends React.PureComponent<IProps, {}> {
 }
 
 const Selectable = styled('span')`
-  ${COMMON_STYLES_EMOTION.LINK};
+  ${COMMON_STYLES.LINK};
   
   cursor: pointer;
 	display: flex;

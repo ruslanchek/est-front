@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import { COLORS, THEME, COMMON_STYLES_EMOTION } from '../../theme';
+import { COLORS, THEME, COMMON_STYLES } from '../../theme';
 import { PATHS } from '../../config';
 import IObjectAgent = ObjectsStore.IObjectAgent;
 import styled, { css } from 'react-emotion';
@@ -92,7 +92,7 @@ const Contact = styled('div')`
 `;
 
 const ContactRowAccent = styled('a')`
-	${COMMON_STYLES_EMOTION.LINK};
+	${COMMON_STYLES.LINK};
 	font-size: ${THEME.FONT_SIZE_SMALL}px;
   margin: .2em 0;
 `;
