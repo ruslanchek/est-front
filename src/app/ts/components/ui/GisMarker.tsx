@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { css, StyleDeclaration, StyleSheet } from 'aphrodite/no-important';
 import { COLORS, THEME } from '../../theme';
 import Color = require('color');
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
+import styled, { css } from 'react-emotion';
 
 interface IProps {
 	opened: boolean;
@@ -23,21 +23,11 @@ export enum EGisMarkerType {
 export class GisMarker extends React.PureComponent<IProps, {}> {
 	public render() {
 		const { object, type, color, onCLick } = this.props;
-		const markerRules = [
-			styles.marker,
-		];
-
-		switch (type) {
-			case EGisMarkerType.Small : {
-				markerRules.push(styles.small);
-				break;
-			}
-		}
 
 		return (
-			<div
+			<Container
+				type={type}
 				title={object.title}
-				className={css(markerRules)}
 				onClick={() => {
 					onCLick(object);
 				}}
@@ -45,62 +35,72 @@ export class GisMarker extends React.PureComponent<IProps, {}> {
 					background: `${color.toString()}`,
 				}}
 			>
-				{this.props.opened ? <div className={css(styles.popup)}>xxx</div> : null}
-			</div>
+				{this.props.opened ? (
+					<Popup>xxx</Popup>
+				) : null}
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	marker: {
-		width: 20,
-		height: 20,
-		boxShadow: `0 1px 3px rgba(0, 0, 0, .4)`,
-		border: '2px solid #fff',
-		borderRadius: '100%',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		transform: 'translate(-50%, -50%)',
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		opacity: .85,
-		transition: 'opacity .2s, transform .2s',
-		cursor: 'pointer',
+interface IContainerProps {
+	type: EGisMarkerType;
+}
 
-		':before': {
-			content: '""',
-			position: 'relative',
-			display: 'block',
-			width: 8,
-			height: 8,
-			borderRadius: '100%',
-			backgroundColor: COLORS.WHITE.toString()
-		},
+const Container = styled('div')<IContainerProps>`
+  width: 20px;
+	height: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+	border: 2px solid #fff;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	opacity: .85;
+	transition: opacity .2s, transform .2s;
+	cursor: pointer;
 
-		':hover': {
-			opacity: 1,
-			transform: 'translate(-50%, -50%) scale(1.1)',
-		},
-	},
-
-	small: {
-		width: 10,
-		height: 10,
-
-		':before': {
-			display: 'none'
-		}
-	},
-
-	popup: {
-		background: COLORS.WHITE.alpha(.9).toString(),
-		position: 'absolute',
-		borderRadius: 10,
-		boxShadow: THEME.BOX_SHADOW_ELEVATION_2,
-		padding: 20,
-		top: 0,
-		left: 40
+	&:before {
+		content: '';
+		position: relative;
+		display: block;
+		width: 8px;
+		height: 8px;
+		border-radius: 100%;
+		background-color: ${COLORS.WHITE.toString()};
 	}
-});
+
+	&:hover {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1.1);
+	}
+	
+	${(props: IContainerProps) => {
+		switch (props.type) {
+			case EGisMarkerType.Small : {
+				return css`
+					width: 10px;
+					height: 10px;
+			
+					&:before {
+						display: none;
+					}
+				`;
+			}
+		}
+	}}
+`;
+
+const Popup = styled('div')`
+  background: ${COLORS.WHITE.alpha(.9).toString()};
+	position: absolute;
+	border-radius: 10px;
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_2};
+	padding: 20px;
+	top: 0;
+	left: 40px;
+`;

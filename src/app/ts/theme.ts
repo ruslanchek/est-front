@@ -1,6 +1,5 @@
 import Color = require('color');
 import { css } from 'emotion';
-import { StyleSheet } from 'aphrodite/no-important';
 import { CSSUtils, EMQ } from './lib/CSSUtils';
 
 export const COLORS = {
@@ -44,119 +43,6 @@ export const THEME = {
 	PAGE_MAX_WIDTH: 1600,
 	INPUT_HEIGHT: 38
 };
-
-export const COMMON_STYLES = StyleSheet.create({
-	LINK: {
-		color: COLORS.BLACK.toString(),
-		textDecoration: 'none',
-
-		':link': {
-			color: COLORS.BLACK.toString(),
-		},
-
-		':visited': {
-			color: COLORS.BLACK.toString(),
-		},
-
-		':hover': {
-			color: COLORS.BLACK.lighten(1.25).toString(),
-		},
-
-		':active': {
-			color: COLORS.BLACK.lighten(1).toString(),
-		}
-	},
-
-	CONTEXTUAL_LINK: {
-		color: COLORS.BLUE.toString(),
-		textDecoration: 'none',
-
-		':link': {
-			color: COLORS.BLUE.toString(),
-		},
-
-		':visited': {
-			color: COLORS.BLUE.toString(),
-		},
-
-		':hover': {
-			color: COLORS.BLUE.lighten(.15).toString(),
-		},
-
-		':active': {
-			color: COLORS.BLUE.lighten(.15).toString(),
-		}
-	},
-
-	SMALL_TEXT: {
-		fontSize: THEME.FONT_SIZE_SMALL,
-	},
-
-	LAYOUT_DESKTOP: {
-		position: 'relative',
-		maxWidth: THEME.PAGE_MAX_WIDTH,
-		width: '100%',
-		margin: '0 auto',
-		boxSizing: 'border-box',
-		paddingLeft: THEME.PAGE_SIDE_PADDING_DESKTOP,
-		paddingRight: THEME.PAGE_SIDE_PADDING_DESKTOP
-	},
-
-	LAYOUT_PHONE_OR_TABLET: CSSUtils.mediaSize(EMQ.PhoneOrTablet, {
-		paddingLeft: THEME.PAGE_SIDE_PADDING_PHONE,
-		paddingRight: THEME.PAGE_SIDE_PADDING_PHONE
-	}),
-
-	FILTER_BRICK: {
-		height: 27,
-		display: 'flex',
-		alignItems: 'center',
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		backgroundColor: COLORS.GRAY_DARK.toString(),
-		cursor: 'pointer',
-		transition: 'background-color .2s',
-		marginTop: 10,
-		fontSize: THEME.FONT_SIZE_SMALL,
-		userSelect: 'none',
-
-		':hover': {
-			backgroundColor: COLORS.GRAY_DARK.darken(0.075).toString(),
-		}
-	},
-
-	FILTER_SELECTED: {
-		backgroundColor: COLORS.GRAY_DARK.darken(0.1).toString(),
-	},
-
-	FILTER_ACCENT: {
-		color: COLORS.BLACK.toString(),
-		fontWeight: 600
-	},
-
-	INPUT: {
-		width: '100%',
-		backgroundColor: COLORS.WHITE.toString(),
-		padding: `0 ${THEME.SECTION_PADDING_H / 2}px`,
-		outline: 'none',
-		borderRadius: 4,
-		height: THEME.INPUT_HEIGHT,
-		lineHeight: `${THEME.INPUT_HEIGHT}px`,
-		fontSize: THEME.FONT_SIZE_REGULAR,
-		border: `1px solid ${COLORS.GRAY_DARK.darken(.05)}`,
-		fontWeight: 600,
-		color: COLORS.BLACK.toString(),
-		transition: 'border-color .2s',
-		boxSizing: 'border-box',
-
-		':hover': {
-			borderColor: COLORS.GRAY_DARK.darken(.1).toString(),
-		},
-
-		':focus': {
-			borderColor: COLORS.GRAY_DARK.darken(.15).toString(),
-		},
-	}
-});
 
 export const COMMON_STYLES_EMOTION = {
 	LINK: css({
