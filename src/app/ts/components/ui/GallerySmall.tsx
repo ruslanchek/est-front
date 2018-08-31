@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { css, StyleSheet } from 'aphrodite/no-important';
 import { ObjectsStore } from '../../stores/ObjectsStore';
 import IObject = ObjectsStore.IObject;
 import { THEME } from '../../theme';
 import { Image } from './Image';
 import { CSSTransition } from 'react-transition-group';
+import styled, { css } from 'react-emotion';
 
 interface IProps {
 	objectData: IObject;
@@ -56,14 +56,13 @@ export class GallerySmall extends React.Component<IProps, IState> {
 		const { currentPage } = this.state;
 
 		return (
-			<div
-				className={css(styles.gallery)}
+			<Container
 				onMouseEnter={() => this.setState({showPages: true})}
 				onMouseLeave={() => this.setState({showPages: false})}
 			>
 				<Image
 					src={this.state.currentPicSrc}
-					className={css(styles.image)}
+					className={image}
 				/>
 
 				<CSSTransition
@@ -71,107 +70,107 @@ export class GallerySmall extends React.Component<IProps, IState> {
 					unmountOnExit
 					timeout={PAGE_APPEAR_ANIMATION_TIME}
 					classNames={{
-						enter: css(styles.enterPages),
-						enterActive: css(styles.enterActivePages),
-						exit: css(styles.exitPages),
-						exitActive: css(styles.exitActivePages)
+						enter: pagesTransitions.enter,
+						enterActive: pagesTransitions.enterActive,
+						exit: pagesTransitions.exit,
+						exitActive: pagesTransitions.exitActive,
 					}}
 				>
-					<div className={css(styles.pages)}>
+					<Pages>
 						{pictures.map((picture, i) => {
-							const rules = [
-								styles.page
-							];
-
-							if(i === currentPage) {
-								rules.push(styles.pageActive);
-							}
-
 							return (
-								<i
+								<Page
 									onMouseEnter={() => {
 										this.setState({
 											currentPage: i,
 											currentPicSrc: pictures[i].src
 										});
 									}}
-									className={css(rules)}
+									isActive={i === currentPage}
 									key={i}
 								/>
 							);
 						})}
-					</div>
+					</Pages>
 				</CSSTransition>
-			</div>
+			</Container>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	gallery: {
-		position: 'relative',
-		userSelect: 'none',
-	},
+interface IPageProps {
+	isActive: boolean;
+}
 
-	pages: {
-		position: 'absolute',
-		bottom: THEME.SECTION_PADDING_H,
-		left: 0,
-		width: '100%',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
+const image = css`
+  border-radius: 6px 6px 0 0;
+`;
 
-	enterPages: {
-		transform: 'translateY(200%)',
-		opacity: 0
-	},
+const Container = styled('div')`
+	position: relative;
+	user-select: none;
+`;
 
-	enterActivePages: {
-		transform: 'translateY(0%)',
-		transition: `all ${PAGE_APPEAR_ANIMATION_TIME}ms`,
-		transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.390, 1.100)',
-		opacity: 1
-	},
+const Pages = styled('div')`
+  position: absolute;
+	bottom: ${THEME.SECTION_PADDING_H}px;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
 
-	exitPages: {
-		transform: 'translateY(0%)',
-		opacity: 1
-	},
+const Page = styled('i')<IPageProps>`
+  width: 16px;
+	height: 16px;
+	opacity: .7;
+	transition: transform .2s, opacity .2s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 
-	exitActivePages: {
-		transform: 'translateY(200%)',
-		transition: `all ${PAGE_APPEAR_ANIMATION_TIME}ms`,
-		opacity: 0
-	},
-
-	page: {
-		width: 16,
-		height: 16,
-		opacity: .7,
-		transition: 'transform .2s, opacity .2s',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		cursor: 'pointer',
-
-		':after': {
-			display: 'block',
-			content: '""',
-			width: 4,
-			height: 4,
-			borderRadius: 4,
-			backgroundColor: '#fff',
-		}
-	},
-
-	pageActive: {
-		transform: 'scale(1.5)',
-		opacity: 1
-	},
-
-	image: {
-		borderRadius: '6px 6px 0 0'
+	&:after {
+		display: block;
+		content: '';
+		width: 4px;
+		height: 4px;
+		border-radius: 4px;
+		background-color: #fff;
 	}
-});
+	
+	${(props: IPageProps) => {
+		if(props.isActive) {
+			return css`
+				transform: scale(1.5);
+				opacity: 1;
+			`;
+		}
+	}}
+`;
+
+const pagesTransitions = {
+	enter: css`
+		transform: translateY(200%);
+		opacity: 0;
+	`,
+
+	enterActive: css`
+		transform: translateY(0%);
+		transition: all ${PAGE_APPEAR_ANIMATION_TIME}ms;
+		transition-timing-function: cubic-bezier(.175, .885, .390, 1.100);
+		opacity: 1;
+	`,
+
+	exit: css`
+		transform: translateY(0%);
+		opacity: 1;
+	`,
+
+	exitActive: css`
+		transform: translateY(200%);
+		transition: all ${PAGE_APPEAR_ANIMATION_TIME}ms;
+		opacity: 0;
+	`,
+};
