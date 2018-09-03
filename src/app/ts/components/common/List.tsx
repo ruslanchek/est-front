@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { css } from 'react-emotion';
 import Color = require('color');
 import { ObjectsStore } from '../../stores/ObjectsStore';
-import { ObjectInList } from '../blocks/ObjectInList';
+import { AdvertListItem } from '../blocks/AdvertListItem';
 import { mq } from '../../lib/CSSUtils';
 import { SpecialBrick } from '../ui/SpecialBrick';
 import { CONFIG } from '../../config';
@@ -14,7 +14,6 @@ interface IProps {
 
 export class List extends React.PureComponent<IProps, {}> {
 	public render() {
-
 		return (
 			<Container>
 				<ListContainer>
@@ -33,7 +32,7 @@ export class List extends React.PureComponent<IProps, {}> {
 
 					{ObjectsStore.store.state.objects.map((object, i) => {
 						return (
-							<ObjectInList
+							<AdvertListItem
 								key={i}
 								objectData={object}
 								className={item}

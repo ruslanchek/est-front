@@ -5,8 +5,7 @@
         "watch": false,
         "env": {
           "PORT": 5566,
-          "NODE_ENV": "production",
-					"DATABASE_URL": "postgres://realthub:Tukzara2044@realthub.com:5432/realthub"
+          "NODE_ENV": "production"
         },
         "name": "realthub.com",
         "instances": 1,

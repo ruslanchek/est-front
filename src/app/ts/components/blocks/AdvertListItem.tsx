@@ -18,7 +18,7 @@ interface IProps {
 	className: string;
 }
 
-export class ObjectInList extends React.Component<IProps, {}> {
+export class AdvertListItem extends React.Component<IProps, {}> {
 	public render() {
 		const {
 			objectData,
