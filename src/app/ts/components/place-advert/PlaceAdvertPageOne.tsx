@@ -47,15 +47,16 @@ interface IPageInterface {
 }
 
 const Container = styled('div')`
-	
+	display: flex;
+	justify-content: flex-start;
 `;
 
 const Info = styled('section')`
-  
+  width: 33%;
 `;
 
 const Content = styled('section')`
-  
+  width: 67%;
 `;
 
 const Pages = styled('nav')`
