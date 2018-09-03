@@ -52,11 +52,11 @@ const Container = styled('div')`
 `;
 
 const Info = styled('section')`
-  width: 33%;
+  width: 30%;
 `;
 
 const Content = styled('section')`
-  width: 67%;
+  width: 70%;
 `;
 
 const Pages = styled('nav')`
