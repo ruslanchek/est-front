@@ -7,9 +7,8 @@ import { EFormValidateOn, Form, IFormModelOutput } from '../forms/Form';
 import { Button } from '../ui/Button';
 import { managers } from '../../managers';
 import { EAdvertContractType, EAdvertType } from '../../managers/AdvertManager';
-import { Input } from '../forms/Input';
-import { ListTable } from '../common/ListTable';
-import { Selector } from '../ui/Selector';
+import { PlaceAdvert } from '../place-advert/PlaceAdvert';
+
 
 interface IProps {
 
@@ -38,20 +37,24 @@ export class PlaceAdvertPage extends React.Component<IProps, IState> {
 			<React.Fragment>
 				<Layout topPadding={true} bottomPadding={true}>
 					<BreadCrumbs/>
+					<PlaceAdvert/>
 
-					<Form onSubmit={this.handleForm} validateOn={EFormValidateOn.SUBMIT}>
-						<Input name="title"/>
-						<Input name="price"/>
-						<Selector/>
+					{/*<Form*/}
+						{/*onSubmit={this.handleForm}*/}
+						{/*validateOn={EFormValidateOn.SUBMIT}*/}
+					{/*>*/}
+						{/*<Input name="title"/>*/}
+						{/*<Input name="price"/>*/}
+						{/*<Selector/>*/}
 
-						<Button loading={this.state.loading}>
-							Place advert
-						</Button>
-					</Form>
+						{/*<Button loading={this.state.loading}>*/}
+							{/*Place advert*/}
+						{/*</Button>*/}
+					{/*</Form>*/}
 
-					<ListTable
-						items={this.state.adverts}
-					/>
+					{/*<ListTable*/}
+						{/*items={this.state.adverts}*/}
+					{/*/>*/}
 				</Layout>
 			</React.Fragment>
 		);

@@ -1,25 +1,23 @@
-import { Store } from 'react-stores';
+import { Store, StorePersistantDriver, StorePersistentLocalSrorageDriver } from 'react-stores';
 
 export namespace PlaceAdvertStore {
-	export interface IProfile {
-		id: number;
-		email: string;
-		emailVerified: boolean;
-		name: string;
-		phone: string;
-		type: string;
-		avatar: string;
+	export enum EPlaceAdvertPage {
+		Welcome,
+		Info,
+		Address,
+		Images,
+		Additional,
 	}
 
 	export interface IState {
-		authorized: boolean;
-		profile: IProfile;
+		page: EPlaceAdvertPage;
 	}
 
 	export const initialState: IState = {
-		authorized: false,
-		profile: null,
+		page: EPlaceAdvertPage.Welcome,
 	};
 
-	export let store: Store<IState> = new Store<IState>(initialState);
+	export let store: Store<IState> = new Store<IState>(initialState, {
+		live: true,
+	}, new StorePersistentLocalSrorageDriver('place-advert'));
 }
