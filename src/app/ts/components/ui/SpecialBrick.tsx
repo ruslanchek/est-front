@@ -7,8 +7,8 @@ import { COLORS, THEME } from '../../theme';
 import styled, { css } from 'react-emotion';
 
 interface IProps {
-	color1: Color;
-	color2: Color;
+	color1: string;
+	color2: string;
 	title: string;
 	subtitle: string;
 	className?: string;
@@ -29,13 +29,10 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 				<Link
 					to={PATHS.HOME}
 					className={container}
-					style={{
-						backgroundColor: color1.toString(),
-						backgroundImage: CSSUtils.linearGradient(10, color1, color2, 10, 100),
-					}}>
-					<Inner>
+				>
+					<Inner color1={Color(color1)} color2={Color(color2)}>
 						<Title>
-							{title}
+							{title} {color1.toString()}
 						</Title>
 
 						<Subtitle>
@@ -46,6 +43,11 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 			</div>
 		);
 	}
+}
+
+interface IInnerProps {
+	color1: Color;
+	color2: Color;
 }
 
 const container = css`
@@ -59,7 +61,7 @@ const container = css`
 	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_1};
 `;
 
-const Inner = styled('span')`
+const Inner = styled('span')<IInnerProps>`
   position: absolute;
 	top: 0;
 	left: 0;
@@ -71,6 +73,8 @@ const Inner = styled('span')`
 	box-sizing: border-box;
 	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	background-color: ${props => props.color1.toString()};
+	background-image: ${props => CSSUtils.linearGradient(10, props.color1, props.color2, 10, 100)};
 `;
 
 const Title = styled('span')`

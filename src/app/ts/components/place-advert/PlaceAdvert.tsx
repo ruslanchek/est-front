@@ -87,9 +87,9 @@ const Page = styled('i')<IPageInterface>`
 	${(props: IPageInterface) => {
 	if (props.isActive) {
 		return css`
-				color: ${COLORS.BLUE_SELECTED.toString()};
-				border-color: ${COLORS.BLUE_SELECTED.toString()};
-			`;
+			color: ${COLORS.BLUE_SELECTED.toString()};
+			border-color: ${COLORS.BLUE_SELECTED.toString()};
+		`;
 	}
 }}
 `;

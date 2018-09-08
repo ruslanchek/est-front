@@ -7,8 +7,8 @@ export namespace ObjectsStore {
 		id: number;
 		title: string;
 		price: number;
-		color1: Color;
-		color2: Color;
+		color1: string;
+		color2: string;
 	}
 
 	export interface IObject {

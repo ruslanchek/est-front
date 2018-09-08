@@ -21,8 +21,8 @@ export class List extends React.PureComponent<IProps, {}> {
 						return (
 							<SpecialBrick
 								key={i}
-								color1={Color(preset.color1)}
-								color2={Color(preset.color2)}
+								color1={preset.color1}
+								color2={preset.color2}
 								title={preset.title}
 								subtitle={`From ${preset.price.toLocaleString(CONFIG.DEFAULT_LOCALE)} EUR`}
 								className={item}

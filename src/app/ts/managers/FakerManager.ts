@@ -83,14 +83,12 @@ export class FakerManager extends Manager {
 	}
 
 	public generatePreset(): IPreset {
-		const color: Color = Color(faker.internet.color());
-
 		return {
 			id: faker.random.number({min: 1, max: 1000}),
 			title: faker.random.words(2),
 			price: faker.random.number({min: 1000, max: 5000}),
-			color1: color.lighten(.3),
-			color2: color.lighten(.8)
+			color1: faker.internet.color(),
+			color2: faker.internet.color(),
 		};
 	}
 
