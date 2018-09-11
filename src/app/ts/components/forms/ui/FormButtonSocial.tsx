@@ -15,7 +15,7 @@ export class FormButtonSocial extends React.PureComponent<IProps, {}> {
 			<Button
 				type="button"
 				loading={this.props.loading}
-				themes={[EButtonTheme.Agree, EButtonTheme.Facebook]}
+				themes={[EButtonTheme.Agree, EButtonTheme.Facebook, EButtonTheme.Full]}
 			>
 				<Ionicon
 					className={icon}

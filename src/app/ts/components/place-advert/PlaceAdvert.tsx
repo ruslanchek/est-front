@@ -4,6 +4,7 @@ import { COLORS, THEME } from '../../theme';
 import { PlaceAdvertStore } from '../../stores/PlaceAdvertStore';
 import EPlaceAdvertPage = PlaceAdvertStore.EPlaceAdvertPage;
 import { followStore } from 'react-stores';
+import { Button } from '../ui/Button';
 
 interface IProps {
 
@@ -38,7 +39,11 @@ export class PlaceAdvert extends React.PureComponent<IProps, IState> {
 				</Info>
 
 				<Content>
+					<Title>Information about property</Title>
 
+					<Button>
+						Next step
+					</Button>
 				</Content>
 			</Container>
 		);
@@ -58,14 +63,24 @@ interface IPageInterface {
 const Container = styled('div')`
 	display: flex;
 	justify-content: flex-start;
+	box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+	background-color: ${COLORS.WHITE.toString()};
+	border-radius: 6px;
 `;
 
 const Info = styled('section')`
-  width: 30%;
+  width: 25%;
+  background-color: ${COLORS.GRAY_LIGHT.alpha(.5).toString()};
+  border-right: 1px solid ${COLORS.GRAY_LIGHT.toString()};
+  border-radius: 6px 0 0 6px;
+  padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+  box-sizing: border-box;
 `;
 
 const Content = styled('section')`
-  width: 70%;
+  width: 75%;
+  padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
+  box-sizing: border-box;
 `;
 
 const Pages = styled('nav')`
@@ -80,16 +95,29 @@ const Page = styled('i')<IPageInterface>`
   display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid ${COLORS.GRAY_DARK.toString()};
-	color: ${COLORS.GRAY_DARK.toString()};
+	border: 2px solid ${COLORS.GRAY_EXTRA_DARK.toString()};
+	color: ${COLORS.GRAY_EXTRA_DARK.toString()};
 	transition: border-color .2s, color .2s;
+	width: 28px;
+	height: 28px;
+	min-width: 28px;
+	border-radius: 50%;
+	font-weight: 600;
+	
+	&:hover {
+		background-color: ${COLORS.BLUE_HOVER.toString()};
+	}
 	
 	${(props: IPageInterface) => {
-	if (props.isActive) {
-		return css`
-			color: ${COLORS.BLUE_SELECTED.toString()};
-			border-color: ${COLORS.BLUE_SELECTED.toString()};
-		`;
-	}
-}}
+		if (props.isActive) {
+			return css`
+				color: ${COLORS.BLUE.toString()};
+				border-color: ${COLORS.BLUE.toString()};
+			`;
+		}
+	}}
+`;
+
+const Title = styled('h2')`
+  margin-top: 0;
 `;

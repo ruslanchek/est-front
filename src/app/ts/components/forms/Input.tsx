@@ -193,6 +193,7 @@ const Label = styled('label')`
 	position: relative;
 	height: ${THEME.INPUT_HEIGHT}px;
 	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
 	top: 0;
 	left: 0;
 `;

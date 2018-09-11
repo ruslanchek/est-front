@@ -50,6 +50,22 @@ export class Button extends React.PureComponent<IProps, {}> {
 			classNames.push(buttonStyles[theme]);
 		});
 
+		let loadingColor = COLORS.WHITE;
+
+		if(themes.indexOf(EButtonTheme.Agree) >= 0) {
+			loadingColor = COLORS.BLUE;
+		}
+
+		if(themes.indexOf(EButtonTheme.Reject) >= 0) {
+			loadingColor = COLORS.RED;
+		}
+
+		if(themes.indexOf(EButtonTheme.Facebook) >= 0) {
+			loadingColor = COLORS.FACEBOOK;
+		}
+		
+		console.log(loadingColor, themes);
+		
 		return (
 			<Btn
 				disabled={disabled || loading}
@@ -61,7 +77,7 @@ export class Button extends React.PureComponent<IProps, {}> {
 					<Loading
 						className={loadingStyle}
 						size={24}
-						color={COLORS.WHITE}
+						color={loadingColor}
 					/>
 				) : children}
 			</Btn>
@@ -74,12 +90,12 @@ const Btn = styled('button')`
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	width: 100%;
 	border: none;
 	background: none;
 	font-family: ${THEME.FONT};
 	font-weight: 400;
 	height: 34px;
+	padding: 0 20px;
 	font-size: ${THEME.FONT_SIZE_REGULAR}px;
 	border-radius: 4px;
 	text-align: center;

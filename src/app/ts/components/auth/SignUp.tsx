@@ -7,7 +7,7 @@ import { managers } from '../../managers';
 import { COMMON_STYLES, THEME } from '../../theme';
 import { NavLink } from 'react-router-dom';
 import { PATHS } from '../../config';
-import { Button } from '../ui/Button';
+import { Button, EButtonTheme } from '../ui/Button';
 import { ModalHeaderBig } from '../modals/ModalHeaderBig';
 import { FormButtonSocial } from '../forms/ui/FormButtonSocial';
 import { FormButtonsBlock } from '../forms/ui/FormButtonsBlock';
@@ -58,7 +58,7 @@ export class SignUp extends React.PureComponent<IProps, IState> {
 					</FormRows>
 
 					<FormButtonsBlock>
-						<Button loading={this.state.loading}>
+						<Button loading={this.state.loading} themes={[EButtonTheme.Agree, EButtonTheme.Full]}>
 							Sign up
 						</Button>
 					</FormButtonsBlock>
