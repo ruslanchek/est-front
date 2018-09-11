@@ -159,7 +159,7 @@ const buttonStyles = {
 
 		&:hover {
 			background-color: ${COLORS.FACEBOOK.alpha(.2).toString()};
-		},
+		}
 	`,
 
 	full: css`
