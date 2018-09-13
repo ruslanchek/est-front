@@ -63,9 +63,7 @@ export class Button extends React.PureComponent<IProps, {}> {
 		if(themes.indexOf(EButtonTheme.Facebook) >= 0) {
 			loadingColor = COLORS.FACEBOOK;
 		}
-		
-		console.log(loadingColor, themes);
-		
+
 		return (
 			<Btn
 				disabled={disabled || loading}

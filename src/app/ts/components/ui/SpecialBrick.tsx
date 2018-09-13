@@ -32,7 +32,7 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 				>
 					<Inner color1={Color(color1)} color2={Color(color2)}>
 						<Title>
-							{title} {color1.toString()}
+							{title}
 						</Title>
 
 						<Subtitle>

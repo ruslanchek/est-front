@@ -22,7 +22,7 @@ let plugins = [
 			publicPath: '/',
 		},
 	}),
-	new BundleAnalyzerPlugin(),
+	// new BundleAnalyzerPlugin(),
 	// new HardSourceWebpackPlugin(),
 ];
 
