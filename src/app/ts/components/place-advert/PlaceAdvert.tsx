@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled, { css } from 'react-emotion';
-import { COLORS, THEME } from '../../theme';
+import styled, { css, cx } from 'react-emotion';
+import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { PlaceAdvertStore } from '../../stores/PlaceAdvertStore';
 import EPlaceAdvertPage = PlaceAdvertStore.EPlaceAdvertPage;
 import { followStore } from 'react-stores';
@@ -52,14 +52,24 @@ export class PlaceAdvert extends React.Component<IProps, IState> {
 						>5</Page>
 					</Pages>
 
+					<Div/>
+
 					<Text>
-						<h3>
+						<strong>
 							Add Basic Details
-						</h3>
+						</strong>
+
+						<br/>
 
 						Add details like price, configuration
 						furnishing availability etc.
 					</Text>
+
+					<Div/>
+
+					<Save>
+						<a href="#" className={cx(COMMON_STYLES.LINK, saveLink)}>Save and exit</a>
+					</Save>
 				</Info>
 
 				<Content>
@@ -93,6 +103,10 @@ interface IPageInterface {
 	isFinished: boolean;
 }
 
+const saveLink = css`
+  color: ${COLORS.GRAY_DARK.toString()} !important;
+`;
+
 const Text = styled('div')`
   color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
   text-align: center;
@@ -122,10 +136,23 @@ const Content = styled('section')`
   box-sizing: border-box;
 `;
 
+const Div = styled('div')`
+	background-color: ${COLORS.GRAY_DARK.toString()};
+	height: 2px;
+	width: 30%;
+	margin: ${THEME.SECTION_PADDING_V}px auto;
+`;
+
+const Save = styled('div')`
+  font-weight: 600;
+  text-align: center;
+`;
+
 const Pages = styled('nav')`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: ${THEME.SECTION_PADDING_V}px;
 `;
 
 const Page = styled('i')<IPageInterface>`
@@ -134,26 +161,26 @@ const Page = styled('i')<IPageInterface>`
   display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 2px solid ${COLORS.GRAY_EXTRA_DARK.toString()};
+	border: 1px solid ${COLORS.GRAY_EXTRA_DARK.toString()};
 	color: ${COLORS.GRAY_EXTRA_DARK.toString()};
 	transition: border-color .2s, color .2s, background-color .2s;
 	width: 28px;
 	height: 28px;
 	min-width: 28px;
 	border-radius: 50%;
-	font-weight: 800;
+	font-weight: 400;
 	cursor: pointer;
 	position: relative;
 	background-color: ${COLORS.WHITE.toString()};
 	
 	&:before {
-		height: 2px;
+		height: 1px;
 		width: ${THEME.SECTION_PADDING_H}px;
 		transition: background-color .2s;
 		display: block;
 		content: '';
 		position: absolute;
-		left: -${THEME.SECTION_PADDING_H + 2}px;
+		left: -${THEME.SECTION_PADDING_H + 1}px;
 		background-color: ${COLORS.GRAY_EXTRA_DARK.toString()};
 	}
 	
