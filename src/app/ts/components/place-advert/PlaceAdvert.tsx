@@ -25,22 +25,41 @@ export class PlaceAdvert extends React.Component<IProps, IState> {
 			<Container>
 				<Info>
 					<Pages>
-						<Page onClick={this.page.bind(this, EPlaceAdvertPage.Welcome)}
-									isFinished={true}
-									isActive={page === EPlaceAdvertPage.Welcome}>1</Page>
-						<Page onClick={this.page.bind(this, EPlaceAdvertPage.Info)}
-									isFinished={true}
-									isActive={page === EPlaceAdvertPage.Info}>2</Page>
-						<Page onClick={this.page.bind(this, EPlaceAdvertPage.Address)}
-									isFinished={false}
-									isActive={page === EPlaceAdvertPage.Address}>3</Page>
-						<Page onClick={this.page.bind(this, EPlaceAdvertPage.Images)}
-									isFinished={false}
-									isActive={page === EPlaceAdvertPage.Images}>4</Page>
-						<Page onClick={this.page.bind(this, EPlaceAdvertPage.Additional)}
-									isFinished={false}
-									isActive={page === EPlaceAdvertPage.Additional}>5</Page>
+						<Page
+							onClick={this.page.bind(this, EPlaceAdvertPage.Welcome)}
+							isFinished={true}
+							isActive={page === EPlaceAdvertPage.Welcome}
+						>1</Page>
+						<Page
+							onClick={this.page.bind(this, EPlaceAdvertPage.Info)}
+							isFinished={true}
+							isActive={page === EPlaceAdvertPage.Info}
+						>2</Page>
+						<Page
+							onClick={this.page.bind(this, EPlaceAdvertPage.Address)}
+							isFinished={false}
+							isActive={page === EPlaceAdvertPage.Address}
+						>3</Page>
+						<Page
+							onClick={this.page.bind(this, EPlaceAdvertPage.Images)}
+							isFinished={false}
+							isActive={page === EPlaceAdvertPage.Images}
+						>4</Page>
+						<Page
+							onClick={this.page.bind(this, EPlaceAdvertPage.Additional)}
+							isFinished={false}
+							isActive={page === EPlaceAdvertPage.Additional}
+						>5</Page>
 					</Pages>
+
+					<Text>
+						<h3>
+							Add Basic Details
+						</h3>
+
+						Add details like price, configuration
+						furnishing availability etc.
+					</Text>
 				</Info>
 
 				<Content>
@@ -74,6 +93,11 @@ interface IPageInterface {
 	isFinished: boolean;
 }
 
+const Text = styled('div')`
+  color: ${COLORS.BLACK_EXTRA_LIGHT.toString()};
+  text-align: center;
+`;
+
 const Container = styled('div')`
 	display: flex;
 	justify-content: flex-start;
@@ -84,11 +108,12 @@ const Container = styled('div')`
 
 const Info = styled('section')`
   width: 25%;
-  background-color: ${COLORS.GRAY_LIGHT.alpha(.5).toString()};
   border-right: 1px solid ${COLORS.GRAY_LIGHT.toString()};
   border-radius: 6px 0 0 6px;
   padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Content = styled('section')`
@@ -145,8 +170,8 @@ const Page = styled('i')<IPageInterface>`
 	}
 	
 	${(props: IPageInterface) => {
-		if (props.isActive) {
-			return css`
+	if (props.isActive) {
+		return css`
 				color: ${COLORS.WHITE.toString()} !important;
 				border-color: ${COLORS.BLUE.toString()} !important;
 				background-color: ${COLORS.BLUE.toString()} !important;
@@ -155,10 +180,10 @@ const Page = styled('i')<IPageInterface>`
 					background-color: ${COLORS.BLUE.toString()};
 				}
 			`;
-		}
+	}
 
-		if (props.isFinished) {
-			return css`
+	if (props.isFinished) {
+		return css`
 				color: ${COLORS.BLUE.toString()} !important;
 				border-color: ${COLORS.BLUE.toString()} !important;
 				
@@ -166,8 +191,8 @@ const Page = styled('i')<IPageInterface>`
 					background-color: ${COLORS.BLUE.toString()};
 				}
 			`;
-		}
-	}}
+	}
+}}
 `;
 
 const Title = styled('h2')`
