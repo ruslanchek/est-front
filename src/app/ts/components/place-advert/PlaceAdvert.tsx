@@ -104,7 +104,7 @@ interface IPageInterface {
 }
 
 const saveLink = css`
-  color: ${COLORS.GRAY_DARK.toString()} !important;
+
 `;
 
 const Text = styled('div')`
