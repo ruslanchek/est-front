@@ -13,7 +13,6 @@
 	"devDependencies": {
 		"@types/axios": "^0.14.0",
 		"@types/color": "^3.0.0",
-		"@types/faker": "^4.1.2",
 		"@types/jest": "^22.2.3",
 		"@types/moment": "^2.13.0",
 		"@types/pixi.js": "^4.7.3",
@@ -42,7 +41,6 @@
 		"axios": "^0.18.0",
 		"color": "^3.0.0",
 		"emotion": "^9.2.6",
-		"faker": "^4.1.0",
 		"google-map-react": "^1.0.4",
 		"history": "^4.7.2",
 		"js-cookie": "^2.2.0",
