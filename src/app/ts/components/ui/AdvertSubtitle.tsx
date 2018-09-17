@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { AdvertsStore } from '../../stores/AdvertsStore';
+import IAdvert = AdvertsStore.IAdvert;
 import { COLORS, THEME } from '../../theme';
-import EObjectType = ObjectsStore.EObjectType;
 import { CONFIG } from '../../config';
 import styled from 'react-emotion';
+import EAdvertType = AdvertsStore.EAdvertType;
 
 interface IProps {
-	objectData: IObject;
+	advertData: IAdvert;
 }
 
-export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
+export class AdvertSubtitle extends React.PureComponent<IProps, {}> {
 	public render() {
 		return (
 			<H2>
@@ -20,7 +20,7 @@ export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 	}
 
 	private getAge() {
-		const { constructionDate } = this.props.objectData;
+		const { constructionDate } = this.props.advertData;
 		const years: number = constructionDate.getFullYear();
 
 		if (years >= 1) {
@@ -39,13 +39,13 @@ export class ObjectSubtitle extends React.PureComponent<IProps, {}> {
 	}
 
 	private getTypeName(): string {
-		const { type } = this.props.objectData;
+		const { type } = this.props.advertData;
 
 		switch (type) {
-			case EObjectType.DetachedHouse : return 'Detached house';
-			case EObjectType.TownHouse : return 'Townhouse';
-			case EObjectType.Flat : return 'Flat';
-			case EObjectType.Studio : return 'Studio';
+			case EAdvertType.DetachedHouse : return 'Detached house';
+			case EAdvertType.TownHouse : return 'Townhouse';
+			case EAdvertType.Flat : return 'Flat';
+			case EAdvertType.Studio : return 'Studio';
 		}
 	}
 }

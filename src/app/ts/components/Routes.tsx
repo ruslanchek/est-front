@@ -5,7 +5,7 @@ import { CONFIG, PATHS } from '../config';
 import { ERouteAuthRule } from '../managers/RouteManager';
 import { HomePage } from './pages/HomePage';
 import { Page, PageLayout } from './pages/Page';
-import { ObjectPage } from './pages/ObjectPage';
+import { AdvertPage } from './pages/AdvertPage';
 import { AgentPage } from './pages/AgentPage';
 import { AuthSignUpPage } from './pages/AuthSignUpPage';
 import { AuthLoginPage } from './pages/AuthLoginPage';
@@ -38,7 +38,7 @@ export class Routes extends React.Component<{}, IState> {
 
 				<Route
 					exact={true}
-					path={PATHS.OBJECT}
+					path={PATHS.ADVERT}
 					render={props => {
 						return (
 							<Page
@@ -46,7 +46,7 @@ export class Routes extends React.Component<{}, IState> {
 								layout={PageLayout.Default}
 								authRule={ERouteAuthRule.Shared}
 							>
-								<ObjectPage/>
+								<AdvertPage/>
 							</Page>
 						);
 					}}

@@ -16,11 +16,11 @@ export interface IFilterGroup {
 
 export enum EFilterType {
 	RangePredefined,
-	RangeSimple
+	RangeSimple,
 }
 
 export enum EFilterFormat {
-	Price
+	Price,
 }
 
 export class FiltersManager extends Manager {

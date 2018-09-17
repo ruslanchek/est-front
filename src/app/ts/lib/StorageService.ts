@@ -20,11 +20,25 @@ export namespace StorageService {
 		public storage = null;
 		public userId: number = 0;
 
+		public createStorage(type: string): void {
+			if (this.testStorageAvailability(type)) {
+				this.storage = window[type];
+			}
+		}
+
+		public prefixName(name: string, overrideUserId?: boolean): string {
+			if (overrideUserId) {
+				return `${CONFIG.STORAGE.PREFIX}.OVERRIDE.${name}`;
+			} else {
+				return `${CONFIG.STORAGE.PREFIX}.${this.userId.toString()}.${name}`;
+			}
+		}
+
 		private testStorageAvailability(type: string): boolean {
 			if (typeof window !== 'undefined') {
 				try {
-					let storage = window[type];
-					let x = '__storage_test__';
+					const storage = window[type];
+					const x = '__storage_test__';
 
 					storage.setItem(x, x);
 					storage.removeItem(x);
@@ -37,20 +51,6 @@ export namespace StorageService {
 				}
 			} else {
 				return false;
-			}
-		}
-
-		public createStorage(type: string): void {
-			if (this.testStorageAvailability(type)) {
-				this.storage = window[type];
-			}
-		}
-
-		public prefixName(name: string, overrideUserId?: boolean): string {
-			if (overrideUserId) {
-				return `${CONFIG.STORAGE.PREFIX}.OVERRIDE.${name}`;
-			} else {
-				return `${CONFIG.STORAGE.PREFIX}.${this.userId.toString()}.${name}`;
 			}
 		}
 	}
@@ -73,15 +73,15 @@ export namespace StorageService {
 		public setJSON(name: string, value: any, overrideUserId?: boolean, secure?: boolean): void {
 			value = JSON.stringify(value);
 
-			JsCookies.set(name, value, Object.assign(CONFIG.STORAGE.COOKIES.OPTIONS, {
-				secure: secure === true
-			}));
+			JsCookies.set(name, value, {...CONFIG.STORAGE.COOKIES.OPTIONS, ...{
+				secure: secure === true,
+			}});
 		}
 
 		public set(name: string, value: string, overrideUserId?: boolean, secure?: boolean): void {
-			const opts = Object.assign(CONFIG.STORAGE.COOKIES.OPTIONS, {
-				secure: secure === true
-			});
+			const opts = {...CONFIG.STORAGE.COOKIES.OPTIONS, ...{
+				secure: secure === true,
+			}};
 
 			if (!value) {
 				return JsCookies.remove(name, opts);
@@ -91,9 +91,9 @@ export namespace StorageService {
 		}
 
 		public remove(name: string, overrideUserId?: boolean, secure?: boolean): void {
-			const opts = Object.assign(CONFIG.STORAGE.COOKIES.OPTIONS, {
-				secure: secure === true
-			});
+			const opts = {...CONFIG.STORAGE.COOKIES.OPTIONS, ...{
+				secure: secure === true,
+			}};
 
 			return JsCookies.remove(name, opts);
 		}

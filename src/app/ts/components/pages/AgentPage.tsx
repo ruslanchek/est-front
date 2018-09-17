@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { followStore } from 'react-stores';
-import { ObjectsStore } from '../../stores/ObjectsStore';
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { BreadCrumbs } from '../ui/BreadCrumbs';
 
 interface IProps {
@@ -11,7 +11,7 @@ interface IState {
 
 }
 
-@followStore(ObjectsStore.store)
+@followStore(AdvertsStore.store)
 export class AgentPage extends React.Component<IProps, IState> {
 	public state: IState = {
 

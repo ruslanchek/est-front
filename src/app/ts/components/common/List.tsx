@@ -1,15 +1,14 @@
 import * as React from 'react';
 import styled, { css } from 'react-emotion';
-import Color = require('color');
-import { ObjectsStore } from '../../stores/ObjectsStore';
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { AdvertListItem } from '../blocks/AdvertListItem';
 import { mq } from '../../lib/CSSUtils';
 import { SpecialBrick } from '../ui/SpecialBrick';
 import { CONFIG } from '../../config';
-import IObject = ObjectsStore.IObject;
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
-	objects: IObject[];
+	adverts: IAdvert[];
 }
 
 export class List extends React.PureComponent<IProps, {}> {
@@ -17,7 +16,7 @@ export class List extends React.PureComponent<IProps, {}> {
 		return (
 			<Container>
 				<ListContainer>
-					{ObjectsStore.store.state.presets.map((preset, i) => {
+					{AdvertsStore.store.state.presets.map((preset, i) => {
 						return (
 							<SpecialBrick
 								key={i}
@@ -30,11 +29,11 @@ export class List extends React.PureComponent<IProps, {}> {
 						);
 					})}
 
-					{ObjectsStore.store.state.objects.map((object, i) => {
+					{AdvertsStore.store.state.adverts.map((advert, i) => {
 						return (
 							<AdvertListItem
 								key={i}
-								objectData={object}
+								advertData={advert}
 								className={item}
 							/>
 						);

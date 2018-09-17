@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { AdvertsStore } from '../../stores/AdvertsStore';
+import IAdvert = AdvertsStore.IAdvert;
 import { THEME, COLORS } from '../../theme';
 import styled from 'react-emotion';
 
 interface IProps {
-	items: IObject[];
+	items: IAdvert[];
 }
 
 export class ListTable extends React.PureComponent<IProps, {}> {
@@ -34,7 +34,7 @@ export class ListTable extends React.PureComponent<IProps, {}> {
 					</Col>
 				</Header>
 
-				{this.props.items.map((item: IObject, i) => {
+				{this.props.items.map((item: IAdvert, i) => {
 					return (
 						<Row key={i}>
 							<Col style={{ width: '5%' }}>

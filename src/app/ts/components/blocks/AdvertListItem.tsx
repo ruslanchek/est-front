@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled, { css } from 'react-emotion';
-import { ObjectsStore } from '../../stores/ObjectsStore';
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { Favorite } from '../ui/Favorite';
 import { COLORS, THEME } from '../../theme';
-import { ObjectSubtitle } from '../ui/ObjectSubtitle';
+import { AdvertSubtitle } from '../ui/AdvertSubtitle';
 import { Address } from '../ui/Address';
 import { GallerySmall } from '../ui/GallerySmall';
 import { Params } from '../ui/Params';
@@ -11,17 +11,17 @@ import { Avatar } from '../ui/Avatar';
 import { Link } from 'react-router-dom';
 import { PATHS } from '../../config';
 import { Money } from '../ui/Money';
-import IObject = ObjectsStore.IObject;
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
-	objectData: IObject;
+	advertData: IAdvert;
 	className: string;
 }
 
 export class AdvertListItem extends React.Component<IProps, {}> {
 	public render() {
 		const {
-			objectData,
+			advertData,
 		} = this.props;
 
 		const {
@@ -29,7 +29,7 @@ export class AdvertListItem extends React.Component<IProps, {}> {
 			isFavorite,
 			price,
 			agent,
-		} = this.props.objectData;
+		} = this.props.advertData;
 
 		return (
 			<Container className={this.props.className}>
@@ -42,29 +42,29 @@ export class AdvertListItem extends React.Component<IProps, {}> {
 						/>
 					</FavoriteContainer>
 
-					<Link to={PATHS.OBJECT.replace(':id', id.toString())}>
-						<GallerySmall objectData={objectData}/>
+					<Link to={PATHS.ADVERT.replace(':id', id.toString())}>
+						<GallerySmall advertData={advertData}/>
 					</Link>
 				</Header>
 
 				<Body>
-				<ObjectSubtitle objectData={objectData}/>
+				<AdvertSubtitle advertData={advertData}/>
 
 				<Price>
 					<Money value={price}/>
 				</Price>
 
 				<AddressContainer>
-					<Address objectData={objectData}/>
+					<Address advertData={advertData}/>
 				</AddressContainer>
 				</Body>
 
 				<ParamsContainer>
-					<Params objectData={objectData}/>
+					<Params advertData={advertData}/>
 				</ParamsContainer>
 
 				<Footer>
-					<Avatar objectAgent={agent}/>
+					<Avatar advertAgent={agent}/>
 				</Footer>
 			</Container>
 		);

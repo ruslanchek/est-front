@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { ObjectsStore } from '../../stores/ObjectsStore';
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { Icon } from '../common/Icon';
 import { COLORS, THEME } from '../../theme';
 import styled from 'react-emotion';
-import IObject = ObjectsStore.IObject;
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
-	objectData: IObject;
+	advertData: IAdvert;
 }
 
 export class Params extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { params } = this.props.objectData;
+		const { params } = this.props.advertData;
 
 		return (
 			<Container>

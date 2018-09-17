@@ -1,11 +1,11 @@
 import * as React from 'react';
 import GoogleMapReact from 'google-map-react';
 import { CONFIG } from '../../config';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { EGisMarkerType, GisMarker } from './GisMarker';
 import { COLORS } from '../../theme';
 import styled from 'react-emotion';
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
 	width: string;
@@ -13,7 +13,7 @@ interface IProps {
 	zoom: number;
 	lat: number;
 	lng: number;
-	objects: IObject[];
+	adverts: IAdvert[];
 }
 
 interface IState {
@@ -37,7 +37,7 @@ export class Gis extends React.PureComponent<IProps, IState> {
 	}
 
 	public render() {
-		const {width, height, zoom, objects} = this.props;
+		const {width, height, zoom, adverts} = this.props;
 
 		return (
 			<Container
@@ -54,17 +54,17 @@ export class Gis extends React.PureComponent<IProps, IState> {
 					}}
 					zoom={zoom}
 				>
-					{objects.map((object, i) => {
+					{adverts.map((advert, i) => {
 						return (
 							<GisMarker
-								opened={this.state.markerOpenedId === object.id}
+								opened={this.state.markerOpenedId === advert.id}
 								key={i}
 								color={COLORS.RED}
 								type={EGisMarkerType.Small}
-								lat={object.address.geoPoint.lat}
-								lng={object.address.geoPoint.lng}
-								object={object}
-								onCLick={(obj: IObject) => {
+								lat={advert.address.geoPoint.lat}
+								lng={advert.address.geoPoint.lng}
+								advert={advert}
+								onCLick={(obj: IAdvert) => {
 									this.setState({
 										lat: obj.address.geoPoint.lat,
 										lng: obj.address.geoPoint.lng,

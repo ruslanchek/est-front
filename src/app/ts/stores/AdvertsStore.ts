@@ -2,7 +2,7 @@ import { Store } from 'react-stores';
 import { EIcon } from '../components/common/Icon';
 import Color = require('color');
 
-export namespace ObjectsStore {
+export namespace AdvertsStore {
 	export interface IPreset {
 		id: number;
 		title: string;
@@ -11,19 +11,19 @@ export namespace ObjectsStore {
 		color2: string;
 	}
 
-	export interface IObject {
+	export interface IAdvert {
 		id: number;
 		title: string;
-		type: EObjectType;
-		contractType: EObjectContractType;
+		type: EAdvertType;
+		contractType: EAdvertContractType;
 		constructionDate: Date;
 		price: number;
 		address: IAddress;
-		params: IObjectParam[];
-		agent: IObjectAgent;
+		params: IAdvertParam[];
+		agent: IAdvertAgent;
 		isFavorite: boolean;
-		pictures: IObjectPicture[];
-		coverPicture: IObjectPicture;
+		pictures: IAdvertPicture[];
+		coverPicture: IAdvertPicture;
 	}
 
 	export interface IAddress {
@@ -55,53 +55,53 @@ export namespace ObjectsStore {
 		geoPoint: IGeoPoint;
 	}
 
-	export interface IObjectAgent {
+	export interface IAdvertAgent {
 		id: number;
 		avatar: string;
-		type: EObjectAgentType;
+		type: EAdvertAgentType;
 		name: string;
 	}
 
-	export interface IObjectParam {
+	export interface IAdvertParam {
 		id: number;
 		icon: EIcon;
 		name: string;
 		value: string;
 	}
 
-	export interface IObjectPicture {
+	export interface IAdvertPicture {
 		id: number;
 		title: string;
 		description: string;
 		src: string;
 	}
 
-	export enum EObjectType {
+	export enum EAdvertType {
 		DetachedHouse,
 		TownHouse,
 		Flat,
 		Studio,
 	}
 
-	export enum EObjectContractType {
+	export enum EAdvertContractType {
 		Purchase,
-		Rent
+		Rent,
 	}
 
-	export enum EObjectAgentType {
+	export enum EAdvertAgentType {
 		Private,
 		Realtor,
-		Agency
+		Agency,
 	}
 
 	export interface IState {
-		objects: IObject[];
+		adverts: IAdvert[];
 		presets: IPreset[];
 	}
 
 	export const initialState: IState = {
-		objects: [],
-		presets: []
+		adverts: [],
+		presets: [],
 	};
 
 	export let store: Store<IState> = new Store<IState>(initialState);

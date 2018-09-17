@@ -5,7 +5,7 @@ export const PATHS = {
 	AUTH_PASSWORD_RESET: '/auth/password-reset',
 	PERSONAL: '/personal',
 	PERSONAL_PLACE_ADVERT: '/personal/place-advert',
-	OBJECT: '/object/:id',
+	ADVERT: '/advert/:id',
 	AGENT: '/agents/:id'
 };
 

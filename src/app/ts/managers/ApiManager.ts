@@ -23,6 +23,22 @@ export interface IApiResultError {
 	details?: any;
 }
 
+export interface IApiResultEnum {
+	enum: string[] | number[];
+}
+
+export interface IApiResultCreate {
+	id: number;
+}
+
+export interface IApiResultList<Entity> {
+	list: Entity[];
+}
+
+export interface IApiResultOne<Entity> {
+	entity: Entity;
+}
+
 export class ApiManager extends Manager {
 	public reset(): void {
 

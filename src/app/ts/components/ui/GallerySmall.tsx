@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { THEME } from '../../theme';
 import { Image } from './Image';
 import { CSSTransition } from 'react-transition-group';
 import styled, { css } from 'react-emotion';
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
-	objectData: IObject;
+	advertData: IAdvert;
 }
 
 interface IState {
@@ -27,12 +27,12 @@ export class GallerySmall extends React.Component<IProps, IState> {
 
 	public componentDidMount() {
 		this.setState({
-			currentPicSrc: this.props.objectData.coverPicture.src
+			currentPicSrc: this.props.advertData.coverPicture.src
 		});
 	}
 
 	public shouldComponentUpdate(nextProps: IProps, nextState: IState): boolean {
-		if(nextProps.objectData.id !== this.props.objectData.id) {
+		if(nextProps.advertData.id !== this.props.advertData.id) {
 			return true;
 		}
 
@@ -52,7 +52,7 @@ export class GallerySmall extends React.Component<IProps, IState> {
 	}
 
 	public render() {
-		const { pictures } = this.props.objectData;
+		const { pictures } = this.props.advertData;
 		const { currentPage } = this.state;
 
 		return (

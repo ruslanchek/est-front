@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'react-emotion';
 import { COMMON_STYLES } from '../../theme';
-import { ObjectsStore } from '../../stores/ObjectsStore';
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { EFilterBrickType, FilterBrick } from './FilterBrick';
 
 interface IProps {
-	type: ObjectsStore.EObjectContractType;
+	type: AdvertsStore.EAdvertContractType;
 	brickType: EFilterBrickType;
 	className?: string;
 }

@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { ObjectsStore } from '../../stores/ObjectsStore';
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import { COLORS, THEME, COMMON_STYLES } from '../../theme';
 import { PATHS } from '../../config';
-import IObjectAgent = ObjectsStore.IObjectAgent;
+import IAdvertAgent = AdvertsStore.IAdvertAgent;
 import styled, { css } from 'react-emotion';
 
 interface IProps {
-	objectAgent: IObjectAgent;
+	advertAgent: IAdvertAgent;
 }
 
 export class Avatar extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { id, avatar, name, type } = this.props.objectAgent;
+		const { id, avatar, name, type } = this.props.advertAgent;
 
 		return (
 			<div>
@@ -47,10 +47,10 @@ export class Avatar extends React.PureComponent<IProps, {}> {
 	}
 
 	private getAgentTypeName(): string {
-		switch (this.props.objectAgent.type) {
-			case ObjectsStore.EObjectAgentType.Private : return 'Private';
-			case ObjectsStore.EObjectAgentType.Realtor : return 'Realtor';
-			case ObjectsStore.EObjectAgentType.Agency : return 'Agency';
+		switch (this.props.advertAgent.type) {
+			case AdvertsStore.EAdvertAgentType.Private : return 'Private';
+			case AdvertsStore.EAdvertAgentType.Realtor : return 'Realtor';
+			case AdvertsStore.EAdvertAgentType.Agency : return 'Agency';
 		}
 	}
 }

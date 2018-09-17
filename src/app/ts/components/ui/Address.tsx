@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { AdvertsStore } from '../../stores/AdvertsStore';
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
-	objectData: IObject;
+	advertData: IAdvert;
 }
 
 export class Address extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { address } = this.props.objectData;
+		const { address } = this.props.advertData;
 
 		return (
 			<span>

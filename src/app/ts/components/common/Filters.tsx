@@ -5,10 +5,8 @@ import { FilterFromTo } from '../filters/FilterFromTo';
 import { FilterAnd } from '../filters/FilterAnd';
 import { FilterRangeEntities } from '../filters/FilterRangeEntities';
 import { Money } from '../ui/Money';
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import ICountry = ObjectsStore.ICountry;
-import { managers } from '../../managers';
-import ICity = ObjectsStore.ICity;
+import { AdvertsStore } from '../../stores/AdvertsStore';
+import ICity = AdvertsStore.ICity;
 import { FilterSearch, ISearchFilterEntity } from '../filters/FilterSearch';
 import { FilterContractType } from '../filters/FilterContractType';
 import { FilterAdd } from '../filters/FilterAdd';
@@ -34,7 +32,17 @@ export class Filters extends React.PureComponent<IProps, IState> {
 		let currentCity: ICity = null;
 
 		for (let i = 0; i < 1200; i++) {
-			const city: ICity = managers.faker.generateCity(1);
+			const city: ICity = {
+				id: 1,
+				isoCode: 'lon',
+				countryId: 1,
+				title: 'London',
+				nativeTitle: 'London',
+				geoPoint: {
+					lat: 22,
+					lng: 55,
+				},
+			};
 
 			currentCity = city;
 
@@ -96,7 +104,7 @@ export class Filters extends React.PureComponent<IProps, IState> {
 
 					<FilterContractType
 						brickType={EFilterBrickType.Right}
-						type={ObjectsStore.EObjectContractType.Rent}
+						type={AdvertsStore.EAdvertContractType.Rent}
 					/>
 				</FilterGroup>
 

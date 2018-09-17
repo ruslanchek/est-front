@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { COLORS, THEME } from '../../theme';
 import Color = require('color');
-import { ObjectsStore } from '../../stores/ObjectsStore';
-import IObject = ObjectsStore.IObject;
+import { AdvertsStore } from '../../stores/AdvertsStore';
 import styled, { css } from 'react-emotion';
+import IAdvert = AdvertsStore.IAdvert;
 
 interface IProps {
 	opened: boolean;
-	object: IObject;
+	advert: IAdvert;
 	lat: number;
 	lng: number;
 	type: EGisMarkerType;
 	color: Color;
-	onCLick: (object: IObject) => void;
+	onCLick: (advert: IAdvert) => void;
 }
 
 export enum EGisMarkerType {
@@ -22,14 +22,14 @@ export enum EGisMarkerType {
 
 export class GisMarker extends React.PureComponent<IProps, {}> {
 	public render() {
-		const { object, type, color, onCLick } = this.props;
+		const { advert, type, color, onCLick } = this.props;
 
 		return (
 			<Container
 				type={type}
-				title={object.title}
+				title={advert.title}
 				onClick={() => {
-					onCLick(object);
+					onCLick(advert);
 				}}
 				style={{
 					background: `${color.toString()}`,
