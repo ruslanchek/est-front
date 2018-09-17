@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HandlebarsPlugin = require('handlebars-webpack-plugin');
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 let plugins = [
 	new CleanWebpackPlugin(['dist'], {
@@ -26,6 +27,12 @@ module.exports = {
 		filename: '[name].js',
 		publicPath: './',
 		path: __dirname + '/dist',
+	},
+
+	optimization: {
+		minimizer: [
+			new UglifyJsPlugin(),
+		],
 	},
 
 	mode: 'production',
