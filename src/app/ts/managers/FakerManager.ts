@@ -14,7 +14,6 @@ import IGeoPoint = ObjectsStore.IGeoPoint;
 import IAddress = ObjectsStore.IAddress;
 import EObjectContractType = ObjectsStore.EObjectContractType;
 import IPreset = ObjectsStore.IPreset;
-import Color = require('color');
 
 const GENERATE_OBJECTS_COUNT: number = 11;
 const GENERATE_PRESETS_COUNT: number = 5;
