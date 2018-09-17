@@ -36,6 +36,7 @@ export class ApiManager extends Manager {
 
 	public async request<ResultPayload>(type: EApiRequestType, path: string, data?: any): Promise<IApiResult<ResultPayload>> {
 		const url: string = `${CONFIG.API_BASE_URL}${path}`;
+
 		let token: string = managers.storage.cookies.get('token');
 		let result = null;
 

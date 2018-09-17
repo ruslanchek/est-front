@@ -2,9 +2,11 @@ import * as React from 'react';
 import styled, { css, cx } from 'react-emotion';
 import { COLORS, COMMON_STYLES, THEME } from '../../theme';
 import { PlaceAdvertStore } from '../../stores/PlaceAdvertStore';
-import EPlaceAdvertPage = PlaceAdvertStore.EPlaceAdvertPage;
 import { followStore } from 'react-stores';
 import { Button } from '../ui/Button';
+import { EFormValidateOn, Form } from '../forms/Form';
+import EPlaceAdvertPage = PlaceAdvertStore.EPlaceAdvertPage;
+import { PlaceAdvertBlock } from './PlaceAdvertBlock';
 
 interface IProps {
 
@@ -75,6 +77,18 @@ export class PlaceAdvert extends React.Component<IProps, IState> {
 				<Content>
 					<Title>Information about property {PlaceAdvertStore.store.state.page}</Title>
 
+					<Form
+						onSubmit={() => {}}
+						validateOn={EFormValidateOn.ALL}
+					>
+						<PlaceAdvertBlock label="Amount">
+							<FieldPre>
+								$
+							</FieldPre>
+							<Field/>
+						</PlaceAdvertBlock>
+					</Form>
+
 					<Button onClick={this.handleNextButton}>
 						Next step
 					</Button>
@@ -104,7 +118,21 @@ interface IPageInterface {
 }
 
 const saveLink = css`
+	
+`;
 
+const FieldPre = styled('span')`
+  font-size: ${THEME.FONT_SIZE_MEDIUM}px;
+  font-weight: 600;
+`;
+
+const Field = styled('input')`
+  font-size: ${THEME.FONT_SIZE_MEDIUM}px;
+  font-weight: 600;
+  outline: none;
+  background: none;
+  padding: 5px 0;
+  border: none;
 `;
 
 const Text = styled('div')`
