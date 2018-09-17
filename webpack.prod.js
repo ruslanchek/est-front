@@ -31,7 +31,21 @@ module.exports = {
 
 	optimization: {
 		minimizer: [
-			new UglifyJsPlugin(),
+			new UglifyJsPlugin({
+				extractComments: true,
+				uglifyOptions: {
+					warnings: false,
+					parse: {},
+					compress: {},
+					mangle: true,
+					output: null,
+					toplevel: false,
+					nameCache: null,
+					ie8: false,
+					keep_fnames: false,
+					drop_console: true,
+				}
+			}),
 		],
 	},
 
