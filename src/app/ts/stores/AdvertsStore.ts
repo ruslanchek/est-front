@@ -1,6 +1,7 @@
 import { Store } from 'react-stores';
 import { EIcon } from '../components/common/Icon';
 import Color = require('color');
+import { ESpecialBrickPattern } from '../components/ui/SpecialBrick';
 
 export namespace AdvertsStore {
 	export interface IPreset {
@@ -9,6 +10,7 @@ export namespace AdvertsStore {
 		price: number;
 		color1: string;
 		color2: string;
+		pattern: ESpecialBrickPattern;
 	}
 
 	export interface IAdvert {

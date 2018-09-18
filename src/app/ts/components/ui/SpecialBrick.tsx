@@ -12,6 +12,14 @@ interface IProps {
 	title: string;
 	subtitle: string;
 	className?: string;
+	pattern?: ESpecialBrickPattern;
+}
+
+export enum ESpecialBrickPattern {
+	Circles = 'circles',
+	Stripes = 'stripes',
+	Pluses = 'pluses',
+	Waves = 'waves',
 }
 
 export class SpecialBrick extends React.PureComponent<IProps, {}> {
@@ -22,6 +30,7 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 			title,
 			subtitle,
 			className,
+			pattern,
 		} = this.props;
 
 		return (
@@ -30,7 +39,11 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 					to={PATHS.HOME}
 					className={container}
 				>
-					<Inner color1={Color(color1)} color2={Color(color2)}>
+					<Inner
+						color1={Color(color1)}
+						color2={Color(color2)}
+						pattern={pattern}
+					>
 						<Title>
 							{title}
 						</Title>
@@ -48,6 +61,7 @@ export class SpecialBrick extends React.PureComponent<IProps, {}> {
 interface IInnerProps {
 	color1: Color;
 	color2: Color;
+	pattern: ESpecialBrickPattern;
 }
 
 const container = css`
@@ -74,7 +88,16 @@ const Inner = styled('span')<IInnerProps>`
 	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 	background-color: ${props => props.color1.toString()};
-	background-image: ${props => CSSUtils.linearGradient(10, props.color1, props.color2, 10, 100)};
+	background-position: 0, 0;
+	background-size: 0, 100%;
+	
+	${(props: IInnerProps) => {
+		return css`
+			background-image: 
+				${CSSUtils.linearGradient(10, props.color1, props.color2, 10, 100)},
+				url(${require(`../../../img/special-patterns/${props.pattern}.svg`)});
+		`;	
+	}}
 `;
 
 const Title = styled('span')`

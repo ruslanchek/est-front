@@ -3,7 +3,7 @@ import styled, { css } from 'react-emotion';
 import { AdvertsStore } from '../../stores/AdvertsStore';
 import { AdvertListItem } from '../blocks/AdvertListItem';
 import { mq } from '../../lib/CSSUtils';
-import { SpecialBrick } from '../ui/SpecialBrick';
+import { ESpecialBrickPattern, SpecialBrick } from '../ui/SpecialBrick';
 import { CONFIG } from '../../config';
 import IAdvert = AdvertsStore.IAdvert;
 
@@ -22,6 +22,7 @@ export class List extends React.PureComponent<IProps, {}> {
 								key={i}
 								color1={preset.color1}
 								color2={preset.color2}
+								pattern={preset.pattern}
 								title={preset.title}
 								subtitle={`From ${preset.price.toLocaleString(CONFIG.DEFAULT_LOCALE)} EUR`}
 								className={item}
