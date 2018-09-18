@@ -88,7 +88,8 @@ const Inner = styled('span')<IInnerProps>`
 	padding: ${THEME.SECTION_PADDING_V}px ${THEME.SECTION_PADDING_H}px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 	background-color: ${props => props.color1.toString()};
-	background-position: 0, 0;
+	background-position: 0, 100% 100%;
+	background-repeat: no-repeat, no-repeat;
 	background-size: 0, 100%;
 	
 	${(props: IInnerProps) => {
