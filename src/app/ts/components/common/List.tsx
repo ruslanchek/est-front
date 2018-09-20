@@ -3,7 +3,7 @@ import styled, { css } from 'react-emotion';
 import { AdvertsStore } from '../../stores/AdvertsStore';
 import { AdvertListItem } from '../blocks/AdvertListItem';
 import { mq } from '../../lib/CSSUtils';
-import { ESpecialBrickPattern, SpecialBrick } from '../ui/SpecialBrick';
+import { SpecialBrick } from '../ui/SpecialBrick';
 import { CONFIG } from '../../config';
 import IAdvert = AdvertsStore.IAdvert;
 
