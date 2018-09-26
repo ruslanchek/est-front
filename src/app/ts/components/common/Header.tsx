@@ -48,13 +48,13 @@ export class Header extends React.Component<{}, IState> {
 		const { isFloating } = this.state;
 
 		return (
-			<Container>
+			<header className={container}>
 				<HeaderContainer isFloating={isFloating}>
 					<Layout className={block}>
-						<Link to={PATHS.HOME} className={logo} />
+						<Link to={PATHS.HOME} className={logo}/>
 
-						<NavContainer>
-							<Nav>
+						<div className={navContainer}>
+							<nav className={nav}>
 								<CountrySelector/>
 
 								<LocaleSelector/>
@@ -66,10 +66,10 @@ export class Header extends React.Component<{}, IState> {
 										Help
 									</IsTabletOrDesktop>
 								</a>
-							</Nav>
-						</NavContainer>
+							</nav>
+						</div>
 
-						<NavUser>
+						<nav className={navUser}>
 							{AuthStore.store.state.authorized ? (
 								<NavLink
 									to={PATHS.PERSONAL}
@@ -128,20 +128,20 @@ export class Header extends React.Component<{}, IState> {
 								className={cx(userLink, placeAdvert)}
 							>
 								<IsPhone>
-									<PlaceAdvertIcon>
+									<span className={placeAdvertIcon}>
 										<Ionicon
 											icon="md-add"
 											fontSize="18px"
 											color={COLORS.WHITE.toString()}
 										/>
-									</PlaceAdvertIcon>
+									</span>
 								</IsPhone>
 
 								<IsTabletOrDesktop>
 									Place advert
 								</IsTabletOrDesktop>
 							</NavLink>
-						</NavUser>
+						</nav>
 					</Layout>
 				</HeaderContainer>
 
@@ -150,7 +150,7 @@ export class Header extends React.Component<{}, IState> {
 						<Filters/>
 					</Layout>
 				</FiltersContainer>
-			</Container>
+			</header>
 		);
 	}
 
@@ -251,14 +251,6 @@ const placeAdvert = css`
 	}
 `;
 
-const block = css`
-	background-color: ${COLORS.WHITE.toString()};
-  min-height: ${THEME.HEADER_HEIGHT}px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-`;
-
 const icon = css`
   margin-right: ${THEME.SECTION_PADDING_H / 2}px;
   
@@ -267,37 +259,16 @@ const icon = css`
   }
 `;
 
-const PlaceAdvertIcon = styled('span')`
+const placeAdvertIcon = css`
   display: flex;
 	align-items: center;
 `;
 
-const Container = styled('header')`
+const container = css`
   padding-top: ${THEME.HEADER_HEIGHT}px;
 `;
 
-const HeaderContainer = styled('div')<IFloatingProps>`
-  background-color: ${COLORS.WHITE.toString()};
-	z-index: 10;
-	width: 100%;
-	left: 0;
-	top: 0;
-	max-width: 100%;
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	transition: box-shadow .3s;
-	
-	${(props: IFloatingProps) => {
-		if(props.isFloating) {
-			return css`
-				box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
-			`;
-		}
-	}}
-`;
-
-const Nav = styled('nav')`
+const nav = css`
   font-size: ${THEME.FONT_SIZE_SMALL}px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -306,7 +277,7 @@ const Nav = styled('nav')`
 	align-items: center;
 `;
 
-const NavUser = styled('nav')`
+const navUser = css`
   display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -317,6 +288,18 @@ const NavUser = styled('nav')`
 	${mq.phoneOrTablet} {
 		flex-grow: 1;
 	}
+`;
+
+const navContainer = css`
+  flex-grow: 1;
+`;
+
+const block = css`
+	background-color: ${COLORS.WHITE.toString()};
+  min-height: ${THEME.HEADER_HEIGHT}px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `;
 
 const FiltersContainer = styled('div')<IFloatingProps>`
@@ -335,6 +318,23 @@ const FiltersContainer = styled('div')<IFloatingProps>`
 	}}
 `;
 
-const NavContainer = styled('div')`
-  flex-grow: 1;
+const HeaderContainer = styled('div')<IFloatingProps>`
+  background-color: ${COLORS.WHITE.toString()};
+	z-index: 10;
+	width: 100%;
+	left: 0;
+	top: 0;
+	max-width: 100%;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow .3s;
+	
+	${(props: IFloatingProps) => {
+		if (props.isFloating) {
+			return css`
+				box-shadow: ${THEME.BOX_SHADOW_ELEVATION_MINIMAL};
+			`;
+		}
+	}}
 `;
