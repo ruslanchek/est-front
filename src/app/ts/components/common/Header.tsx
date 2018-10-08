@@ -217,6 +217,8 @@ const userLink = css`
 	align-items: center;
 	justify-content: flex-start;
 	white-space: nowrap;
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	line-height: ${THEME.FONT_SIZE_REGULAR}px;
 	
 	${mq.phone} {
 		margin-left: ${THEME.SECTION_PADDING_H / 1.5}px;
@@ -275,6 +277,8 @@ const nav = css`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	font-size: ${THEME.FONT_SIZE_REGULAR}px;
+	line-height: ${THEME.FONT_SIZE_REGULAR}px;
 `;
 
 const navUser = css`

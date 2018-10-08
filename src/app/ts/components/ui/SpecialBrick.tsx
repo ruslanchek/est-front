@@ -90,7 +90,7 @@ const Inner = styled('span')<IInnerProps>`
 	background-color: ${props => props.color1.toString()};
 	background-position: 0, 100% 100%;
 	background-repeat: no-repeat, no-repeat;
-	background-size: 0, 100%;
+	background-size: 100%, 100%;
 	
 	${(props: IInnerProps) => {
 		return css`
